@@ -8,3 +8,12 @@ chapters:
 - file: notebooks
 - file: markdown-notebooks
 - file: Cover
+- file: FIZ371_LN02_EST_Probabilities
+- file: FIZ371_LN10_EST_Distributions_1
+- file: FIZ371_LN15_EST_Distributions_2
+- file: FIZ371_LN20_EST_MaximumLikelihood
+- file: FIZ371_LN25_EST_Game_Theory
+- file: FIZ371_LN36_EST_Information_Theory
+- file: FIZ371_LN47_EST_CellularAutomata_GameOfLife
+- file: FIZ371_LN58_EST_ClusteringAndClassification
+- file: FIZ371_LN69_EST_NeuralNetworks

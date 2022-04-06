@@ -33,7 +33,7 @@ print(np.array([[x],[y]]).T[:10,:])
 ```
 
 ```{code-cell} ipython3
-plt.plot(x,y,"-")
+plt.plot(x**2,y,"-")
 plt.show()
 ```
 
