@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -77,7 +77,6 @@ The ordering is: (pay-off to Wanda, pay-off to Manny)
 
 For example (3,2) for $W_O$ and $M_O$ means that, if Wanda goes to opera ($W_O$) and Manny also goes to opera ($M_O$), Wanda will have 3 units of 'joy', while Manny will have 2 units of 'joy'. However, if Wanda goes to the opera while Manny goes to the football match, each of them will only get 1 unit of 'joy'.
 
-
 +++
 
 ### Calculating the probabilities
@@ -97,21 +96,24 @@ Here, we used the fact that $W_O + W_F=1$ as $W_O$ is the probability that Wanda
 
 Proceeding similarly onto the other probabilities:
 
+$$
 \begin{align*}
 M_O &= \frac{2W_O+0W_F}{2W_O+0W_F+1W_O+3W_F} = \frac{2W_O}{3(W_O+W_F)}=\frac{2W_O}{3}\\
 W_F &= \frac{0M_O+2M_F}{0M_O+2M_F+3M_O+1M_F} = \frac{2M_F}{3}\\
 W_O &= \frac{3M_O+M_F}{3M_O+M_F+0M_O+2M_F} = \frac{3M_0+M_F}{3}=\frac{1}{3}(3M_O+M_F)
-\end{align*}
+\end{align*}$$
 
 +++
 
 We have 4 equations for 4 unknowns -- to summarize:
+
+$$
 \begin{align*}
 M_F &= \frac{1}{3}(W_O + 3W_F)\\
 M_O &=\frac{2W_O}{3}\\
 W_F &=\frac{2M_F}{3}\\
 W_O &= \frac{1}{3}(3M_O+M_F)
-\end{align*}
+\end{align*}$$
 
 so, in theory, we must be able to solve this linear set of equations:
 
@@ -170,13 +172,16 @@ _Any ideas?_...
 
 .  
 .  
-.  
+.
 
 +++
 
-How about the fact that, since $W_F$ and $W_M$ were the probabilities of Wanda going to the football match or the opera and these were the only possibilities and hence:$$W_F + W_O = 1$$
+How about the fact that, since $W_F$ and $W_M$ were the probabilities of Wanda going to the football match or the opera and these were the only possibilities and hence:
+
+$$W_F + W_O = 1$$
 
 If we "translate" this into our set of equations as the 5th line:
+
 $$\left(\begin{matrix}
 1&0&-1&-1/3\\
 0&-1&0&2/3\\
@@ -193,6 +198,7 @@ M_F\\M_O\\W_F\\W_O
 $$
 
 (5x4).(4x1) = (5x1) --  the dimensions hold, so we can carry on the multiplication but for the linear solve, we need a square matrix, so we take out one of the first four rows (let's drop the 4th):
+
 $$\left(\begin{matrix}
 1&0&-1&-1/3\\
 0&-1&0&2/3\\
@@ -241,6 +247,7 @@ so, they have a slightly more probability to miss each other than meet in the ev
 This is the measure of the average gain in the limit (like, when this experiment/situation is repeated a great many times):
 
 * For Manny:
+
 $$E_m = M_F W_F E_m(m_f \wedge w_f) + M_F W_O E_m(m_f \wedge w_o)\\
 \quad\quad+M_O W_O E_m(m_o \wedge w_o)+M_O W_F E_m(m_o \wedge w_f)$$
 
@@ -248,22 +255,24 @@ Here as before, $M_F$ for example is the probability that Manny will go to the f
 
 So we substitute each of the values in the above equation for the expected pay-off:
 
+$$
 \begin{align*}
 E_m &= M_F W_F E_m(m_f \wedge w_f) + M_F W_O E_m(m_f \wedge w_o)\\
 &\quad+M_O W_O E_m(m_o \wedge w_o)+M_O W_F E_m(m_o \wedge w_f)\\
 &= \frac{3}{5}\,\cdot\frac{2}{5}\,\cdot3 +\frac{3}{5}\,\cdot\frac{3}{5}\,\cdot1 +\frac{2}{5}\,\cdot\frac{3}{5}\,\cdot2 +\frac{2}{5}\,\cdot\frac{2}{5}\,\cdot0 \\
 &= \frac{39}{25} = 1.56
-\end{align*}
+\end{align*}$$
 
 * For Wanda:  
 We proceed in a similar way: the probabilities for each combination will be the same but this time we use Wanda's pay-off values for each of them.
 
+$$
 \begin{align*}
 E_w &= M_F W_F E_w(m_f \wedge w_f) + M_F W_O E_w(m_f \wedge w_o)\\
 &\quad+M_O W_O E_w(m_o \wedge w_o)+M_O W_F E_w(m_o \wedge w_f)\\
 &= \frac{3}{5}\,\cdot\frac{2}{5}\,\cdot2 +\frac{3}{5}\,\cdot\frac{3}{5}\,\cdot1 +\frac{2}{5}\,\cdot\frac{3}{5}\,\cdot3 +\frac{2}{5}\,\cdot\frac{2}{5}\,\cdot0 \\
 &= \frac{39}{25} = 1.56
-\end{align*}
+\end{align*}$$
 
 +++
 
@@ -335,7 +344,7 @@ Introvert home boy Bob is infatuated with the extrovert party girl Alice.
 |$A_{party}$|10,10|6,0
 |$A_{home}$|0,0|5,5
 
-![introvert_boy_girl.png](attachment:introvert_boy_girl.png)
+![introvert_boy_girl.png](images/introvert_boy_girl.png)
 (these are just two introverts, not related to the case above! 8)
 
 +++
@@ -403,7 +412,7 @@ More clearly:
 |$A_{d}$|3,0|$\color{red}{\rightarrow}$|1,1
 
 Even better:
-![Nash_Equilibrium.svg](attachment:Nash_Equilibrium.svg)
+![Nash_Equilibrium.svg](images/Nash_Equilibrium.svg)
 
 From the graph above, we can see that, no matter where we start, we are forced to move along the arrows and we end up at the bottom-right cell where Alice and Bob both defect. This is the Nash equilibrium point. 
 
@@ -429,7 +438,7 @@ A determines the movement along (within) the columns whereas B determines the mo
 |&nbsp;|$\color{blue}{\uparrow}$|&nbsp;|$\color{blue}{\downarrow}$
 |$A_{hare}$|1,0|$\color{red}{\rightarrow}$|1,1
 
-![Nash_Equilibrium_Stag.svg](attachment:Nash_Equilibrium_Stag.svg)
+![Nash_Equilibrium_Stag.svg](images/Nash_Equilibrium_Stag.svg)
 
 The situation is like this: if A learns that B is going for a stag hunt, she will also opt to go to the stag hunt. If she hears that B is off to hare hunt, she will also choose to go the hare hunting. The same goes for B: If he chooses to go for stag hunting but then learns that A is going for hare hunting, he will change his opinion and will go to hare hunting as well. If he had chosen hare hunting but now learns that A is going for stag hunting, he will also go.
 
@@ -445,7 +454,7 @@ We see that, following the arrows, once we reach the top-left or bottom-right ce
 |&nbsp;|$\color{blue}{\uparrow}$|&nbsp;|$\color{blue}{\downarrow}$
 |$A_{Tails}$|-1,+1|$\color{red}{\leftarrow}$|+1,-1
 
-![Nash_Equilibrium_Pennies.svg](attachment:Nash_Equilibrium_Pennies.svg)
+![Nash_Equilibrium_Pennies.svg](images/Nash_Equilibrium_Pennies.svg)
 
 For this game, as can be seen from the figure, there is no Nash equilibrium point - in no possible outcome can the competing parties leave the game satisfied.
 

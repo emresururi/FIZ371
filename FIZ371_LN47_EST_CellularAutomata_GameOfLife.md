@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -322,7 +322,7 @@ plt.close()
 
 It is this 4th class that is promising.
 
-![cellular_automata_classification_Wolfram.png](attachment:cellular_automata_classification_Wolfram.png)
+![cellular_automata_classification_Wolfram.png](images/cellular_automata_classification_Wolfram.png)
 Stephen Wolfram, "A New Kind of Science: Four Classes of Behavior: Image Source for Page 231" from the Notebook Archive (2018), https://notebookarchive.org/2018-12-1g671ci
 
 +++

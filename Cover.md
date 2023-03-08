@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -18,24 +18,16 @@ Department of Engineering Physics
 Hacettepe University  
 Ankara / Turkey
 
-```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-```
++++
 
-```{code-cell} ipython3
-x = np.linspace(-3,3,100)
-y = x**2
-```
+This pybook is prepared to be used as a companion to the "FIZ371 - Scientific and Technical Calculations" course and its components can also be freely accessible via [github](https://github.com/emresururi/FIZ371).
 
-```{code-cell} ipython3
-print(np.array([[x],[y]]).T[:10,:])
-```
+The lecture notes rely heavily on David MacKay's excellent book ["Information Theory, Inference, and Learning Algorithms"](https://www.inference.org.uk/mackay/itila/book.html).
 
-```{code-cell} ipython3
-plt.plot(x**2,y,"-")
-plt.show()
-```
++++
+
+December, 6th 2022,  
+Dr. Emre S. Tasci
 
 ```{code-cell} ipython3
 

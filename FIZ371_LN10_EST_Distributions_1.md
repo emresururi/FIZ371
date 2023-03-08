@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -65,7 +65,8 @@ These kind of probability distribution functions (PDFs) where every possible out
 
 +++
 
-1. Expected (Average) Value $\left(\mu,\left<x\right>, E[x]\right)$:  
+1\. Expected (Average) Value $\left(\mu,\left<x\right>, E[x]\right)$:
+
 $$\mu = \sum_{x_i}{x_i\cdot p(x_i)}$$
 
 ```{code-cell} ipython3
@@ -80,7 +81,8 @@ for i in range(0,6):
 print ("Expected value: %.3f"%mean)
 ```
 
-2. Variance ($\sigma^2$):
+2\. Variance ($\sigma^2$):
+
 $$\sigma^2 = \sum_{x_i}{x_i^2 p(x_i) - \mu^2}$$
 
 ```{code-cell} ipython3
@@ -102,12 +104,14 @@ print ("Expected value: %.3f"%mean)
 print ("Variance: %.3f"%var)
 ```
 
-3. Standard Deviation ($\sigma$):
+3\. Standard Deviation ($\sigma$):
+
+$$
 \begin{align*}
 \sigma&=\sqrt{\sigma^2}\\
 \sigma &= \sqrt{\left<x^2\right> - \left<x\right>^2}\\
 &=\sqrt{\sum_{i}{p_i \left(x_i - \mu\right)^2}}
-\end{align*}
+\end{align*}$$
 
 ```{code-cell} ipython3
 import numpy as np
@@ -183,7 +187,7 @@ We have our probability distribution function, but how do we draw from such a di
 
 **Creating a sample list**  
 If the number of variables in a PDF is low like our loaded dice, we can "construct" a sample list and draw randomly (as in "uniformly") from that list. So, for the case we have, we can define our list as:
-![pdfloadeddice.png](attachment:pdfloadeddice.png)
+![pdfloadeddice.png](images/pdfloadeddice.png)
 
 ```{code-cell} ipython3
 loaded_dice_set = np.array([1,3,3,4,5,5,5,6])
@@ -339,38 +343,52 @@ We will start simple: consider a draw where there is only two possible outcomes 
 Let a flipped coin's probability to come heads (*x=1*) be $0\le p\le1$ instead of the usual $\frac{1}{2}$ (i.e., not necessarily fair).
 
 so the probabilities are:
+
 $$\begin{align*}P(x=1) &= p\\
 P(x=0) &= 1-p\end{align*}$$
 
 we can combine these two equations into one such as:
+
 $$P(x) = p^x \left(1-p\right)^{1-x}$$
 
 +++
 
-1. Mean Value: $$\mu=\left<x\right> = 1. p+ 0. (1-p) = p$$
-2. Variance: $$\left<x^2\right> =1^2. p+ 0^2. (1-p) = p\\
+1\. Mean Value: 
+
+$$\mu=\left<x\right> = 1. p+ 0. (1-p) = p$$
+
+2\. Variance: 
+
+$$\left<x^2\right> =1^2. p+ 0^2. (1-p) = p\\
 \rightarrow \sigma^2 = \left<x^2\right> - \left<x\right>^2 = p - p^2 = p (1-p)$$
 
 +++
 
-If the flipping / choosing is repeated *n* times:$$\begin{align*}P_{X_1,X_2,...,X_n}(x_1,x_2,...,x_n) &= P_{X_1}(x_1). P_{X_2}(x_2)...P_{X_n}(x_n)\\
+If the flipping / choosing is repeated *n* times:
+
+$$\begin{align*}P_{X_1,X_2,...,X_n}(x_1,x_2,...,x_n) &= P_{X_1}(x_1). P_{X_2}(x_2)...P_{X_n}(x_n)\\
 &=\left[p^{x_1}\left(1-p\right)^{1-x_1}\right].
 \left[p^{x_2}\left(1-p\right)^{1-x_2}\right]...
 \left[p^{x_n}\left(1-p\right)^{1-x_n}\right]\\
 &=p^{x_1+x_2+...+x_n}\left(1-p\right)^{n-x_1-x_2-...-x_n}\\
 &=p^{y}\left(1-p\right)^{n-y}
 \end{align*}$$
+
+
 where _y_ is the number of 1s among $x_1,x_2,...,x_n$.
 
 The probability of the chosen outcome occurring a chosen number of times (_k_):
+
 $$p\left(x=k\right) = \mathbb{C}_{n,k}\, p^k\, \left(1-p\right)^{n-k}$$
 
 Here, $\mathbb{C}_{n,k}$ (pronounced as "n choose k", also represented by $n \choose k$ is defined as:
+
 $$\mathbb{C}_{n,k} = \frac{\mathbb{P}_{n,k}}{k!}$$
 
 and gives the possible outcomes where order is not important. $\mathbb{P_{n,k}}$ is the permutation number and is used directly when the order is important $\left(\mathbb{P} = \frac{n!}{(n-k)!}\right)$.  
 
 Thus, **Binomial Distribution** is defined as the <u>probability of an outcome between two possible options _k_ times in a drawing of *n* times</u>:
+
 $$\begin{align*}P(n,k) &= \mathbb{C}_{n,k}\, p^k\, \left(1-p\right)^{n-k}\\
 &=\frac{n!}{k!\left(n-k\right)!}\,p^k\, \left(1-p\right)^{n-k}\end{align*}$$
 
@@ -406,7 +424,7 @@ for n in range(0,5):
 
 We have re-derived the [Pascal's Triangle](https://en.wikipedia.org/wiki/Pascal%27s_triangle)!
 
-(Pay attention that the first row is $n = 0$ and the first column is $k=0$!) 
+(Pay attention that the first row is $n = 0$ and the first column is $k=0$!)
 
 +++
 
@@ -424,12 +442,12 @@ k = 2 : {a,b}, {b,a}, {b,c}, {c,b}, {a,c}, {c,a}
 
 ### Galton Machine
 A Galton machine is made by arranging nails in diagonals on a vertical board:
-![GaltonBoard.png](attachment:GaltonBoard.png)  
-(Image from [Wikipedia](https://en.wikipedia.org/wiki/Bean_machine#/media/File:GaltonBoard.png))
+![GaltonBoard.png](images/GaltonBoard.png)  
+Image from [Wikipedia](https://en.wikipedia.org/wiki/Bean_machine#/media/File:GaltonBoard.png)
 
 Balls are dropped from the top, thus at each pin they hit, there is an equal chance that they will scatter towards left or right. In the next pin they once again have a ½ chance to go towards left or right and this accumulates. So the probabilities for the first levels can be plotted as:
 
-![GaltonProbabilities.png](attachment:GaltonProbabilities.png)
+![GaltonProbabilities.png](images/GaltonProbabilities.png)
 
 For example, to get the left-most pin, the ball must go towards left 4 times (left->left->left->left), making the total probability of getting there $\frac{1}{16}$. Or, to get to the middle pin in the center of the 2nd level, it can follow one of the two-ways: either making a left->right, or making a right->left, thus making its cumulative probability to be there the sum of these possibilities, i.e., $\frac{1}{4}+ \frac{1}{4} = \frac{2}{4}= \frac{1}{2}$.
 

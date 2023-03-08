@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -106,7 +106,8 @@ print(g)
 This time, we're going to increase the number of levels (and also to have statistically meaningful results, we will ensure that there is a sufficient number of balls to accompany them 8).
 
 ```{code-cell} ipython3
-for i in np.array([10,25,50,100,250,500,1000]):
+#for i in np.array([10,25,50,100,250,500,1000]):
+for i in np.array([10,25,50,100,250]):
     n = i
     N = 100*n
     g = Galton(n,N)
@@ -125,14 +126,17 @@ This bell-like shaped curve has its very special place in statistics and in natu
 +++
 
 Remember that, the probability of the chosen outcome happening $k$ times out of $n$ tries was given by the binomial probability distribution function as:
+
 $$P(n,k)
 =\frac{n!}{k!\left(n-k\right)!}\,p^k\, \left(1-p\right)^{n-k}$$
+
 where $p$ being the probability of the chosen outcome happening in a single try (and thus $(1-p)$ corresponding to the probability of the chosen outcome _not_ happening).
 
 For the sake of practicality (and taking the next step to continous distribution in the case of: $k\rightarrow x$), we will switch to different symbols in the proof:
 * $x$ will replace $k$
 * we will denote $(1-p)$ by $q$
 so, our PDF above will be re-written as:
+
 $$P(x) = \frac{n!}{x!\left(n-x\right)!}\,p^x\, q^{n-x}$$
 
 +++
@@ -140,7 +144,9 @@ $$P(x) = \frac{n!}{x!\left(n-x\right)!}\,p^x\, q^{n-x}$$
 We will be working in the $n\rightarrow\infty$ limit, justifying the approximations.
 
 To get rid of the factorials, we will use [Stirling's approximation](https://en.wikipedia.org/wiki/Stirling%27s_approximation):
+
 $$n! \approx n^n e^{-n} \sqrt{2\pi n}$$
+
 Substitution of all the factorials yields:
 \begin{align*}
 P(x) &= \frac{n^n e^{-n} \sqrt{2\pi n}}{\left[x^x e^{-x} \sqrt{2\pi x}\right]
@@ -155,14 +161,17 @@ P(x) &= \frac{n^n e^{-n} \sqrt{2\pi n}}{\left[x^x e^{-x} \sqrt{2\pi x}\right]
 If we define: $\delta = x - np$, then $x=\delta+np$ and $n-x = nq-\delta$. 
 
 From here we can write:
+
+$$
 \begin{align*}
 \ln\left(\frac{np}{x}\right) &= \ln\left(\frac{np}{np+\delta}\right) = -\ln\left(1 + \frac{\delta}{np}\right)\\
 \ln\left(\frac{nq}{n-x}\right) &= \ln\left(\frac{nq}{nq-\delta}\right) = -\ln\left(1 - \frac{\delta}{nq}\right)
-\end{align*}
+\end{align*}$$
 
 +++
 
 At this point we'll take the logarithm of the probability function's $\left(\frac{np}{x}\right)^x\left(\frac{nq}{n-x}\right)^{n-x}$ part:
+
 $$\ln\left[\left(\frac{np}{x}\right)^x\left(\frac{nq}{n-x}\right)^{n-x}\right] = x\ln\left(\frac{np}{x}\right)+(n-x) \ln\left(\frac{nq}{n-x}\right)$$
 
 
@@ -171,12 +180,12 @@ Substitute $x=\delta+np$, $n-x = nq-\delta$, the above logarithmic identities, a
 $$\ln(1+x) = x - \frac{1}{2} x^2$$
 to have:  
 
-\begin{align*}
+$$\begin{align*}
 \ln\left[\left(\frac{np}{x}\right)^x\left(\frac{nq}{n-x}\right)^{n-x}\right] &= x\ln\left(\frac{np}{x}\right)+(n-x) \ln\left(\frac{nq}{n-x}\right)\\
 &=-(\delta+np)\left[\frac{\delta}{np}-\frac{1}{2}\frac{\delta^2}{n^2 p^2}\right] - (nq-\delta)\left[-\frac{\delta}{nq} -\frac{1}{2} \frac{\delta^2}{n^2 q^2} \right]\\
 &=-\delta\left[1 + \frac{1}{2} \frac{\delta}{np} -1 + + \frac{1}{2} \frac{\delta}{nq}\right]\\
 &=-\frac{\delta^2}{2n p q}
-\end{align*}
+\end{align*}$$
 
 (we have also used the $p+q=1$ identity)
 
@@ -203,26 +212,35 @@ $$P(x) =  \frac{1}{\sqrt{2\pi npq}} e^{-(x-np)^2/2npq}$$
 (Once again, we are using [Howard Haber's Physics 116 page]( http://scipp.ucsc.edu/~haber/ph116C/NormalApprox.pdf) for this section, as well)
 
 We start from the binomial distribution:
+
 $$P(x) = C(n,k)\,p^k\, q^{n-k}$$
+
 where
+
 $$C(n,k) \equiv \frac{n!}{k!\left(n-k\right)!}$$
+
 as we have seen in the course on the binomial distribution. $p$ is the probability that the outcome will be success and $q$ is the probability that it will be failure, thus $q = 1-p$.
 
 As is usual with statistics, we'll start pursuing a seemingly not related identity ("let's begin by taking...") and then in the end find out that it becomes a very practical solution to our needs.
 
 So, _let's begin by taking_ the expansion of $(p+q)^n$:
+
 $$(p+q)^n = \sum_{k=0}^{n}{C(n,k)\,p^k q^{n-k}}$$
 
 Check that this is just the binomial expansion, nothing fancy than for example: $(a+b)^2 = a^2 + 2ab + b^2$ or $(a+b)^3 = a^3 + 3a^2 b + 3a b^2 + b^3$, with the $C(n,k)$ coefficients being the coefficients of the Pascal's triangle. So it holds for **any** $a,b$ -- not just $p,q$ with $p+q=1$ (but we'll also exploit this fact later as well! 8)
 
 Now, _for some reason_, we undergo an irrestible sensation that we have to take the equation's derivative with respect to $p$ and further multiply it by $p$, to obtain:
+
 $$p \frac{d}{dp}\left[(p+q)^n = \sum_{k=0}^{n}{C(n,k)\,p^k q^{n-k}}\right]\\
 p \frac{d}{dp} (p+q)^n = p\sum_{k=0}^{n}{k C(n,k)\,p^{k-1} q^{n-k}}=\sum_{k=0}^{n}{k C(n,k)\,p^{k} q^{n-k}}\\
 np (p+q)^{n-1} = \sum_{k=0}^{n}{k C(n,k)\,p^{k} q^{n-k}}$$
 
 In the second row, we applied the $p$ times derivation to the right side, and the in the third row, we applied it to the left side. As we have written above, this equation is valid for any $p,q$. But we'll now take into account that, as $p+q=1$ through our definition of them as being the probabilities of one of the only two possible outcomes ("binom" -- remember?), so it becomes:
+
 $$np=\sum_{k=0}^{n}{k P(k)}$$
+
 Which is the mean value of the distribution by definition ("summing up the possible values multiplied by their probability"), so:
+
 $$\mu = <x> = \bar{x} = np$$
 
 +++
@@ -250,7 +268,7 @@ $$\overline{x^2} = n (n-1)p^2 + np$$
 Hence, the variance and the standard variation turns out to be:
 
 
-$$\sigma^2 = \overline{x^2} - {\overline{x}}^2 = n(n*1)p^2+np-n^2 p^2 = np (1 - p)$$
+$$\sigma^2 = \overline{x^2} - {\overline{x}}^2 = n(n-1)p^2+np-n^2 p^2 = np (1 - p)$$
 
 
 Substituting $q = (1-p)$, we finally arrive at:
@@ -350,10 +368,10 @@ print("     e  = %.15f"%np.exp(1))
 print("sqrt(e) = %.15f"%np.exp(0.5))
 ```
 
-![JamesHence_Beaker_Scream.jpg](attachment:JamesHence_Beaker_Scream.jpg)
+![JamesHence_Beaker_Scream.jpg](images/JamesHence_Beaker_Scream.jpg)
 (James Hence - "The Meep")
 
-![mindblown.jpg](attachment:mindblown.jpg)
+![mindblown.jpg](images/mindblown.jpg)
 [Mindblown!!!](https://www.youtube.com/watch?v=9CS7j5I6aOc)
 
 +++
@@ -364,22 +382,28 @@ So, for a Gaussian distribution, we can alternatively define the standard deviat
 
 #### Duh?...
 Let's proceed from math's point of view, using the Gaussian distribution formula:
+
 $$P(x) =  \frac{1}{\sqrt{2\pi}\sigma} e^{-(x-\mu)^2/2\sigma^2}$$
+
 at $x = \mu$, this becomes:
+
+$$
 \begin{align*}
 P(\mu) &=  \frac{1}{\sqrt{2\pi}\sigma} e^{-(\mu-\mu)^2/2\sigma^2}\\
 &=\frac{1}{\sqrt{2\pi}\sigma} e^{0}\\
 &=\frac{1}{\sqrt{2\pi}\sigma}
-\end{align*}
+\end{align*}$$
 
 What about the probability when $x = \mu\pm\sigma$?
-\begin{align*}
+
+$$\begin{align*}
 P(\mu\pm\sigma) &=  \frac{1}{\sqrt{2\pi}\sigma} e^{-(\mu\pm\sigma-\mu)^2/2\sigma^2}\\
 &=\frac{1}{\sqrt{2\pi}\sigma}e^{-\sigma^2/2\sigma^2} =\frac{1}{\sqrt{2\pi}\sigma}e^{-1/2}\\
 &=\frac{1}{\sqrt{2\pi}\sigma}\frac{1}{\sqrt{e}}
-\end{align*}
+\end{align*}$$
 
 Thus:
+
 $$\frac{P(\mu)}{P(\mu\pm\sigma)} = \frac{\frac{1}{\sqrt{2\pi}\sigma}}{\frac{1}{\sqrt{2\pi}\sigma}\frac{1}{\sqrt{e}}}=\sqrt{e}$$
 
 Now it doesn't seem to be so mindblowing but just a boring (and an obvious) derivation... but remember, this is _just_ maths. We will be doing physics and modeling, so it's more important to pay attention to the <u>meaning</u> of the $\sigma$ than what it does on a dull mathematical formula (it's similar to the information transferred by saying "the magnitude of the space a circle covers is equal to $\pi r^2$" than simply writing a general and vague math equation of $\pi r^2$ which can mean anything and nothing).
@@ -406,7 +430,9 @@ plt.show()
 ```
 
 Since our distribution is normalized, when we calculate the integral:
+
 $$I=\int_{-\infty}^{\infty}{P(x|\mu=5,\sigma=2.5)\, dx}$$
+
 we expect to find 1.
 
 ```{code-cell} ipython3
@@ -418,7 +444,10 @@ G = lambda x: norm.pdf(x,loc=5,scale=2.5)
 print("I = %.5f"%I)
 ```
 
-This time, let's gradually integrate our distribution \[from $(\mu - n\cdot\sigma)$ to $\left(\mu - \left(n-1\right)\cdot\sigma\right)$] + \[from $\left(\mu + \left(n-1\right)\cdot\sigma\right)$ to $(\mu + n\cdot\sigma)$] with $n = 1\dotsc7$, i.e., $$\int_{\mu-n\sigma}^{\mu-(n-1)\sigma}{P(x|\mu,\sigma)\, dx} + \int_{\mu+(n-1)\sigma}^{\mu+n\sigma}{P(x|\mu,\sigma)\, dx}$$
+This time, let's gradually integrate our distribution \[from $(\mu - n\cdot\sigma)$ to $\left(\mu - \left(n-1\right)\cdot\sigma\right)
+$\] + \[from $\left(\mu + \left(n-1\right)\cdot\sigma\right)$ to $(\mu + n\cdot\sigma)$] with $n = 1\dotsc7$, i.e., 
+
+$$\int_{\mu-n\sigma}^{\mu-(n-1)\sigma}{P(x|\mu,\sigma)\, dx} + \int_{\mu+(n-1)\sigma}^{\mu+n\sigma}{P(x|\mu,\sigma)\, dx}$$
 
 ```{code-cell} ipython3
 import numpy as np
@@ -472,7 +501,7 @@ They look cool, but what's the meaning of these?
 
 +++
 
-![6sigmas.png](attachment:6sigmas.png)
+![6sigmas.png](images/6sigmas.png)
 (Experimental Design - From User Studies to Psychophysics by Cunningham & Wallraven)
 
 +++
@@ -532,7 +561,6 @@ for n in range(len(RANGE)-1):
     print("\t        using (μ,σ): %6.3f (%.3f%%)"%(n_i/N,n_i/N*100))
     print("\tusing (mean,stddev): %6.3f (%.3f%%)"%(n_iB/N,n_iB/N*100))
     print("-"*45)
-
 ```
 
 # Poisson Distribution
@@ -541,32 +569,42 @@ When we took the limit of the number of possible outcomes through a binomial dec
 But there are cases when the probability of something occuring is very low, like a plane crashing or a harddisk recently out of the factory to malfunction or a radioactive element's decay within a short time margin. For these kinds of situations we once again begin from binomial distribution but this time we take the probability to be very low such that aside from the $n\rightarrow\infty$, we now also have the limit: $p\rightarrow0$). Since the first is very high and the latter very low, it is sufficient that their product is some finit number (which we'll refer to as $\lambda\; (np \rightarrow \lambda > 0$).
 
 For our derivation, let's start once again by this wonderful intution to take the limit of $y=(1-p)^{1/p}$ as $p\rightarrow 0$:
+
 $$\lim_{p\rightarrow0}{\ln y} = \lim_{p\rightarrow0}{\frac{\ln (1-p)}{p}}=\lim_{p\rightarrow0}{\frac{-1/(1-p)}{1}}=-1$$
 
 where we applied [L'Hospital's Rule](https://en.wikipedia.org/wiki/L%27H%C3%B4pital%27s_rule) to evaluate the limit. Now that we know $\lim_{p\rightarrow0}{\ln y} = -1$, we can exponentiate both sides to yield $\lim_{p\rightarrow0}{y}$:
+
 $$\lim_{p\rightarrow0}{y}=\lim_{p\rightarrow0}{(1-p)^{1/p}} = e^{-1}$$
 
 Why we did these? We'll see in a minute (I really hate this "pre-derivations out of nowhere" 8P).
 
 Now we all know that, the probability of an outcome with a probability $p$, happening $k$ times out of $n$ drawings/choosings is given by the binomial distributions:
-\begin{align*}P(k) &= C(n,k)\, p^k (1-p)^{n-k} = \frac{n!}{k!\left(n-k\right)!} p^k (1-p)^{n-k}\\&= \frac{n(n-1)\dotsc(n-k+1)}{k!} \frac{p^k(1-p)^n}{(1-p)^k}\\
-&=\frac{(np)^k}{k!}\left(\frac{n-1}{n}\right)\dotsc \left(\frac{n-k+1}{n}\right)\frac{\left[(1-p)^{1/p}\right]^{np}}{(1-p)^k}
-\end{align*}
 
-As $n\rightarrow\infty$: $$\lim_{n\rightarrow\infty}{\frac{n-\#}{n}}=1$$
+$$\begin{align*}P(k) &= C(n,k)\, p^k (1-p)^{n-k} = \frac{n!}{k!\left(n-k\right)!} p^k (1-p)^{n-k}\\&= \frac{n(n-1)\dotsc(n-k+1)}{k!} \frac{p^k(1-p)^n}{(1-p)^k}\\
+&=\frac{(np)^k}{k!}\left(\frac{n-1}{n}\right)\dotsc \left(\frac{n-k+1}{n}\right)\frac{\left[(1-p)^{1/p}\right]^{np}}{(1-p)^k}
+\end{align*}$$
+
+As $n\rightarrow\infty$: 
+
+$$\lim_{n\rightarrow\infty}{\frac{n-\#}{n}}=1$$
 
 where $\#$ is a finite number. 
 
-Also, as $p\rightarrow0$:$$\lim_{p\rightarrow0}{\frac{1}{(1-p)^k}} = \frac{1}{1^k} = 1$$
+Also, as $p\rightarrow0$:
+
+$$\lim_{p\rightarrow0}{\frac{1}{(1-p)^k}} = \frac{1}{1^k} = 1$$
 
 
 So taking the limit of $P(k)$ and also substituting $\lambda = np$ in this limit, we have:
+
 $$\lim_{n\rightarrow\infty\\p\rightarrow0}{P(k)}=\frac{\lambda^k \left(e^{-1}\right)^\lambda}{k!}=\frac{\lambda^k e^{-\lambda}}{k!}$$
 
 where we used the identity $\lim_{p\rightarrow0}{(1-p)^{1/p}} = e^{-1}$ we derived in the beginning of this section.
 
 This probability distribution function:
+
 $$P(k) = \frac{\lambda^k e^{-\lambda}}{k!}$$
+
 that describes the probability of a very-low chance outcome ($p\rightarrow0$) happening k times out of a very high (practically infinite) number of drawings/tries/choosings ($n\rightarrow\infty$) is called as the **Poisson Distribution**.
 
 +++
@@ -591,8 +629,11 @@ What is the probability of an accident happening up to:
 $p = 1/10^{12} = 10^{-12}$ (hence, very very low)
 
 a) $n = 10^9$ (very very high)
+
 $$\lambda = n\,p=10^9.\,10^{-12} = 10^{-3}$$
+
 probability that no accident happens: $k = 0$ (k: # of accidents)
+
 $$P(k=0) = \frac{e^{-\lambda}\lambda^k}{k!} = \frac{\left(e^{-\left(10^{-3}\right)}\right)\left(10^{-3}\right)^0}{0!} = 0.999$$
 
 ```{code-cell} ipython3
@@ -609,9 +650,15 @@ P_1 = 1 - P_0
 print(P_1)
 ```
 
-b) $$\lambda = 10^{13}.\,10^{-12} = 10^1\\
+b) 
+
+$$\lambda = 10^{13}.\,10^{-12} = 10^1\\
 P(k=0) = \frac{\left(e^{-\left(10\right)}\right)\left(10^{-1}\right)^0}{0!} = 0.0000454$$
 
 The probability that -at least- an accident occurs will be:  
 1 - (probability that no accident occurs)  
 = 1 - 0.0000454 = 0.99995
+
+```{code-cell} ipython3
+
+```

@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -52,7 +52,7 @@ Dr. Emre S. Tasci <emre.tasci@hacettepe.edu.tr>
 # Introduction
 
 This is how a neuron (nerve cell) looks like:
-![neuron.jpg](attachment:neuron.jpg)
+![neuron.jpg](images/neuron.jpg)
 Schematics of a neuron [Source](https://www.biocompare.com/Life-Science-News/343185-Molecular-Details-of-Brain-Injury-Revealed/)
 
 +++
@@ -97,7 +97,7 @@ Data is given in an undivided form - a set of examples $\{\vec{x}\}$. This is ve
 
 # Modeling of the neural networks
 And this is how an artificial neuron looks like:
-![neuron_artificial.png](attachment:neuron_artificial.png)
+![neuron_artificial.png](images/neuron_artificial.png)
 from MacKay's "Information Theory, Inference, and Learning Algorithms"
 
 +++
@@ -109,21 +109,37 @@ The single neuron is a *feed-forward* device: the connections are directed from 
 +++
 
 ## Activity Rule
-1. Calculate the activation $a$ of the neurons:$$a = \sum_{i}{\omega_i x_i}$$
+1. Calculate the activation $a$ of the neurons:
+
+$$a = \sum_{i}{\omega_i x_i}$$
+
 2. Response $y$ is determined through the activation function $y=f(a)$. Some possible activation functions are:
 
  **Deterministic:**
-   1. Linear: $$y(a) = a$$
-   2. Sigmoid (logistic): $$y(a) = \frac{1}{1+e^{-a}}$$
-   3. Sigmoid (tanh): $$y(a)=\tanh(a)=\frac{e^a - e^{-a}}{e^a - e^{-a}}$$
-   4. Threshold step: $$y(a) = \Theta(a)=\begin{cases}+1;\quad a>0\\-1;\quad a\le0\end{cases}$$
+   1. Linear: 
+   
+   $$y(a) = a$$
+   
+   2. Sigmoid (logistic): 
+   
+   $$y(a) = \frac{1}{1+e^{-a}}$$
+   
+   3. Sigmoid (tanh): 
+   
+   $$y(a)=\tanh(a)=\frac{e^a - e^{-a}}{e^a - e^{-a}}$$
+   
+   4. Threshold step: 
+   
+   $$y(a) = \Theta(a)=\begin{cases}+1;\quad a>0\\-1;\quad a\le0\end{cases}$$
 
   **Stochastic**
-  1. Heat Bath (Gibbs): $$y(a) = \begin{cases}+1;\quad \text{with a probability }\frac{1}{1+e^{-a}}\\-1;\quad \text{otherwise}\end{cases}$$
+  1. Heat Bath (Gibbs): 
+  
+  $$y(a) = \begin{cases}+1;\quad \text{with a probability }\frac{1}{1+e^{-a}}\\-1;\quad \text{otherwise}\end{cases}$$
+  
   2. Metropolis rule produces the output in a way that depends on the previous output state of $y$:  
       * Compute $\Delta=ay$
       * if $\Delta\le0$, flip $y$ to the other state; else flip $y$ to the other state with a probability $e^{-\Delta}$.
-      
 
 +++
 
@@ -177,15 +193,21 @@ $\omega_1 = \omega_2 = -1$, $\omega_0 = 1$:
 +++
 
 # Training a single neuron as a binary classifier
-Error function: $$G(\vec{\omega}) = -\sum_{n}\left[t^{(n)}\ln{y(\vec{x}^{(n)},\vec{\omega})} + (1-t^{(n)})\ln{(1-y(\vec{x}^{(n)},\vec{\omega}))}\right]$$
+Error function:
+
+$$G(\vec{\omega}) = -\sum_{n}\left[t^{(n)}\ln{y(\vec{x}^{(n)},\vec{\omega})} + (1-t^{(n)})\ln{(1-y(\vec{x}^{(n)},\vec{\omega}))}\right]$$
 
 This is the *information content* or *relative entropy* between the empirical probability distribution $(t^{(n)},1-t^{(n)})$ and possible probability ditribution implied by the output of the neuron $(y^{(n)},1-y^{(n)})$. The error function is equal to zero only when $y(\vec{x}^{(n)},\vec{\omega}^{(n)}) = t^{(n)}$ for all $n$.
 
 Differentiate with respect to $\vec{\omega}$:
+
 $$\vec{g}=\frac{\partial G}{\partial \vec{\omega}}$$
+
 $$g_j=\frac{\partial G}{\partial \omega_j}=\sum_{n=1}^{N}{-\left(t^{(n)}-y^{(n)}\right)x_j^{(n)}}$$
 
-The error $e^{(n)}$ is defined by: $$e^{(n)}\equiv t^{(n)}-y^{(n)}$$
+The error $e^{(n)}$ is defined by: 
+
+$$e^{(n)}\equiv t^{(n)}-y^{(n)}$$
 
 As our aim is to minimize the error by working on the weights $\vec{\omega}$, we can proceed in two ways, differing in their learning rules:
 
@@ -193,25 +215,53 @@ As our aim is to minimize the error by working on the weights $\vec{\omega}$, we
 
 ## 'Learning by example'
 **Activity Rule**
-1. Compute the activation of the neuron: $$a = \sum_{i}{\omega_i x_i}$$
-2. The output $y$ is set as a sigmoid function of the activation:$$y(a) = \frac{1}{1+e^{-a}}$$  
+1. Compute the activation of the neuron: 
+
+$$a = \sum_{i}{\omega_i x_i}$$
+
+2. The output $y$ is set as a sigmoid function of the activation:
+
+$$y(a) = \frac{1}{1+e^{-a}}$$  
+
 This output might be viewed as the probability that the given input is in class 1 rather than class 0.
 
 **Learning Rule**
 
 ### The on-line gradient descent algorithm
-The *teacher* supplies a target value $t\in \{0,1\}$ which is the correct class for the given input. We then compute the error:$$e=t-y$$ then adjust the weights $\vec{\omega}$ in a direction that would reduce the magnitude of this error:$$\Delta\omega_i = \eta e x_i$$ where $\eta$ is the "step size" or the "learning rate". It should be set and refined with respect to the problem at hand. Too small and the learning takes forever, too large and we miss the optimal values by far!
+The *teacher* supplies a target value $t\in \{0,1\}$ which is the correct class for the given input. We then compute the error:
+
+
+$$e=t-y$$
+
+
+then adjust the weights $\vec{\omega}$ in a direction that would reduce the magnitude of this error:
+
+$$\Delta\omega_i = \eta e x_i$$ 
+
+where $\eta$ is the "step size" or the "learning rate". It should be set and refined with respect to the problem at hand. Too small and the learning takes forever, too large and we miss the optimal values by far!
 
 +++
 
 ### The batch learning algorithm
 Instead of refining each weight at every step, all the weights are refined simultaneously, at the end of the batch:
 
-1. For each input/target pair $(\vec{x}^{(n)},t^{(n)})$, compute $y^{(n)}=y(\vec{x}^{(n)},\vec{\omega})$, where:$$y(\vec{x}^{(n)},\vec{\omega})=\frac{1}{1+\exp{\left(-\sum_{i}{\omega_i x_i}\right)}}$$
+1. For each input/target pair $(\vec{x}^{(n)},t^{(n)})$, compute $y^{(n)}=y(\vec{x}^{(n)},\vec{\omega})$, where:
 
-define $$e^{(n)}=t^{(n)}-y^{(n)}$$ and compute for each weight $\omega_i$: $$g_i^{(n)}=-e^{(n)}x_i^{(n)}$$
+$$y(\vec{x}^{(n)},\vec{\omega})=\frac{1}{1+\exp{\left(-\sum_{i}{\omega_i x_i}\right)}}$$
 
-2. Then, let: $$\Delta\omega_i = -\eta\sum_{n}{g_i^{(n)}}$$
+define
+
+
+$$e^{(n)}=t^{(n)}-y^{(n)}$$ 
+
+
+and compute for each weight $\omega_i$: 
+
+$$g_i^{(n)}=-e^{(n)}x_i^{(n)}$$
+
+2. Then, let: 
+
+$$\Delta\omega_i = -\eta\sum_{n}{g_i^{(n)}}$$
 
 +++
 
@@ -230,10 +280,6 @@ np.random.seed(371)
 def sigmoid(v):
     v[v<-10] = -10 # Capping to prevent overflow
     return 1/(1+np.exp(-v))
-```
-
-```{code-cell} ipython3
-
 ```
 
 **Input parameters**
@@ -395,7 +441,9 @@ plt.show()
 
 # Code, combined:
 
-```{raw-cell}
++++
+
+```python
 """
 Single Neuron Classifier
 FIZ371 Lecture Notes
@@ -550,11 +598,18 @@ plt.title("The classification of a random set of {:} points"
 plt.show()
 ```
 
++++
+
 # Homework #2
-Even though the classifier works very well with the calculated weights such as:$$\vec{\omega}=\left(\omega_1,\omega_2,\omega_0\right)=\left(     55.65223947,    55.67928365, -5615.46740481\right)$$
+Even though the classifier works very well with the calculated weights such as:
+
+$$\vec{\omega}=\left(\omega_1,\omega_2,\omega_0\right)=\left(     55.65223947,    55.67928365, -5615.46740481\right)$$
+
 these kind of high numbers don't look very well (especially the $\omega_0$, by the way).
 
-Let's try to classify once again, using the following $\vec{\omega}$:$$\vec{\omega}=\left(\omega_1,\omega_2,\omega_0\right)=\left(    0.01,0.01,-1.01\right)$$
+Let's try to classify once again, using the following $\vec{\omega}$:
+
+$$\vec{\omega}=\left(\omega_1,\omega_2,\omega_0\right)=\left(    0.01,0.01,-1.01\right)$$
 
 and let's blow the number of generated points to 100000 while we are at it!
 
@@ -610,7 +665,7 @@ During the execution, one can specify $(\omega_{11},\omega_{12})$ and $(\omega_{
 
 +++
 
-![neuron_sigmoid_omega_space-2.png](attachment:neuron_sigmoid_omega_space-2.png)
+![neuron_sigmoid_omega_space-2.png](images/neuron_sigmoid_omega_space-2.png)
 
 +++
 

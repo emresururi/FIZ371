@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -41,7 +41,7 @@ If we were to produce groups of 2 elements using this set, we would have these p
 
 This is the **permutation** of the elements of our set into groups of 2.
 
-Here, we assumed that the order matters, e.g., (a,b) is not the same as (b,a). As an example we can think of an electron (_blue ball_), hole (_green ball_) and an anti-electron (/_red ball_) occupying two available states (_boxes_). As the particles are different, it matters if one occupies the 1st state and the other the 2nd one, or vice versa. Hence, in this kind of situations, we construct the permutations where <u>order is important</u>.
+Here, we assumed that the order matters, e.g., (a,b) is not the same as (b,a). As an example we can think of an electron (_blue ball_), hole (_green ball_) and an anti-electron (_red ball_) occupying two available states (_boxes_). As the particles are different, it matters if one occupies the 1st state and the other the 2nd one, or vice versa. Hence, in these kind of situations, we construct the permutations where <u>order is important</u>.
 
 We can use the itertools module's perm() function to generate the permutations (observe that we are transforming the result from the iterable to a list). If we are interested in just the number of possible groups, then scipy.special package's perm() function comes to aid:
 
@@ -58,7 +58,7 @@ print("Number of pairs that can be constructed from 3 elements: "\
 
 The fact that (a,b) is not being equal to (b,a) can be visualized as follows:
 
-![image-3.png](attachment:image-3.png)
+![images/image-3.png](images/image-3.png)
 
 +++
 
@@ -84,11 +84,12 @@ print("P(3,2) = {:d}".format(int(P_3_2)))
 ```
 
 ## Combinations ('n choose k')
-If the order is not important, for example we are dealing with a situation involving bosons (like photons) (or all the balls are colored in blue) the possible variations are constructed using combinations as (a,b) would be considered equivalent to (b,a), hence <u>the order is not important</u>. 
+If the order is not important, for example if we are dealing with a situation involving bosons (like photons or all the balls being colored blue) the possible variations are constructed using combinations as (a,b) would be considered equivalent to (b,a), hence <u>the order is not important</u>. 
 
 Following the permutation analogy above, we can visualize combination in two ways:
+
 * placing two balls of same color onto the pedestal,
-* dropping two differently colored balls into a bowl, so it doesn't matter which was put first. 
+* dropping two differently colored balls into a bowl, so it doesn't matter which was put first.
 
 +++
 
@@ -229,7 +230,7 @@ We can go the additional mile by displaying all these 56 different sequences
 ```{code-cell} ipython3
 for i,seq in enumerate(b, start = 1):
     print("{:>2d}.".format(i),\
-          ("".join(map(str,seq))).replace("1","T").replace("0","H"),\
+          ("".join(map(str,seq))),\
          end=" | " if (i%5) else "\n")
 ```
 
@@ -257,7 +258,7 @@ $$93\times\frac{1}{256} = \frac{93}{256} = 0.36328125$$
 
 As a last remark: 256 is nothing but the **total number of possible outcomes** out of 8 coin tossings as each toss has 2 possible outcomes thus: 
 
-$$\underbrace{2\times 2\times\dots\times 2}_{\text{8 tosses}}= 2^8 = 256$$.
+$$ \underbrace{2\times 2\times\dots\times 2}_{\text{8 tosses}}= 2^8 = 256 $$.
 
 This way of producing variations are discussed in the next section, "Products".
 
@@ -323,9 +324,5 @@ print("Analtyical solution: {:.3f}".format(93/256))
 ```
 
 **References:**
-* [Miguel A. Lerma - Mathematical Foundations of Computer Science Lecture Notes](https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/)(["More Combinatorics"](https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/notes/dm-gcomb))
+* [Miguel A. Lerma - Mathematical Foundations of Computer Science Lecture Notes] (https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/)(["More Combinatorics"](https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/notes/dm-gcomb))
 * [Ken A. Dill & Sarina Bromberg - Molecular Driving Forces](https://www.amazon.com/Molecular-Driving-Forces-Statistical-Thermodynamics/dp/0815344309) (Chp 1: "Principles of Probability")
-
-```{code-cell} ipython3
-
-```

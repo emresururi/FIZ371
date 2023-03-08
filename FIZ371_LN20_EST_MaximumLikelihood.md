@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -63,6 +63,7 @@ To prove that:
 $$-N\log\left(\sqrt{2\pi}\sigma\right)-\sum_{n=1}^{N}{\frac{(x_n-\mu)^2}{2\sigma^2}}=- N \log (\sqrt{2\pi\sigma^2}) -\frac{[N(\mu - \overline{x})^2 + S]}{ 2\sigma^2}$$
 
 we only need to show that:
+
 $$\sum_{n=1}^{N}{(x_n-\mu)^2} = [N(\mu - \overline{x})^2 + S]$$
 
 +++

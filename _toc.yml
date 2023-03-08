@@ -4,16 +4,44 @@
 format: jb-book
 root: intro
 chapters:
-- file: markdown
-- file: notebooks
-- file: markdown-notebooks
 - file: Cover
+- file: FIZ371_LN01_EST_Probabilities_Theory
 - file: FIZ371_LN02_EST_Probabilities
+- file: FIZ371_LN08_EST_Application_Monty_Hall
+  title: Application Monty Hall Problem
+- file: WhiteTokenOutOf2
+  title: Application White Token Out Of 2 Bags
+- file: FIZ371_LN06_SixSwitchPuzzle_and_Parallelization
+  title: Application Six Switch Puzzle
 - file: FIZ371_LN10_EST_Distributions_1
+  title: Discrete Distributions
 - file: FIZ371_LN15_EST_Distributions_2
-- file: FIZ371_LN20_EST_MaximumLikelihood
+  title: Continous Distributions
 - file: FIZ371_LN25_EST_Game_Theory
+  title: Game Theory
+- file: FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory
+  title: Application Prisonner's Dilemma (with Memory)
+- file: FIZ371_LN75_EST_Gale-ShapleyAlgo
+  title: Gale-Shapley Matching Algorithm
+- file: GaleShapleyMatching_Implementation
+  title: Application Gale-Shapley Matching Implementation
 - file: FIZ371_LN36_EST_Information_Theory
+  title: Information Theory
+- file: FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise
+  title: Application Message Transmission Over a Noisy Channel
 - file: FIZ371_LN47_EST_CellularAutomata_GameOfLife
+  title: Cellular Automata - Game of Life
 - file: FIZ371_LN58_EST_ClusteringAndClassification
+  title: Clustering and Classification
 - file: FIZ371_LN69_EST_NeuralNetworks
+  title: Artificial Neural Networks
+- file: FIZ371_LN80_EST_2DIsing
+  title: 2D Ising Model
+- file: FIZ371_20221_MT
+  title: 2022-23 Fall Term Mid-Term Exam
+- file: FIZ371_20221_Final
+  title: 2022-23 Fall Term Final Exam
+- file: FIZ371_20221_Resit
+  title: 2022-23 Fall Term Resit Exam
+- file: MinimizeOptimizeFit
+  title: Optimization, Minimization & Fitting Notes & Recipes

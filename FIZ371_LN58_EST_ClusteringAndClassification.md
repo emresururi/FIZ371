@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -76,6 +76,7 @@ Third tree? *Large green thing with red berries, then past the large green thing
 ### Vector Quantizer 
 $$\vec{x}\rightarrow k(\vec{x})$$
 Assigning datapoints $\vec{x}$ to one of $K$ codenames and a reconstruction rule $k \rightarrow \vec{m}^{(k)}$ to choose the functions $k(\vec{x})$ and $\vec{m}^{(k)}$ so as to minimize the expected distortion:
+
 $$D=\sum_{\vec{x}}{P(\vec{x})\,\frac{1}{2}\left[\vec{m}^{(k(\vec{x}))}-\vec{x}\right]^2 }$$
 
 +++
@@ -103,7 +104,9 @@ Data points: $\left\{\vec{x}^{(n)}\right\},\quad n=1,\dots,N$
 Each vector $\vec{x}$ has $I$ components: $x_i$.
 
 The metric that defines distances between points:
+
 $$d(\vec{x},\vec{y}) = \frac{1}{2}\sum_{i}{\left(x_i - y_i\right)^2}$$
+
 (this metric assumes that every component has the same importance)
 
 +++
@@ -123,18 +126,30 @@ Two-step algorithm:
 0. **Initializement Step:** Set $k$ means $\left\{\vec{m}^{(k)}\right\}$ to random values.
 
 Two-step algorithm:
-1. **Assignment step:** Each data point $n$ is assigned to the nearest mean. We denote our guess for the cluster $k^{(n)}$ that the point $x^{(n)}$ belongs to by $\hat{k}^{(n)}$:$$\hat{k}^{(n)}=\text{argmin}_k \left\{{d\left(\vec{m}^{(k)},x^{(n)}\right)}\right\}$$
-![kmeans_1.png](attachment:kmeans_1.png)
-*alternative approach:* responsibilities as indicator variables $r_k^{(n)}$ $$r_k^{(n)}=\begin{cases}
+1. **Assignment step:** Each data point $n$ is assigned to the nearest mean. We denote our guess for the cluster $k^{(n)}$ that the point $x^{(n)}$ belongs to by $\hat{k}^{(n)}$:
+
+$$\hat{k}^{(n)}=\text{argmin}_k \left\{{d\left(\vec{m}^{(k)},x^{(n)}\right)}\right\}$$
+
+![kmeans_1.png](images/kmeans_1.png)
+*alternative approach:* responsibilities as indicator variables $r_k^{(n)}$ 
+
+$$r_k^{(n)}=\begin{cases}
   1\;\text{if}\,\hat{k}^{(n)}=k\\    
   0\;\text{if}\,\hat{k}^{(n)}\ne k
 \end{cases} $$
+
 (if there is a tie, set to the smallest winning $\{k\}$).
-![kmeans_2.png](attachment:kmeans_2.png)
-2. **Update step:** Means are adjusted to match the sample means of the data points that they are responsible for. $$\vec{m}^{(k)} = \frac{\sum_{n}{r_k^{(n)}\vec{x^{(n)}}}}{R^{(k)}}$$
-$R^{(k)}$: Total responsibility of mean $k$: $$R^{(k)} = \sum_{n}{r_k^{(n)}}$$
+![kmeans_2.png](images/kmeans_2.png)
+
+2. **Update step:** Means are adjusted to match the sample means of the data points that they are responsible for. 
+
+$$\vec{m}^{(k)} = \frac{\sum_{n}{r_k^{(n)}\vec{x^{(n)}}}}{R^{(k)}}$$
+$R^{(k)}$: Total responsibility of mean $k$: 
+
+$$R^{(k)} = \sum_{n}{r_k^{(n)}}$$
 
 if $R^{(k)} = 0$ (no responsibility), we leave the mean $\vec{m}^{(k)}$ where it is.
+
 3. Repeat the assignment & update steps until the assignments do not change any more.
 
 +++
@@ -409,8 +424,15 @@ To overcome the bad cases, and also to deal with the following issues (also rela
 
 These two issues are actually different manifestations of the same problem. The *hardness* of the k-means algorithm can be *softened* by allowing <u>partial ownership</u>, hence the **soft k-means clustering**:
 
-1. Assignment Step: Responsibility vector (the responsibility of cluster $k$ for point $n$) $r_k^{(n)}$ is redefined by: $$r_k^{(n)}=\frac{\exp\left(-\beta\,d\left(\vec{m}^{(k)},x^{(n)}\right)\right)}{\sum_{k'}{\exp\left(-\beta\,d\left(\vec{m}^{(k')},x^{(n)}\right)\right)} }$$ where $\beta$ is the *softness parameter* $(\beta\rightarrow\infty\Rightarrow\text{Hard k-means algorithm.})$ The sum of the k-responsibilities for the $n^{th}$ point is 1 (due to the normalizing constant, that is the denominator).
-2. Update step: It is identical to the *hard k-means algorithm*: $$\vec{m}^{(k)} = \frac{\sum_{n}{r_k^{(n)}\vec{x^{(n)}}}}{R^{(k)}},\quad R^{(k)} = \sum_{n}{r_k^{(n)}}$$
+1. Assignment Step: Responsibility vector (the responsibility of cluster $k$ for point $n$) $r_k^{(n)}$ is redefined by: 
+
+$$r_k^{(n)}=\frac{\exp\left(-\beta\,d\left(\vec{m}^{(k)},x^{(n)}\right)\right)}{\sum_{k'}{\exp\left(-\beta\,d\left(\vec{m}^{(k')},x^{(n)}\right)\right)} }$$ 
+
+where $\beta$ is the *softness parameter* $(\beta\rightarrow\infty\Rightarrow\text{Hard k-means algorithm.})$ The sum of the k-responsibilities for the $n^{th}$ point is 1 (due to the normalizing constant, that is the denominator).
+
+2. Update step: It is identical to the *hard k-means algorithm*: 
+
+$$\vec{m}^{(k)} = \frac{\sum_{n}{r_k^{(n)}\vec{x^{(n)}}}}{R^{(k)}},\quad R^{(k)} = \sum_{n}{r_k^{(n)}}$$
 
 ```{code-cell} ipython3
 import numpy as np

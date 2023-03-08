@@ -7,7 +7,7 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.11.5
 kernelspec:
-  display_name: Python 3
+  display_name: Python 3 (ipykernel)
   language: python
   name: python3
 ---
@@ -44,7 +44,7 @@ Information theory is concerned with the delivery of a message from one point to
 # The Problem
 A digitized message (consisting of 1s and 0s, i.e. "bits") is transferred with a transfer ratio of 1 binary digit per second, and there is a probability of error that can "flip" the bit (i.e., transmitting a 1 as a 0 and vice-versa).
 
-![IO.svg](attachment:IO.svg)
+![IO.svg](images/IO.svg)
 
 +++
 
@@ -104,7 +104,9 @@ plt.xticks(range(1,16,2))
 plt.show()
 ```
 
-Effective transmission rate of the source is: $$\frac{1}{2n+1}$$ 
+Effective transmission rate of the source is: 
+
+$$\frac{1}{2n+1}$$ 
 
 (actual intended message length / transmitted message length)
 
@@ -142,7 +144,7 @@ for n in repetitions:
 +++
 
 # Shannon - Weaver Communication Model
-![ShannonChannel.svg](attachment:ShannonChannel.svg)
+![ShannonChannel.svg](images/ShannonChannel.svg)
 
 This is the model Shannon (& Weaver) used to identify the essential stages for message relaying. Note how the noise is introduced only in the transfer channel.
 
@@ -276,7 +278,7 @@ t_6 = (s_2,s_3,s_4)\\
 t_7 = (s_1,s_3,s_4)
 $$
 
-![HammingVenn.svg](attachment:HammingVenn.svg)
+![HammingVenn.svg](images/HammingVenn.svg)
 
 ```{code-cell} ipython3
 import numpy as np
@@ -320,6 +322,7 @@ s1  |s2  |s3  |s4  |t5  |t6  |t7
 Note that any pair of codewords differ from each other in at least three bits!
 
 **Syndromes (parities):**
+
 $$z_1 = (t_5,s_1,s_2,s_3)\\
 z_2 = (t_6,s_2,s_3,s_4)\\
 z_3 = (t_7,s_1,s_3,s_4)$$
@@ -359,7 +362,7 @@ t5 = s1+s2+s3 = 1+0+0 = 1
 t6 = s2+s3+s4 = 0+0+0 = 0
 t7 = s1+s3+s4 = 1+0+0 = 1`
 
-![HammingVenn_E01.svg](attachment:HammingVenn_E01.svg)
+![HammingVenn_E01.svg](images/HammingVenn_E01.svg)
 
 Now, let's assume that, during transmission, noise flips the 2nd bit, thus the received signal becomes:
 
@@ -367,7 +370,7 @@ $$1000101 \rightarrow r = 1000101 + \overline{0100000} = 1\underline{1}00101$$
 
 If we are to draw the diagram for the message we received, then it would be like this:
 
-![HammingVenn_E01r.svg](attachment:HammingVenn_E01r.svg)
+![HammingVenn_E01r.svg](images/HammingVenn_E01r.svg)
 
 Syndrome: z = (1,1,0)
 
@@ -379,7 +382,7 @@ Find a bit that lies in all the odd parity circles and outside of all the  even 
 
 2\. $t_5$ flipped $\rightarrow r=1000\underline{0}01$
 
-![HammingVenn_E02r.png](attachment:HammingVenn_E02r.png)
+![HammingVenn_E02r.png](images/HammingVenn_E02r.png)
 
 $z(1,0,0)\rightarrow r_5$ should be flipped
 
@@ -387,7 +390,7 @@ $z(1,0,0)\rightarrow r_5$ should be flipped
 
 3\. $s_3$ flipped $\rightarrow r=10\underline{1}0101$
 
-![HammingVenn_E03r.svg](attachment:HammingVenn_E03r.svg)
+![HammingVenn_E03r.svg](images/HammingVenn_E03r.svg)
 
 $z(1,1,1)\rightarrow r_3$ should be flipped
 
@@ -399,25 +402,26 @@ Syndrome z|000|001|010|011|100|101|110|111
 ---|---|---|---|---|---|---|---|---
 Unflip this bit|none|$r_7$|$r_6$|$r_4$|$r_5$|$r_1$|$r_2$|$r_3$
 
-
 +++
 
 4\. $t_3\, \&\, t_7$ are flipped $\rightarrow r=10\underline{1}010\underline{0}$
 
-![HammingVenn_E04r.svg](attachment:HammingVenn_E04r.svg)
+![HammingVenn_E04r.svg](images/HammingVenn_E04r.svg)
 
 $z(1,1,0)\rightarrow r_2$ should be flipped:
-
 
 +++
 
 ### Probability of Error
 Let's calculate the probability that two or more bits will be flipped (hence, the received and corrected message will still be wrong) when $\beta$, the probability that the noise will flip a bit be: 
 * $\beta=1/4$:
+
+$$
 \begin{align*}P(err) &= \underbrace{{7\choose 2}\left(\frac{1}{4}\right)^2\left(\frac{3}{4}\right)^5}_{2:0.31146240}
 +\underbrace{{7\choose 3}\left(\frac{1}{4}\right)^3\left(\frac{3}{4}\right)^4}_{3:0.17303467}+\underbrace{\dots}_{\begin{matrix}4:\,0.05767822\\\,5:0.01153564\\6:\,0.00128174\end{matrix}}+\underbrace{{7\choose 7}\left(\frac{1}{4}\right)^7}_{7:\,0.00006104}\\
 &=0.55505
 \end{align*}
+$$
 
 ```{code-cell} ipython3
 import numpy as np
@@ -436,10 +440,12 @@ print("\nP(err): {:7.5f}".format(np.sum(result[:,1])))
 ```
 
 * $\beta=0.1$:  
+
+$$
 \begin{align*}P(err) &= \underbrace{{7\choose 2}\left(\frac{1}{10}\right)^2\left(\frac{9}{10}\right)^5}_{2:0.1240029}
 +\underbrace{{7\choose 3}\left(\frac{1}{10}\right)^3\left(\frac{9}{10}\right)^4}_{3:0.0229635}+\underbrace{\dots}_{\begin{matrix}4:\,0.0025515\\\,5:0.0001701\\6:\,0.0000063\end{matrix}}+\underbrace{{7\choose 7}\left(\frac{1}{10}\right)^7}_{7:\,0.0000001}\\
 &=0.14969
-\end{align*}
+\end{align*}$$
 
 ```{code-cell} ipython3
 import numpy as np
@@ -458,8 +464,8 @@ print("\nP(err): {:7.5f}".format(np.sum(result[:,1])))
 ```
 
 # Comparison of error-correction algorithms
-![MacKay_1_18.png](attachment:MacKay_1_18.png)
-[David MacKay - Information Theory, Inference, and Learning Algorithms]
+![MacKay_1_18.png](images/MacKay_1_18.png)
+[David MacKay - Information Theory, Inference, and Learning Algorithms](https://www.inference.org.uk/mackay/itila/book.html)
 
 In the graph above, repetition algorithms (_R#_) are compared against Hamming(7,4) code and more widely used BCH ([Bose–Chaudhuri–Hocquenghem](https://en.wikipedia.org/wiki/BCH_code)) codes.
 
@@ -470,23 +476,28 @@ In the graph above, repetition algorithms (_R#_) are compared against Hamming(7,
 Shannon proposed an upper limit for which he defined as the channel capacity which can not be overcome by any algorithm (even in the ideal limit).
 
 Channel capacity $C(\beta)$ is defined in terms of entropy $H_2$:
+
 $$C(\beta) = 1 - H_2(\beta) = 1 -\left[\beta\log_2{\frac{1}{\beta}}+(1-\beta)\log_2{\frac{1}{1-\beta}}\right]$$
 
 We can also use mutual information $I$ to calculate $C$:
+
 $$C=\sup\limits_{P_R(x)} I(X;Y)$$
 
+$$
 \begin{align}
 I(X;Y)&=H(X)-H(X|Y)\\
 &=H(Y)-H(Y|X)\\
 &=H(X)+H(Y)-H(X,Y)\\
 &=H(X,Y)-H(X|Y)-H(Y|X)
 \end{align}
+$$
 
 and taking $R(p_b)$ as the required repetition, for a given probability error, we have:
 
 $$R(p_b) = \frac{C}{1-H_2(p_b)}$$
 
 As an example, for $\beta=0.1$, $C\approx0.531$. 
+
 $$C(\beta) = 1-H_2(\beta)=1-[0.1\,\log_2{\frac{1}{0.1}}+(1-0.1)\log_2{\frac{1}{1-0.1}}]=0.531$$
 
 ```{code-cell} ipython3
@@ -501,8 +512,8 @@ Since $C=0.531$, $R=\frac{1}{2}=0.5\,(<0.531)$. Therefore, in theory, <u>two har
 
 +++
 
-![MacKay_1_19.png](attachment:MacKay_1_19.png)
-[David MacKay - Information Theory, Inference, and Learning Algorithms]
+![MacKay_1_19.png](images/MacKay_1_19.png)
+[David MacKay - Information Theory, Inference, and Learning Algorithms](https://www.inference.org.uk/mackay/itila/book.html)
 
 +++
 
