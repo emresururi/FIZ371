@@ -433,7 +433,7 @@ Pascal's triangle has many applications. For example, in our combinatrix, it giv
 k = 2 : {a,b}, {b,c}, {a,c}
 ==> C(3,2) = 3!/[2!(3-2)!] = 3`
 
-On the contrary, if the order is importan (e.g., $\{a,b\}\ne{b,a}$), then we need to use the permutation operator, e.g.:
+On the contrary, if the order is important (e.g., $\{a,b\}\ne{b,a}$), then we need to use the permutation operator, e.g.:
 `n = 3 : {a,b,c}
 k = 2 : {a,b}, {b,a}, {b,c}, {c,b}, {a,c}, {c,a}
 ==> P(3,2) = 3!/(3-2)! = 6`
