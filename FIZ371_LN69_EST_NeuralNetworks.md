@@ -767,6 +767,7 @@ Our usual (and wonderful) course textbook: [David MacKay's "Information Theory, 
 
 # Here and then...
 * [Using large-scale brain simulations for machine learning and A.I.](https://googleblog.blogspot.com/2012/06/using-large-scale-brain-simulations-for.html) : Google's blog about how the AI learned to identify cats via neural networks (2012)
+* The Physics of Fluids and Smoke ([video](https://www.youtube.com/watch?v=iOWamCtnwTc), [article](https://arxiv.org/abs/1607.03597))
 * [Neural networks news -- most recent](https://www.google.com/search?q=neural+networks&source=lnms&tbm=nws)
 
 # Reading Material for the interested
