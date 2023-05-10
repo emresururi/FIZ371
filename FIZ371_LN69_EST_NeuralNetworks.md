@@ -753,6 +753,14 @@ plt.show()
 # Reference (mostly "directly copied from")
 Our usual (and wonderful) course textbook: [David MacKay's "Information Theory, Inference, and Learning Algorithms"](http://www.inference.org.uk/mackay/itila/book.html).
 
+# History of "being beaten"
+* [Backgammon: 1979](https://bkgm.com/articles/Berliner/BackgammonProgramBeatsWorldChamp/?utm_source=mandiner&utm_medium=link&utm_campaign=mandiner_digit_201610)
+* [Checkers: 2007](https://science.sciencemag.org/content/317/5844/1518)
+* [Chess: 1997](https://www.theguardian.com/theguardian/2011/may/12/deep-blue-beats-kasparov-1997)
+* [Go: 2016](https://fortune.com/2016/03/12/googles-go-computer-vs-human/)
+* [Texas Hold'em Poker: 2019](https://www.sciencedaily.com/releases/2019/07/190711141343.htm)
+* [Starcraft: 2019](https://www.nature.com/articles/d41586-019-03298-6)
+
 # Places of Interest
 * [A Neural Network Playground](http://playground.tensorflow.org/) : Tensorflow's toy model for a classifier.
 * [The Mostly Complete Chart of Neural Networks](https://coolinfographics.com/blog/2016/9/20/the-mostly-complete-chart-of-neural-networks.html) : Almost every possible architecture models for neural networks.
@@ -765,3 +773,7 @@ Our usual (and wonderful) course textbook: [David MacKay's "Information Theory, 
 * Oliver Sacks, "The Man Who Mistook His Wife For a Hat" ([Karısını Şapka Sanan Adam, YKY](https://www.yapikrediyayinlari.com.tr/karisini-sapka-sanan-adam.aspx))
 * Daniel Kahneman, "Thinking, Fast and Slow" ([Hızlı ve Yavaş Düşünme, Varlık](https://www.varlikonline.com/kitap/486/hizli-ve-yavas-dusunme))
 * Iain M. Banks, "The Player of Games" (and the Culture series, in general)
+
+```{code-cell} ipython3
+
+```
