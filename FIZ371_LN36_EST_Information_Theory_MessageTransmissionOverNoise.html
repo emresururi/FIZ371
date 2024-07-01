@@ -1,0 +1,1061 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Information Theory Application &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Cellular Automata" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html" />
+    <link rel="prev" title="Information Theory" href="FIZ371_LN36_EST_Information_Theory.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Final.html">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#message-transmission-over-a-noisy-channel">
+   Message Transmission Over A Noisy Channel
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#original-message-smiley-image">
+     Original Message (Smiley Image)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-noise">
+     Adding noise
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repetition-algorithm">
+     Repetition Algorithm
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoding-the-message-before-transmission-over-the-noisy-channel-and-decoding-it-on-the-otherside">
+     Encoding the message before transmission over the noisy channel and decoding it on the otherside
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#with-3-repetition">
+       With 3-repetition:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#with-5-repetition">
+       With 5-repetition:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hamming-code-7-4">
+     Hamming Code (7,4)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Encoding the message before transmission over the noisy channel and decoding it on the otherside
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Information Theory Application</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#message-transmission-over-a-noisy-channel">
+   Message Transmission Over A Noisy Channel
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#original-message-smiley-image">
+     Original Message (Smiley Image)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adding-noise">
+     Adding noise
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repetition-algorithm">
+     Repetition Algorithm
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoding-the-message-before-transmission-over-the-noisy-channel-and-decoding-it-on-the-otherside">
+     Encoding the message before transmission over the noisy channel and decoding it on the otherside
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#with-3-repetition">
+       With 3-repetition:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#with-5-repetition">
+       With 5-repetition:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hamming-code-7-4">
+     Hamming Code (7,4)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Encoding the message before transmission over the noisy channel and decoding it on the otherside
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section id="information-theory-application">
+<h1>Information Theory Application<a class="headerlink" href="#information-theory-application" title="Permalink to this headline">¶</a></h1>
+<p><strong>FIZ371 - Scientific &amp; Technical Computations | 01/05/2020</strong></p>
+<p><strong>Information Theory Application</strong></p>
+<ul class="simple">
+<li><p>Message Transmission Over A Noisy Channel</p>
+<ul>
+<li><p>Original Message (Smiley Image)</p></li>
+<li><p>Adding noise</p></li>
+<li><p>Repetition Algorithm</p>
+<ul>
+<li><p>Encoding the message before transmission over the noisy channel and decoding it on the otherside</p>
+<ul>
+<li><p>With 3-repetition:</p></li>
+<li><p>With 5-repetition:</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Hamming Code (7,4)</p>
+<ul>
+<li><p>Encoding the message before transmission over the noisy channel and decoding it on the otherside</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="message-transmission-over-a-noisy-channel">
+<h1>Message Transmission Over A Noisy Channel<a class="headerlink" href="#message-transmission-over-a-noisy-channel" title="Permalink to this headline">¶</a></h1>
+<section id="original-message-smiley-image">
+<h2>Original Message (Smiley Image)<a class="headerlink" href="#original-message-smiley-image" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">371</span><span class="p">)</span>
+
+<span class="n">smiley</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="n">smiley</span><span class="p">[</span><span class="mi">1</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">smiley</span><span class="p">[</span><span class="mi">2</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">smiley</span><span class="p">[</span><span class="mi">5</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">smiley</span><span class="p">[</span><span class="mi">6</span><span class="p">,[</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">smiley</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">smiley</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">smiley</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">show_mat</span><span class="p">(</span><span class="n">mat</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">mat</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">mat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">show_mat</span><span class="p">(</span><span class="n">smiley</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 1. 1. 0. 0. 0. 1. 1. 0.]
+ [0. 0. 1. 1. 0. 0. 0. 1. 1. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 1. 0. 0. 0. 0. 0. 0. 0. 1.]
+ [0. 0. 1. 0. 0. 0. 0. 0. 1. 0.]
+ [0. 0. 0. 1. 1. 1. 1. 1. 0. 0.]
+ [0. 0. 0. 0. 1. 1. 1. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_3_1.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_3_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.67075752 0.57269567 0.29398988 0.81239913 0.35415221 0.99105949
+  0.88496959 0.46573517 0.0764246  0.8091394 ]
+ [0.69593246 0.44876677 0.53807358 0.73339083 0.82003486 0.88569963
+  0.91761344 0.63732089 0.20199076 0.59188455]
+ [0.05436861 0.2559915  0.7163759  0.13360297 0.58648529 0.55840365
+  0.33722727 0.42298327 0.12892243 0.19292516]
+ [0.96169087 0.89508277 0.19653927 0.50537714 0.04472516 0.57391799
+  0.34880585 0.75404504 0.123654   0.54809687]
+ [0.39099071 0.88942276 0.02249352 0.22536184 0.84507417 0.32605968
+  0.38400221 0.21591123 0.60647952 0.95785814]
+ [0.57987987 0.9925049  0.28028669 0.3101683  0.04994884 0.95405887
+  0.30315847 0.92951376 0.06005859 0.51998037]
+ [0.7906905  0.54485387 0.25215364 0.79740887 0.60098187 0.92367802
+  0.07903193 0.52125442 0.38381823 0.81985423]
+ [0.32307813 0.59489293 0.75157259 0.0200778  0.02551564 0.55275974
+  0.26424553 0.62760059 0.88005822 0.97640319]
+ [0.35837069 0.44730676 0.17721113 0.58766026 0.91042897 0.44743822
+  0.17720952 0.13873409 0.80870951 0.12107576]
+ [0.88300007 0.27978674 0.99001526 0.92851086 0.97474366 0.99145558
+  0.11483757 0.96526171 0.2944525  0.80592827]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">aa</span><span class="o">&lt;</span><span class="mf">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>22
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">aa</span><span class="p">[</span><span class="n">aa</span><span class="o">&lt;</span><span class="mf">0.25</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">aa</span><span class="p">[</span><span class="n">aa</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">aa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., 0., 0., 0., 0., 0., 1., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 1., 0.],
+       [1., 0., 0., 1., 0., 0., 0., 0., 1., 1.],
+       [0., 0., 1., 0., 1., 0., 0., 0., 1., 0.],
+       [0., 0., 1., 1., 0., 0., 0., 1., 0., 0.],
+       [0., 0., 0., 0., 1., 0., 0., 0., 1., 0.],
+       [0., 0., 0., 0., 0., 0., 1., 0., 0., 0.],
+       [0., 0., 0., 1., 1., 0., 0., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 0., 1., 1., 0., 1.],
+       [0., 0., 0., 0., 0., 0., 1., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="adding-noise">
+<h2>Adding noise<a class="headerlink" href="#adding-noise" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rand_filter</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="c1"># Flip each of the given mat&#39;s cells with</span>
+    <span class="c1"># a probability of beta</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">rnd</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">&lt;</span><span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">rnd</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="c1">#print(rnd)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="c1">#show_mat(res)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# Flipped cells: </span><span class="si">%2d</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rnd</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ratio of the flipped cells to total: </span><span class="si">%.3f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">rnd</span><span class="p">)</span><span class="o">/</span><span class="n">mat</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">res</span>
+
+    
+<span class="n">smiley_with_noise</span> <span class="o">=</span> <span class="n">rand_filter</span><span class="p">(</span><span class="n">smiley</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">show_mat</span><span class="p">(</span><span class="n">smiley_with_noise</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0 0 0 0 0 0 0 0 0 0]
+ [0 0 1 1 0 0 0 1 1 0]
+ [1 0 1 1 1 0 1 0 0 0]
+ [0 0 0 0 0 0 0 1 0 0]
+ [1 0 0 0 0 0 0 0 0 0]
+ [0 1 0 0 0 0 0 1 0 1]
+ [0 0 1 0 0 0 0 0 1 0]
+ [0 0 0 0 1 1 1 1 0 0]
+ [0 0 1 0 1 1 1 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]]
+# Flipped cells: 10
+Ratio of the flipped cells to total: 0.100
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_8_1.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_8_1.png" />
+</div>
+</div>
+</section>
+<section id="repetition-algorithm">
+<h2>Repetition Algorithm<a class="headerlink" href="#repetition-algorithm" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rep_enc</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Repeat the given mat&#39;s each cell n times</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">mat_repeated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">n</span><span class="o">*</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">mat_repeated</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="c1">#print(i,j,&quot;:&quot;,np.arange(n*j,n*j+n),mat[i,j])</span>
+            <span class="n">mat_repeated</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="n">n</span><span class="p">)]</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">mat_repeated</span>
+
+<span class="n">smiley_encoded</span> <span class="o">=</span> <span class="n">rep_enc</span><span class="p">(</span><span class="n">smiley</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="c1">#print(a)</span>
+
+<span class="n">show_mat</span><span class="p">(</span><span class="n">smiley_encoded</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 10)
+(10, 50)
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_10_1.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_10_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rep_dec</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># Decodes the given mat, in accordance with</span>
+    <span class="c1"># the given repetition number n</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">n</span><span class="p">)])</span>
+    <span class="n">res_size</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">res_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="c1">#print(&quot;%d %d&quot;%(i,j))</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="n">n</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="n">n</span><span class="p">)])</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+            
+<span class="n">show_mat</span><span class="p">(</span><span class="n">rep_dec</span><span class="p">(</span><span class="n">rep_enc</span><span class="p">(</span><span class="n">smiley</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 10)
+(10, 50)
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_11_1.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_11_1.png" />
+</div>
+</div>
+</section>
+<section id="encoding-the-message-before-transmission-over-the-noisy-channel-and-decoding-it-on-the-otherside">
+<h2>Encoding the message before transmission over the noisy channel and decoding it on the otherside<a class="headerlink" href="#encoding-the-message-before-transmission-over-the-noisy-channel-and-decoding-it-on-the-otherside" title="Permalink to this headline">¶</a></h2>
+<section id="with-3-repetition">
+<h3>With 3-repetition:<a class="headerlink" href="#with-3-repetition" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smiley_encoded</span> <span class="o">=</span> <span class="n">rep_enc</span><span class="p">(</span><span class="n">smiley</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">smiley_enc_transmitted</span> <span class="o">=</span> <span class="n">rand_filter</span><span class="p">(</span><span class="n">smiley_encoded</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">show_mat</span><span class="p">(</span><span class="n">smiley_enc_transmitted</span><span class="p">)</span>
+<span class="n">smiley_decoded</span> <span class="o">=</span> <span class="n">rep_dec</span><span class="p">(</span><span class="n">smiley_enc_transmitted</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">smiley_decoded</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">show_mat</span><span class="p">(</span><span class="n">smiley_decoded</span><span class="p">)</span>
+
+<span class="c1"># Calculate the number of flipped cells</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# Flipped cells: </span><span class="si">%2d</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">np</span>.sum(np.logical_xor(smiley,smiley_decoded)))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ratio of the flipped cells to total: </span><span class="si">%.3f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">smiley</span><span class="p">,</span><span class="n">smiley_decoded</span><span class="p">))</span><span class="o">/</span><span class="n">smiley</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 10)
+(10, 30)
+[[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1]
+ [0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 1 0 0 1]
+ [0 0 0 0 1 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 1 1 0 1 1 1 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 1 0 0 0 1 1 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 1]
+ [0 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 1 1 1]
+ [0 0 0 1 0 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0]
+ [1 0 1 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0]
+ [0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0]
+ [1 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0]]
+# Flipped cells: 25
+Ratio of the flipped cells to total: 0.083
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_14_1.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_14_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 10)
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_14_3.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_14_3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Flipped cells:  2
+Ratio of the flipped cells to total: 0.020
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="with-5-repetition">
+<h3>With 5-repetition:<a class="headerlink" href="#with-5-repetition" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smiley_encoded</span> <span class="o">=</span> <span class="n">rep_enc</span><span class="p">(</span><span class="n">smiley</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">smiley_enc_transmitted</span> <span class="o">=</span> <span class="n">rand_filter</span><span class="p">(</span><span class="n">smiley_encoded</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">show_mat</span><span class="p">(</span><span class="n">smiley_enc_transmitted</span><span class="p">)</span>
+<span class="n">smiley_decoded</span> <span class="o">=</span> <span class="n">rep_dec</span><span class="p">(</span><span class="n">smiley_enc_transmitted</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">smiley_decoded</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">show_mat</span><span class="p">(</span><span class="n">smiley_decoded</span><span class="p">)</span>
+
+<span class="c1"># Calculate the number of flipped cells</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# Flipped cells: </span><span class="si">%2d</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">np</span>.sum(np.logical_xor(smiley,smiley_decoded)))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ratio of the flipped cells to total: </span><span class="si">%.3f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">smiley</span><span class="p">,</span><span class="n">smiley_decoded</span><span class="p">))</span><span class="o">/</span><span class="n">smiley</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 10)
+(10, 50)
+[[0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0
+  1 0 0 0 0 1 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 1 1 0 1 1 1 1 0 1 1 1 0 0 0 0 1 0 1 1 0 0 0 0 0 0 0 1
+  1 1 1 0 1 1 1 1 1 0 0 0 1 0]
+ [0 0 0 0 0 0 0 0 0 0 1 0 1 0 1 1 1 0 1 1 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 1
+  1 1 1 1 1 1 1 1 1 0 0 0 1 0]
+ [0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0
+  0 0 0 0 1 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+  0 0 0 0 1 0 0 0 0 0 0 0 0 1]
+ [0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 1 0 0 0 1 0
+  1 0 0 0 0 0 1 0 0 1 1 1 1 1]
+ [0 1 0 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
+  0 0 0 0 1 1 1 1 1 0 0 1 0 0]
+ [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 0 1 1 1 1 1 1 1 1 1 1 1
+  0 1 1 1 0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 1 1 1 1 0 1 1 1 1 1 1 1 0 1 0
+  0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+ [0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 1
+  0 0 0 0 0 0 0 0 0 0 0 1 0 0]]
+# Flipped cells: 53
+Ratio of the flipped cells to total: 0.106
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_16_1.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_16_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, 10)
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_16_3.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_16_3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Flipped cells:  0
+Ratio of the flipped cells to total: 0.000
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="hamming-code-7-4">
+<h2>Hamming Code (7,4)<a class="headerlink" href="#hamming-code-7-4" title="Permalink to this headline">¶</a></h2>
+<p>To efficiently employ the (7,4) Hamming Code, we are increasing our smiley’s dimensions to 10x12 to comply with the 4 bit packages of data (4x3=12).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">smiley_12</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">])</span>
+<span class="n">smiley_12</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">11</span><span class="p">]</span> <span class="o">=</span> <span class="n">smiley</span>
+<span class="n">show_mat</span><span class="p">(</span><span class="n">smiley_12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_19_0.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_19_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">H74_enc</span><span class="p">(</span><span class="n">mat</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">%</span><span class="k">4</span>):
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of columns must be a multiple of 4!&quot;</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">4</span><span class="o">*</span><span class="mi">7</span><span class="p">)])</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">4</span><span class="p">)):</span>
+            <span class="n">a</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">current_4</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">4</span><span class="p">)]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">current_4</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">t5</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">current_4</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span><span class="o">%</span><span class="k">2</span>)
+            <span class="n">t6</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">current_4</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span><span class="o">%</span><span class="k">2</span>)
+            <span class="n">t7</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">current_4</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span><span class="o">%</span><span class="k">2</span>)
+            <span class="nb">print</span><span class="p">(</span><span class="n">t5</span><span class="p">,</span><span class="n">t6</span><span class="p">,</span><span class="n">t7</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">)</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">7</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">7</span><span class="p">)]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">current_4</span><span class="p">,[</span><span class="n">t5</span><span class="p">],[</span><span class="n">t6</span><span class="p">],[</span><span class="n">t7</span><span class="p">]))</span>
+        <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+<span class="n">encd_H74</span> <span class="o">=</span> <span class="n">H74_enc</span><span class="p">(</span><span class="n">smiley_12</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">encd_H74</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|
+[0. 0. 0. 1.]0 1 1|[1. 0. 0. 0.]1 0 1|[1. 1. 0. 0.]0 1 1|
+[0. 0. 0. 1.]0 1 1|[1. 0. 0. 0.]1 0 1|[1. 1. 0. 0.]0 1 1|
+[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|
+[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|
+[0. 0. 1. 0.]1 1 1|[0. 0. 0. 0.]0 0 0|[0. 0. 1. 0.]1 1 1|
+[0. 0. 0. 1.]0 1 1|[0. 0. 0. 0.]0 0 0|[0. 1. 0. 0.]1 1 0|
+[0. 0. 0. 0.]0 0 0|[1. 1. 1. 1.]1 1 1|[1. 0. 0. 0.]1 0 1|
+[0. 0. 0. 0.]0 0 0|[0. 1. 1. 1.]0 1 0|[0. 0. 0. 0.]0 0 0|
+[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|
+[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 1. 0. 1. 1. 1. 0. 0. 0. 1. 0. 1. 1. 1. 0. 0. 0. 1. 1.]
+ [0. 0. 0. 1. 0. 1. 1. 1. 0. 0. 0. 1. 0. 1. 1. 1. 0. 0. 0. 1. 1.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 1. 0. 1. 1. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 1. 1. 1.]
+ [0. 0. 0. 1. 0. 1. 1. 0. 0. 0. 0. 0. 0. 0. 0. 1. 0. 0. 1. 1. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 1. 1. 1. 1. 1. 1. 1. 1. 0. 0. 0. 1. 0. 1.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 1. 1. 1. 0. 1. 0. 0. 0. 0. 0. 0. 0. 0.]
+ [0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">syndromes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">syndromes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">syndromes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">syndromes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">syndromes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">syndromes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">syndromes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">syndromes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">syndromes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">H74_dec</span><span class="p">(</span><span class="n">mat</span><span class="p">):</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">shape</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">%</span><span class="k">7</span>):
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of columns must be a multiple of 7!&quot;</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">7</span><span class="o">*</span><span class="mi">4</span><span class="p">)])</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">7</span><span class="p">)):</span>
+            <span class="n">current_7</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">7</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">7</span><span class="p">)]</span>
+            <span class="n">z1</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">current_7</span><span class="p">[[</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]])</span><span class="o">%</span><span class="k">2</span>)
+            <span class="n">z2</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">current_7</span><span class="p">[[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span><span class="o">%</span><span class="k">2</span>)
+            <span class="n">z3</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">current_7</span><span class="p">[[</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]])</span><span class="o">%</span><span class="k">2</span>)
+            <span class="n">syndrome</span> <span class="o">=</span> <span class="n">syndromes</span><span class="p">[</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">,</span><span class="n">z3</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">current_7</span><span class="p">,[</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">,</span><span class="n">z3</span><span class="p">],</span><span class="s2">&quot; ==&gt; flip:&quot;</span><span class="p">,</span><span class="s2">&quot;</span><span class="si">{:-2d}</span><span class="s2">.bit&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">syndrome</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot; | &quot;</span><span class="p">)</span>
+            <span class="c1">#if(syndrome&gt;-1 and syndrome&lt;5):</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">syndrome</span><span class="o">&gt;-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">current_7</span><span class="p">[</span><span class="n">syndrome</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">current_7</span><span class="p">[</span><span class="n">syndrome</span><span class="p">],</span><span class="mi">1</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">current_7</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span><span class="p">,</span><span class="mi">4</span><span class="o">*</span><span class="n">j</span><span class="o">+</span><span class="mi">4</span><span class="p">)]</span> <span class="o">=</span> <span class="n">current_7</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    
+<span class="c1"># H74_dec(encd_H74)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Encoding the message before transmission over the noisy channel and decoding it on the otherside<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">encd_H74</span> <span class="o">=</span> <span class="n">H74_enc</span><span class="p">(</span><span class="n">smiley_12</span><span class="p">)</span>
+<span class="n">encd_H74_noise</span> <span class="o">=</span> <span class="n">rand_filter</span><span class="p">(</span><span class="n">encd_H74</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">decd_H74</span> <span class="o">=</span> <span class="n">H74_dec</span><span class="p">(</span><span class="n">encd_H74_noise</span><span class="p">)</span>
+<span class="n">show_mat</span><span class="p">(</span><span class="n">decd_H74</span><span class="p">)</span>
+<span class="c1"># Calculate the number of flipped cells</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;# Flipped cells: </span><span class="si">%2d</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">np</span>.sum(np.logical_xor(smiley_12,decd_H74)))
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ratio of the flipped cells to total: </span><span class="si">%.3f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">smiley_12</span><span class="p">,</span><span class="n">decd_H74</span><span class="p">))</span><span class="o">/</span><span class="n">smiley_12</span><span class="o">.</span><span class="n">size</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|
+[0. 0. 0. 1.]0 1 1|[1. 0. 0. 0.]1 0 1|[1. 1. 0. 0.]0 1 1|
+[0. 0. 0. 1.]0 1 1|[1. 0. 0. 0.]1 0 1|[1. 1. 0. 0.]0 1 1|
+[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|
+[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|
+[0. 0. 1. 0.]1 1 1|[0. 0. 0. 0.]0 0 0|[0. 0. 1. 0.]1 1 1|
+[0. 0. 0. 1.]0 1 1|[0. 0. 0. 0.]0 0 0|[0. 1. 0. 0.]1 1 0|
+[0. 0. 0. 0.]0 0 0|[1. 1. 1. 1.]1 1 1|[1. 0. 0. 0.]1 0 1|
+[0. 0. 0. 0.]0 0 0|[0. 1. 1. 1.]0 1 0|[0. 0. 0. 0.]0 0 0|
+[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|[0. 0. 0. 0.]0 0 0|
+[[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1]
+ [0 0 0 1 0 1 1 1 0 0 0 1 0 1 1 1 0 1 0 1 1]
+ [0 0 0 0 1 0 1 1 0 0 0 1 0 1 1 1 0 0 0 1 1]
+ [0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+ [0 0 1 0 1 1 1 1 0 0 1 0 0 0 0 0 1 1 1 1 1]
+ [0 0 0 1 0 0 0 0 1 0 0 0 0 0 1 1 0 1 1 1 0]
+ [0 0 0 0 0 0 0 1 1 0 1 1 1 1 1 0 0 0 1 0 1]
+ [0 1 0 0 1 0 0 0 1 1 1 0 1 0 0 1 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0]]
+# Flipped cells: 22
+Ratio of the flipped cells to total: 0.105
+(10, 21)
+0 0 [0 0 0 0 0 0 0] [0, 0, 0]  ==&gt; flip: -1.bit | 
+0 1 [0 0 0 0 0 0 0] [0, 0, 0]  ==&gt; flip: -1.bit | 
+0 2 [0 0 0 1 0 0 1] [0, 1, 0]  ==&gt; flip:  5.bit | [0 0 0 1 0 1 1]
+1 0 [0 0 0 1 0 1 1] [0, 0, 0]  ==&gt; flip: -1.bit | 
+1 1 [1 0 0 0 1 0 1] [0, 0, 0]  ==&gt; flip: -1.bit | 
+1 2 [1 1 0 1 0 1 1] [0, 1, 1]  ==&gt; flip:  3.bit | [1 1 0 0 0 1 1]
+2 0 [0 0 0 0 1 0 1] [1, 0, 1]  ==&gt; flip:  0.bit | [1 0 0 0 1 0 1]
+2 1 [1 0 0 0 1 0 1] [0, 0, 0]  ==&gt; flip: -1.bit | 
+2 2 [1 1 0 0 0 1 1] [0, 0, 0]  ==&gt; flip: -1.bit | 
+3 0 [0 0 0 0 1 0 0] [1, 0, 0]  ==&gt; flip:  4.bit | [0 0 0 0 0 0 0]
+3 1 [0 0 0 0 0 0 1] [0, 0, 1]  ==&gt; flip:  6.bit | [0 0 0 0 0 0 0]
+3 2 [0 0 0 0 0 0 0] [0, 0, 0]  ==&gt; flip: -1.bit | 
+4 0 [0 0 0 0 0 0 0] [0, 0, 0]  ==&gt; flip: -1.bit | 
+4 1 [0 0 0 0 0 0 0] [0, 0, 0]  ==&gt; flip: -1.bit | 
+4 2 [0 0 0 0 0 0 0] [0, 0, 0]  ==&gt; flip: -1.bit | 
+5 0 [0 0 1 0 1 1 1] [0, 0, 0]  ==&gt; flip: -1.bit | 
+5 1 [1 0 0 1 0 0 0] [1, 1, 0]  ==&gt; flip:  1.bit | [1 1 0 1 0 0 0]
+5 2 [0 0 1 1 1 1 1] [0, 1, 1]  ==&gt; flip:  3.bit | [0 0 1 0 1 1 1]
+6 0 [0 0 0 1 0 0 0] [0, 1, 1]  ==&gt; flip:  3.bit | [0 0 0 0 0 0 0]
+6 1 [0 1 0 0 0 0 0] [1, 1, 0]  ==&gt; flip:  1.bit | [0 0 0 0 0 0 0]
+6 2 [1 1 0 1 1 1 0] [1, 1, 0]  ==&gt; flip:  1.bit | [1 0 0 1 1 1 0]
+7 0 [0 0 0 0 0 0 0] [0, 0, 0]  ==&gt; flip: -1.bit | 
+7 1 [1 1 0 1 1 1 1] [1, 1, 1]  ==&gt; flip:  2.bit | [1 1 1 1 1 1 1]
+7 2 [1 0 0 0 1 0 1] [0, 0, 0]  ==&gt; flip: -1.bit | 
+8 0 [0 1 0 0 1 0 0] [0, 1, 0]  ==&gt; flip:  5.bit | [0 1 0 0 1 1 0]
+8 1 [0 1 1 1 0 1 0] [0, 0, 0]  ==&gt; flip: -1.bit | 
+8 2 [0 1 0 0 0 0 0] [1, 1, 0]  ==&gt; flip:  1.bit | [0 0 0 0 0 0 0]
+9 0 [0 0 0 0 0 0 0] [0, 0, 0]  ==&gt; flip: -1.bit | 
+9 1 [0 0 0 0 1 0 0] [1, 0, 0]  ==&gt; flip:  4.bit | [0 0 0 0 0 0 0]
+9 2 [0 0 1 0 0 0 0] [1, 1, 1]  ==&gt; flip:  2.bit | [0 0 0 0 0 0 0]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_23_1.png" src="_images/FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise_23_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># Flipped cells: 11
+Ratio of the flipped cells to total: 0.092
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><em>Homework: Develop Hamming Code (8,4), calculate its probability error, discuss why HC(7,4) is preferable to HC(8,4) – compare it with the double repetition algorithm R<sub>2</sub>.</em></strong></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FIZ371_LN36_EST_Information_Theory.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Information Theory</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Cellular Automata</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

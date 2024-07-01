@@ -1,0 +1,495 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Final Exam &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Resit Exam" href="FIZ371_20221_Resit.html" />
+    <link rel="prev" title="Midterm Exam" href="FIZ371_20221_MT.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/FIZ371_20221_Final.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probabilities">
+   1. Probabilities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parity-concept">
+   2. Parity Concept
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#central-limit-theorem">
+   3. Central Limit Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#game-of-life">
+   4. Game of Life
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Final Exam</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probabilities">
+   1. Probabilities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parity-concept">
+   2. Parity Concept
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#central-limit-theorem">
+   3. Central Limit Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#game-of-life">
+   4. Game of Life
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="final-exam">
+<h1>Final Exam<a class="headerlink" href="#final-exam" title="Permalink to this headline">¶</a></h1>
+<p><strong>FIZ371 - Scientific &amp; Technical Calculations | 20/01/2023</strong></p>
+<p>Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a>
+Eng. Physics Dept.<br />
+Hacettepe University<br />
+Ankara, Turkey</p>
+<p>You can solve the problems analytically or stochastically, it’s up to you. You can present your solution having been calculated on a paper, or as a jupyter notebook, or as a mixture of both.</p>
+<ul class="simple">
+<li><p>Please prepare one jupyter notebook per question.</p></li>
+<li><p>You can use any predefined function from numpy, scipy, math, pandas, random, collections and matplotlib modules – for any other external module/library you should first ask for permission.</p></li>
+<li><p>Before submitting, download your notebooks as html as well as ipynb format and zip them all.</p></li>
+<li><p>Name your zip file as &lt;YourName&gt;_FIZ371_Final.zip (e.g., EmreTasci_FIZ371_Final.zip)</p></li>
+</ul>
+<p><strong>Pick any 2 questions, if you have time go for a 3rd one for half the points (25) as bonus. Good luck! 8)</strong></p>
+<!-- #region -->
+<section id="probabilities">
+<h2>1. Probabilities<a class="headerlink" href="#probabilities" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following text:</p>
+<blockquote>
+<div><p>Now you can use this probability distribution to generate new images. All you need to do is randomly generate new data points while adhering to the restriction that you generate more probable data more often — a process called “sampling” the distribution. Each new point is a new image.</p>
+<p>The same analysis holds for more realistic grayscale photographs with, say, a million pixels each. Only now, plotting each image requires not two axes, but a million. The probability distribution over such images will be some complex million-plus-one-dimensional surface. If you sample that distribution, you’ll produce a million pixel values. Print those pixels on a sheet of paper, and the image will likely look like a photo from the original data set.</p>
+<p>The challenge of generative modeling is to learn this complicated probability distribution for some set of images that constitute training data. The distribution is useful partly because it captures extensive information about the data, and partly because researchers can combine probability distributions over different types of data (such as text and images) to compose surreal outputs, such as a goldfish slurping Coca-Cola on a beach. “You can mix and match different concepts … to create entirely new scenarios that were never seen in training data,” said Anandkumar.</p>
+</div></blockquote>
+<p><a class="reference external" href="https://www.quantamagazine.org/the-physics-principle-that-inspired-modern-ai-art-20230105/">Source: “The Physics Principle That Inspired Modern AI Art / Anil Ananthaswamy | Quanta Magazine</a></p>
+<ul class="simple">
+<li><p>Discarding any non-letter character (including space) and ignoring case as well (i.e., treat “T” and “t” as same), calculate the following probabilities:</p></li>
+</ul>
+<p>a) P(x=”a”)<br />
+b) P(x=”n”)<br />
+c) P(x=”a”|y=”n”)<br />
+d) P(x=”n”|y=”a”)<br />
+e) P(x=”a”,y=”n”)</p>
+<ul class="simple">
+<li><p>(Bonus) Calculate the entropy.</p></li>
+<li><p>(Bonus) What is the meaning of the “plus-one” in the text: <em>The probability distribution over such images will be some complex <strong>million-plus-one-dimensional surface</strong>.</em> ?</p></li>
+</ul>
+<!-- #endregion -->
+</section>
+<section id="parity-concept">
+<h2>2. Parity Concept<a class="headerlink" href="#parity-concept" title="Permalink to this headline">¶</a></h2>
+<p>Develop Hamming Code (8,4), calculate its probability error, discuss why HC(7,4) is preferable to HC(8,4) – compare it with the double repetition algorithm R2.</p>
+</section>
+<section id="central-limit-theorem">
+<h2>3. Central Limit Theorem<a class="headerlink" href="#central-limit-theorem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Using the uniform distribution, pick 1000 values from [0,1) range.</p></li>
+<li><p>Calculate its mean.</p></li>
+<li><p>Repeat this procedure for 1000 times and collect the means of each try in an array called ‘means’.</p></li>
+<li><p>Plot the histogram of the means, try to fit a Gaussian to that histogram (or to the probabilities of the entries in the histogram).</p></li>
+</ul>
+</section>
+<section id="game-of-life">
+<h2>4. Game of Life<a class="headerlink" href="#game-of-life" title="Permalink to this headline">¶</a></h2>
+<p>On a hexagonal grid, implement the game of life with the rule set: B4/S34 (Born &#64; 4 / Survives &#64; 3 or 4).<br />
+Use at least 6x6 tiles, apply periodic boundary conditions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FIZ371_20221_MT.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Midterm Exam</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_20221_Resit.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Resit Exam</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

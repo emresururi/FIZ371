@@ -1,0 +1,1339 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Implementation of Prisonner’s Dilemma with Memory &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Gale-Shapley Matching Algorithm" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html" />
+    <link rel="prev" title="Game Theory" href="FIZ371_LN25_EST_Game_Theory.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Final.html">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Implementation of Prisonner’s Dilemma with Memory</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="implementation-of-prisonner-s-dilemma-with-memory">
+<h1>Implementation of Prisonner’s Dilemma with Memory<a class="headerlink" href="#implementation-of-prisonner-s-dilemma-with-memory" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">history</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()),</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">history</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 0],
+       [1, 0],
+       [1, 0],
+       [1, 0],
+       [1, 0],
+       [0, 0],
+       [1, 0],
+       [1, 0],
+       [0, 0],
+       [0, 0]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pick_fight</span><span class="p">(</span><span class="n">pl1</span><span class="p">,</span><span class="n">pl2</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="nb">int</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="n">pl1</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">history</span><span class="p">),</span><span class="n">pl2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">history</span><span class="p">)]</span>
+        <span class="c1">#print(a,b)</span>
+        <span class="n">history</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">history</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">])))</span>
+    <span class="k">return</span> <span class="n">history</span>
+
+<span class="k">def</span> <span class="nf">score_history</span><span class="p">(</span><span class="n">history</span><span class="p">):</span>
+    <span class="c1"># Returns the mean score</span>
+    <span class="n">s00</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">h</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">h</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="c1"># Both silent (2,2)</span>
+    <span class="n">s01</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">h</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">h</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span> <span class="c1"># A silent,  B defects (0,3)</span>
+    <span class="n">s10</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">h</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">h</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="c1"># A defects, B silent (3,0)</span>
+    <span class="n">s11</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">h</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">h</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span> <span class="c1"># Both defect (1,1)</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">s00</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">s10</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="n">s11</span><span class="o">*</span><span class="mi">1</span><span class="p">,</span><span class="n">s00</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">s01</span><span class="o">*</span><span class="mi">3</span><span class="o">+</span><span class="n">s11</span><span class="o">*</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">history</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pl_tit4tat</span><span class="p">(</span><span class="n">pl_no</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">history</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="c1"># starts with silence (0)</span>
+    <span class="c1"># afterwards, returns the last action of the opponent</span>
+    <span class="n">opp_no</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">pl_no</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="ow">not</span> <span class="n">history</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">opp_no</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">pl_rando</span><span class="p">(</span><span class="n">pl_no</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">history</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="c1"># returns random</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">pl_good</span><span class="p">(</span><span class="n">pl_no</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">history</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="c1"># always silent</span>
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">pl_evil</span><span class="p">(</span><span class="n">pl_no</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">history</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="c1"># always defects</span>
+    <span class="k">return</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">pl_last10avg</span><span class="p">(</span><span class="n">pl_no</span><span class="p">,</span><span class="n">history</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="c1"># Starts with silence (0)</span>
+    <span class="c1"># Returns the average of opponent&#39;s last 10 turns</span>
+    <span class="n">opp_no</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">pl_no</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="ow">not</span> <span class="n">history</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">:,</span><span class="n">opp_no</span><span class="p">])))</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pl_rando&#39;</span><span class="p">,</span><span class="s1">&#39;pl_tit4tat&#39;</span><span class="p">,</span><span class="s1">&#39;pl_good&#39;</span><span class="p">,</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">,</span><span class="s1">&#39;pl_last10avg&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">pls</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">pls</span><span class="p">)</span>
+
+<span class="n">no_pl</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pls</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_pl</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_pl</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:s}</span><span class="s2"> vs </span><span class="si">{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pls</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">pls</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()[</span><span class="n">pls</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="nb">locals</span><span class="p">()[</span><span class="n">pls</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">pick_fight</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="o">=</span> <span class="n">score_history</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">, </span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:s}</span><span class="s2"> (1st player) WINS!!!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pls</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="k">elif</span><span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:s}</span><span class="s2"> (2nd player) WINS!!!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pls</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IT&#39;S A DRAW!!!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">45</span><span class="p">)</span>
+        
+        <span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pls</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">pls</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pl</span> <span class="ow">in</span> <span class="n">pls</span><span class="p">:</span>
+    <span class="c1"># Row-wise        </span>
+    <span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pl</span><span class="p">,</span><span class="s1">&#39;Tot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pl</span><span class="p">,</span><span class="n">pls</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">pl</span> <span class="ow">in</span> <span class="n">pls</span><span class="p">:</span>
+    <span class="c1"># Col-wise</span>
+    <span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;ToT&#39;</span><span class="p">,</span><span class="n">pl</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">chart</span><span class="p">[</span><span class="n">pl</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+    
+<span class="n">totscore</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">pls</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">pl</span> <span class="ow">in</span> <span class="n">pls</span><span class="p">:</span>
+    <span class="c1">#print(pl,chart.loc[pl,&#39;Tot&#39;], chart.loc[&#39;ToT&#39;,pl])</span>
+    <span class="n">totscore</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;tot&#39;</span><span class="p">,</span><span class="n">pl</span><span class="p">]</span> <span class="o">=</span> <span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pl</span><span class="p">,</span><span class="s1">&#39;Tot&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;ToT&#39;</span><span class="p">,</span><span class="n">pl</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">totscore</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pl_rando vs pl_rando
+1.50, 1.49
+pl_rando (1st player) WINS!!!
+---------------------------------------------
+pl_rando vs pl_tit4tat
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.50, 1.50
+pl_rando (1st player) WINS!!!
+---------------------------------------------
+pl_rando vs pl_good
+2.51, 0.99
+pl_rando (1st player) WINS!!!
+---------------------------------------------
+pl_rando vs pl_evil
+0.50, 2.00
+pl_evil (2nd player) WINS!!!
+---------------------------------------------
+pl_rando vs pl_last10avg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.76, 1.37
+pl_rando (1st player) WINS!!!
+---------------------------------------------
+pl_tit4tat vs pl_rando
+1.50, 1.50
+pl_rando (2nd player) WINS!!!
+---------------------------------------------
+pl_tit4tat vs pl_tit4tat
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.00, 2.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+pl_tit4tat vs pl_good
+2.00, 2.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+pl_tit4tat vs pl_evil
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.00, 1.00
+pl_evil (2nd player) WINS!!!
+---------------------------------------------
+pl_tit4tat vs pl_last10avg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.00, 2.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+pl_good vs pl_rando
+0.99, 2.51
+pl_rando (2nd player) WINS!!!
+---------------------------------------------
+pl_good vs pl_tit4tat
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.00, 2.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+pl_good vs pl_good
+2.00, 2.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+pl_good vs pl_evil
+0.00, 3.00
+pl_evil (2nd player) WINS!!!
+---------------------------------------------
+pl_good vs pl_last10avg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.00, 2.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+pl_evil vs pl_rando
+2.00, 0.50
+pl_evil (1st player) WINS!!!
+---------------------------------------------
+pl_evil vs pl_tit4tat
+1.00, 1.00
+pl_evil (1st player) WINS!!!
+---------------------------------------------
+pl_evil vs pl_good
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.00, 0.00
+pl_evil (1st player) WINS!!!
+---------------------------------------------
+pl_evil vs pl_evil
+1.00, 1.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+pl_evil vs pl_last10avg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.00, 1.00
+pl_evil (1st player) WINS!!!
+---------------------------------------------
+pl_last10avg vs pl_rando
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.39, 1.73
+pl_rando (2nd player) WINS!!!
+---------------------------------------------
+pl_last10avg vs pl_tit4tat
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.00, 2.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+pl_last10avg vs pl_good
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.00, 2.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+pl_last10avg vs pl_evil
+1.00, 1.00
+pl_evil (2nd player) WINS!!!
+---------------------------------------------
+pl_last10avg vs pl_last10avg
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.00, 2.00
+IT&#39;S A DRAW!!!
+---------------------------------------------
+                      pl_rando        pl_tit4tat          pl_good  \
+pl_rando      (1.5029, 1.4903)  (1.5018, 1.5015)  (2.5055, 0.989)   
+pl_tit4tat    (1.5012, 1.5015)        (2.0, 2.0)       (2.0, 2.0)   
+pl_good       (0.9866, 2.5067)        (2.0, 2.0)       (2.0, 2.0)   
+pl_evil       (1.9982, 0.5009)  (1.0002, 0.9999)       (3.0, 0.0)   
+pl_last10avg  (1.3856, 1.7324)        (2.0, 2.0)       (2.0, 2.0)   
+
+                       pl_evil      pl_last10avg  
+pl_rando      (0.4982, 2.0036)    (1.7624, 1.37)  
+pl_tit4tat    (0.9999, 1.0002)        (2.0, 2.0)  
+pl_good             (0.0, 3.0)        (2.0, 2.0)  
+pl_evil             (1.0, 1.0)  (1.0002, 0.9999)  
+pl_last10avg  (0.9999, 1.0002)        (2.0, 2.0)  
+    pl_rando pl_tit4tat  pl_good  pl_evil pl_last10avg
+tot  13.7702    17.0025  13.9756  16.0026      16.7554
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pl_rando</th>
+      <th>pl_tit4tat</th>
+      <th>pl_good</th>
+      <th>pl_evil</th>
+      <th>pl_last10avg</th>
+      <th>Tot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pl_rando</th>
+      <td>(1.5029, 1.4903)</td>
+      <td>(1.5018, 1.5015)</td>
+      <td>(2.5055, 0.989)</td>
+      <td>(0.4982, 2.0036)</td>
+      <td>(1.7624, 1.37)</td>
+      <td>7.7708</td>
+    </tr>
+    <tr>
+      <th>pl_tit4tat</th>
+      <td>(1.5012, 1.5015)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.5011</td>
+    </tr>
+    <tr>
+      <th>pl_good</th>
+      <td>(0.9866, 2.5067)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.0, 3.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>6.9866</td>
+    </tr>
+    <tr>
+      <th>pl_evil</th>
+      <td>(1.9982, 0.5009)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>(3.0, 0.0)</td>
+      <td>(1.0, 1.0)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>7.9986</td>
+    </tr>
+    <tr>
+      <th>pl_last10avg</th>
+      <td>(1.3856, 1.7324)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.3855</td>
+    </tr>
+    <tr>
+      <th>ToT</th>
+      <td>5.9994</td>
+      <td>8.5014</td>
+      <td>6.989</td>
+      <td>8.004</td>
+      <td>8.3699</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">totscore</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pl_rando</th>
+      <th>pl_tit4tat</th>
+      <th>pl_good</th>
+      <th>pl_evil</th>
+      <th>pl_last10avg</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>tot</th>
+      <td>13.7702</td>
+      <td>17.0025</td>
+      <td>13.9756</td>
+      <td>16.0026</td>
+      <td>16.7554</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">,</span><span class="n">pls</span><span class="p">]</span> <span class="c1"># row-wise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pl_rando        (1.9982, 0.5009)
+pl_tit4tat      (1.0002, 0.9999)
+pl_good               (3.0, 0.0)
+pl_evil               (1.0, 1.0)
+pl_last10avg    (1.0002, 0.9999)
+Name: pl_evil, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">,</span><span class="n">pls</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.9982, 1.0002, 3.0, 1.0, 1.0002)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">,</span><span class="s1">&#39;tot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">,</span><span class="n">pls</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span><span class="p">[</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">]</span> <span class="c1"># col-wise</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pl_rando        (0.4982, 2.0036)
+pl_tit4tat      (0.9999, 1.0002)
+pl_good               (0.0, 3.0)
+pl_evil               (1.0, 1.0)
+pl_last10avg    (0.9999, 1.0002)
+ToT                        8.004
+Name: pl_evil, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span><span class="p">[</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10.0076,  9.0042, 11.004 ,  9.004 ,  9.0042])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;ToT&#39;</span><span class="p">,</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">chart</span><span class="p">[</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">,</span><span class="s1">&#39;pl_good&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3.0, 0.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;pl_evil&#39;</span><span class="p">,</span><span class="s1">&#39;tot&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pl_rando</th>
+      <th>pl_tit4tat</th>
+      <th>pl_good</th>
+      <th>pl_evil</th>
+      <th>pl_last10avg</th>
+      <th>Tot</th>
+      <th>tot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pl_rando</th>
+      <td>(1.5029, 1.4903)</td>
+      <td>(1.5018, 1.5015)</td>
+      <td>(2.5055, 0.989)</td>
+      <td>(0.4982, 2.0036)</td>
+      <td>(1.7624, 1.37)</td>
+      <td>7.7708</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_tit4tat</th>
+      <td>(1.5012, 1.5015)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.5011</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_good</th>
+      <td>(0.9866, 2.5067)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.0, 3.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>6.9866</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_evil</th>
+      <td>(1.9982, 0.5009)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>(3.0, 0.0)</td>
+      <td>(1.0, 1.0)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>7.9986</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>pl_last10avg</th>
+      <td>(1.3856, 1.7324)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.3855</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ToT</th>
+      <td>5.9994</td>
+      <td>8.5014</td>
+      <td>6.989</td>
+      <td>48.024</td>
+      <td>8.3699</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart2</span> <span class="o">=</span> <span class="n">chart</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pl_rando</th>
+      <th>pl_tit4tat</th>
+      <th>pl_good</th>
+      <th>pl_evil</th>
+      <th>pl_last10avg</th>
+      <th>Tot</th>
+      <th>tot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pl_rando</th>
+      <td>(1.5029, 1.4903)</td>
+      <td>(1.5018, 1.5015)</td>
+      <td>(2.5055, 0.989)</td>
+      <td>(0.4982, 2.0036)</td>
+      <td>(1.7624, 1.37)</td>
+      <td>7.7708</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_tit4tat</th>
+      <td>(1.5012, 1.5015)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.5011</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_good</th>
+      <td>(0.9866, 2.5067)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.0, 3.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>6.9866</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_evil</th>
+      <td>(1.9982, 0.5009)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>(3.0, 0.0)</td>
+      <td>(1.0, 1.0)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>7.9986</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>pl_last10avg</th>
+      <td>(1.3856, 1.7324)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.3855</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ToT</th>
+      <td>5.9994</td>
+      <td>8.5014</td>
+      <td>6.989</td>
+      <td>48.024</td>
+      <td>8.3699</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;ToT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pl_rando</th>
+      <th>pl_tit4tat</th>
+      <th>pl_good</th>
+      <th>pl_evil</th>
+      <th>pl_last10avg</th>
+      <th>Tot</th>
+      <th>tot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pl_rando</th>
+      <td>(1.5029, 1.4903)</td>
+      <td>(1.5018, 1.5015)</td>
+      <td>(2.5055, 0.989)</td>
+      <td>(0.4982, 2.0036)</td>
+      <td>(1.7624, 1.37)</td>
+      <td>7.7708</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_tit4tat</th>
+      <td>(1.5012, 1.5015)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.5011</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_good</th>
+      <td>(0.9866, 2.5067)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.0, 3.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>6.9866</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_evil</th>
+      <td>(1.9982, 0.5009)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>(3.0, 0.0)</td>
+      <td>(1.0, 1.0)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>7.9986</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>pl_last10avg</th>
+      <td>(1.3856, 1.7324)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.3855</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ToT</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0000</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;ToT&#39;</span><span class="p">,</span><span class="s1">&#39;pl_tit4tat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">chart2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pl_rando</th>
+      <th>pl_tit4tat</th>
+      <th>pl_good</th>
+      <th>pl_evil</th>
+      <th>pl_last10avg</th>
+      <th>Tot</th>
+      <th>tot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>pl_rando</th>
+      <td>(1.5029, 1.4903)</td>
+      <td>(1.5018, 1.5015)</td>
+      <td>(2.5055, 0.989)</td>
+      <td>(0.4982, 2.0036)</td>
+      <td>(1.7624, 1.37)</td>
+      <td>7.7708</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_tit4tat</th>
+      <td>(1.5012, 1.5015)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.5011</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_good</th>
+      <td>(0.9866, 2.5067)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.0, 3.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>6.9866</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>pl_evil</th>
+      <td>(1.9982, 0.5009)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>(3.0, 0.0)</td>
+      <td>(1.0, 1.0)</td>
+      <td>(1.0002, 0.9999)</td>
+      <td>7.9986</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>pl_last10avg</th>
+      <td>(1.3856, 1.7324)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(2.0, 2.0)</td>
+      <td>(0.9999, 1.0002)</td>
+      <td>(2.0, 2.0)</td>
+      <td>8.3855</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>ToT</th>
+      <td>0</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0.0000</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FIZ371_LN25_EST_Game_Theory.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Game Theory</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Gale-Shapley Matching Algorithm</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

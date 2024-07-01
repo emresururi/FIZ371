@@ -1,0 +1,1271 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Game Theory &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Implementation of Prisonner’s Dilemma with Memory" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html" />
+    <link rel="prev" title="Distributions 2 : Continous Distributions" href="FIZ371_LN15_EST_Distributions_2.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Final.html">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/FIZ371_LN25_EST_Game_Theory.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/FIZ371_LN25_EST_Game_Theory.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN25_EST_Game_Theory.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Game Theory
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#battle-of-sexes">
+     Battle of Sexes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pay-off-table">
+       Pay-off table
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculating-the-probabilities">
+       Calculating the probabilities
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#expected-pay-off-for-each-individual">
+         Expected pay-off for each individual
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prisoner-s-dilemma">
+     Prisoner’s Dilemma
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#friend-or-foe">
+     Friend or Foe
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stag-hunt">
+     Stag Hunt
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-sides-driving">
+     Choosing Sides (Driving)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#party-vs-home">
+     Party vs. Home
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matching-pennies">
+     Matching Pennies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nash-equilibrium">
+   Nash Equilibrium
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Prisoner’s Dilemma
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Stag Hunt
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Matching Pennies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Game Theory</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Game Theory
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#battle-of-sexes">
+     Battle of Sexes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#pay-off-table">
+       Pay-off table
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculating-the-probabilities">
+       Calculating the probabilities
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#expected-pay-off-for-each-individual">
+         Expected pay-off for each individual
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prisoner-s-dilemma">
+     Prisoner’s Dilemma
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#friend-or-foe">
+     Friend or Foe
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stag-hunt">
+     Stag Hunt
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#choosing-sides-driving">
+     Choosing Sides (Driving)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#party-vs-home">
+     Party vs. Home
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matching-pennies">
+     Matching Pennies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nash-equilibrium">
+   Nash Equilibrium
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Prisoner’s Dilemma
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Stag Hunt
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Matching Pennies
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section id="game-theory">
+<h1>Game Theory<a class="headerlink" href="#game-theory" title="Permalink to this headline">¶</a></h1>
+<p><strong>FIZ371 - Scientific &amp; Technical Computations | 11/04/2020</strong></p>
+<p><strong>Game Theory</strong></p>
+<ul class="simple">
+<li><p>Introduction</p>
+<ul>
+<li><p>Battle of Sexes</p>
+<ul>
+<li><p>Pay-off table</p></li>
+<li><p>Calculating the probabilities</p>
+<ul>
+<li><p>Probability of coordination</p></li>
+<li><p>Probability of miscoordination</p></li>
+<li><p>Expected pay-off for each individual</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Prisoner’s Dilemma</p></li>
+<li><p>Friend or Foe</p></li>
+<li><p>Stag Hunt</p></li>
+<li><p>Choosing Sides (Driving)</p></li>
+<li><p>Party vs. Home</p></li>
+<li><p>Matching Pennies</p></li>
+</ul>
+</li>
+<li><p>Nash Equilibrium</p>
+<ul>
+<li><p>Prisoner’s Dilemma</p></li>
+<li><p>Stag Hunt</p></li>
+<li><p>Matching Pennies</p></li>
+</ul>
+</li>
+<li><p>References</p></li>
+</ul>
+<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Game theory deals with possible outcomes and determining strategies while taking into account the opponents’ reactions. By game, we imply any conflict where there is a competition. The game can be cooperative/non-cooperative; constant sum, zero sum or non-zero sum; symmetryic or asymmetric. It has many forms and extends from a chess game to a diplomatic decision that can lead to a world war. In the end, game theory is used to analyze a given conundrum/situation and to come up with the decision that will yield the maximum gain.</p>
+<p>John Nash was a very influential mathematician who developed an analytical approach to this vast field under the name “game theory” for which he received the Nobel prize for Economics in 1994.</p>
+<p>We will start directly with basic cases and analyze them on the way.</p>
+<section id="battle-of-sexes">
+<h2>Battle of Sexes<a class="headerlink" href="#battle-of-sexes" title="Permalink to this headline">¶</a></h2>
+<p>Manny and Wanda have agreed to attend to an event (opera -or- football) alas both of them have forgotten on which option they had agreed and have no means of communication.</p>
+<p>To which event should they chose to go?</p>
+<section id="pay-off-table">
+<h3>Pay-off table<a class="headerlink" href="#pay-off-table" title="Permalink to this headline">¶</a></h3>
+<p>We start by constructing a pay-off table that covers all of the possible situations. In this case, the possibilities are:</p>
+<ul class="simple">
+<li><p>Wanda and Manny both going to the opera</p></li>
+<li><p>Wanda going to the opera while Manny goes to the football</p></li>
+<li><p>Wanda going to the football while Manny goes to the opera</p></li>
+<li><p>Wanda and Mannyn both going to the football match</p></li>
+</ul>
+<p>Wanda and Manny are two good friends, they really love spending time together. Wanda isn’t a big fan of football, she prefers opera. Manny enjoys watching football matches alas not so enthusiastic about opera. But, as they enjoy being with each other, they certainly prefer attending to their least favorite activity together than watching their favorite activity by themselves (e.g., even though, when alone, Wanda prefers watching an opera than watching a football match, she’ll definitely prefer watching a football match with Manny than watching an opera alone by herself).</p>
+<p>So, in the light of this information, the pay-off table can be something like:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(M_O\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(M_F\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(W_O\)</span></p></td>
+<td><p>3,2</p></td>
+<td><p>1,1</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(W_F\)</span></p></td>
+<td><p>0,0</p></td>
+<td><p>2,3</p></td>
+</tr>
+</tbody>
+</table>
+<p>The ordering is: (pay-off to Wanda, pay-off to Manny)</p>
+<p>For example (3,2) for <span class="math notranslate nohighlight">\(W_O\)</span> and <span class="math notranslate nohighlight">\(M_O\)</span> means that, if Wanda goes to opera (<span class="math notranslate nohighlight">\(W_O\)</span>) and Manny also goes to opera (<span class="math notranslate nohighlight">\(M_O\)</span>), Wanda will have 3 units of ‘joy’, while Manny will have 2 units of ‘joy’. However, if Wanda goes to the opera while Manny goes to the football match, each of them will only get 1 unit of ‘joy’.</p>
+</section>
+<section id="calculating-the-probabilities">
+<h3>Calculating the probabilities<a class="headerlink" href="#calculating-the-probabilities" title="Permalink to this headline">¶</a></h3>
+<p>The probability that each of them will be at a specific event is naturally ruled by the expected pay-off (they are trying to maximize the joy they will receive). We will be using <span class="math notranslate nohighlight">\(M_F\)</span>, <span class="math notranslate nohighlight">\(M_O\)</span>, <span class="math notranslate nohighlight">\(W_F\)</span> and <span class="math notranslate nohighlight">\(W_O\)</span> to represent the probability that Manny will go to the football match(<span class="math notranslate nohighlight">\(M_F\)</span>), opera(<span class="math notranslate nohighlight">\(M_O\)</span>); Wanda going to the football(<span class="math notranslate nohighlight">\(W_F\)</span>) or opera(<span class="math notranslate nohighlight">\(W_O\)</span>), respectively. Then, taking into account of the pay-offs, we can formulate:</p>
+<div class="math notranslate nohighlight">
+\[M_F=\frac{1\,.W_O + 3\,.W_F}{1\,.W_O + 3\,.W_F+2\,.W_O+0\,.W_F}\]</div>
+<p>Let’s break-down the factors: the 1 before <span class="math notranslate nohighlight">\(W_O\)</span> in the numerator is the pay-off for Manny should he goes to the football game when Wanda has gone to the opera and 3 before the <span class="math notranslate nohighlight">\(W_F\)</span> is the joy he gets when he goes to the football game and finds out that Wanda is also there!</p>
+<p>The denominator is the total pay-off sum of all the possibilities for Manny (<em>mathematically speaking</em>, it’s actually the normalizing constant so we can treat <span class="math notranslate nohighlight">\(M_F\)</span> as a probability).</p>
+<div class="math notranslate nohighlight">
+\[M_F=\frac{W_O + 3W_F}{3W_O + 3W_F}=\frac{W_O + 3W_F}{3\underbrace{\left(W_O + W_F\right)}_{W_O + W_F=1}}=\frac{1}{3}(W_O + 3W_F) \]</div>
+<p>Here, we used the fact that <span class="math notranslate nohighlight">\(W_O + W_F=1\)</span> as <span class="math notranslate nohighlight">\(W_O\)</span> is the probability that Wanda will go to the opera and <span class="math notranslate nohighlight">\(W_F\)</span> is the probability that she’ll go to the football match and as there are no other options, so the sum of these two probabilities must be equal to 1.</p>
+<p>Proceeding similarly onto the other probabilities:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+M_O &amp;= \frac{2W_O+0W_F}{2W_O+0W_F+1W_O+3W_F} = \frac{2W_O}{3(W_O+W_F)}=\frac{2W_O}{3}\\
+W_F &amp;= \frac{0M_O+2M_F}{0M_O+2M_F+3M_O+1M_F} = \frac{2M_F}{3}\\
+W_O &amp;= \frac{3M_O+M_F}{3M_O+M_F+0M_O+2M_F} = \frac{3M_0+M_F}{3}=\frac{1}{3}(3M_O+M_F)
+\end{align*}\end{split}\]</div>
+<p>We have 4 equations for 4 unknowns – to summarize:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+M_F &amp;= \frac{1}{3}(W_O + 3W_F)\\
+M_O &amp;=\frac{2W_O}{3}\\
+W_F &amp;=\frac{2M_F}{3}\\
+W_O &amp;= \frac{1}{3}(3M_O+M_F)
+\end{align*}\end{split}\]</div>
+<p>so, in theory, we must be able to solve this linear set of equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{matrix}
+1&amp;0&amp;-1&amp;-1/3\\
+0&amp;-1&amp;0&amp;2/3\\
+2/3&amp;0&amp;-1&amp;0\\
+1/3&amp;1&amp;0&amp;-1\\
+\end{matrix}\right)
+\left(\begin{matrix}
+M_F\\M_O\\W_F\\W_O
+\end{matrix}\right)
+=\left(\begin{matrix}
+0\\0\\0\\0
+\end{matrix}\right)
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">fractions</span> <span class="kn">import</span> <span class="n">Fraction</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">]])</span>
+<span class="p">[</span><span class="n">MF</span><span class="p">,</span><span class="n">MO</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">WO</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">MF</span><span class="p">,</span><span class="n">MO</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">WO</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.] [-0.] [-0.] [-0.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We got a very boring (“trivial”) result: set all the probabilities to 0 and then, 0 = 0 (<em>duh!..</em>)</p>
+<p>This is because we actually don’t have 4 independent equations for 4 unknowns, only 3! We can see this fact as, for example, we can derive the 4th row by multiplying the 1st row by 1; 2nd row by -1; 3rd row by -1 and adding them up:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">+</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span><span class="o">+</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">,:]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> &quot;</span><span class="o">%</span><span class="k">str</span>(Fraction(sum[i]).limit_denominator(10)),end=&quot;&quot;)
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; --&gt; we have rederived the 4th row using the first 3!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1/3 1 0 -1  --&gt; we have rederived the 4th row using the first 3!
+</pre></div>
+</div>
+</div>
+</div>
+<p>So this is an <em>underdetermined linear set of equations</em>.</p>
+<p>By the way, we could also deduce that this was an underdetermined set by checking its rank (i.e., the number of independent rows of a matrix):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The rank of our A matrix is: </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span><span class="k">np</span>.linalg.matrix_rank(A))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The rank of our A matrix is: 3
+</pre></div>
+</div>
+</div>
+</div>
+<p>To summarize: At the moment we have 4 unknowns but only 3 independent equations, thus we need a 4th equation. Where can it be found?…</p>
+<p><em>(think… think…)</em></p>
+<p>.<br />
+.<br />
+.</p>
+<p><em>Any ideas?</em>…</p>
+<p>.<br />
+.<br />
+.</p>
+<p>How about the fact that, since <span class="math notranslate nohighlight">\(W_F\)</span> and <span class="math notranslate nohighlight">\(W_M\)</span> were the probabilities of Wanda going to the football match or the opera and these were the only possibilities and hence:</p>
+<div class="math notranslate nohighlight">
+\[W_F + W_O = 1\]</div>
+<p>If we “translate” this into our set of equations as the 5th line:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{matrix}
+1&amp;0&amp;-1&amp;-1/3\\
+0&amp;-1&amp;0&amp;2/3\\
+2/3&amp;0&amp;-1&amp;0\\
+1/3&amp;1&amp;0&amp;-1\\
+0&amp;0&amp;1&amp;1
+\end{matrix}\right)
+\left(\begin{matrix}
+M_F\\M_O\\W_F\\W_O
+\end{matrix}\right)
+=\left(\begin{matrix}
+0\\0\\0\\0\\1
+\end{matrix}\right)
+\end{split}\]</div>
+<p>(5x4).(4x1) = (5x1) –  the dimensions hold, so we can carry on the multiplication but for the linear solve, we need a square matrix, so we take out one of the first four rows (let’s drop the 4th):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{matrix}
+1&amp;0&amp;-1&amp;-1/3\\
+0&amp;-1&amp;0&amp;2/3\\
+2/3&amp;0&amp;-1&amp;0\\
+0&amp;0&amp;1&amp;1
+\end{matrix}\right)
+\left(\begin{matrix}
+M_F\\M_O\\W_F\\W_O
+\end{matrix}\right)
+=\left(\begin{matrix}
+0\\0\\0\\1
+\end{matrix}\right)
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">fractions</span> <span class="kn">import</span> <span class="n">Fraction</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">],[</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="p">[</span><span class="n">MF</span><span class="p">,</span><span class="n">MO</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">WO</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MF: </span><span class="si">%.2f</span><span class="s2"> | MO: </span><span class="si">%.2f</span><span class="s2"> | WF: </span><span class="si">%.2f</span><span class="s2"> | WO: </span><span class="si">%.2f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">MF</span><span class="p">,</span><span class="n">MO</span><span class="p">,</span><span class="n">WF</span><span class="p">,</span><span class="n">WO</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MF: </span><span class="si">%4s</span><span class="s2"> | MO: </span><span class="si">%4s</span><span class="s2"> | WF: </span><span class="si">%4s</span><span class="s2"> | WO: </span><span class="si">%4s</span><span class="s2">&quot;</span>\
+    <span class="o">%</span><span class="p">(</span><span class="n">Fraction</span><span class="p">(</span><span class="n">MF</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>\
+      <span class="n">Fraction</span><span class="p">(</span><span class="n">MO</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>\
+      <span class="n">Fraction</span><span class="p">(</span><span class="n">WF</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>\
+      <span class="n">Fraction</span><span class="p">(</span><span class="n">WO</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MF: 0.60 | MO: 0.40 | WF: 0.40 | WO: 0.60
+MF:  3/5 | MO:  2/5 | WF:  2/5 | WO:  3/5
+</pre></div>
+</div>
+</div>
+</div>
+<p>P.S.: For details on solving linear equations you can check <a class="reference external" href="https://emresururi.github.io/FIZ219/FIZ219_EST_UygulamaNotlari_10_Gauss_Eleme_Yontemi_ile_nxn_Dogrusal_Denklem_Cozumu.html">related “FIZ219 - Programming I” lecture notes</a> (in Turkish &amp; GNU Octave)</p>
+<p>Now that we have calculated the probabilities based on pay-offs, let’s calculate the probability of coordination, i.e., the chance that both Wanda and Manny will attend to the same event:</p>
+<p><strong>Probability of coordination (<span class="math notranslate nohighlight">\(P_c\)</span>)</strong><br />
+<span class="math notranslate nohighlight">\(P_c = M_F\,W_F+M_O\,W_O = \frac{3}{5}\frac{2}{5}+\frac{2}{5}\frac{3}{5} = \frac{12}{25}\)</span></p>
+<p>and the probability of miscoordination where they miss each other:</p>
+<p><strong>Probability of miscoordination (<span class="math notranslate nohighlight">\(P_m\)</span>)</strong><br />
+<span class="math notranslate nohighlight">\(P_m = M_F\,W_O+M_O\,W_F = \frac{3}{5}\frac{3}{5}+\frac{2}{5}\frac{2}{5} = \frac{13}{25}\)</span></p>
+<p>so, they have a slightly more probability to miss each other than meet in the event. Also, we actually didn’t had to calculate <span class="math notranslate nohighlight">\(P_m\)</span> directly as it is just <span class="math notranslate nohighlight">\(1-P_c\)</span>, there being only two possibilities…</p>
+<section id="expected-pay-off-for-each-individual">
+<h4>Expected pay-off for each individual<a class="headerlink" href="#expected-pay-off-for-each-individual" title="Permalink to this headline">¶</a></h4>
+<p>This is the measure of the average gain in the limit (like, when this experiment/situation is repeated a great many times):</p>
+<ul class="simple">
+<li><p>For Manny:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}E_m = M_F W_F E_m(m_f \wedge w_f) + M_F W_O E_m(m_f \wedge w_o)\\
+\quad\quad+M_O W_O E_m(m_o \wedge w_o)+M_O W_F E_m(m_o \wedge w_f)\end{split}\]</div>
+<p>Here as before, <span class="math notranslate nohighlight">\(M_F\)</span> for example is the probability that Manny will go to the footbal event, etc. while <span class="math notranslate nohighlight">\(E_m(m_f \wedge w_o)\)</span> is the pay-off value for Manny (<span class="math notranslate nohighlight">\(E_m\)</span>) when he is in the football event (<span class="math notranslate nohighlight">\(m_f\)</span>) and (<span class="math notranslate nohighlight">\(\wedge\)</span>) Wanda is at the opera (<span class="math notranslate nohighlight">\(w_o\)</span>): looking from the table we find this pay-off to be 1.</p>
+<p>So we substitute each of the values in the above equation for the expected pay-off:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+E_m &amp;= M_F W_F E_m(m_f \wedge w_f) + M_F W_O E_m(m_f \wedge w_o)\\
+&amp;\quad+M_O W_O E_m(m_o \wedge w_o)+M_O W_F E_m(m_o \wedge w_f)\\
+&amp;= \frac{3}{5}\,\cdot\frac{2}{5}\,\cdot3 +\frac{3}{5}\,\cdot\frac{3}{5}\,\cdot1 +\frac{2}{5}\,\cdot\frac{3}{5}\,\cdot2 +\frac{2}{5}\,\cdot\frac{2}{5}\,\cdot0 \\
+&amp;= \frac{39}{25} = 1.56
+\end{align*}\end{split}\]</div>
+<ul class="simple">
+<li><p>For Wanda:<br />
+We proceed in a similar way: the probabilities for each combination will be the same but this time we use Wanda’s pay-off values for each of them.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}
+E_w &amp;= M_F W_F E_w(m_f \wedge w_f) + M_F W_O E_w(m_f \wedge w_o)\\
+&amp;\quad+M_O W_O E_w(m_o \wedge w_o)+M_O W_F E_w(m_o \wedge w_f)\\
+&amp;= \frac{3}{5}\,\cdot\frac{2}{5}\,\cdot2 +\frac{3}{5}\,\cdot\frac{3}{5}\,\cdot1 +\frac{2}{5}\,\cdot\frac{3}{5}\,\cdot3 +\frac{2}{5}\,\cdot\frac{2}{5}\,\cdot0 \\
+&amp;= \frac{39}{25} = 1.56
+\end{align*}\end{split}\]</div>
+</section>
+</section>
+</section>
+<section id="prisoner-s-dilemma">
+<h2>Prisoner’s Dilemma<a class="headerlink" href="#prisoner-s-dilemma" title="Permalink to this headline">¶</a></h2>
+<p>Consider the situation that Alice &amp; Bob has been arrested for a robbery. They have been taken into separate interrogation rooms and can’t communicate or see each other.</p>
+<p>Then the prosecutor comes (she doesn’t have much evidence so, she’s hoping to turn them against themselves and gain criminating statements against each other) and asks about the involvement of the parties. Here are the possible outcomes:</p>
+<ul class="simple">
+<li><p>if Alice &amp; Bob both betray each other : they each get 2 years in prison</p></li>
+<li><p>if Alice betrays Bob and Bob remains silent : Alice goes out and Bob gets 3 years (<em>vice versa</em>)</p></li>
+<li><p>if both stay silent : they both get 1 year in prison</p></li>
+</ul>
+<p>Within the light of these possible outcomes, the “penalty table” can be constructed as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{silent}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{defects}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{silent}\)</span></p></td>
+<td><p>1,1</p></td>
+<td><p>3,0</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{defects}\)</span></p></td>
+<td><p>0,3</p></td>
+<td><p>2,2</p></td>
+</tr>
+<tr class="row-even"><td><p> </p></td>
+<td><p><strong><em>penalty table</em></strong></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Since in game theory we want to maximize the gains, it’s much more convenient to transform this <em>penalty table</em> into a <em>reward (pay-off) table</em>:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{s}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{d}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{s}\)</span></p></td>
+<td><p>2,2</p></td>
+<td><p>0,3</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{d}\)</span></p></td>
+<td><p>3,0</p></td>
+<td><p>1,1</p></td>
+</tr>
+<tr class="row-even"><td><p> </p></td>
+<td><p><strong><em>reward (pay-off) table</em></strong></p></td>
+<td><p> </p></td>
+</tr>
+</tbody>
+</table>
+<p><em>and then, there’s the “Repeated Prisoner’s Dilemma” (with memory), where the situation is repeated again and again… What would you suggest as the best strategy in that case?</em></p>
+</section>
+<section id="friend-or-foe">
+<h2>Friend or Foe<a class="headerlink" href="#friend-or-foe" title="Permalink to this headline">¶</a></h2>
+<p>2 people do a homework together. One can choose to participate/help/co-operate/work or do nothing and feed off the other’s work.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{work}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{do\,nothing}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{work}\)</span></p></td>
+<td><p>1,1</p></td>
+<td><p>0,2</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{do\,nothing}\)</span></p></td>
+<td><p>2,0</p></td>
+<td><p>0,0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="stag-hunt">
+<h2>Stag Hunt<a class="headerlink" href="#stag-hunt" title="Permalink to this headline">¶</a></h2>
+<p>Two hunters go hunting. On their own, they can hunt a rabbit/hare (1 unit of meat pay-off) or working together, they can hunt a stag/deer (2 units of meat pay-off per each).</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{stag}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{hare}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{stag}\)</span></p></td>
+<td><p>2,2</p></td>
+<td><p>0,1</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{hare}\)</span></p></td>
+<td><p>1,0</p></td>
+<td><p>1,1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="choosing-sides-driving">
+<h2>Choosing Sides (Driving)<a class="headerlink" href="#choosing-sides-driving" title="Permalink to this headline">¶</a></h2>
+<p>Two drivers come head to head and they both swing. If they both swing to the same side (e.g., each one to their left) they are saved / they don’t crash.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{left}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{right}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{left}\)</span></p></td>
+<td><p>10,10</p></td>
+<td><p>0,0</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{right}\)</span></p></td>
+<td><p>0,0</p></td>
+<td><p>10,10</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="party-vs-home">
+<h2>Party vs. Home<a class="headerlink" href="#party-vs-home" title="Permalink to this headline">¶</a></h2>
+<p>Introvert home boy Bob is infatuated with the extrovert party girl Alice.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{party}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{home}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{party}\)</span></p></td>
+<td><p>10,10</p></td>
+<td><p>6,0</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{home}\)</span></p></td>
+<td><p>0,0</p></td>
+<td><p>5,5</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="introvert_boy_girl.png" src="_images/introvert_boy_girl.png" />
+(these are just two introverts, not related to the case above! 8)</p>
+</section>
+<section id="matching-pennies">
+<h2>Matching Pennies<a class="headerlink" href="#matching-pennies" title="Permalink to this headline">¶</a></h2>
+<p>Two people chooses a side of their coin, and then show to each other.</p>
+<ul class="simple">
+<li><p>If they match -&gt; A takes/wins</p></li>
+<li><p>If they differ -&gt; B takes/wins</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{Heads}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{Tails}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{Heads}\)</span></p></td>
+<td><p>+1,-1</p></td>
+<td><p>-1,+1</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{Tails}\)</span></p></td>
+<td><p>-1,+1</p></td>
+<td><p>+1,-1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="nash-equilibrium">
+<h1>Nash Equilibrium<a class="headerlink" href="#nash-equilibrium" title="Permalink to this headline">¶</a></h1>
+<p>When each player knows about the choice of the others and yet won’t change their choice (i.e., they are happy with their current choice) then it is said that the game is in a Nash equilibrium, which is the most optimal solution sought. For small and simple systems, there is a simple and systematical way to find the Nash equilibrium points (there can be more than one, as we’ll see). Also, Nash has proved (in his Nobel awarded work… of <a class="reference external" href="https://www.pnas.org/content/36/1/48">2 pages</a>!) that in a complicated and within many yet finite strategies, there is always at least one Nash equilibrium (assuming a special condition that allows mixed strategies). Also, after many iterated tries (playing the same game over and over), the system is expected to reach an equilibrium however, in a <a class="reference external" href="https://www.quantamagazine.org/in-game-theory-no-clear-path-to-equilibrium-20170718/">recent research, it has been shown to be not de-facto, with exceptions</a>.</p>
+<p>So, for simple systems such as the ones we have considered, where a 2 dimensional pay-off table is sufficient, we consider each player’s stance from the other’s possible choice.</p>
+<p>In a 2 player setup, start from one of the cells:</p>
+<ul class="simple">
+<li><p>Take the column player’s point of view. For each of the cells in that row, compare the immediate neighbours (to the left and right) and point it towards the one with the better yield (higher pay-off). If the current cell is higher yielding, then direct the arrows towards that.</p></li>
+<li><p>Once you finish the comparison of the rows, then take on the role of the row player and repeat the procedure, this time considering the neighbours above and below.</p></li>
+</ul>
+<section id="id1">
+<h2>Prisoner’s Dilemma<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>As an example, consider the payoff table for the Prisoner’s Dilemma:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{s}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{d}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{s}\)</span></p></td>
+<td><p>2,2</p></td>
+<td><p>0,3</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{d}\)</span></p></td>
+<td><p>3,0</p></td>
+<td><p>1,1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Here, Alice is the column player (because it can make its choice between <span class="math notranslate nohighlight">\(A_s\)</span> (above) and <span class="math notranslate nohighlight">\(A_d\)</span> (below)) and Bob is the row player (as it chooses between <span class="math notranslate nohighlight">\(B_s\)</span> (left) and <span class="math notranslate nohighlight">\(B_d\)</span> (right))</p>
+<p>First we take on Alice’s role and let’s start from the top left cell (2,2). Alice can choose to stay here (remain silent) or go to the cell below (defect). In this situation (where Bob is remaining silent) if she stays, she gains “2” but if she defects, her gain is “3” so she will choose to defect (in basic Game Theory, moral or irrational choices are excluded and maximum yield is the ultimate object). So, our chart will be marked as:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{s}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{d}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{s}\)</span></p></td>
+<td><p>2<span class="math notranslate nohighlight">\(\color{blue}{\downarrow}\)</span>,2</p></td>
+<td><p>0,3</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{d}\)</span></p></td>
+<td><p>3,0</p></td>
+<td><p>1,1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Then we move on to Bob’s other possible outcome scenario (him defecting). In this case, once again defecting is the better option for Alice (“0” <span class="math notranslate nohighlight">\(\rightarrow\)</span> “1”), so we mark the 2nd column downwards as well, pointing to the row where Alice defects:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{s}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{d}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{s}\)</span></p></td>
+<td><p>2<span class="math notranslate nohighlight">\(\color{blue}{\downarrow}\)</span>,2</p></td>
+<td><p>0<span class="math notranslate nohighlight">\(\color{blue}{\downarrow}\)</span>,3</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{d}\)</span></p></td>
+<td><p>3,0</p></td>
+<td><p>1,1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Having covered all possibilities for Alice, we now take the role of Bob: his decisions allows movement along the rows. So if he’s presented with a situation where Alice is silent, he maximizes his gain by defecting (“2” <span class="math notranslate nohighlight">\(\rightarrow\)</span> “3”) and if Alice is defecting, his choice will also be defecting (“0” <span class="math notranslate nohighlight">\(\rightarrow\)</span> “1”), so, the pay-off table will be marked as:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{s}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{d}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{s}\)</span></p></td>
+<td><p>2<span class="math notranslate nohighlight">\(\color{blue}{\downarrow}\)</span>,2<span class="math notranslate nohighlight">\(\color{red}{\rightarrow}\)</span></p></td>
+<td><p>0<span class="math notranslate nohighlight">\(\color{blue}{\downarrow}\)</span>,3</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{d}\)</span></p></td>
+<td><p>3,0<span class="math notranslate nohighlight">\(\color{red}{\rightarrow}\)</span></p></td>
+<td><p>1,1</p></td>
+</tr>
+</tbody>
+</table>
+<p>More clearly:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{s}\)</span></p></th>
+<th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{d}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{s}\)</span></p></td>
+<td><p>2,2</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}{\rightarrow}\)</span></p></td>
+<td><p>0,3</p></td>
+</tr>
+<tr class="row-odd"><td><p> </p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{blue}{\downarrow}\)</span></p></td>
+<td><p> </p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{blue}{\downarrow}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{d}\)</span></p></td>
+<td><p>3,0</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}{\rightarrow}\)</span></p></td>
+<td><p>1,1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Even better:
+<img alt="Nash_Equilibrium.svg" src="_images/Nash_Equilibrium.svg" /></p>
+<p>From the graph above, we can see that, no matter where we start, we are forced to move along the arrows and we end up at the bottom-right cell where Alice and Bob both defect. This is the Nash equilibrium point.</p>
+<p>From its definition, Nash equilibrium is the state where, given that the other player’s choice is revealed, the player won’t change their own choice.</p>
+<p>Consider the case that Alice is thinking of remaining silent but then she learns that Bob has defected: in that case, she’ll also defect. The same goes for Bob – for any of Alice’s possible choices, himself defecting is the most rewarding, so he will always defect. Both of them defecting is the <strong>only</strong> case where upon learning other’s intentions, they will not change their decision.</p>
+</section>
+<section id="id2">
+<h2>Stag Hunt<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Let’s find Nash equilibrium point (or points, or if there’s any) for the Stag Hunt whose payoff table was as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{stag}\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{hare}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{stag}\)</span></p></td>
+<td><p>2,2</p></td>
+<td><p>0,1</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="math notranslate nohighlight">\(A_{hare}\)</span></p></td>
+<td><p>1,0</p></td>
+<td><p>1,1</p></td>
+</tr>
+</tbody>
+</table>
+<p>A determines the movement along (within) the columns whereas B determines the movement along the rows, so we place our arrows accordingly:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{stag}\)</span></p></th>
+<th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{hare}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{stag}\)</span></p></td>
+<td><p>2,2</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}{\leftarrow}\)</span></p></td>
+<td><p>0,1</p></td>
+</tr>
+<tr class="row-odd"><td><p> </p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{blue}{\uparrow}\)</span></p></td>
+<td><p> </p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{blue}{\downarrow}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{hare}\)</span></p></td>
+<td><p>1,0</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}{\rightarrow}\)</span></p></td>
+<td><p>1,1</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Nash_Equilibrium_Stag.svg" src="_images/Nash_Equilibrium_Stag.svg" /></p>
+<p>The situation is like this: if A learns that B is going for a stag hunt, she will also opt to go to the stag hunt. If she hears that B is off to hare hunt, she will also choose to go the hare hunting. The same goes for B: If he chooses to go for stag hunting but then learns that A is going for hare hunting, he will change his opinion and will go to hare hunting as well. If he had chosen hare hunting but now learns that A is going for stag hunting, he will also go.</p>
+<p>We see that, following the arrows, once we reach the top-left or bottom-right cells, we stay there. This means that in this game, we actually have 2 Nash equilibrium points.</p>
+</section>
+<section id="id3">
+<h2>Matching Pennies<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{Heads}\)</span></p></th>
+<th class="head"><p> </p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(B_{Tails}\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{Heads}\)</span></p></td>
+<td><p>+1,-1</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}{\rightarrow}\)</span></p></td>
+<td><p>-1,+1</p></td>
+</tr>
+<tr class="row-odd"><td><p> </p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{blue}{\uparrow}\)</span></p></td>
+<td><p> </p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{blue}{\downarrow}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(A_{Tails}\)</span></p></td>
+<td><p>-1,+1</p></td>
+<td><p><span class="math notranslate nohighlight">\(\color{red}{\leftarrow}\)</span></p></td>
+<td><p>+1,-1</p></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Nash_Equilibrium_Pennies.svg" src="_images/Nash_Equilibrium_Pennies.svg" /></p>
+<p>For this game, as can be seen from the figure, there is no Nash equilibrium point - in no possible outcome can the competing parties leave the game satisfied.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>John Nash, “Equilibrium points in n-person games” <em>PNAS</em> 36(1) 48-49 1950
+<a class="reference external" href="https://doi.org/10.1073/pnas.36.1.48">https://doi.org/10.1073/pnas.36.1.48</a></p></li>
+<li><p>Erica Klarreich, “In Game Theory, No Clear Path to Equilibrium” <em>Quanta Magazine</em> 18 July 2017<br />
+<a class="reference external" href="https://www.quantamagazine.org/in-game-theory-no-clear-path-to-equilibrium-20170718/">https://www.quantamagazine.org/in-game-theory-no-clear-path-to-equilibrium-20170718/</a></p></li>
+<li><p>Yakov Babichenko, Aviad Rubinstein, “Communication complexity of approximate Nash equilibria” <em>arXiv</em> 2016<br />
+<a class="reference external" href="https://arxiv.org/abs/1608.06580">https://arxiv.org/abs/1608.06580</a></p></li>
+<li><p>Prof. Asu Ozdaglar’s “Game Theory with Engineering Applications” <em>MIT Course on OpenCourseWare</em><br />
+<a class="reference external" href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-254-game-theory-with-engineering-applications-spring-2010/">https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-254-game-theory-with-engineering-applications-spring-2010/</a></p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FIZ371_LN15_EST_Distributions_2.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Distributions 2 : Continous Distributions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Implementation of Prisonner’s Dilemma with Memory</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

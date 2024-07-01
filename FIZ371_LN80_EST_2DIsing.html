@@ -1,0 +1,853 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2D Ising Model &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Clustering and Classification" href="FIZ371_LN58_EST_ClusteringAndClassification.html" />
+    <link rel="prev" title="Cellular Automata" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Final.html">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/FIZ371_LN80_EST_2DIsing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/FIZ371_LN80_EST_2DIsing.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN80_EST_2DIsing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relevance-of-ising-models">
+     Relevance of Ising models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ferromagnetic-materials">
+   Ferromagnetic Materials
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#difficulties">
+   Difficulties
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#monte-carlo-simulation">
+     Monte Carlo simulation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#metropolis-algorithm">
+       Metropolis algorithm
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation">
+   Implementation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework">
+   Homework
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid">
+   Appendix : Evolution of the configuration probabilities for a 2x2 Ising Grid
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#external-link-s">
+   External link(s)
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>2D Ising Model</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#relevance-of-ising-models">
+     Relevance of Ising models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ferromagnetic-materials">
+   Ferromagnetic Materials
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#difficulties">
+   Difficulties
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#monte-carlo-simulation">
+     Monte Carlo simulation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#metropolis-algorithm">
+       Metropolis algorithm
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation">
+   Implementation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework">
+   Homework
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid">
+   Appendix : Evolution of the configuration probabilities for a 2x2 Ising Grid
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#external-link-s">
+   External link(s)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section id="d-ising-model">
+<h1>2D Ising Model<a class="headerlink" href="#d-ising-model" title="Permalink to this headline">¶</a></h1>
+<p><strong>FIZ371 - Scientific &amp; Technical Computations | 10/06/2020</strong></p>
+<p><strong>2D Ising Model</strong></p>
+<ul class="simple">
+<li><p>Introduction</p>
+<ul>
+<li><p>Relevance of Ising models</p></li>
+</ul>
+</li>
+<li><p>Ferromagnetic Materials</p></li>
+<li><p>Difficulties</p></li>
+<li><p>Monte Carlo simulation</p>
+<ul>
+<li><p>Metropolis algorithm</p></li>
+</ul>
+</li>
+<li><p>Implementation</p></li>
+<li><p>Homework</p></li>
+<li><p>Appendix: Evolution of the configuration probabilities for a 2x2 Ising Grid</p></li>
+<li><p>External link(s)</p></li>
+</ul>
+<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>The Ising model is the modelling of a network with nodes interacting with each other with respect to some order. Initially developed by Ernst Ising in 1925 to model the phase transition in 1D in order to observe critical variables in action, alas Ising didn’t manage to encounter any phase transition and gave up the model, until much later. The model was analytically solved by Lars Onsager in 1944. The 3D version has not yet been solved although there are a couple of claims.</p>
+<section id="relevance-of-ising-models">
+<h2>Relevance of Ising models<a class="headerlink" href="#relevance-of-ising-models" title="Permalink to this headline">¶</a></h2>
+<p>As for the relevance and importance of Ising models, I’m quoting directly from our textbook, <a class="reference external" href="http://www.inference.org.uk/mackay/itprnn/book.html">MacKay’s “Information Theory, Inference, and Learning Algorithms”</a>:</p>
+<p>Ising models are relevant for three reasons.</p>
+<p>Ising models are important first as models of magnetic systems that have a phase transition. The theory of universality in statistical physics shows that all systems with the same dimension (here, two), and the same symmetries, have equivalent critical properties, i.e., the scaling laws shown by their phase transitions are identical. So by studying Ising models we can find out not only about magnetic phase transitions but also about phase transitions in many other systems.</p>
+<p>Second, if we generalize the energy function to</p>
+<div class="math notranslate nohighlight">
+\[E(\vec{x};\vec{J},\vec{h}) =-\left[\frac{1}{2}\sum_{m,n}{J_{mn}x_m x_n}+\sum_n{h_n x_n}\right]\]</div>
+<p>where the couplings <span class="math notranslate nohighlight">\(J_{mn}\)</span> and applied fields <span class="math notranslate nohighlight">\(h_n\)</span> are not constant, we obtain a family of models known as ‘spin glasses’ to physicists, and as ‘Hopfield networks’ or ‘Boltzmann machines’ to the neural network community. In some of these models, all spins are declared to be neighbours of each other, in which case physicists call the system an “infinite-range” spin glass, and networks call it a “fully connected” network.</p>
+<p>Third, the Ising model is also useful as a statistical model on its own right.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="ferromagnetic-materials">
+<h1>Ferromagnetic Materials<a class="headerlink" href="#ferromagnetic-materials" title="Permalink to this headline">¶</a></h1>
+<p>A ferromagnetic material is a material whose atomic spins align with the applied external magnetic field and even at the lack of an external field, its atoms also tend to align their magnetic moments with that of their neighbours resulting in spin domains:</p>
+<p><img alt="NdFeB-Domains.jpg" src="_images/NdFeB-Domains.jpg" />
+<a class="reference external" href="https://en.wikipedia.org/wiki/Magnetic_domain">Source: Wikipedia</a></p>
+<p>The magnetic contribution to the energy comes from the following interaction in the Hamiltonian:</p>
+<div class="math notranslate nohighlight">
+\[E(\vec{x};J,H) =-\left[\frac{1}{2}\sum_{m,n}{J_{mn}x_m x_n}+\sum_n{Hx_n}\right]\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\vec{x}\)</span> is the spin configuration of the sites; <span class="math notranslate nohighlight">\(x_i\)</span> is the spin of the <i>i</i>th site (-1 for “down” and +1 for “up”); <span class="math notranslate nohighlight">\(J_{mn}\)</span> is the coupling coefficient between the <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> sites and <span class="math notranslate nohighlight">\(H\)</span> is the applied external field, if there is any.</p>
+<p>We can define the interaction depth of the spins via the coupling coefficient <span class="math notranslate nohighlight">\(J_{mn}\)</span>: for example, the coefficient can be 5 for the <em>nearest neighbours</em>, 3 for the <em>next nearest neighbours</em> and 0 for the rest of the atoms making them irrelevant to the site at hand. J’s sign indicates the ferromagnetic/antiferromagnetic tendency, with <span class="math notranslate nohighlight">\(J&gt;0\)</span> the spins tend to align in the same direction whereas negative <span class="math notranslate nohighlight">\(J\)</span> drives the antiferromagnetic behaviour.</p>
+<p>For simplicity, we will assume <span class="math notranslate nohighlight">\(J_{mn} = J\)</span> if <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are neighbours and <span class="math notranslate nohighlight">\(J_{mn} = 0\)</span> otherwise, so the only manipulation to the spins will be due to the neighbours.</p>
+<p>As we have the energy equation, at equilibrium at temperature <span class="math notranslate nohighlight">\(T\)</span>, the probability that the state is <span class="math notranslate nohighlight">\(\vec{x}\)</span>, will be given by:</p>
+<div class="math notranslate nohighlight">
+\[P(\vec{x}|\beta,J,H) = \frac{1}{Z(\beta,J,H)}\exp\left[-\beta E(\vec{x};J,H)\right]\]</div>
+<p>here, <span class="math notranslate nohighlight">\(\beta=1/k_B T\)</span>, <span class="math notranslate nohighlight">\(k_B\)</span> is Boltzmann’s contant and:</p>
+<div class="math notranslate nohighlight">
+\[Z(\beta,J,H)\equiv\sum_{\vec x}{\exp\left[-\beta E(\vec{x};J,H)\right]}\]</div>
+<p>is the partition function. From statistics, we know that the entropy can be written as:</p>
+<div class="math notranslate nohighlight">
+\[S=-\frac{\partial F}{\partial T}\]</div>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> is the free energy:</p>
+<div class="math notranslate nohighlight">
+\[F=-k_B T\ln Z\]</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="difficulties">
+<h1>Difficulties<a class="headerlink" href="#difficulties" title="Permalink to this headline">¶</a></h1>
+<p>So, from the previous section, as we have the probability equation, we can use the partition function <span class="math notranslate nohighlight">\(Z\)</span> to first to calculate the free energy and then the entropy of our system. However, there is a very bit tiny problem with the calculation of the partition function.</p>
+<p>Even with a very small system of <span class="math notranslate nohighlight">\(10\times10\)</span> grid, where each site can have a sping value of <span class="math notranslate nohighlight">\(\pm1\)</span>, we will have <span class="math notranslate nohighlight">\(2^{100}\)</span> possible configurations (<span class="math notranslate nohighlight">\(\{\vec x\}\)</span>), which will take more than the age of the universe to calculate on a supercomputer as we know it.</p>
+<p>In contrast to this, calculating the energy of any given configuration <span class="math notranslate nohighlight">\(\vec{x}\)</span> is pretty much straightforward and fast, so we need to be able to exploit this fact for <em>sampling</em>.</p>
+<section id="monte-carlo-simulation">
+<h2>Monte Carlo simulation<a class="headerlink" href="#monte-carlo-simulation" title="Permalink to this headline">¶</a></h2>
+<section id="metropolis-algorithm">
+<h3>Metropolis algorithm<a class="headerlink" href="#metropolis-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>We will employ the Metropolis algorithm (which we have already considered as one of the stochastic activation functions of the artificial neural networks) and will randomly choose a site whose spin is in the state <span class="math notranslate nohighlight">\(x_n\)</span>. If the spin is flipped, the change in the energy will be equal to:</p>
+<div class="math notranslate nohighlight">
+\[\Delta E=2x_n b_n\]</div>
+<p>where <span class="math notranslate nohighlight">\(b_n\)</span> is the local field, that is:</p>
+<div class="math notranslate nohighlight">
+\[b_n = \sum_{m:(m,n)\in\mathcal{N}}{Jx_m + H}\]</div>
+<p>As the Metropolis algorithm proposes, if the energy is decreased, we automatically accept this spin flip; else, we still accept it with a probability of <span class="math notranslate nohighlight">\(\exp(-\beta \Delta E)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P(\text{accept};\Delta E,\beta)=\begin{cases}1&amp;&amp;\Delta E\le0\\\exp(-\beta\Delta E)&amp;&amp;\Delta E\gt0\end{cases}\end{split}\]</div>
+<p>After sufficient number of iterations, this method converges to the equilibrium distribution.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="implementation">
+<h1>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h1>
+<p>The following code is more suitable for an environment other than Jupyter as it produces many output plots.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Implementation of the Metropolis algorithm </span>
+<span class="sd">for 2D Ising model evolution.</span>
+
+<span class="sd">Written for the FIZ371 Course, 10/06/2020</span>
+<span class="sd">Dr. Emre S. Tasci &lt;emre.tasci@hacettepe.edu.tr&gt;</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="c1"># mpl.use(&#39;module://backend_interagg&#39;) # PyCharm doesn&#39;t always display the plots</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="s1">&#39;purple&#39;</span><span class="p">]</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="c1"># Up: Purple | Down: Yellow</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">cmap</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">371</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">num_iterations</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># External field</span>
+<span class="n">k_B</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Boltzmann constant</span>
+<span class="n">J</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Coupling coefficient</span>
+<span class="n">T0</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Temperature</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">k_B</span><span class="o">*</span><span class="n">T0</span><span class="p">)</span>
+
+<span class="c1"># Create our NxN grid, fill with random spin orientation</span>
+<span class="n">mapN</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,[</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">])</span>
+<span class="c1">#mapN = np.zeros((N,N))</span>
+<span class="n">mapN</span><span class="p">[</span><span class="n">mapN</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mapN</span><span class="p">)</span>
+<span class="n">num_ups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mapN</span><span class="o">==</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">num_downs</span> <span class="o">=</span> <span class="n">N</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">num_ups</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:}</span><span class="s2"> up | </span><span class="si">{:}</span><span class="s2"> down &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">num_ups</span><span class="p">,</span><span class="n">num_downs</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">mapN</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">)</span>
+<span class="c1">#plt.savefig(&quot;/tmp/figs/&quot; + &quot;TS_%.3fs&quot; % (T0) + &quot;.png&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#input(&quot;devam?..&quot;)</span>
+<span class="n">magnetization_vs_T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">45</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">T0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">T</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">continue</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">k_B</span><span class="o">*</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iterations</span><span class="p">):</span>
+        <span class="c1"># Pick a random site and calculate its local field</span>
+        <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">x_n</span> <span class="o">=</span> <span class="n">mapN</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">b_n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1">## print(i,j)</span>
+        <span class="c1"># Neighbours</span>
+        <span class="n">ip1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">im1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">jp1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">jm1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+        <span class="c1"># Left, Right, Below, Above neighbours</span>
+        <span class="n">neighbour_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">im1</span><span class="p">,</span><span class="n">j</span><span class="p">],[</span><span class="n">ip1</span><span class="p">,</span><span class="n">j</span><span class="p">],[</span><span class="n">i</span><span class="p">,</span><span class="n">jm1</span><span class="p">],[</span><span class="n">i</span><span class="p">,</span><span class="n">jp1</span><span class="p">]])</span>
+        <span class="k">for</span> <span class="n">n_i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="n">m_i</span><span class="p">,</span><span class="n">m_j</span> <span class="o">=</span> <span class="n">neighbour_positions</span><span class="p">[</span><span class="n">n_i</span><span class="p">,:]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+            <span class="n">b_n</span> <span class="o">+=</span> <span class="n">J</span><span class="o">*</span><span class="n">mapN</span><span class="p">[</span><span class="n">m_i</span><span class="p">,</span><span class="n">m_j</span><span class="p">]</span>
+        <span class="n">b_n</span> <span class="o">+=</span> <span class="n">H</span>
+        <span class="n">DeltaE</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">x_n</span><span class="o">*</span><span class="n">b_n</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">DeltaE</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">mapN</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">elif</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span><span class="o">&lt;</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">beta</span><span class="o">*</span><span class="n">DeltaE</span><span class="p">)):</span>
+            <span class="n">mapN</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="c1">##print(&quot;-&quot;*45)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">mapN</span><span class="p">)</span>
+    <span class="n">num_ups</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mapN</span><span class="o">==</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">num_downs</span> <span class="o">=</span> <span class="n">N</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">num_ups</span>
+    <span class="n">magnetization</span> <span class="o">=</span> <span class="p">(</span><span class="n">num_ups</span><span class="o">-</span><span class="n">num_downs</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">magnetization_vs_T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">magnetization_vs_T</span><span class="p">,[</span><span class="n">T</span><span class="p">,</span><span class="n">magnetization</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;T:</span><span class="si">{:}</span><span class="se">\t</span><span class="s2">|</span><span class="si">{:}</span><span class="s2"> up | </span><span class="si">{:}</span><span class="s2"> down</span><span class="se">\t</span><span class="s2">|Mag: </span><span class="si">{:.5f}</span><span class="s2"> &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">num_ups</span><span class="p">,</span><span class="n">num_downs</span><span class="p">,</span><span class="n">magnetization</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">45</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">mapN</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span><span class="n">origin</span><span class="o">=</span><span class="s2">&quot;upper&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Temperature: </span><span class="si">{:}</span><span class="se">\n</span><span class="s2">Up:</span><span class="si">{:d}</span><span class="s2">|Down:</span><span class="si">{:d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">num_ups</span><span class="p">,</span><span class="n">num_downs</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;/tmp/figs/&quot;</span> <span class="o">+</span> <span class="s2">&quot;T_</span><span class="si">%.3f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">magnetization_vs_T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">magnetization_vs_T</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">magnetization_vs_T</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;*-&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;&lt;M&gt;&quot;</span><span class="p">)</span>
+<span class="c1">#plt.savefig(&quot;/tmp/figs/&quot; + &quot;MeanMag&quot; + &quot;.png&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finished.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="homework">
+<h1>Homework<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h1>
+<p>Show that a flip of the spin <span class="math notranslate nohighlight">\(x_n\)</span> of site <span class="math notranslate nohighlight">\(n\)</span> indeed changes the energy by:</p>
+<div class="math notranslate nohighlight">
+\[\Delta E=2x_n b_n\]</div>
+<p>where <span class="math notranslate nohighlight">\(b_n\)</span> is the local field defined as:</p>
+<div class="math notranslate nohighlight">
+\[b_n = \sum_{m:(m,n)\in\mathcal{N}}{Jx_m + H}\]</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid">
+<h1>Appendix : Evolution of the configuration probabilities for a 2x2 Ising Grid<a class="headerlink" href="#appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid" title="Permalink to this headline">¶</a></h1>
+<p>A 2x2 grid system can be in one of the <span class="math notranslate nohighlight">\(2^4=16\)</span> configurations:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>A (x1)</p></th>
+<th class="head"><p>B (x4)</p></th>
+<th class="head"><p>C (x6)</p></th>
+<th class="head"><p>D (x4)</p></th>
+<th class="head"><p>E (x1)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>↑   ↑</p></td>
+<td><p>↓      ↑</p></td>
+<td><p>↑    ↑</p></td>
+<td><p>↑       ↓</p></td>
+<td><p>↓       ↓</p></td>
+</tr>
+<tr class="row-odd"><td><p>↑     ↑</p></td>
+<td><p>↑        ↑</p></td>
+<td><p>↓        ↓</p></td>
+<td><p>↓      ↓</p></td>
+<td><p>↓        ↓</p></td>
+</tr>
+</tbody>
+</table>
+<p>The calculated energies with respect to each spin’s interaction with its neighbours yields (taking <span class="math notranslate nohighlight">\(J=1,\,H=0\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[E_A = -\tfrac{1}{2}\left[\left(1.1+1.1+1.1\right)+\left(1.1+1.1+1.1\right)+
+\left(1.1+1.1+1.1\right)+\left(1.1+1.1+1.1\right)\right]=-6\]</div>
+<div class="math notranslate nohighlight">
+\[E_B = -\tfrac{1}{2}\left[\left(-1.1+-1.1+-1.1\right)+\left(1.-1+1.1+1.1\right)+
+\left(1.-1+1.1+1.1\right)+\left(1.-1+1.1+1.1\right)\right]=0\]</div>
+<div class="math notranslate nohighlight">
+\[E_C = -\tfrac{1}{2}\left[\left(1.1+1.-1+1.-1\right)+\left(1.1+1.-1+1.-1\right)+
+\left(-1.1+-1.1+-1.-1\right)+\left(-1.1+-1.1+-1.-1\right)\right]=2\]</div>
+<div class="math notranslate nohighlight">
+\[E_D = E_B = -\tfrac{1}{2}\left[\left(1.-1+1.-1+1.-1\right)+\left(-1.1+-1.-1+-1.-1\right)+
+\left(-1.1+-1.-1+-1.-1\right)+\left(-1.1+-1.-1+-1.-1\right)\right]=0\]</div>
+<div class="math notranslate nohighlight">
+\[E_E = E_A = -\tfrac{1}{2}\left[\left(-1.-1+-1.-1+-1.-1\right)+\left(-1.-1+-1.-1+-1.-1\right)+
+\left(-1.-1+-1.-1+-1.-1\right)+\left(-1.-1+-1.-1+-1.-1\right)\right]=-6\]</div>
+<p>Let’s proceed by calculating the probabilites at a given temperature <span class="math notranslate nohighlight">\(T\)</span> (with <span class="math notranslate nohighlight">\(k_B\)</span> taken as <span class="math notranslate nohighlight">\(1\)</span>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">k_B</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">multiplicity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">T</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">0.5</span><span class="p">))):</span>
+    <span class="n">Probabilities</span> <span class="o">=</span> <span class="n">multiplicity</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="n">k_B</span><span class="o">*</span><span class="n">T</span><span class="p">))</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">Probabilities</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">Probabilities</span> <span class="o">/=</span> <span class="n">Z</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">Probabilities</span><span class="p">)</span>
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">T</span><span class="p">,</span><span class="o">*</span><span class="n">Probabilities</span><span class="p">])</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">results</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;.b&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$P_A$&quot;</span><span class="p">],</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">results</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="s2">&quot;.g&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$P_B$&quot;</span><span class="p">],</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">results</span><span class="p">[:,</span><span class="mi">3</span><span class="p">],</span><span class="s2">&quot;.r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$P_C$&quot;</span><span class="p">],</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">results</span><span class="p">[:,</span><span class="mi">4</span><span class="p">],</span><span class="s2">&quot;.g&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$P_D$&quot;</span><span class="p">],</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">results</span><span class="p">[:,</span><span class="mi">5</span><span class="p">],</span><span class="s2">&quot;.b&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$P_E$&quot;</span><span class="p">],</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:,</span><span class="mi">0</span><span class="p">],</span><span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;.-b&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:,</span><span class="mi">0</span><span class="p">],</span><span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:,</span><span class="mi">2</span><span class="p">],</span><span class="s2">&quot;.-g&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:,</span><span class="mi">0</span><span class="p">],</span><span class="n">results</span><span class="p">[</span><span class="o">-</span><span class="mi">20</span><span class="p">:,</span><span class="mi">3</span><span class="p">],</span><span class="s2">&quot;.-r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;$P_A$&quot;</span><span class="p">,</span><span class="s2">&quot;$P_B$&quot;</span><span class="p">,</span><span class="s2">&quot;$P_C$&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;T&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="external-link-s">
+<h1>External link(s)<a class="headerlink" href="#external-link-s" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Dr. David Boyce - Magnetic ordering <a class="reference external" href="https://twitter.com/DrDavidBoyce/status/1176921195507310593">https://twitter.com/DrDavidBoyce/status/1176921195507310593</a></p></li>
+<li><p>Marco Koschny - Magnetic Domain Movement and Wall Motion (<a class="reference external" href="https://www.youtube.com/watch?v=HzxTqQ40wSU">1</a>, <a class="reference external" href="https://www.youtube.com/watch?v=LFC6tbbMUaA">2</a>)</p></li>
+<li><p>Andrea Benassi - <a class="reference external" href="https://www.youtube.com/watch?v=A5NmVqNSIqw">Labyrinthine magnetic domains (small stray field)</a></p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Cellular Automata</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_LN58_EST_ClusteringAndClassification.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Clustering and Classification</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

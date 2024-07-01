@@ -1,0 +1,1665 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Neural Networks &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Midterm Exam" href="FIZ371_20221_MT.html" />
+    <link rel="prev" title="Clustering and Classification" href="FIZ371_LN58_EST_ClusteringAndClassification.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Final.html">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/FIZ371_LN69_EST_NeuralNetworks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/FIZ371_LN69_EST_NeuralNetworks.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN69_EST_NeuralNetworks.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-meat-with-silicon">
+   Comparison of ‘meat’ with ‘silicon’
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architecture-of-the-neural-networks">
+   Architecture of the neural networks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-rule">
+     Activity Rule
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-rule">
+     Learning Rule
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#artificial-neural-networks">
+   Artificial Neural Networks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised-neural-networks">
+     Supervised neural networks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unsupervised-neural-networks">
+     Unsupervised neural networks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling-of-the-neural-networks">
+   Modeling of the neural networks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Activity Rule
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#and-gate">
+     AND gate
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nor-gate">
+     NOR gate
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-1">
+   Homework #1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-a-single-neuron-as-a-binary-classifier">
+   Training a single neuron as a binary classifier
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-by-example">
+     ‘Learning by example’
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-on-line-gradient-descent-algorithm">
+       The on-line gradient descent algorithm
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-batch-learning-algorithm">
+       The batch learning algorithm
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation-to-a-code">
+   Implementation to a code
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-combined">
+   Code, combined:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-2">
+   Homework #2
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix">
+   Appendix
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference-mostly-directly-copied-from">
+   Reference (mostly “directly copied from”)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#history-of-being-beaten">
+   History of “being beaten”
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#places-of-interest">
+   Places of Interest
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#here-and-then">
+   Here and then…
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-material-for-the-interested">
+   Reading Material for the interested
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Neural Networks</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-meat-with-silicon">
+   Comparison of ‘meat’ with ‘silicon’
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#architecture-of-the-neural-networks">
+   Architecture of the neural networks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activity-rule">
+     Activity Rule
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-rule">
+     Learning Rule
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#artificial-neural-networks">
+   Artificial Neural Networks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#supervised-neural-networks">
+     Supervised neural networks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unsupervised-neural-networks">
+     Unsupervised neural networks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling-of-the-neural-networks">
+   Modeling of the neural networks
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Activity Rule
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#and-gate">
+     AND gate
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nor-gate">
+     NOR gate
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-1">
+   Homework #1
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#training-a-single-neuron-as-a-binary-classifier">
+   Training a single neuron as a binary classifier
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#learning-by-example">
+     ‘Learning by example’
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-on-line-gradient-descent-algorithm">
+       The on-line gradient descent algorithm
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-batch-learning-algorithm">
+       The batch learning algorithm
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation-to-a-code">
+   Implementation to a code
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#code-combined">
+   Code, combined:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#homework-2">
+   Homework #2
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#appendix">
+   Appendix
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference-mostly-directly-copied-from">
+   Reference (mostly “directly copied from”)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#history-of-being-beaten">
+   History of “being beaten”
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#places-of-interest">
+   Places of Interest
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#here-and-then">
+   Here and then…
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reading-material-for-the-interested">
+   Reading Material for the interested
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section id="neural-networks">
+<h1>Neural Networks<a class="headerlink" href="#neural-networks" title="Permalink to this headline">¶</a></h1>
+<p><strong>FIZ371 - Scientific &amp; Technical Computations | 03/06/2020</strong></p>
+<p><strong>Neural Networks</strong></p>
+<ul class="simple">
+<li><p>Introduction</p></li>
+<li><p>Comparison of ‘meat’ with ‘silicon’</p></li>
+<li><p>Architecture of the neural networks</p>
+<ul>
+<li><p>Activity Rule</p></li>
+<li><p>Learning Rule</p></li>
+</ul>
+</li>
+<li><p>Artificial Neural Networks</p>
+<ul>
+<li><p>Supervised neural networks</p></li>
+<li><p>Unsupervised neural networks</p></li>
+</ul>
+</li>
+<li><p>Modeling of the neural networks</p>
+<ul>
+<li><p>Activity Rule</p>
+<ul>
+<li><p>Deterministic</p></li>
+<li><p>Stochastic</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Examples</p>
+<ul>
+<li><p>AND gate</p></li>
+<li><p>NOR gate</p></li>
+</ul>
+</li>
+<li><p>Homework #1</p></li>
+<li><p>Training a single neuron as a binary classifier</p>
+<ul>
+<li><p>‘Learning by example’</p>
+<ul>
+<li><p>Activity Rule</p></li>
+<li><p>Learning Rule</p>
+<ul>
+<li><p>The on-line gradient descent algorithm</p></li>
+<li><p>The batch learning algorithm</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Implementation to code</p></li>
+<li><p>Code, combined</p></li>
+<li><p>Homework #2</p></li>
+<li><p>References</p></li>
+<li><p>Places of Interest</p></li>
+<li><p>Here and then…</p></li>
+</ul>
+<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This is how a neuron (nerve cell) looks like:
+<img alt="neuron.jpg" src="_images/neuron.jpg" />
+Schematics of a neuron <a class="reference external" href="https://www.biocompare.com/Life-Science-News/343185-Molecular-Details-of-Brain-Injury-Revealed/">Source</a></p>
+<p>We will be referring to this figure a lot but the interesting thing is the fact that computers had been developed long before the understanding of the working of the neurons (side note: Santiago Ramon y Cajal had identified the neurons and even drawn beautiful figures of them but their working mechanisms were explained much later). And the computers take action pretty much similar to those of neurons!</p>
+<p>From the engineering point of view, it is not very productive to delve into the discussion of whether “the machines can think”.. Edsger W. Dijkstra, one of the pioneers of programming and software engineering has addressed the issue as: “The question of whether machines can think is about as relevant as the question of whether submarines can swim.” Another pioneer in the computer history, Alan Turing has also proposed a <em>gedankenexperiment</em> (“thought experiment”) in which it was to be identified if the action taker behind a closed office was a person or a machine.</p>
+<p>Artificial intelligence (AI) has many reflections in science fiction. It usually manifests itself in being one of the two kinds: as <em>synthetic intelligence</em>, such as the ones of Asimov’s “<a class="reference external" href="https://en.wikipedia.org/wiki/I,_Robot">I, Robot</a>” stories or Philip K. Dick’s/Ridley Scott’s <em><a class="reference external" href="https://en.wikipedia.org/wiki/Replicant">androids/replicants</a></em> where the “thinking” process is not externally coded but comes within the produced “material”, or as more frequently encountered <em>simulated intelligence</em>, like the one in Harlan Ellison’s “<a class="reference external" href="https://en.wikipedia.org/wiki/I_Have_No_Mouth,_and_I_Must_Scream">I have no mouth, and I must scream</a>” story, or Iain M. Banks’ minds in his <a class="reference external" href="https://en.wikipedia.org/wiki/Culture_series">Culture</a> series, or <a class="reference external" href="https://en.wikipedia.org/wiki/2001:_A_Space_Odyssey_(film)">2001: A Space Odyssey</a>’s HAL 9000, or <a class="reference external" href="https://en.wikipedia.org/wiki/WarGames">WarGames</a>’ WOPR where routines are executed depending on the conditions and thus the decisions are made accordingly.</p>
+<p>During the Cold War, the “AI” was a <em>buzzword</em> (<a class="reference external" href="https://en.wikipedia.org/wiki/Stanislav_Petrov">also check how ‘the human factor’ saved the world!</a>) but with the decline of the USSR, there came the “AI Winter” where there was no more limitless budget for development. It was only recently (the 2000s) with the internet’s capability of gathering vast amount of data and hence the birth of the <em>big data engineering</em>, AI once again surfaced, this time by the corporations instead of the governmental facilities.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="comparison-of-meat-with-silicon">
+<h1>Comparison of ‘meat’ with ‘silicon’<a class="headerlink" href="#comparison-of-meat-with-silicon" title="Permalink to this headline">¶</a></h1>
+<p>In computers, the memories are addressed based, they are not associative. They are also not robust, or fault tolerant and to an extent, not distributed. However, our (biological) memories are associative: we can recall the face of a person upon hearing their name spoken loudly (or vice versa), for example; our memories are also error tolerant and robust: after a heavy drinking and let’s say, a terrible hangover, or more tragically after surviving some accidents, we are still able to recall and be the person we were before, with the memories intact - and a curse or a blessing, we even fill up the details even if they weren’t there! We have many neurons occupied with the same memory and they are distributed and the ones we are frequently visiting/using are surely to be cloned regularly and duplicated, so they don’t die.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="architecture-of-the-neural-networks">
+<h1>Architecture of the neural networks<a class="headerlink" href="#architecture-of-the-neural-networks" title="Permalink to this headline">¶</a></h1>
+<p>Our aim is to process given variables in accordance with their relationships. This is modelled by introducing weight of the connections between the neurons, along with the activities.</p>
+<section id="activity-rule">
+<h2>Activity Rule<a class="headerlink" href="#activity-rule" title="Permalink to this headline">¶</a></h2>
+<p>Local rules define how the activities of the neurons change in response to each other.</p>
+</section>
+<section id="learning-rule">
+<h2>Learning Rule<a class="headerlink" href="#learning-rule" title="Permalink to this headline">¶</a></h2>
+<p>Specifies how the neural network’s weights change over time.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="artificial-neural-networks">
+<h1>Artificial Neural Networks<a class="headerlink" href="#artificial-neural-networks" title="Permalink to this headline">¶</a></h1>
+<p>Depending on our manipulation of the learning rule, i.e. directly guiding the decisions or not, we rougly classify the artificial neural networks into two types which are:</p>
+<section id="supervised-neural-networks">
+<h2>Supervised neural networks<a class="headerlink" href="#supervised-neural-networks" title="Permalink to this headline">¶</a></h2>
+<p>After each evaluation/classification of the neural network, we / a “teacher” specifies what is good, and what the neural network’s response to the input should be, thus adding our bias to the decisions.</p>
+</section>
+<section id="unsupervised-neural-networks">
+<h2>Unsupervised neural networks<a class="headerlink" href="#unsupervised-neural-networks" title="Permalink to this headline">¶</a></h2>
+<p>Data is given in an undivided form - a set of examples <span class="math notranslate nohighlight">\(\{\vec{x}\}\)</span>. This is very useful to generalization, discovering patterns and/or extracting the underlying feature that we wouldn’t see beforehand due to our upbringing and/or limitations.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modeling-of-the-neural-networks">
+<h1>Modeling of the neural networks<a class="headerlink" href="#modeling-of-the-neural-networks" title="Permalink to this headline">¶</a></h1>
+<p>And this is how an artificial neuron looks like:
+<img alt="neuron_artificial.png" src="_images/neuron_artificial.png" />
+from MacKay’s “Information Theory, Inference, and Learning Algorithms”</p>
+<p>The neuron has <span class="math notranslate nohighlight">\(I\)</span> inputs, each <span class="math notranslate nohighlight">\(x_i\)</span> is weighted by <span class="math notranslate nohighlight">\(\omega_i\)</span> in accordance with its “importance” and an additional bias signal <span class="math notranslate nohighlight">\(x_0\)</span> by default feeding <span class="math notranslate nohighlight">\(+1\)</span> that can be deactivated by setting its weight <span class="math notranslate nohighlight">\(\omega_0\)</span> to 0.</p>
+<p>The single neuron is a <em>feed-forward</em> device: the connections are directed from the inputs to the output <span class="math notranslate nohighlight">\(y\)</span> of the neuron. The output signal is decided by the <strong>Activity Rule</strong>.</p>
+<section id="id1">
+<h2>Activity Rule<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Calculate the activation <span class="math notranslate nohighlight">\(a\)</span> of the neurons:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[a = \sum_{i}{\omega_i x_i}\]</div>
+<ol class="simple">
+<li><p>Response <span class="math notranslate nohighlight">\(y\)</span> is determined through the activation function <span class="math notranslate nohighlight">\(y=f(a)\)</span>. Some possible activation functions are:</p></li>
+</ol>
+<p><strong>Deterministic:</strong></p>
+<ol class="simple">
+<li><p>Linear:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[y(a) = a\]</div>
+<ol class="simple">
+<li><p>Sigmoid (logistic):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[y(a) = \frac{1}{1+e^{-a}}\]</div>
+<ol class="simple">
+<li><p>Sigmoid (tanh):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[y(a)=\tanh(a)=\frac{e^a - e^{-a}}{e^a - e^{-a}}\]</div>
+<ol class="simple">
+<li><p>Threshold step:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}y(a) = \Theta(a)=\begin{cases}+1;\quad a&gt;0\\-1;\quad a\le0\end{cases}\end{split}\]</div>
+<p><strong>Stochastic</strong></p>
+<ol class="simple">
+<li><p>Heat Bath (Gibbs):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}y(a) = \begin{cases}+1;\quad \text{with a probability }\frac{1}{1+e^{-a}}\\-1;\quad \text{otherwise}\end{cases}\end{split}\]</div>
+<ol class="simple">
+<li><p>Metropolis rule produces the output in a way that depends on the previous output state of <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<ul class="simple">
+<li><p>Compute <span class="math notranslate nohighlight">\(\Delta=ay\)</span></p></li>
+<li><p>if <span class="math notranslate nohighlight">\(\Delta\le0\)</span>, flip <span class="math notranslate nohighlight">\(y\)</span> to the other state; else flip <span class="math notranslate nohighlight">\(y\)</span> to the other state with a probability <span class="math notranslate nohighlight">\(e^{-\Delta}\)</span>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<section id="and-gate">
+<h2>AND gate<a class="headerlink" href="#and-gate" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>x<sub>1</sub></p></th>
+<th class="head"><p>x<sub>2</sub></p></th>
+<th class="head"><p>y=AND</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math notranslate nohighlight">\(y(a) = \begin{cases}1;\quad a&gt;0.5\\0;\quad\text{otherwise}\end{cases}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\omega_1 = \omega_2 = \frac{1}{2}\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((0,0)\)</span>:<br />
+<span class="math notranslate nohighlight">\(a=\sum{\omega_i x_i}=\frac{1}{2}\cdot 0+\frac{1}{2}\cdot 0 = 0\not&gt;0.5\quad\Rightarrow y(a)=0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0,1)\)</span> or <span class="math notranslate nohighlight">\((1,0)\)</span>:<br />
+<span class="math notranslate nohighlight">\(a=\sum{\omega_i x_i}=\frac{1}{2}\cdot 0+\frac{1}{2}\cdot 1 = \frac{1}{2}\not&gt;0.5\quad\Rightarrow y(a)=0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((1,1)\)</span>:<br />
+<span class="math notranslate nohighlight">\(a=\sum{\omega_i x_i}=\frac{1}{2}\cdot 1+\frac{1}{2}\cdot 1 = 1\gt0.5\quad\Rightarrow y(a)=1\)</span></p></li>
+</ul>
+</section>
+<section id="nor-gate">
+<h2>NOR gate<a class="headerlink" href="#nor-gate" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>x<sub>1</sub></p></th>
+<th class="head"><p>x<sub>2</sub></p></th>
+<th class="head"><p>x<sub>0</sub></p></th>
+<th class="head"><p>y=NOR</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math notranslate nohighlight">\(y(a) = \begin{cases}1;\quad a\gt0\\0;\quad\text{otherwise}\end{cases}\)</span></p>
+<p><span class="math notranslate nohighlight">\(\omega_1 = \omega_2 = -1\)</span>, <span class="math notranslate nohighlight">\(\omega_0 = 1\)</span>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\((0,0)\)</span>:<br />
+<span class="math notranslate nohighlight">\(a=\sum{\omega_i x_i}=0+0+1=1\gt0\quad\Rightarrow y(a) = 1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((0,1)\)</span> or <span class="math notranslate nohighlight">\((1,0)\)</span>:<br />
+<span class="math notranslate nohighlight">\(a=\sum{\omega_i x_i}=0-1+1=0\not&gt;0\quad\Rightarrow y(a) = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\((1,1)\)</span>:<br />
+<span class="math notranslate nohighlight">\(a=\sum{\omega_i x_i}=-1-1+1=-1\not&gt;0\quad\Rightarrow y(a) = 0\)</span></p></li>
+</ul>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="homework-1">
+<h1>Homework #1<a class="headerlink" href="#homework-1" title="Permalink to this headline">¶</a></h1>
+<ol class="simple">
+<li><p>Emulate the NOR gate without using the bias feed.</p></li>
+<li><p>Propose a model for the XOR gate</p></li>
+<li><p>Propose a model for the NOT gate</p></li>
+<li><p>Propose a model for the NAND gate (and if you can do this, <em>congratulations!</em> &lt;– do you know why? ;)</p></li>
+</ol>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="training-a-single-neuron-as-a-binary-classifier">
+<h1>Training a single neuron as a binary classifier<a class="headerlink" href="#training-a-single-neuron-as-a-binary-classifier" title="Permalink to this headline">¶</a></h1>
+<p>Error function:</p>
+<div class="math notranslate nohighlight">
+\[G(\vec{\omega}) = -\sum_{n}\left[t^{(n)}\ln{y(\vec{x}^{(n)},\vec{\omega})} + (1-t^{(n)})\ln{(1-y(\vec{x}^{(n)},\vec{\omega}))}\right]\]</div>
+<p>This is the <em>information content</em> or <em>relative entropy</em> between the empirical probability distribution <span class="math notranslate nohighlight">\((t^{(n)},1-t^{(n)})\)</span> and possible probability ditribution implied by the output of the neuron <span class="math notranslate nohighlight">\((y^{(n)},1-y^{(n)})\)</span>. The error function is equal to zero only when <span class="math notranslate nohighlight">\(y(\vec{x}^{(n)},\vec{\omega}^{(n)}) = t^{(n)}\)</span> for all <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Differentiate with respect to <span class="math notranslate nohighlight">\(\vec{\omega}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\vec{g}=\frac{\partial G}{\partial \vec{\omega}}\]</div>
+<div class="math notranslate nohighlight">
+\[g_j=\frac{\partial G}{\partial \omega_j}=\sum_{n=1}^{N}{-\left(t^{(n)}-y^{(n)}\right)x_j^{(n)}}\]</div>
+<p>The error <span class="math notranslate nohighlight">\(e^{(n)}\)</span> is defined by:</p>
+<div class="math notranslate nohighlight">
+\[e^{(n)}\equiv t^{(n)}-y^{(n)}\]</div>
+<p>As our aim is to minimize the error by working on the weights <span class="math notranslate nohighlight">\(\vec{\omega}\)</span>, we can proceed in two ways, differing in their learning rules:</p>
+<section id="learning-by-example">
+<h2>‘Learning by example’<a class="headerlink" href="#learning-by-example" title="Permalink to this headline">¶</a></h2>
+<p><strong>Activity Rule</strong></p>
+<ol class="simple">
+<li><p>Compute the activation of the neuron:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[a = \sum_{i}{\omega_i x_i}\]</div>
+<ol class="simple">
+<li><p>The output <span class="math notranslate nohighlight">\(y\)</span> is set as a sigmoid function of the activation:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[y(a) = \frac{1}{1+e^{-a}}\]</div>
+<p>This output might be viewed as the probability that the given input is in class 1 rather than class 0.</p>
+<p><strong>Learning Rule</strong></p>
+<section id="the-on-line-gradient-descent-algorithm">
+<h3>The on-line gradient descent algorithm<a class="headerlink" href="#the-on-line-gradient-descent-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>The <em>teacher</em> supplies a target value <span class="math notranslate nohighlight">\(t\in \{0,1\}\)</span> which is the correct class for the given input. We then compute the error:</p>
+<div class="math notranslate nohighlight">
+\[e=t-y\]</div>
+<p>then adjust the weights <span class="math notranslate nohighlight">\(\vec{\omega}\)</span> in a direction that would reduce the magnitude of this error:</p>
+<div class="math notranslate nohighlight">
+\[\Delta\omega_i = \eta e x_i\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is the “step size” or the “learning rate”. It should be set and refined with respect to the problem at hand. Too small and the learning takes forever, too large and we miss the optimal values by far!</p>
+</section>
+<section id="the-batch-learning-algorithm">
+<h3>The batch learning algorithm<a class="headerlink" href="#the-batch-learning-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>Instead of refining each weight at every step, all the weights are refined simultaneously, at the end of the batch:</p>
+<ol class="simple">
+<li><p>For each input/target pair <span class="math notranslate nohighlight">\((\vec{x}^{(n)},t^{(n)})\)</span>, compute <span class="math notranslate nohighlight">\(y^{(n)}=y(\vec{x}^{(n)},\vec{\omega})\)</span>, where:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[y(\vec{x}^{(n)},\vec{\omega})=\frac{1}{1+\exp{\left(-\sum_{i}{\omega_i x_i}\right)}}\]</div>
+<p>define</p>
+<div class="math notranslate nohighlight">
+\[e^{(n)}=t^{(n)}-y^{(n)}\]</div>
+<p>and compute for each weight <span class="math notranslate nohighlight">\(\omega_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[g_i^{(n)}=-e^{(n)}x_i^{(n)}\]</div>
+<ol class="simple">
+<li><p>Then, let:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\Delta\omega_i = -\eta\sum_{n}{g_i^{(n)}}\]</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="implementation-to-a-code">
+<h1>Implementation to a code<a class="headerlink" href="#implementation-to-a-code" title="Permalink to this headline">¶</a></h1>
+<p>(with the batch learning algorithm)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">371</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Define the activation function as a sigmoid</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">v</span><span class="p">[</span><span class="n">v</span><span class="o">&lt;-</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span> <span class="c1"># Capping to prevent overflow</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Input parameters</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Input</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># Number of point-sets</span>
+<span class="n">xy_range</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># Range</span>
+<span class="n">N_learning_steps_max</span> <span class="o">=</span> <span class="mi">100000</span> <span class="c1"># Number of steps for learning</span>
+<span class="n">eta</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># Learning rate</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># Weight decay rate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Generate the training points</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate N sets - x1(i),x2(i) random integers</span>
+<span class="c1"># in the given range</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,(</span><span class="n">N</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># For the bias input</span>
+
+<span class="c1"># print out the first 10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">10</span><span class="p">,:])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[77 81  1]
+ [12 91  1]
+ [51 97  1]
+ [62 86  1]
+ [19 74  1]
+ [14 87  1]
+ [16 92  1]
+ [72 68  1]
+ [86 18  1]
+ [95 95  1]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Identify the correct classes by considering if the points are either below the diagonal or above it</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Identify the correct classes by considering</span>
+<span class="c1"># if the points are either below the diagonal</span>
+<span class="c1"># or above it (concerning their distances to </span>
+<span class="c1"># the horizontal axis)</span>
+
+<span class="c1"># Seperated by diagonal (0,xy_range) - (xy_range,0)</span>
+<span class="c1">#              &lt;--&gt; y = -x + xy_range</span>
+<span class="n">d_x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># point&#39;s vertical distance to x-axis</span>
+<span class="n">d_d</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">xy_range</span> <span class="c1"># diagonal&#39;s vert. dist. to x-axis</span>
+
+<span class="n">filter_class</span> <span class="o">=</span> <span class="n">d_x</span> <span class="o">&gt;</span> <span class="n">d_d</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">t</span><span class="p">[</span><span class="n">filter_class</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Class 1 -&gt; above the diagonal</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1 1 1 1 0 1 1 1 1 1]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Plot the training data</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the given (training) data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">],[</span><span class="n">xy_range</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;k-&quot;</span><span class="p">)</span>
+<span class="n">tick_step</span> <span class="o">=</span> <span class="n">xy_range</span><span class="o">/</span><span class="mi">10</span>
+
+<span class="n">class_0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">class_1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">class_0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">class_0</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;rs&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">class_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">class_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;bo&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s2">&quot;on&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Test Set -- Correct Classification&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_25_0.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_25_0.png" />
+</div>
+</div>
+<p><strong>Learning Step</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Learning Step</span>
+
+<span class="c1"># Initialize weights to 0</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">steps_so_far</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">N_over_100</span> <span class="o">=</span> <span class="n">N_learning_steps_max</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="n">N_learning_steps</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,[</span><span class="n">N_over_100</span><span class="p">,</span> 
+            <span class="n">N_over_100</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mf">1.5</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mf">2.5</span><span class="p">,</span>
+            <span class="n">N_over_100</span><span class="o">*</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mi">6</span><span class="p">,</span>
+            <span class="n">N_over_100</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mi">9</span><span class="p">,</span>
+                    <span class="n">N_over_100</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">20</span><span class="p">,</span> 
+                     <span class="n">N_over_100</span><span class="o">*</span><span class="mi">30</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">50</span><span class="p">,</span>
+                     <span class="n">N_over_100</span><span class="o">*</span><span class="mi">75</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">90</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">100</span>
+                    <span class="p">]))</span>
+<span class="c1">#print(N_learning_steps)</span>
+
+<span class="c1"># Warning: the displayed &quot;after # steps&quot; is a little bit misleading </span>
+<span class="c1"># as it is actually the number of steps after the previous step.</span>
+<span class="c1"># The real value is stored in &#39;steps_so_far&#39;</span>
+
+<span class="k">for</span> <span class="n">N_learning_steps_j</span> <span class="ow">in</span> <span class="n">N_learning_steps</span><span class="p">:</span>
+    <span class="n">steps_so_far</span> <span class="o">+=</span> <span class="n">N_learning_steps_j</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_learning_steps_j</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-</span> <span class="n">y</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="n">eta</span> <span class="o">*</span><span class="p">(</span><span class="n">g</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculated Weights (after </span><span class="si">{:}</span><span class="s2"> steps):&quot;</span>\
+          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N_learning_steps_j</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">y_rounded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">N_misplaced</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_rounded</span><span class="o">-</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">x_class0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">y_rounded</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">x_class1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">y_rounded</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">],[</span><span class="n">xy_range</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;k-&quot;</span><span class="p">)</span>
+    <span class="n">tick_step</span> <span class="o">=</span> <span class="n">xy_range</span><span class="o">/</span><span class="mi">10</span>
+
+    <span class="n">class_0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">y_rounded</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">class_1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">y_rounded</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">class_0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">class_0</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+             <span class="p">,</span><span class="s2">&quot;rs&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">class_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">class_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+             <span class="p">,</span><span class="s2">&quot;bo&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s2">&quot;on&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Steps so far: </span><span class="si">{:}</span><span class="s2"> | # Misplaced: </span><span class="si">{:}</span><span class="s2">&quot;</span>\
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N_learning_steps_j</span><span class="p">,</span><span class="n">N_misplaced</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">45</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 1000 steps):
+[  90.67629591    0.99429117 -788.71877728]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_1.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+Calculated Weights (after 500 steps):
+[  176.1704474    101.60306327 -1167.65515963]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_3.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 1500 steps):
+[  188.77034033   117.19766962 -2277.04829237]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_6.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_6.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+Calculated Weights (after 2000 steps):
+[   43.18823521   -20.72950274 -3704.77755719]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_8.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 2500 steps):
+[   40.28166291    16.01141092 -5257.57512797]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_11.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_11.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 3500 steps):
+[   58.36343559    58.39047977 -5889.29821277]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_14.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_14.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 4000 steps):
+[   58.36493862    58.3919828  -5889.45001865]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_17.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_17.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 5000 steps):
+[   58.36681741    58.39386159 -5889.639776  ]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_20.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_20.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 6000 steps):
+[   58.36907195    58.39611613 -5889.86748482]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_23.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_23.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 7000 steps):
+[   58.37170225    58.39874643 -5890.13314512]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_26.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_26.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 8000 steps):
+[   58.37470831    58.40175249 -5890.43675688]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_29.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_29.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 9000 steps):
+[   58.37809012    58.4051343  -5890.77832011]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_32.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_32.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 10000 steps):
+[   58.38184769    58.40889187 -5891.15783482]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_35.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_35.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 20000 steps):
+[   58.38936283    58.41640702 -5891.91686423]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_38.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_38.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 30000 steps):
+[   58.40063555    58.42767973 -5893.05540834]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_41.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_41.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 40000 steps):
+[   58.41566583    58.44271001 -5894.57346715]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_44.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_44.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 50000 steps):
+[   58.43445369    58.46149787 -5896.47104067]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_47.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_47.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 75000 steps):
+[   58.46263547    58.48967966 -5899.31740096]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_50.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_50.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 90000 steps):
+[   58.49645362    58.5234978  -5902.73303329]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_53.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_53.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calculated Weights (after 100000 steps):
+[   58.53402933    58.56107351 -5906.52818033]
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_27_56.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_27_56.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Test the learned weights against a random set</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate a random set</span>
+<span class="n">N2</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">Xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,(</span><span class="n">N2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">Xx</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># For the bias input</span>
+
+<span class="n">Xa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Xx</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="n">Xy</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">Xa</span><span class="p">)</span>
+<span class="n">Xy_rounded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">],[</span><span class="n">xy_range</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;k-&quot;</span><span class="p">)</span>
+<span class="n">tick_step</span> <span class="o">=</span> <span class="n">xy_range</span><span class="o">/</span><span class="mi">10</span>
+
+<span class="n">Xclass_0</span> <span class="o">=</span> <span class="n">Xx</span><span class="p">[</span><span class="n">Xy_rounded</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Xclass_1</span> <span class="o">=</span> <span class="n">Xx</span><span class="p">[</span><span class="n">Xy_rounded</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xclass_0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">Xclass_0</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+         <span class="p">,</span><span class="s2">&quot;rs&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xclass_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">Xclass_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+         <span class="p">,</span><span class="s2">&quot;bo&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s2">&quot;on&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The classification of a random set of </span><span class="si">{:}</span><span class="s2"> points&quot;</span>
+          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_29_0.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_29_0.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="code-combined">
+<h1>Code, combined:<a class="headerlink" href="#code-combined" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Single Neuron Classifier</span>
+<span class="sd">FIZ371 Lecture Notes</span>
+<span class="sd">21/04/2021</span>
+<span class="sd">Emre S. Tasci</span>
+<span class="sd">https://github.com/emresururi/FIZ371</span>
+
+<span class="sd">Adapted from David MacKay&#39;s </span>
+<span class="sd">&quot;Information Theory, Inference, and Learning Algorithms&quot; book</span>
+<span class="sd">(https://www.inference.org.uk/mackay/itila/)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">371</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">v</span><span class="p">[</span><span class="n">v</span><span class="o">&lt;-</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span> <span class="c1"># Capping to prevent overflow</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">v</span><span class="p">))</span>
+
+<span class="c1"># Input</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">500</span> <span class="c1"># Number of point-sets</span>
+<span class="n">xy_range</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># Range</span>
+<span class="n">N_learning_steps_max</span> <span class="o">=</span> <span class="mi">100000</span> <span class="c1"># Number of steps for learning</span>
+<span class="n">eta</span> <span class="o">=</span> <span class="mf">0.01</span> <span class="c1"># Learning rate</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1"># Weight decay rate</span>
+
+<span class="c1"># Generate N sets - x1(i),x2(i) random integers</span>
+<span class="c1"># in the given range</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,(</span><span class="n">N</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># For the bias input</span>
+
+<span class="c1"># print out the first 10</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[:</span><span class="mi">10</span><span class="p">,:])</span>
+
+<span class="c1"># Identify the correct classes by considering</span>
+<span class="c1"># if the points are either below the diagonal</span>
+<span class="c1"># or above it (concerning their distances to </span>
+<span class="c1"># the horizontal axis)</span>
+
+<span class="c1"># Seperated by diagonal (0,xy_range) - (xy_range,0)</span>
+<span class="c1">#              &lt;--&gt; y = -x + xy_range</span>
+<span class="n">d_x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># point&#39;s vertical distance to x-axis</span>
+<span class="n">d_d</span> <span class="o">=</span> <span class="o">-</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">xy_range</span> <span class="c1"># diagonal&#39;s vert. dist. to x-axis</span>
+
+<span class="n">filter_class</span> <span class="o">=</span> <span class="n">d_x</span> <span class="o">&gt;</span> <span class="n">d_d</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">t</span><span class="p">[</span><span class="n">filter_class</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># Class 1 -&gt; above the diagonal</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+
+<span class="c1"># Plot the given (training) data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">],[</span><span class="n">xy_range</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;k-&quot;</span><span class="p">)</span>
+<span class="n">tick_step</span> <span class="o">=</span> <span class="n">xy_range</span><span class="o">/</span><span class="mi">10</span>
+
+<span class="n">class_0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">class_1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">t</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">class_0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">class_0</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;rs&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">class_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">class_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="s2">&quot;bo&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s2">&quot;on&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Test Set -- Correct Classification&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Learning Step</span>
+
+<span class="c1"># Initialize weights to 0</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">steps_so_far</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">N_over_100</span> <span class="o">=</span> <span class="n">N_learning_steps_max</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="n">N_learning_steps</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,[</span><span class="n">N_over_100</span><span class="p">,</span> 
+            <span class="n">N_over_100</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mf">1.5</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mf">2.5</span><span class="p">,</span>
+            <span class="n">N_over_100</span><span class="o">*</span><span class="mf">3.5</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mi">6</span><span class="p">,</span>
+            <span class="n">N_over_100</span><span class="o">*</span><span class="mi">7</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">8</span><span class="p">,</span><span class="n">N_over_100</span><span class="o">*</span><span class="mi">9</span><span class="p">,</span>
+                    <span class="n">N_over_100</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">20</span><span class="p">,</span> 
+                     <span class="n">N_over_100</span><span class="o">*</span><span class="mi">30</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">40</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">50</span><span class="p">,</span>
+                     <span class="n">N_over_100</span><span class="o">*</span><span class="mi">75</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">90</span><span class="p">,</span> <span class="n">N_over_100</span><span class="o">*</span><span class="mi">100</span>
+                    <span class="p">]))</span>
+<span class="c1">#print(N_learning_steps)</span>
+
+<span class="c1"># Warning: the displayed &quot;after # steps&quot; is a little bit misleading </span>
+<span class="c1"># as it is actually the number of steps after the previous step.</span>
+<span class="c1"># The real value is stored in &#39;steps_so_far&#39;</span>
+
+<span class="k">for</span> <span class="n">N_learning_steps_j</span> <span class="ow">in</span> <span class="n">N_learning_steps</span><span class="p">:</span>
+    <span class="n">steps_so_far</span> <span class="o">+=</span> <span class="n">N_learning_steps_j</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N_learning_steps_j</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-</span> <span class="n">y</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">-</span> <span class="n">eta</span> <span class="o">*</span><span class="p">(</span><span class="n">g</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calculated Weights (after </span><span class="si">{:}</span><span class="s2"> steps):&quot;</span>\
+          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N_learning_steps_j</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">y_rounded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">N_misplaced</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">y_rounded</span><span class="o">-</span><span class="n">t</span><span class="p">))</span>
+    <span class="n">x_class0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">y_rounded</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">x_class1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">y_rounded</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">],[</span><span class="n">xy_range</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;k-&quot;</span><span class="p">)</span>
+    <span class="n">tick_step</span> <span class="o">=</span> <span class="n">xy_range</span><span class="o">/</span><span class="mi">10</span>
+
+    <span class="n">class_0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">y_rounded</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">class_1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">y_rounded</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">class_0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">class_0</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+             <span class="p">,</span><span class="s2">&quot;rs&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">class_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">class_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+             <span class="p">,</span><span class="s2">&quot;bo&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s2">&quot;on&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Steps so far: </span><span class="si">{:}</span><span class="s2"> | # Misplaced: </span><span class="si">{:}</span><span class="s2">&quot;</span>\
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N_learning_steps_j</span><span class="p">,</span><span class="n">N_misplaced</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">45</span><span class="p">)</span>
+    
+<span class="c1"># Generate a random set</span>
+<span class="n">N2</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">Xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,(</span><span class="n">N2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">Xx</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># For the bias input</span>
+
+<span class="n">Xa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Xx</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="n">Xy</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">Xa</span><span class="p">)</span>
+<span class="n">Xy_rounded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">],[</span><span class="n">xy_range</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;k-&quot;</span><span class="p">)</span>
+<span class="n">tick_step</span> <span class="o">=</span> <span class="n">xy_range</span><span class="o">/</span><span class="mi">10</span>
+
+<span class="n">Xclass_0</span> <span class="o">=</span> <span class="n">Xx</span><span class="p">[</span><span class="n">Xy_rounded</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Xclass_1</span> <span class="o">=</span> <span class="n">Xx</span><span class="p">[</span><span class="n">Xy_rounded</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xclass_0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">Xclass_0</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+         <span class="p">,</span><span class="s2">&quot;rs&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xclass_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">Xclass_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+         <span class="p">,</span><span class="s2">&quot;bo&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s2">&quot;on&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The classification of a random set of </span><span class="si">{:}</span><span class="s2"> points&quot;</span>
+          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="homework-2">
+<h1>Homework #2<a class="headerlink" href="#homework-2" title="Permalink to this headline">¶</a></h1>
+<p>Even though the classifier works very well with the calculated weights such as:</p>
+<div class="math notranslate nohighlight">
+\[\vec{\omega}=\left(\omega_1,\omega_2,\omega_0\right)=\left(     55.65223947,    55.67928365, -5615.46740481\right)\]</div>
+<p>these kind of high numbers don’t look very well (especially the <span class="math notranslate nohighlight">\(\omega_0\)</span>, by the way).</p>
+<p>Let’s try to classify once again, using the following <span class="math notranslate nohighlight">\(\vec{\omega}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\vec{\omega}=\left(\omega_1,\omega_2,\omega_0\right)=\left(    0.01,0.01,-1.01\right)\]</div>
+<p>and let’s blow the number of generated points to 100000 while we are at it!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">371</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">v</span><span class="p">[</span><span class="n">v</span><span class="o">&lt;-</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span> <span class="c1"># Capping to prevent overflow</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">v</span><span class="p">))</span>
+
+<span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="o">-</span><span class="mf">1.01</span><span class="p">])</span>
+
+<span class="n">N2</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">Xx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,(</span><span class="n">N2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">Xx</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># For the bias input</span>
+
+<span class="n">Xa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Xx</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="n">Xy</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">Xa</span><span class="p">)</span>
+<span class="n">Xy_rounded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">Xy</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">],[</span><span class="n">xy_range</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;k-&quot;</span><span class="p">)</span>
+<span class="n">tick_step</span> <span class="o">=</span> <span class="n">xy_range</span><span class="o">/</span><span class="mi">10</span>
+
+<span class="n">Xclass_0</span> <span class="o">=</span> <span class="n">Xx</span><span class="p">[</span><span class="n">Xy_rounded</span><span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Xclass_1</span> <span class="o">=</span> <span class="n">Xx</span><span class="p">[</span><span class="n">Xy_rounded</span><span class="o">==</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xclass_0</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">Xclass_0</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+         <span class="p">,</span><span class="s2">&quot;rs&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Xclass_1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">Xclass_1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>\
+         <span class="p">,</span><span class="s2">&quot;bo&quot;</span><span class="p">,</span><span class="n">fillstyle</span><span class="o">=</span><span class="s2">&quot;full&quot;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">tick_step</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s2">&quot;on&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xy_range</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The classification of a random set of </span><span class="si">{:}</span><span class="s2"> points&quot;</span>
+          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/FIZ371_LN69_EST_NeuralNetworks_33_0.png" src="_images/FIZ371_LN69_EST_NeuralNetworks_33_0.png" />
+</div>
+</div>
+<p>So, the question is this: How can we modify our algorithm such that instead of reaching to not so-convenient values like <span class="math notranslate nohighlight">\(\left(     55.65223947,    55.67928365, -5615.46740481\right)\)</span>, we force it to more convenient values like <span class="math notranslate nohighlight">\(\left(    0.01,0.01,-1.01\right)\)</span>?</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="appendix">
+<h1>Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
+<p>Here is a code to help in visualizing the <em>w-space</em> by drawing them side by side. As it uses 3D plots, it will be much practical to run it directly as a python code.</p>
+<p>During the execution, one can specify <span class="math notranslate nohighlight">\((\omega_{11},\omega_{12})\)</span> and <span class="math notranslate nohighlight">\((\omega_{21},\omega_{22})\)</span> along with the grid resolution seperately, e.g.,<br />
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">sigmoid_wspace.py</span> <span class="pre">--grid=30</span> <span class="pre">--w1</span> <span class="pre">-1</span> <span class="pre">--w2</span> <span class="pre">0</span> <span class="pre">--w22</span> <span class="pre">1</span> <span class="pre">--w21</span> <span class="pre">0</span> <span class="pre">--grid=10</span></code>  which will output the following:</p>
+<p><img alt="neuron_sigmoid_omega_space-2.png" src="_images/neuron_sigmoid_omega_space-2.png" /></p>
+<p>(default values: <span class="math notranslate nohighlight">\(\omega_{*} = 1\)</span>, grid = 10)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reference-mostly-directly-copied-from">
+<h1>Reference (mostly “directly copied from”)<a class="headerlink" href="#reference-mostly-directly-copied-from" title="Permalink to this headline">¶</a></h1>
+<p>Our usual (and wonderful) course textbook: <a class="reference external" href="http://www.inference.org.uk/mackay/itila/book.html">David MacKay’s “Information Theory, Inference, and Learning Algorithms”</a>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="history-of-being-beaten">
+<h1>History of “being beaten”<a class="headerlink" href="#history-of-being-beaten" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://bkgm.com/articles/Berliner/BackgammonProgramBeatsWorldChamp/?utm_source=mandiner&amp;utm_medium=link&amp;utm_campaign=mandiner_digit_201610">Backgammon: 1979</a></p></li>
+<li><p><a class="reference external" href="https://science.sciencemag.org/content/317/5844/1518">Checkers: 2007</a></p></li>
+<li><p><a class="reference external" href="https://www.theguardian.com/theguardian/2011/may/12/deep-blue-beats-kasparov-1997">Chess: 1997</a></p></li>
+<li><p><a class="reference external" href="https://fortune.com/2016/03/12/googles-go-computer-vs-human/">Go: 2016</a></p></li>
+<li><p><a class="reference external" href="https://www.sciencedaily.com/releases/2019/07/190711141343.htm">Texas Hold’em Poker: 2019</a></p></li>
+<li><p><a class="reference external" href="https://www.nature.com/articles/d41586-019-03298-6">Starcraft: 2019</a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="places-of-interest">
+<h1>Places of Interest<a class="headerlink" href="#places-of-interest" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="http://playground.tensorflow.org/">A Neural Network Playground</a> : Tensorflow’s toy model for a classifier.</p></li>
+<li><p><a class="reference external" href="https://coolinfographics.com/blog/2016/9/20/the-mostly-complete-chart-of-neural-networks.html">The Mostly Complete Chart of Neural Networks</a> : Almost every possible architecture models for neural networks.</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="here-and-then">
+<h1>Here and then…<a class="headerlink" href="#here-and-then" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://googleblog.blogspot.com/2012/06/using-large-scale-brain-simulations-for.html">Using large-scale brain simulations for machine learning and A.I.</a> : Google’s blog about how the AI learned to identify cats via neural networks (2012)</p></li>
+<li><p>The Physics of Fluids and Smoke (<a class="reference external" href="https://www.youtube.com/watch?v=iOWamCtnwTc">video</a>, <a class="reference external" href="https://arxiv.org/abs/1607.03597">article</a>)</p></li>
+<li><p><a class="reference external" href="https://www.google.com/search?q=neural+networks&amp;source=lnms&amp;tbm=nws">Neural networks news – most recent</a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reading-material-for-the-interested">
+<h1>Reading Material for the interested<a class="headerlink" href="#reading-material-for-the-interested" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Oliver Sacks, “The Man Who Mistook His Wife For a Hat” (<a class="reference external" href="https://www.yapikrediyayinlari.com.tr/karisini-sapka-sanan-adam.aspx">Karısını Şapka Sanan Adam, YKY</a>)</p></li>
+<li><p>Daniel Kahneman, “Thinking, Fast and Slow” (<a class="reference external" href="https://www.varlikonline.com/kitap/486/hizli-ve-yavas-dusunme">Hızlı ve Yavaş Düşünme, Varlık</a>)</p></li>
+<li><p>Iain M. Banks, “The Player of Games” (and the Culture series, in general)</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FIZ371_LN58_EST_ClusteringAndClassification.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Clustering and Classification</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_20221_MT.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Midterm Exam</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

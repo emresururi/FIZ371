@@ -1,0 +1,68 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.6a -->
+<!-- CreationDate: 2020-04-28 08:59:28 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="787pt" height="232pt"
+	viewBox="-213 3015 12486 3670">
+<g fill="none">
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M -213,3015 H 12273 V 6685 H -213 z
+		M 6000,5167 6060,5167 6037,4943 6023,4943z"/>
+</clipPath>
+</defs>
+<polyline points=" 6030,5850 6030,4950" clip-path="url(#cp0)"
+	stroke="#b000b0" stroke-width="8px"/>
+<!-- Forward arrow to point 6030,4950 -->
+<polygon points=" 6060,5167 6030,5047 6000,5167 6060,5167"
+	stroke="#b000b0" stroke-width="45px" stroke-miterlimit="8" fill="#b000b0"/>
+<!-- Text -->
+<text xml:space="preserve" x="6030" y="6210" fill="#b000b0" font-family="Times" font-style="italic" font-weight="normal" font-size="240" text-anchor="middle">NOISE</text>
+<!-- Text -->
+<text xml:space="preserve" x="6030" y="6585" fill="#b000b0" font-family="Times" font-style="italic" font-weight="normal" font-size="240" text-anchor="middle">(SOURCE)</text>
+<!-- Text -->
+<text xml:space="preserve" x="810" y="4117" fill="#ff0000" font-family="Times" font-style="normal" font-weight="normal" font-size="240" text-anchor="middle">Information</text>
+<!-- Text -->
+<text xml:space="preserve" x="810" y="4507" fill="#ff0000" font-family="Times" font-style="normal" font-weight="normal" font-size="240" text-anchor="middle">(Source)</text>
+<!-- Text -->
+<text xml:space="preserve" x="3375" y="4117" fill="#ff0000" font-family="Times" font-style="normal" font-weight="normal" font-size="240" text-anchor="middle">Transmitter</text>
+<!-- Text -->
+<text xml:space="preserve" x="3375" y="4507" fill="#ff0000" font-family="Times" font-style="normal" font-weight="normal" font-size="240" text-anchor="middle">(Encoder)</text>
+<!-- Text -->
+<text xml:space="preserve" x="8550" y="4117" fill="#0000ff" font-family="Times" font-style="normal" font-weight="normal" font-size="240" text-anchor="middle">Receiver</text>
+<!-- Text -->
+<text xml:space="preserve" x="8550" y="4507" fill="#0000ff" font-family="Times" font-style="normal" font-weight="normal" font-size="240" text-anchor="middle">(Decoder)</text>
+<!-- Text -->
+<text xml:space="preserve" x="11295" y="4410" fill="#0000ff" font-family="Times" font-style="normal" font-weight="normal" font-size="240" text-anchor="middle">Destination</text>
+<!-- Text -->
+<text xml:space="preserve" x="5940" y="4342" fill="#000000" font-family="Times" font-style="normal" font-weight="normal" font-size="240" text-anchor="middle">Channel</text>
+<!-- Text -->
+<text xml:space="preserve" x="7290" y="3240" fill="#0000ff" font-family="Times" font-style="italic" font-weight="normal" font-size="240" text-anchor="middle">RECEIVED</text>
+<!-- Text -->
+<text xml:space="preserve" x="7290" y="3615" fill="#0000ff" font-family="Times" font-style="italic" font-weight="normal" font-size="240" text-anchor="middle">SIGNAL</text>
+<!-- Text -->
+<text xml:space="preserve" x="2160" y="3330" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="240" text-anchor="middle">MESSAGE</text>
+<!-- Text -->
+<text xml:space="preserve" x="4680" y="3330" fill="#000000" font-family="Times" font-style="italic" font-weight="normal" font-size="240" text-anchor="middle">SIGNAL</text>
+<!-- Text -->
+<text xml:space="preserve" x="9900" y="3330" fill="#0000ff" font-family="Times" font-style="italic" font-weight="normal" font-size="240" text-anchor="middle">MESSAGE</text>
+<!-- Line -->
+<rect x="10260" y="3690" width="1980" height="1080"
+	stroke="#000000" stroke-width="30px"/>
+<!-- Line -->
+<rect x="-180" y="3690" width="1980" height="1080"
+	stroke="#000000" stroke-width="30px"/>
+<!-- Line -->
+<rect x="2385" y="3690" width="1980" height="1080"
+	stroke="#000000" stroke-width="30px"/>
+<!-- Line -->
+<rect x="7605" y="3690" width="1980" height="1080"
+	stroke="#000000" stroke-width="30px"/>
+<!-- Line -->
+<rect x="4995" y="3690" width="1980" height="1080"
+	stroke="#000000" stroke-width="30px"/>
+</g>
+</svg>

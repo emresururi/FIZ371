@@ -1,0 +1,1055 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Probabilities &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Monty Hall Problem" href="FIZ371_LN08_EST_Application_Monty_Hall.html" />
+    <link rel="prev" title="Probabilities Application: Letter Frequencies" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Final.html">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/FIZ371_LN02_EST_Probabilities.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/FIZ371_LN02_EST_Probabilities.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN02_EST_Probabilities.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Probabilities
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutations-combinations-products-and-variations">
+     Permutations, Combinations, Products and Variations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutation">
+     Permutation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#combinations-n-choose-k">
+     Combinations (‘n choose k’)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#combinations-with-replacement-repetition">
+       Combinations with replacement (/repetition)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pascal-s-triangle">
+     Pascal’s Triangle
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-probability-of-getting-5-or-more-tails-out-of-8-coin-tosses">
+       Example: Probability of getting 5 or more tails out of 8 coin tosses
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#products">
+   Products
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-probability-of-getting-5-or-more-tails-out-of-8-coin-tosses-monte-carlo">
+   Example: Probability of getting 5 or more tails out of 8 coin tosses (Monte Carlo)
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Probabilities</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Probabilities
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutations-combinations-products-and-variations">
+     Permutations, Combinations, Products and Variations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#permutation">
+     Permutation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#combinations-n-choose-k">
+     Combinations (‘n choose k’)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#combinations-with-replacement-repetition">
+       Combinations with replacement (/repetition)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pascal-s-triangle">
+     Pascal’s Triangle
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-probability-of-getting-5-or-more-tails-out-of-8-coin-tosses">
+       Example: Probability of getting 5 or more tails out of 8 coin tosses
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#products">
+   Products
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-probability-of-getting-5-or-more-tails-out-of-8-coin-tosses-monte-carlo">
+   Example: Probability of getting 5 or more tails out of 8 coin tosses (Monte Carlo)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="probabilities">
+<h1>Probabilities<a class="headerlink" href="#probabilities" title="Permalink to this headline">¶</a></h1>
+<p><strong>FIZ371 - Scientific &amp; Technical Calculations | 03/03/2021</strong></p>
+<p>Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">special</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="permutations-combinations-products-and-variations">
+<h2>Permutations, Combinations, Products and Variations<a class="headerlink" href="#permutations-combinations-products-and-variations" title="Permalink to this headline">¶</a></h2>
+<p>Before we get into the probabilities, it’s a good idea to think about variations of a given set of elements.</p>
+<p>Let’s assume that we have a set consisting of three elements: ‘a’, ‘b’ and ‘c’:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">abc</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="permutation">
+<h2>Permutation<a class="headerlink" href="#permutation" title="Permalink to this headline">¶</a></h2>
+<p>If we were to produce groups of 2 elements using this set, we would have these pairs:</p>
+<p><code class="docutils literal notranslate"><span class="pre">(a,b)</span> <span class="pre">|</span> <span class="pre">(b,c)</span> <span class="pre">|</span> <span class="pre">(a,c)</span> <span class="pre">|</span> <span class="pre">(b,a)</span> <span class="pre">|</span> <span class="pre">(c,b)</span> <span class="pre">|</span> <span class="pre">(c,a)</span></code></p>
+<p>This is the <strong>permutation</strong> of the elements of our set into groups of 2.</p>
+<p>Here, we assumed that the order matters, e.g., (a,b) is not the same as (b,a). As an example we can think of an electron (<em>blue ball</em>), hole (<em>green ball</em>) and an anti-electron (<em>red ball</em>) occupying two available states (<em>boxes</em>). As the particles are different, it matters if one occupies the 1st state and the other the 2nd one, or vice versa. Hence, in these kind of situations, we construct the permutations where <u>order is important</u>.</p>
+<p>We can use the itertools module’s perm() function to generate the permutations (observe that we are transforming the result from the iterable to a list). If we are interested in just the number of possible groups, then scipy.special package’s perm() function comes to aid:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">(</span><span class="n">abc</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Number of groups: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;a&#39;, &#39;b&#39;)
+(&#39;a&#39;, &#39;c&#39;)
+(&#39;b&#39;, &#39;a&#39;)
+(&#39;b&#39;, &#39;c&#39;)
+(&#39;c&#39;, &#39;a&#39;)
+(&#39;c&#39;, &#39;b&#39;)
+
+Number of groups:  6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of pairs that can be constructed from 3 elements: &quot;</span>\
+      <span class="p">,</span><span class="n">special</span><span class="o">.</span><span class="n">perm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of pairs that can be constructed from 3 elements:  6.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The fact that (a,b) is not being equal to (b,a) can be visualized as follows:</p>
+<p><img alt="images/image-3.png" src="_images/image-3.png" /></p>
+<p>And here are the triplet permutations of a set with 3 elements:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Number of groups: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of triplets that can be constructed from 3 elements: &quot;</span>\
+      <span class="p">,</span><span class="n">special</span><span class="o">.</span><span class="n">perm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)
+(&#39;a&#39;, &#39;c&#39;, &#39;b&#39;)
+(&#39;b&#39;, &#39;a&#39;, &#39;c&#39;)
+(&#39;b&#39;, &#39;c&#39;, &#39;a&#39;)
+(&#39;c&#39;, &#39;a&#39;, &#39;b&#39;)
+(&#39;c&#39;, &#39;b&#39;, &#39;a&#39;)
+
+Number of groups:  6
+Number of triplets that can be constructed from 3 elements:  6.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The number of <span class="math notranslate nohighlight">\(k\)</span>-populated sets permutations that can be made from a set of <span class="math notranslate nohighlight">\(n\)</span> elements is given by the formula:</p>
+<div class="math notranslate nohighlight">
+\[P_{n,k} = \frac{n!}{(n-k)!}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">P_3_2</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">special</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P(3,2) = </span><span class="si">{:d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">P_3_2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>P(3,2) = 6
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="combinations-n-choose-k">
+<h2>Combinations (‘n choose k’)<a class="headerlink" href="#combinations-n-choose-k" title="Permalink to this headline">¶</a></h2>
+<p>If the order is not important, for example if we are dealing with a situation involving bosons (like photons or all the balls being colored blue) the possible variations are constructed using combinations as (a,b) would be considered equivalent to (b,a), hence <u>the order is not important</u>.</p>
+<p>Following the permutation analogy above, we can visualize combination in two ways:</p>
+<ul class="simple">
+<li><p>placing two balls of same color onto the pedestal,</p></li>
+<li><p>dropping two differently colored balls into a bowl, so it doesn’t matter which was put first.</p></li>
+</ul>
+<p>Continuing with our <code class="docutils literal notranslate"><span class="pre">abc</span></code> set, its pair and triplet combinations are as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">abc</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Number of groups: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of pairs that can be constructed from 3 elements: &quot;</span>\
+      <span class="p">,</span><span class="n">special</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;a&#39;, &#39;b&#39;)
+(&#39;a&#39;, &#39;c&#39;)
+(&#39;b&#39;, &#39;c&#39;)
+
+Number of groups:  3
+Number of pairs that can be constructed from 3 elements:  3.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>as can be verified, after including (a,b), (b,a) was considered equivalent, hence not listed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations</span><span class="p">(</span><span class="n">abc</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Number of groups: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of pairs that can be constructed from 3 elements: &quot;</span>\
+      <span class="p">,</span><span class="n">special</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)
+
+Number of groups:  1
+Number of pairs that can be constructed from 3 elements:  1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The number of <span class="math notranslate nohighlight">\(k\)</span>-populated sets permutations that can be made from a set of <span class="math notranslate nohighlight">\(n\)</span> elements is calculated by the formula:</p>
+<div class="math notranslate nohighlight">
+\[C_{n,k} = \frac{P_{n,k}}{k!} = \frac{n!}{(n-k)!\,k!}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">C_3_2</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">special</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
+                              <span class="o">*</span><span class="n">special</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;C(3,2) = </span><span class="si">{:d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">C_3_2</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C(3,2) = 3
+</pre></div>
+</div>
+</div>
+</div>
+<section id="combinations-with-replacement-repetition">
+<h3>Combinations with replacement (/repetition)<a class="headerlink" href="#combinations-with-replacement-repetition" title="Permalink to this headline">¶</a></h3>
+<p>Combinations can also be visualized as pulling the items from a pouch/bag and placing them in a bowl so the order won’t matter. There is a special case of picking the items: once we pull an item, we make a record of it and then put it back into the pouch for the next draw. This type of processes is conveniently termed as <em>combinations with replacement</em>.</p>
+<p>So, if we have ‘a’,’b’,’c’ in our bag, (a,a) pair is as likely as (a,b) or (b,b) or any other possible combination:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">combinations_with_replacement</span><span class="p">(</span><span class="n">abc</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Number of groups: &quot;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of pairs that can be constructed from 3 elements: &quot;</span>\
+      <span class="p">,</span><span class="n">special</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">repetition</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;a&#39;, &#39;a&#39;)
+(&#39;a&#39;, &#39;b&#39;)
+(&#39;a&#39;, &#39;c&#39;)
+(&#39;b&#39;, &#39;b&#39;)
+(&#39;b&#39;, &#39;c&#39;)
+(&#39;c&#39;, &#39;c&#39;)
+
+Number of groups:  6
+Number of pairs that can be constructed from 3 elements:  6.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>The number of combinations with replacement is calculated using the following formula:</p>
+<div class="math notranslate nohighlight">
+\[C_{n,k}^{REP} = \frac{(n+k-1)!}{(n-1)!\,k!}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">special</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">special</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                          <span class="o">*</span><span class="n">special</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pascal-s-triangle">
+<h2>Pascal’s Triangle<a class="headerlink" href="#pascal-s-triangle" title="Permalink to this headline">¶</a></h2>
+<p>Now consider Pascal’s triangle which is pretty much straightforward to construct, where you start from two rows of 1’s and then proceed to the next row by summing the two numbers above:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:20d}</span><span class="s2">: &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">binom</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+        <span class="c1">#c = special.comb(n,k)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">+</span><span class="s2">&quot;</span><span class="si">{:5d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:^60s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">line</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                   0:                                1                            
+                   1:                              1    1                         
+                   2:                           1    2    1                       
+                   3:                         1    3    3    1                    
+                   4:                      1    4    6    4    1                  
+                   5:                    1    5   10   10    5    1               
+                   6:                 1    6   15   20   15    6    1             
+                   7:               1    7   21   35   35   21    7    1          
+                   8:            1    8   28   56   70   56   28    8    1        
+                   9:          1    9   36   84  126  126   84   36    9    1     
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>We can use either special.binom(n,k) or special.comb(n,k) to produce the coefficients (even though there is a slight difference between them, thus one is not an alias for the other, for our purposes this doesn’t matter).</em></p>
+<p>As can also be seen from the code, the binom coefficient is the same as the combinations. For example, when we are wondering about the different configurations that yields 2 heads out of 3 coin tosses, we calculate <span class="math notranslate nohighlight">\(C_{3,2}\)</span> and find that it’s equal to 3 (“H,H,T”,”H,T,H”,”T,H,H”) which is also there as the “2nd” term in the “3rd” row <em>(be careful that, like in Python, the iteration in the Pascal’s Triangle also starts from 0: C(3,0) = 1; C(3,1) = 3; C(3,2) = 3; C(3,3) = 1 – ‘C(3,0)’ means for example the number of configurations where we have 0 tails out of 3 tossings which is obviously one (‘H’,’H’,’H’)).</em></p>
+<section id="example-probability-of-getting-5-or-more-tails-out-of-8-coin-tosses">
+<h3>Example: Probability of getting 5 or more tails out of 8 coin tosses<a class="headerlink" href="#example-probability-of-getting-5-or-more-tails-out-of-8-coin-tosses" title="Permalink to this headline">¶</a></h3>
+<p>We’ll solve this question gradually. First, let’s calculate the probability that a very specific sequence of ‘T’,’T’,’T’,’T’,’T’,’H’,’H’,’H’ (i.e., five tails are tossed consecutively, followed by 3 heads).</p>
+<p>The probability of getting the tails side on our 1st toss is of course: 1/2.
+On the second toss, it is once again: 1/2.
+For the third, the fourth and the fifth, the same as: 1/2.</p>
+<p>Now we need a heads side on the sixth. The probability that it will come on the sixth tossing is: 1/2 as well. And it is also the same for the seventh and the eighth. Therefore for this specific sequence to arrive, we have a probability of:</p>
+<div class="math notranslate nohighlight">
+\[P(&quot;TTTTTHHH&quot;) = \underbrace{\frac{1}{2}\times\frac{1}{2}\times\dots\frac{1}{2}\times}_{\text{8 of them}} = \frac{1}{2^8} =\frac{1}{256}= 0.00390625\]</div>
+<p>Actually, this probability is the same for any kind of sequence we’d like to get, whether it is an all tails (“TTTTTTTT”) or a checkerlike pattern (“THTHTHTH”).</p>
+<p>How many configurations are there with 5 Tails and 3 Heads? We know that it is related to the combinations:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">special</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>56.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>And what about the sequences themselves? I couldn’t find a direct way to do it so here is a not so efficient (I guess) way for obtaining them:</p>
+<ul class="simple">
+<li><p>Generate a list of 8 that have five “T”s and three “H”s</p></li>
+<li><p>Construct all the possible permutations (as order is important and we have the same elements, there will be a huge amount of duplicates (40320 of them))</p></li>
+<li><p>Assign these lists as numpy array and use np.unique() to eliminate the duplicates. This way we get the different (i.e., where order is not important) configurations (56 of them).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">permutations</span><span class="p">([</span><span class="s2">&quot;T&quot;</span><span class="p">,</span><span class="s2">&quot;T&quot;</span><span class="p">,</span><span class="s2">&quot;T&quot;</span><span class="p">,</span><span class="s2">&quot;T&quot;</span><span class="p">,</span><span class="s2">&quot;T&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40320
+</pre></div>
+</div>
+</div>
+</div>
+<p>We see that the number of sequences constructed this way is actually equal to the number of permutations (which is not one bit surprising):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">special</span><span class="o">.</span><span class="n">perm</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40320.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Due to the order being important and the elements being the same, the list will be dominated by duplicate sequences:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here is the first 6 of the constructed sequences:</span>
+<span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">6</span><span class="p">],</span><span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;)
+(&#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;)
+(&#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;)
+(&#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;)
+(&#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;)
+(&#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;T&#39;, &#39;H&#39;, &#39;H&#39;, &#39;H&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>so we filter out the duplicates via np.unique()</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>56
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can go the additional mile by displaying all these 56 different sequences</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">seq</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">start</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&gt;2d}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>\
+          <span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">seq</span><span class="p">))),</span>\
+         <span class="n">end</span><span class="o">=</span><span class="s2">&quot; | &quot;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="k">5</span>) else &quot;\n&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1. HHHTTTTT |  2. HHTHTTTT |  3. HHTTHTTT |  4. HHTTTHTT |  5. HHTTTTHT
+ 6. HHTTTTTH |  7. HTHHTTTT |  8. HTHTHTTT |  9. HTHTTHTT | 10. HTHTTTHT
+11. HTHTTTTH | 12. HTTHHTTT | 13. HTTHTHTT | 14. HTTHTTHT | 15. HTTHTTTH
+16. HTTTHHTT | 17. HTTTHTHT | 18. HTTTHTTH | 19. HTTTTHHT | 20. HTTTTHTH
+21. HTTTTTHH | 22. THHHTTTT | 23. THHTHTTT | 24. THHTTHTT | 25. THHTTTHT
+26. THHTTTTH | 27. THTHHTTT | 28. THTHTHTT | 29. THTHTTHT | 30. THTHTTTH
+31. THTTHHTT | 32. THTTHTHT | 33. THTTHTTH | 34. THTTTHHT | 35. THTTTHTH
+36. THTTTTHH | 37. TTHHHTTT | 38. TTHHTHTT | 39. TTHHTTHT | 40. TTHHTTTH
+41. TTHTHHTT | 42. TTHTHTHT | 43. TTHTHTTH | 44. TTHTTHHT | 45. TTHTTHTH
+46. TTHTTTHH | 47. TTTHHHTT | 48. TTTHHTHT | 49. TTTHHTTH | 50. TTTHTHHT
+51. TTTHTHTH | 52. TTTHTTHH | 53. TTTTHHHT | 54. TTTTHHTH | 55. TTTTHTHH
+56. TTTTTHHH | 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we have seen how to obtain the number of the sequences (as well as the sequences themselves), let’s calculate the number of the sequences of length 8 with 5,6,7,8 tails in them:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{:2d}</span><span class="s2"> different sequences with </span><span class="si">{:d}</span><span class="s2"> Tails in them.&quot;</span>\
+          <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">special</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">)),</span><span class="n">k</span><span class="p">))</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="nb">int</span><span class="p">(</span><span class="n">special</span><span class="o">.</span><span class="n">comb</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">That makes a total of </span><span class="si">{:d}</span><span class="s2"> sequences with 5 or more tails in them.&quot;</span>\
+      <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">total</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>There are 56 different sequences with 5 Tails in them.
+There are 28 different sequences with 6 Tails in them.
+There are  8 different sequences with 7 Tails in them.
+There are  1 different sequences with 8 Tails in them.
+
+That makes a total of 93 sequences with 5 or more tails in them.
+</pre></div>
+</div>
+</div>
+</div>
+<p>(check that 56, 28, 8 and 1 are the coefficients in Pascal’s Triangle for <span class="math notranslate nohighlight">\(n=8\)</span>, <span class="math notranslate nohighlight">\(k={5,\dots,8}\)</span>)</p>
+<p>So we have 93 acceptable cases and each of them has a probability of <span class="math notranslate nohighlight">\(\frac{1}{256}\)</span>, so that makes the overall probability of getting a sequence with 5 or more tails out of 8 coin tosses:</p>
+<div class="math notranslate nohighlight">
+\[93\times\frac{1}{256} = \frac{93}{256} = 0.36328125\]</div>
+<p>As a last remark: 256 is nothing but the <strong>total number of possible outcomes</strong> out of 8 coin tossings as each toss has 2 possible outcomes thus:</p>
+<div class="math notranslate nohighlight">
+\[\underbrace{2\times 2\times\dots\times 2}_{\text{8 tosses}}= 2^8 = 256\]</div>
+<p>This way of producing variations are discussed in the next section, “Products”.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="products">
+<h1>Products<a class="headerlink" href="#products" title="Permalink to this headline">¶</a></h1>
+<p>There is another yet different way of producing variations, but this one preserves each one in its lane and we get combinations that we can not achieve with the previous permutations and combinations (each one to its own way). So suppose that we have three slots and each slot has a different set of possibilities, like {a,b,c} for the first slot; {1,2} for the second and {!,#,?,*} for the third slots. There are obviously <span class="math notranslate nohighlight">\(3\times2\times4=24\)</span> possibile outcomes and we use products to get them.</p>
+<p>Products work pretty much like distribution of multiplication over summation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set1</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">)</span>
+<span class="n">set2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">set3</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">,</span><span class="s1">&#39;#&#39;</span><span class="p">,</span><span class="s1">&#39;?&#39;</span><span class="p">,</span><span class="s1">&#39;*&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span><span class="n">set2</span><span class="p">,</span><span class="n">set3</span><span class="p">),</span><span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&gt;2d}</span><span class="s2">. </span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">word</span><span class="p">)))</span>\
+          <span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot; | &quot;</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="k">5</span>) else &quot;\n&quot;)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 1. a1! |  2. a1# |  3. a1? |  4. a1* |  5. a2!
+ 6. a2# |  7. a2? |  8. a2* |  9. b1! | 10. b1#
+11. b1? | 12. b1* | 13. b2! | 14. b2# | 15. b2?
+16. b2* | 17. c1! | 18. c1# | 19. c1? | 20. c1*
+21. c2! | 22. c2# | 23. c2? | 24. c2* | 
+</pre></div>
+</div>
+</div>
+</div>
+<p>As an another application, we can use products to count in binary! 8) Since each slot will be composed of either 0 or 1, we can use the same set in all with the ‘repeat’ parameter:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">set01</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">set01</span><span class="p">,</span><span class="n">repeat</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&gt;2d}</span><span class="s2">. </span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">word</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0. 0000
+ 1. 0001
+ 2. 0010
+ 3. 0011
+ 4. 0100
+ 5. 0101
+ 6. 0110
+ 7. 0111
+ 8. 1000
+ 9. 1001
+10. 1010
+11. 1011
+12. 1100
+13. 1101
+14. 1110
+15. 1111
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="example-probability-of-getting-5-or-more-tails-out-of-8-coin-tosses-monte-carlo">
+<h1>Example: Probability of getting 5 or more tails out of 8 coin tosses (Monte Carlo)<a class="headerlink" href="#example-probability-of-getting-5-or-more-tails-out-of-8-coin-tosses-monte-carlo" title="Permalink to this headline">¶</a></h1>
+<p>Let’s calculate the probability of getting 5+ tails out of 8 tosses using Monte Carlo method.</p>
+<p>First, define a function that returns the number of tails from a randomly tossed sequence of 8 tosses:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">num_tails_in_n_toss</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">set_HT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;head&quot;</span><span class="p">,</span><span class="s2">&quot;tail&quot;</span><span class="p">]</span>
+    <span class="n">toss8</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choices</span><span class="p">(</span><span class="n">set_HT</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="c1">#print(toss8)</span>
+    <span class="c1">#print(&quot;Number of tails: {:}&quot;.format(toss8.count(&#39;tail&#39;)))</span>
+    <span class="k">return</span> <span class="n">toss8</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;tail&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_tails_in_n_toss</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now iterate over this function N times and keep the score of tossings with 5+ tails:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">count_5_or_more</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">num_tails_in_n_toss</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="n">count_5_or_more</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:d}</span><span class="s2"> of </span><span class="si">{:d}</span><span class="s2"> tosses have 5+ tails.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count_5_or_more</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total probability (MC): </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">count_5_or_more</span><span class="o">/</span><span class="n">N</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Analtyical solution: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">93</span><span class="o">/</span><span class="mi">256</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>36422 of 100000 tosses have 5+ tails.
+Total probability (MC): 0.364
+Analtyical solution: 0.363
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>References:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/">Miguel A. Lerma - Mathematical Foundations of Computer Science Lecture Notes</a>(<a class="reference external" href="https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/notes/dm-gcomb">“More Combinatorics”</a>)</p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/Molecular-Driving-Forces-Statistical-Thermodynamics/dp/0815344309">Ken A. Dill &amp; Sarina Bromberg - Molecular Driving Forces</a> (Chp 1: “Principles of Probability”)</p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Probabilities Application: Letter Frequencies</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_LN08_EST_Application_Monty_Hall.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Monty Hall Problem</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,203 @@
+Traceback (most recent call last):
+  File "/home/sururi/anaconda3/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/home/sururi/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/sururi/anaconda3/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/sururi/anaconda3/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/sururi/anaconda3/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/home/sururi/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/home/sururi/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/sururi/anaconda3/lib/python3.8/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Implementation of the Metropolis algorithm 
+for 2D Ising model evolution.
+
+Written for the FIZ371 Course, 10/06/2020
+Dr. Emre S. Tasci <emre.tasci@hacettepe.edu.tr>
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+# mpl.use('module://backend_interagg') # PyCharm doesn't always display the plots
+
+colors = ['yellow', 'purple', 'orange', 'blue', 'yellow', 'purple']
+bounds = [-1,1,2,3,4,5,6]
+# Up: Purple | Down: Yellow
+
+cmap = mpl.colors.ListedColormap(colors)
+norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
+
+np.random.seed(371)
+
+N = 10
+num_iterations = 10000
+
+H = 0 # External field
+k_B = 1 # Boltzmann constant
+J = 1 # Coupling coefficient
+T0 = 10 # Temperature
+beta = 1/(k_B*T0)
+
+# Create our NxN grid, fill with random spin orientation
+mapN = np.random.randint(0,2,[N,N])
+#mapN = np.zeros((N,N))
+mapN[mapN==0] = -1
+print(mapN)
+num_ups = np.sum(np.sum(mapN==1))
+num_downs = N**2 - num_ups
+print("{:} up | {:} down ".format(num_ups,num_downs))
+plt.matshow(mapN, interpolation="none", cmap=cmap, norm=norm)
+#plt.savefig("/tmp/figs/" + "TS_%.3fs" % (T0) + ".png")
+plt.show()
+
+#input("devam?..")
+magnetization_vs_T = np.empty([0,2])
+
+print("="*45)
+for T in np.arange(T0,0,-0.5):
+    if(T == 0):
+        continue
+    beta = 1/(k_B*T)
+    for step in range(num_iterations):
+        # Pick a random site and calculate its local field
+        i,j = np.random.randint(0,N,[1,2]).flatten()
+        x_n = mapN[i,j]
+        b_n = 0
+        ## print(i,j)
+        # Neighbours
+        ip1 = np.mod(i+1,N)
+        im1 = np.mod(i-1,N)
+        jp1 = np.mod(j+1,N)
+        jm1 = np.mod(j-1,N)
+        # Left, Right, Below, Above neighbours
+        neighbour_positions = np.array([[im1,j],[ip1,j],[i,jm1],[i,jp1]])
+        for n_i in range(4):
+            m_i,m_j = neighbour_positions[n_i,:].flatten()
+            b_n += J*mapN[m_i,m_j]
+        b_n += H
+        DeltaE=2*x_n*b_n
+        if(DeltaE<=0):
+            mapN[i,j] *= -1
+        elif(np.random.rand()<np.exp(-beta*DeltaE)):
+            mapN[i,j] *= -1
+        ##print("-"*45)
+    print(mapN)
+    num_ups = np.sum(np.sum(mapN==1))
+    num_downs = N**2 - num_ups
+    magnetization = (num_ups-num_downs)/N**2
+    magnetization_vs_T = np.vstack((magnetization_vs_T,[T,magnetization]))
+    print("T:{:}\t|{:} up | {:} down\t|Mag: {:.5f} ".format(T,num_ups,num_downs,magnetization))
+    print("-"*45)
+    plt.matshow(mapN, interpolation="none", cmap=cmap, norm=norm,origin="upper")
+    plt.title("Temperature: {:}\nUp:{:d}|Down:{:d}".format(T,num_ups,num_downs))
+    plt.savefig("/tmp/figs/" + "T_%.3f" % (T) + ".png")
+    plt.show()
+print(magnetization_vs_T)
+plt.plot(magnetization_vs_T[:,0],magnetization_vs_T[:,1],"*-")
+plt.ylim(-1.1,1.1)
+plt.xlabel("T")
+plt.ylabel("<M>")
+#plt.savefig("/tmp/figs/" + "MeanMag" + ".png")
+plt.show()
+print("Finished.")
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Input [0;32mIn [1][0m, in [0;36m<cell line: 50>[0;34m()[0m
+[1;32m     84[0m     plt[38;5;241m.[39mmatshow(mapN, interpolation[38;5;241m=[39m[38;5;124m"[39m[38;5;124mnone[39m[38;5;124m"[39m, cmap[38;5;241m=[39mcmap, norm[38;5;241m=[39mnorm,origin[38;5;241m=[39m[38;5;124m"[39m[38;5;124mupper[39m[38;5;124m"[39m)
+[1;32m     85[0m     plt[38;5;241m.[39mtitle([38;5;124m"[39m[38;5;124mTemperature: [39m[38;5;132;01m{:}[39;00m[38;5;130;01m\n[39;00m[38;5;124mUp:[39m[38;5;132;01m{:d}[39;00m[38;5;124m|Down:[39m[38;5;132;01m{:d}[39;00m[38;5;124m"[39m[38;5;241m.[39mformat(T,num_ups,num_downs))
+[0;32m---> 86[0m     [43mplt[49m[38;5;241;43m.[39;49m[43msavefig[49m[43m([49m[38;5;124;43m"[39;49m[38;5;124;43m/tmp/figs/[39;49m[38;5;124;43m"[39;49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mT_[39;49m[38;5;132;43;01m%.3f[39;49;00m[38;5;124;43m"[39;49m[43m [49m[38;5;241;43m%[39;49m[43m [49m[43m([49m[43mT[49m[43m)[49m[43m [49m[38;5;241;43m+[39;49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43m.png[39;49m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m     87[0m     plt[38;5;241m.[39mshow()
+[1;32m     88[0m [38;5;28mprint[39m(magnetization_vs_T)
+
+File [0;32m~/anaconda3/lib/python3.8/site-packages/matplotlib/pyplot.py:958[0m, in [0;36msavefig[0;34m(*args, **kwargs)[0m
+[1;32m    955[0m [38;5;129m@_copy_docstring_and_deprecators[39m(Figure[38;5;241m.[39msavefig)
+[1;32m    956[0m [38;5;28;01mdef[39;00m [38;5;21msavefig[39m([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs):
+[1;32m    957[0m     fig [38;5;241m=[39m gcf()
+[0;32m--> 958[0m     res [38;5;241m=[39m [43mfig[49m[38;5;241;43m.[39;49m[43msavefig[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m    959[0m     fig[38;5;241m.[39mcanvas[38;5;241m.[39mdraw_idle()   [38;5;66;03m# need this if 'transparent=True' to reset colors[39;00m
+[1;32m    960[0m     [38;5;28;01mreturn[39;00m res
+
+File [0;32m~/anaconda3/lib/python3.8/site-packages/matplotlib/figure.py:3019[0m, in [0;36mFigure.savefig[0;34m(self, fname, transparent, **kwargs)[0m
+[1;32m   3015[0m     [38;5;28;01mfor[39;00m ax [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39maxes:
+[1;32m   3016[0m         stack[38;5;241m.[39menter_context(
+[1;32m   3017[0m             ax[38;5;241m.[39mpatch[38;5;241m.[39m_cm_set(facecolor[38;5;241m=[39m[38;5;124m'[39m[38;5;124mnone[39m[38;5;124m'[39m, edgecolor[38;5;241m=[39m[38;5;124m'[39m[38;5;124mnone[39m[38;5;124m'[39m))
+[0;32m-> 3019[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mcanvas[49m[38;5;241;43m.[39;49m[43mprint_figure[49m[43m([49m[43mfname[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/anaconda3/lib/python3.8/site-packages/matplotlib/backend_bases.py:2319[0m, in [0;36mFigureCanvasBase.print_figure[0;34m(self, filename, dpi, facecolor, edgecolor, orientation, format, bbox_inches, pad_inches, bbox_extra_artists, backend, **kwargs)[0m
+[1;32m   2315[0m [38;5;28;01mtry[39;00m:
+[1;32m   2316[0m     [38;5;66;03m# _get_renderer may change the figure dpi (as vector formats[39;00m
+[1;32m   2317[0m     [38;5;66;03m# force the figure dpi to 72), so we need to set it again here.[39;00m
+[1;32m   2318[0m     [38;5;28;01mwith[39;00m cbook[38;5;241m.[39m_setattr_cm([38;5;28mself[39m[38;5;241m.[39mfigure, dpi[38;5;241m=[39mdpi):
+[0;32m-> 2319[0m         result [38;5;241m=[39m [43mprint_method[49m[43m([49m
+[1;32m   2320[0m [43m            [49m[43mfilename[49m[43m,[49m
+[1;32m   2321[0m [43m            [49m[43mfacecolor[49m[38;5;241;43m=[39;49m[43mfacecolor[49m[43m,[49m
+[1;32m   2322[0m [43m            [49m[43medgecolor[49m[38;5;241;43m=[39;49m[43medgecolor[49m[43m,[49m
+[1;32m   2323[0m [43m            [49m[43morientation[49m[38;5;241;43m=[39;49m[43morientation[49m[43m,[49m
+[1;32m   2324[0m [43m            [49m[43mbbox_inches_restore[49m[38;5;241;43m=[39;49m[43m_bbox_inches_restore[49m[43m,[49m
+[1;32m   2325[0m [43m            [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+[1;32m   2326[0m [38;5;28;01mfinally[39;00m:
+[1;32m   2327[0m     [38;5;28;01mif[39;00m bbox_inches [38;5;129;01mand[39;00m restore_bbox:
+
+File [0;32m~/anaconda3/lib/python3.8/site-packages/matplotlib/backend_bases.py:1648[0m, in [0;36m_check_savefig_extra_args.<locals>.wrapper[0;34m(*args, **kwargs)[0m
+[1;32m   1640[0m     _api[38;5;241m.[39mwarn_deprecated(
+[1;32m   1641[0m         [38;5;124m'[39m[38;5;124m3.3[39m[38;5;124m'[39m, name[38;5;241m=[39mname, removal[38;5;241m=[39m[38;5;124m'[39m[38;5;124m3.6[39m[38;5;124m'[39m,
+[1;32m   1642[0m         message[38;5;241m=[39m[38;5;124m'[39m[38;5;132;01m%(name)s[39;00m[38;5;124m() got unexpected keyword argument [39m[38;5;124m"[39m[38;5;124m'[39m
+[1;32m   1643[0m                 [38;5;241m+[39m arg [38;5;241m+[39m [38;5;124m'[39m[38;5;124m"[39m[38;5;124m which is no longer supported as of [39m[38;5;124m'[39m
+[1;32m   1644[0m                 [38;5;124m'[39m[38;5;132;01m%(since)s[39;00m[38;5;124m and will become an error [39m[38;5;124m'[39m
+[1;32m   1645[0m                 [38;5;124m'[39m[38;5;132;01m%(removal)s[39;00m[38;5;124m'[39m)
+[1;32m   1646[0m     kwargs[38;5;241m.[39mpop(arg)
+[0;32m-> 1648[0m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43margs[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mkwargs[49m[43m)[49m
+
+File [0;32m~/anaconda3/lib/python3.8/site-packages/matplotlib/_api/deprecation.py:412[0m, in [0;36mdelete_parameter.<locals>.wrapper[0;34m(*inner_args, **inner_kwargs)[0m
+[1;32m    402[0m     deprecation_addendum [38;5;241m=[39m (
+[1;32m    403[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mIf any parameter follows [39m[38;5;132;01m{[39;00mname[38;5;132;01m!r}[39;00m[38;5;124m, they should be passed as [39m[38;5;124m"[39m
+[1;32m    404[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mkeyword, not positionally.[39m[38;5;124m"[39m)
+[1;32m    405[0m     warn_deprecated(
+[1;32m    406[0m         since,
+[1;32m    407[0m         name[38;5;241m=[39m[38;5;28mrepr[39m(name),
+[0;32m   (...)[0m
+[1;32m    410[0m                  [38;5;28;01melse[39;00m deprecation_addendum,
+[1;32m    411[0m         [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m--> 412[0m [38;5;28;01mreturn[39;00m [43mfunc[49m[43m([49m[38;5;241;43m*[39;49m[43minner_args[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43minner_kwargs[49m[43m)[49m
+
+File [0;32m~/anaconda3/lib/python3.8/site-packages/matplotlib/backends/backend_agg.py:541[0m, in [0;36mFigureCanvasAgg.print_png[0;34m(self, filename_or_obj, metadata, pil_kwargs, *args)[0m
+[1;32m    494[0m [38;5;124;03m"""[39;00m
+[1;32m    495[0m [38;5;124;03mWrite the figure to a PNG file.[39;00m
+[1;32m    496[0m 
+[0;32m   (...)[0m
+[1;32m    538[0m [38;5;124;03m    *metadata*, including the default 'Software' key.[39;00m
+[1;32m    539[0m [38;5;124;03m"""[39;00m
+[1;32m    540[0m FigureCanvasAgg[38;5;241m.[39mdraw([38;5;28mself[39m)
+[0;32m--> 541[0m [43mmpl[49m[38;5;241;43m.[39;49m[43mimage[49m[38;5;241;43m.[39;49m[43mimsave[49m[43m([49m
+[1;32m    542[0m [43m    [49m[43mfilename_or_obj[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mbuffer_rgba[49m[43m([49m[43m)[49m[43m,[49m[43m [49m[38;5;28;43mformat[39;49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mpng[39;49m[38;5;124;43m"[39;49m[43m,[49m[43m [49m[43morigin[49m[38;5;241;43m=[39;49m[38;5;124;43m"[39;49m[38;5;124;43mupper[39;49m[38;5;124;43m"[39;49m[43m,[49m
+[1;32m    543[0m [43m    [49m[43mdpi[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mfigure[49m[38;5;241;43m.[39;49m[43mdpi[49m[43m,[49m[43m [49m[43mmetadata[49m[38;5;241;43m=[39;49m[43mmetadata[49m[43m,[49m[43m [49m[43mpil_kwargs[49m[38;5;241;43m=[39;49m[43mpil_kwargs[49m[43m)[49m
+
+File [0;32m~/anaconda3/lib/python3.8/site-packages/matplotlib/image.py:1675[0m, in [0;36mimsave[0;34m(fname, arr, vmin, vmax, cmap, format, origin, dpi, metadata, pil_kwargs)[0m
+[1;32m   1673[0m pil_kwargs[38;5;241m.[39msetdefault([38;5;124m"[39m[38;5;124mformat[39m[38;5;124m"[39m, [38;5;28mformat[39m)
+[1;32m   1674[0m pil_kwargs[38;5;241m.[39msetdefault([38;5;124m"[39m[38;5;124mdpi[39m[38;5;124m"[39m, (dpi, dpi))
+[0;32m-> 1675[0m [43mimage[49m[38;5;241;43m.[39;49m[43msave[49m[43m([49m[43mfname[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mpil_kwargs[49m[43m)[49m
+
+File [0;32m~/anaconda3/lib/python3.8/site-packages/PIL/Image.py:2209[0m, in [0;36mImage.save[0;34m(self, fp, format, **params)[0m
+[1;32m   2207[0m         fp [38;5;241m=[39m builtins[38;5;241m.[39mopen(filename, [38;5;124m"[39m[38;5;124mr+b[39m[38;5;124m"[39m)
+[1;32m   2208[0m     [38;5;28;01melse[39;00m:
+[0;32m-> 2209[0m         fp [38;5;241m=[39m [43mbuiltins[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43mfilename[49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mw+b[39;49m[38;5;124;43m"[39;49m[43m)[49m
+[1;32m   2211[0m [38;5;28;01mtry[39;00m:
+[1;32m   2212[0m     save_handler([38;5;28mself[39m, fp, filename)
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: '/tmp/figs/T_10.000.png'
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/figs/T_10.000.png'
+

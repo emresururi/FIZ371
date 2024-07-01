@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.6a -->
+<!-- CreationDate: 2020-04-29 12:01:20 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="311pt" height="292pt"
+	viewBox="687 10065 4926 4620">
+<g fill="none">
+<!-- Circle -->
+<circle cx="2235" cy="13137" r="1525"
+	stroke="#0000ff" stroke-width="30px"/>
+<!-- Circle -->
+<circle cx="4065" cy="13137" r="1525"
+	stroke="#0000ff" stroke-width="30px"/>
+<!-- Circle -->
+<circle cx="3150" cy="11613" r="1525"
+	stroke="#0000ff" stroke-width="30px"/>
+<!-- Text -->
+<text xml:space="preserve" x="3140" y="13686" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="2316" y="12284" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="3109" y="11125" fill="#000000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="1889" y="13625" fill="#000000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="4436" y="13625" fill="#000000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="3994" y="12284" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="3109" y="12680" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">1</text>
+<!-- Circle -->
+<circle cx="4050" cy="13140" r="1464"
+	stroke="#0000ff" stroke-width="30px" stroke-dasharray="40 40"/>
+<!-- Circle -->
+<circle cx="2250" cy="13140" r="1464"
+	stroke="#0000ff" stroke-width="30px" stroke-dasharray="40 40"/>
+<!-- Circle -->
+<circle cx="3139" cy="11610" r="1464"
+	stroke="#0000ff" stroke-width="30px" stroke-dasharray="40 40"/>
+<!-- Circle -->
+<circle cx="3133" cy="12533" r="382"
+	stroke="#ff0000" stroke-width="30px" stroke-dasharray="40 40"/>
+</g>
+</svg>

@@ -1,0 +1,1552 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Gale-Shapley Algorithm Implementation &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Information Theory" href="FIZ371_LN36_EST_Information_Theory.html" />
+    <link rel="prev" title="Gale-Shapley Matching Algorithm" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Final.html">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/GaleShapleyMatching_Implementation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/GaleShapleyMatching_Implementation.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/GaleShapleyMatching_Implementation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-1">
+   Case 1
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-a-stable-proposition">
+     1.1 Find a stable proposition:
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#women-proposed-by-men">
+       Women proposed by men:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#men-proposed-by-women">
+       Men proposed by women:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluate-different-matches-straight-from-the-book">
+     1.2 Evaluate different matches (straight from the book)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#men-s-first-choices">
+     Men’s first choices
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-2-from-the-book">
+   Case 2 (from the book)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference:
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Gale-Shapley Algorithm Implementation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-1">
+   Case 1
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-a-stable-proposition">
+     1.1 Find a stable proposition:
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#women-proposed-by-men">
+       Women proposed by men:
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#men-proposed-by-women">
+       Men proposed by women:
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#evaluate-different-matches-straight-from-the-book">
+     1.2 Evaluate different matches (straight from the book)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#men-s-first-choices">
+     Men’s first choices
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#case-2-from-the-book">
+   Case 2 (from the book)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference:
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section id="gale-shapley-algorithm-implementation">
+<h1>Gale-Shapley Algorithm Implementation<a class="headerlink" href="#gale-shapley-algorithm-implementation" title="Permalink to this headline">¶</a></h1>
+<p><strong>FIZ371 - Scientific &amp; Technical Computations | 26/04/2021</strong></p>
+<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">names2ids2names</span><span class="p">(</span><span class="n">names_men</span><span class="p">,</span><span class="n">names_women</span><span class="p">):</span>
+    <span class="n">name2id</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">id2man</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">id2woman</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names_men</span><span class="p">):</span>
+        <span class="n">name2id</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">id2man</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names_women</span><span class="p">):</span>
+        <span class="n">name2id</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">id2woman</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">return</span> <span class="n">name2id</span><span class="p">,</span><span class="n">id2man</span><span class="p">,</span><span class="n">id2woman</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">visualizer</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span><span class="n">pref_top</span><span class="p">,</span><span class="n">pref_bottom</span><span class="p">,</span><span class="n">name2id</span><span class="p">):</span>
+    <span class="c1"># &quot;Visualizer&quot;</span>
+    <span class="n">vis_top</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">vis_mid</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">vis_bottom</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">vis_pref</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">match</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prop</span><span class="p">):</span>
+        <span class="n">top</span><span class="p">,</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">match</span>
+        <span class="n">vis_top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:^9}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">top</span><span class="p">))</span>
+        <span class="n">vis_mid</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:^9}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">))</span>
+        <span class="n">vis_bottom</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:^9}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bottom</span><span class="p">))</span>
+        <span class="n">vis_pref</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:^9}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:}</span><span class="s2">x</span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pref_top</span><span class="p">[</span><span class="n">name2id</span><span class="p">[</span><span class="n">top</span><span class="p">],</span><span class="n">name2id</span><span class="p">[</span><span class="n">bottom</span><span class="p">]],</span>
+                          <span class="n">pref_bottom</span><span class="p">[</span><span class="n">name2id</span><span class="p">[</span><span class="n">bottom</span><span class="p">]][</span><span class="n">name2id</span><span class="p">[</span><span class="n">top</span><span class="p">]])))</span>
+    <span class="n">visualize</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vis_top</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vis_mid</span><span class="p">)</span><span class="o">+</span>\
+                             <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vis_bottom</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span>\
+                             <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vis_pref</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">visualize</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_stable</span><span class="p">(</span><span class="n">pref</span><span class="p">,</span><span class="n">names</span><span class="p">,</span><span class="n">proposed_by</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span><span class="n">men</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">):</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">men</span><span class="o">==</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">pref_women</span> <span class="o">=</span> <span class="n">pref</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">pref_men</span> <span class="o">=</span> <span class="n">pref</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">names_women</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">names_men</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pref_women</span> <span class="o">=</span> <span class="n">pref</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">pref_men</span> <span class="o">=</span> <span class="n">pref</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">names_women</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">names_men</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">name2id</span><span class="p">,</span><span class="n">id2man</span><span class="p">,</span><span class="n">id2woman</span> <span class="o">=</span> <span class="n">names2ids2names</span><span class="p">(</span><span class="n">names_men</span><span class="p">,</span><span class="n">names_women</span><span class="p">)</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">proposed_by</span> <span class="o">==</span> <span class="s2">&quot;m&quot;</span><span class="p">):</span>
+        <span class="n">pref_wooer</span> <span class="o">=</span> <span class="n">pref_men</span>
+        <span class="n">pref_wooed</span> <span class="o">=</span> <span class="n">pref_women</span>
+        <span class="n">names_wooer</span> <span class="o">=</span> <span class="n">names_men</span>
+        <span class="n">names_wooed</span> <span class="o">=</span> <span class="n">names_women</span>
+        <span class="n">id2wooer</span> <span class="o">=</span> <span class="n">id2man</span>
+        <span class="n">id2wooed</span> <span class="o">=</span> <span class="n">id2woman</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pref_wooed</span> <span class="o">=</span> <span class="n">pref_men</span>
+        <span class="n">pref_wooer</span> <span class="o">=</span> <span class="n">pref_women</span>
+        <span class="n">names_wooed</span> <span class="o">=</span> <span class="n">names_men</span>
+        <span class="n">names_wooer</span> <span class="o">=</span> <span class="n">names_women</span>
+        <span class="n">id2wooer</span> <span class="o">=</span> <span class="n">id2woman</span>
+        <span class="n">id2wooed</span> <span class="o">=</span> <span class="n">id2man</span>
+    
+    <span class="n">num_people</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">id2man</span><span class="p">)</span>
+    
+    <span class="n">wooer_curr_counter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_people</span><span class="p">,</span><span class="nb">int</span><span class="p">)</span>
+    
+    <span class="n">pref2ids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">wooer_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_people</span><span class="p">):</span>
+        <span class="n">aux_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_people</span><span class="p">,</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">pref</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pref_wooer</span><span class="p">[</span><span class="n">wooer_id</span><span class="p">]):</span>
+            <span class="n">aux_arr</span><span class="p">[</span><span class="n">pref</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">pref2ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">aux_arr</span><span class="p">)</span>
+    <span class="c1">#print(pref2ids)</span>
+
+    <span class="n">zero_to_num</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_people</span><span class="p">)</span>
+    <span class="n">flag_continue</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">flag_continue</span><span class="p">):</span>
+        <span class="c1"># Assign wooed&#39;s bins</span>
+        <span class="n">bin_wooed</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_people</span><span class="p">):</span>
+            <span class="n">bin_wooed</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+        <span class="n">flag_continue</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">wooer_id</span> <span class="ow">in</span> <span class="n">zero_to_num</span><span class="p">:</span>
+            <span class="n">wooer_name</span> <span class="o">=</span> <span class="n">id2wooer</span><span class="p">[</span><span class="n">wooer_id</span><span class="p">]</span>
+            <span class="n">wooer_pref_arr</span> <span class="o">=</span> <span class="n">pref2ids</span><span class="p">[</span><span class="n">wooer_id</span><span class="p">]</span>
+            <span class="n">wooer_curr_pref_wooed_id</span> <span class="o">=</span> <span class="n">pref2ids</span><span class="p">[</span><span class="n">wooer_id</span><span class="p">][</span><span class="n">wooer_curr_counter</span><span class="p">[</span><span class="n">wooer_id</span><span class="p">]]</span>
+            <span class="n">wooer_curr_pref_wooed_name</span> <span class="o">=</span> <span class="n">id2wooed</span><span class="p">[</span><span class="n">wooer_curr_pref_wooed_id</span><span class="p">]</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:3}</span><span class="s2">(</span><span class="si">{:}</span><span class="s2">)&#39;s </span><span class="si">{:}</span><span class="s2">. preference: </span><span class="si">{:4}</span><span class="s2">(</span><span class="si">{:}</span><span class="s2">)&quot;</span>\
+                  <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">id2wooer</span><span class="p">[</span><span class="n">wooer_id</span><span class="p">],</span><span class="n">wooer_id</span><span class="p">,</span><span class="n">wooer_curr_counter</span><span class="p">[</span><span class="n">wooer_id</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">wooer_curr_pref_wooed_name</span><span class="p">,</span><span class="n">wooer_curr_pref_wooed_id</span><span class="p">))</span>
+            <span class="n">bin_wooed</span><span class="p">[</span><span class="n">wooer_curr_pref_wooed_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">wooer_id</span><span class="p">)</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">bin_wooed</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">wooed_id</span> <span class="ow">in</span> <span class="n">zero_to_num</span><span class="p">:</span>
+            <span class="n">candidates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bin_wooed</span><span class="p">[</span><span class="n">wooed_id</span><span class="p">])</span>
+            <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">flag_continue</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="c1">#print(candidates)</span>
+                <span class="n">pref_candidates</span> <span class="o">=</span> <span class="n">pref_wooed</span><span class="p">[</span><span class="n">wooed_id</span><span class="p">][</span><span class="n">candidates</span><span class="p">]</span>
+                <span class="c1">#print(pref_candidates)</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="n">pref_candidates</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span>
+                <span class="c1">#print(w)</span>
+                <span class="n">rejected</span> <span class="o">=</span> <span class="n">candidates</span><span class="p">[</span><span class="n">pref_candidates</span> <span class="o">!=</span> <span class="n">pref_candidates</span><span class="p">[</span><span class="n">w</span><span class="p">]]</span>
+                <span class="c1">#print(rejected)</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">rejected</span><span class="p">:</span>
+                    <span class="n">wooer_curr_counter</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span><span class="mi">1</span>
+                    <span class="n">bin_wooed</span><span class="p">[</span><span class="n">wooed_id</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="c1">#print(men_curr_counter)</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">+</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">45</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">bin_wooed</span><span class="p">))</span>
+    
+    <span class="n">aux_dic</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">wooed_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bin_wooed</span><span class="p">):</span>
+        <span class="n">aux_dic</span><span class="p">[</span><span class="n">id2wooer</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">id2wooed</span><span class="p">[</span><span class="n">wooed_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="n">aux_dic</span><span class="p">[</span><span class="n">id2wooed</span><span class="p">[</span><span class="n">wooed_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]]]</span> <span class="o">=</span> <span class="n">id2wooer</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="n">m_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">w_names</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">proposed_by</span> <span class="o">==</span> <span class="s2">&quot;m&quot;</span><span class="p">):</span>
+        <span class="c1"># wooer : m, wooed : w</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">wooed_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bin_wooed</span><span class="p">):</span>
+            <span class="n">m_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id2wooer</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">w_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id2wooed</span><span class="p">[</span><span class="n">wooed_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">proposed_by</span> <span class="o">==</span> <span class="s2">&quot;w&quot;</span><span class="p">):</span>
+        <span class="c1"># wooer : w, wooed : m</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">wooed_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bin_wooed</span><span class="p">):</span>
+            <span class="n">w_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id2wooer</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">m_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">id2wooed</span><span class="p">[</span><span class="n">wooed_id</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>   
+
+    <span class="c1"># Decide which species to be put on top</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">top</span> <span class="o">==</span> <span class="s2">&quot;x&quot;</span><span class="p">):</span>
+        <span class="c1"># No preference, so put the wooed</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">proposed_by</span> <span class="o">==</span> <span class="s2">&quot;m&quot;</span><span class="p">):</span>
+            <span class="n">names_top</span> <span class="o">=</span> <span class="n">w_names</span>
+            <span class="n">names_bottom</span> <span class="o">=</span> <span class="n">m_names</span>
+            <span class="n">pref_top</span> <span class="o">=</span> <span class="n">pref_women</span>
+            <span class="n">pref_bottom</span> <span class="o">=</span> <span class="n">pref_men</span>
+            <span class="n">return_names_top</span> <span class="o">=</span> <span class="n">names_women</span>
+            <span class="n">return_names_bottom</span> <span class="o">=</span> <span class="n">names_men</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">names_top</span> <span class="o">=</span> <span class="n">m_names</span>
+            <span class="n">names_bottom</span> <span class="o">=</span> <span class="n">w_names</span>
+            <span class="n">pref_top</span> <span class="o">=</span> <span class="n">pref_men</span>
+            <span class="n">pref_bottom</span> <span class="o">=</span> <span class="n">pref_women</span>
+            <span class="n">return_names_top</span> <span class="o">=</span> <span class="n">names_men</span>
+            <span class="n">return_names_bottom</span> <span class="o">=</span> <span class="n">names_women</span>            
+    <span class="k">elif</span><span class="p">(</span><span class="n">top</span> <span class="o">==</span> <span class="s2">&quot;m&quot;</span><span class="p">):</span>
+        <span class="n">names_top</span> <span class="o">=</span> <span class="n">m_names</span>
+        <span class="n">names_bottom</span> <span class="o">=</span> <span class="n">w_names</span>
+        <span class="n">pref_top</span> <span class="o">=</span> <span class="n">pref_men</span>
+        <span class="n">pref_bottom</span> <span class="o">=</span> <span class="n">pref_women</span>
+        <span class="n">return_names_top</span> <span class="o">=</span> <span class="n">names_men</span>
+        <span class="n">return_names_bottom</span> <span class="o">=</span> <span class="n">names_women</span>        
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">names_top</span> <span class="o">=</span> <span class="n">w_names</span>
+        <span class="n">names_bottom</span> <span class="o">=</span> <span class="n">m_names</span>
+        <span class="n">pref_top</span> <span class="o">=</span> <span class="n">pref_women</span>
+        <span class="n">pref_bottom</span> <span class="o">=</span> <span class="n">pref_men</span>
+        <span class="n">return_names_top</span> <span class="o">=</span> <span class="n">names_women</span>
+        <span class="n">return_names_bottom</span> <span class="o">=</span> <span class="n">names_men</span>
+        
+    
+    <span class="n">ret_prop</span> <span class="o">=</span><span class="p">[]</span>
+    <span class="k">for</span> <span class="n">topn</span><span class="p">,</span><span class="n">botn</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">names_top</span><span class="p">,</span><span class="n">names_bottom</span><span class="p">):</span>
+        <span class="n">ret_prop</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">topn</span><span class="p">,</span><span class="n">botn</span><span class="p">])</span>
+            
+    <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ret_prop</span><span class="p">))</span>
+
+    <span class="n">vis</span> <span class="o">=</span> <span class="n">visualizer</span><span class="p">(</span><span class="n">ret_prop</span><span class="p">,</span><span class="n">pref_top</span><span class="p">,</span><span class="n">pref_bottom</span><span class="p">,</span><span class="n">name2id</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">*Details:*</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+    
+    <span class="c1"># We are also returning additional properties so </span>
+    <span class="c1"># if needed can be fed into check_stability</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">ret_prop</span><span class="p">,[</span><span class="n">pref_top</span><span class="p">,</span><span class="n">pref_bottom</span><span class="p">],</span>\
+            <span class="p">[</span><span class="n">return_names_top</span><span class="p">,</span><span class="n">return_names_bottom</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_stability</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">unstables</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">prop</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1">#print(prop)</span>
+    <span class="n">pref_top</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pref_bottom</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">names_top</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">names_bottom</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>        
+    
+    <span class="n">num_people</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pref_top</span><span class="p">)</span>
+    <span class="n">zero_to_num</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">num_people</span><span class="p">)</span>
+    
+    <span class="n">name2id</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">id2top</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">id2bottom</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">name_t</span><span class="p">,</span><span class="n">name_b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">names_top</span><span class="p">,</span><span class="n">names_bottom</span><span class="p">)):</span>
+        <span class="c1">#print(i,name_t,name_b)</span>
+        <span class="n">name2id</span><span class="p">[</span><span class="n">name_t</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">name2id</span><span class="p">[</span><span class="n">name_b</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">id2top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_t</span><span class="p">)</span>
+        <span class="n">id2bottom</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name_b</span><span class="p">)</span>
+    
+    <span class="n">vis</span> <span class="o">=</span> <span class="n">visualizer</span><span class="p">(</span><span class="n">prop</span><span class="p">,</span><span class="n">pref_top</span><span class="p">,</span><span class="n">pref_bottom</span><span class="p">,</span><span class="n">name2id</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">vis</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Convert the given proposition to ids and prefs</span>
+    <span class="n">ids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">pref</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dic_match</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">prop</span><span class="p">:</span>
+        <span class="n">n_t</span><span class="p">,</span><span class="n">n_b</span> <span class="o">=</span> <span class="n">row</span>
+        <span class="n">dic_match</span><span class="p">[</span><span class="n">n_t</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_b</span>
+        <span class="n">dic_match</span><span class="p">[</span><span class="n">n_b</span><span class="p">]</span> <span class="o">=</span> <span class="n">n_t</span>
+        <span class="n">id_t</span> <span class="o">=</span> <span class="n">name2id</span><span class="p">[</span><span class="n">n_t</span><span class="p">]</span>
+        <span class="n">id_b</span> <span class="o">=</span> <span class="n">name2id</span><span class="p">[</span><span class="n">n_b</span><span class="p">]</span>
+        <span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">name2id</span><span class="p">[</span><span class="n">n_t</span><span class="p">],</span><span class="n">name2id</span><span class="p">[</span><span class="n">n_b</span><span class="p">]])</span>
+        <span class="n">pref</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">pref_top</span><span class="p">[</span><span class="n">id_t</span><span class="p">][</span><span class="n">id_b</span><span class="p">],</span><span class="n">pref_bottom</span><span class="p">[</span><span class="n">id_b</span><span class="p">][</span><span class="n">id_t</span><span class="p">]])</span>
+    <span class="c1">#print(ids)</span>
+    <span class="c1">#print(pref)</span>
+    
+    <span class="n">out_top</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">out_bot</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,(</span><span class="n">ids_tb</span><span class="p">,</span><span class="n">pref_tb</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span><span class="n">pref</span><span class="p">)):</span>
+        <span class="n">id_t</span><span class="p">,</span> <span class="n">id_b</span> <span class="o">=</span> <span class="n">ids_tb</span>
+        <span class="n">pref_t</span><span class="p">,</span><span class="n">pref_b</span> <span class="o">=</span> <span class="n">pref_tb</span>
+        <span class="n">out_top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;* </span><span class="si">{:}</span><span class="s2"> is currently matched with </span><span class="si">{:}</span><span class="s2"> - their </span><span class="si">{:}</span><span class="s2">. choice&quot;</span><span class="o">.</span>\
+             <span class="nb">format</span><span class="p">(</span><span class="n">names_top</span><span class="p">[</span><span class="n">id_t</span><span class="p">],</span><span class="n">names_bottom</span><span class="p">[</span><span class="n">id_b</span><span class="p">],</span><span class="n">pref_t</span><span class="p">))</span>
+        <span class="n">out_bot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;* </span><span class="si">{:}</span><span class="s2"> is currently matched with </span><span class="si">{:}</span><span class="s2"> - their </span><span class="si">{:}</span><span class="s2">. choice&quot;</span><span class="o">.</span>\
+             <span class="nb">format</span><span class="p">(</span><span class="n">names_bottom</span><span class="p">[</span><span class="n">id_b</span><span class="p">],</span><span class="n">names_top</span><span class="p">[</span><span class="n">id_t</span><span class="p">],</span><span class="n">pref_b</span><span class="p">))</span>        
+        <span class="k">if</span><span class="p">(</span><span class="n">pref_t</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">out_top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">{:}</span><span class="s2"> can&#39;t do any better because they already got their top choice!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names_top</span><span class="p">[</span><span class="n">id_t</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out_top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  Let&#39;s see if they can persuade a higher preferred candidate.&quot;</span><span class="p">)</span>
+            <span class="n">prefs_this_t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pref_top</span><span class="p">[</span><span class="n">id_t</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">pref_t</span><span class="p">):</span>
+                <span class="n">nth_b_id</span> <span class="o">=</span> <span class="n">zero_to_num</span><span class="p">[</span><span class="n">prefs_this_t</span> <span class="o">==</span> <span class="n">p</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">nth_b_name</span> <span class="o">=</span> <span class="n">names_bottom</span><span class="p">[</span><span class="n">nth_b_id</span><span class="p">]</span>
+                <span class="n">out_top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;   - Their </span><span class="si">{:}</span><span class="s2">. choice is </span><span class="si">{:}</span><span class="s2">:&quot;</span><span class="o">.</span>\
+                      <span class="nb">format</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">nth_b_name</span><span class="p">))</span>
+                <span class="n">nth_b_match_t_name</span> <span class="o">=</span> <span class="n">dic_match</span><span class="p">[</span><span class="n">nth_b_name</span><span class="p">]</span>
+                <span class="n">nth_b_match_t_id</span> <span class="o">=</span> <span class="n">name2id</span><span class="p">[</span><span class="n">nth_b_match_t_name</span><span class="p">]</span>
+                <span class="n">nth_b_match_t_pref</span> <span class="o">=</span> <span class="n">pref_bottom</span><span class="p">[</span><span class="n">nth_b_id</span><span class="p">][</span><span class="n">nth_b_match_t_id</span><span class="p">]</span>
+                <span class="n">out_top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;      </span><span class="si">{:}</span><span class="s2"> is currently matched with </span><span class="si">{:}</span><span class="s2">, their </span><span class="si">{:}</span><span class="s2">. choice.&quot;</span><span class="o">.</span>\
+                      <span class="nb">format</span><span class="p">(</span><span class="n">nth_b_name</span><span class="p">,</span><span class="n">nth_b_match_t_name</span><span class="p">,</span><span class="n">nth_b_match_t_pref</span><span class="p">))</span>
+                <span class="n">nth_b_this_t_pref</span> <span class="o">=</span> <span class="n">pref_bottom</span><span class="p">[</span><span class="n">nth_b_id</span><span class="p">][</span><span class="n">id_t</span><span class="p">]</span>
+                <span class="n">str_aux</span> <span class="o">=</span> <span class="s2">&quot;      Since </span><span class="si">{:}</span><span class="s2"> is </span><span class="si">{:}</span><span class="s2">&#39;s </span><span class="si">{:}</span><span class="s2">. choice and &quot;</span><span class="o">.</span>\
+                      <span class="nb">format</span><span class="p">(</span><span class="n">names_top</span><span class="p">[</span><span class="n">id_t</span><span class="p">],</span><span class="n">nth_b_name</span><span class="p">,</span><span class="n">nth_b_this_t_pref</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">nth_b_this_t_pref</span><span class="o">&lt;</span><span class="n">nth_b_match_t_pref</span><span class="p">):</span>
+                    <span class="n">str_aux</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">{:}</span><span class="s2">&lt;</span><span class="si">{:}</span><span class="se">\n</span><span class="s2">         --&gt; </span><span class="si">{:}</span><span class="s2"> will reject their current match - Unstable!&quot;</span><span class="o">.</span>\
+                         <span class="nb">format</span><span class="p">(</span><span class="n">nth_b_this_t_pref</span><span class="p">,</span><span class="n">nth_b_match_t_pref</span><span class="p">,</span><span class="n">nth_b_name</span><span class="p">)</span>
+                    <span class="n">unstables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:}</span><span class="s2">: x </span><span class="si">{:}</span><span class="s2"> -&gt; </span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names_top</span><span class="p">[</span><span class="n">id_t</span><span class="p">],</span><span class="n">names_bottom</span><span class="p">[</span><span class="n">id_b</span><span class="p">],</span><span class="n">nth_b_name</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">str_aux</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">{:}</span><span class="s2">&gt;</span><span class="si">{:}</span><span class="se">\n</span><span class="s2">         --&gt; </span><span class="si">{:}</span><span class="s2"> is satisfied with their current match.&quot;</span><span class="o">.</span>\
+                         <span class="nb">format</span><span class="p">(</span><span class="n">nth_b_this_t_pref</span><span class="p">,</span><span class="n">nth_b_match_t_pref</span><span class="p">,</span><span class="n">nth_b_name</span><span class="p">)</span>
+                <span class="n">out_top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_aux</span><span class="p">)</span>
+                <span class="n">out_top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">out_top</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">45</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        
+        <span class="k">if</span><span class="p">(</span><span class="n">pref_b</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">out_bot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">{:}</span><span class="s2"> can&#39;t do any better because they already got their top choice!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names_bottom</span><span class="p">[</span><span class="n">id_b</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out_bot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  Let&#39;s see if they can persuade a higher preferred candidate.&quot;</span><span class="p">)</span>
+            <span class="n">prefs_this_b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pref_bottom</span><span class="p">[</span><span class="n">id_b</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">pref_b</span><span class="p">):</span>
+                <span class="n">nth_t_id</span> <span class="o">=</span> <span class="n">zero_to_num</span><span class="p">[</span><span class="n">prefs_this_b</span> <span class="o">==</span> <span class="n">p</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">nth_t_name</span> <span class="o">=</span> <span class="n">names_top</span><span class="p">[</span><span class="n">nth_t_id</span><span class="p">]</span>
+                <span class="n">out_bot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;   - Their </span><span class="si">{:}</span><span class="s2">. choice is </span><span class="si">{:}</span><span class="s2">:&quot;</span><span class="o">.</span>\
+                      <span class="nb">format</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">nth_t_name</span><span class="p">))</span>
+                <span class="n">nth_t_match_b_name</span> <span class="o">=</span> <span class="n">dic_match</span><span class="p">[</span><span class="n">nth_t_name</span><span class="p">]</span>
+                <span class="n">nth_t_match_b_id</span> <span class="o">=</span> <span class="n">name2id</span><span class="p">[</span><span class="n">nth_t_match_b_name</span><span class="p">]</span>
+                <span class="n">nth_t_match_b_pref</span> <span class="o">=</span> <span class="n">pref_top</span><span class="p">[</span><span class="n">nth_t_id</span><span class="p">][</span><span class="n">nth_t_match_b_id</span><span class="p">]</span>
+                <span class="n">out_bot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;      </span><span class="si">{:}</span><span class="s2"> is currently matched with </span><span class="si">{:}</span><span class="s2">, their </span><span class="si">{:}</span><span class="s2">. choice.&quot;</span><span class="o">.</span>\
+                      <span class="nb">format</span><span class="p">(</span><span class="n">nth_t_name</span><span class="p">,</span><span class="n">nth_t_match_b_name</span><span class="p">,</span><span class="n">nth_t_match_b_pref</span><span class="p">))</span>
+                <span class="n">nth_t_this_b_pref</span> <span class="o">=</span> <span class="n">pref_top</span><span class="p">[</span><span class="n">nth_t_id</span><span class="p">][</span><span class="n">id_b</span><span class="p">]</span>
+                <span class="n">str_aux</span> <span class="o">=</span> <span class="s2">&quot;      Since </span><span class="si">{:}</span><span class="s2"> is </span><span class="si">{:}</span><span class="s2">&#39;s </span><span class="si">{:}</span><span class="s2">. choice and &quot;</span><span class="o">.</span>\
+                      <span class="nb">format</span><span class="p">(</span><span class="n">names_bottom</span><span class="p">[</span><span class="n">id_b</span><span class="p">],</span><span class="n">nth_t_name</span><span class="p">,</span><span class="n">nth_t_this_b_pref</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">nth_t_this_b_pref</span><span class="o">&lt;</span><span class="n">nth_t_match_b_pref</span><span class="p">):</span>
+                    <span class="n">str_aux</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">{:}</span><span class="s2">&lt;</span><span class="si">{:}</span><span class="se">\n</span><span class="s2">         --&gt; </span><span class="si">{:}</span><span class="s2"> will reject their current match - Unstable!&quot;</span><span class="o">.</span>\
+                         <span class="nb">format</span><span class="p">(</span><span class="n">nth_t_this_b_pref</span><span class="p">,</span><span class="n">nth_t_match_b_pref</span><span class="p">,</span><span class="n">nth_t_name</span><span class="p">)</span>
+                    <span class="n">unstables</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:}</span><span class="s2">: x </span><span class="si">{:}</span><span class="s2"> -&gt; </span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names_bottom</span><span class="p">[</span><span class="n">id_b</span><span class="p">],</span><span class="n">names_top</span><span class="p">[</span><span class="n">id_t</span><span class="p">],</span><span class="n">nth_t_name</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">str_aux</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="si">{:}</span><span class="s2">&gt;</span><span class="si">{:}</span><span class="se">\n</span><span class="s2">         --&gt; </span><span class="si">{:}</span><span class="s2"> is satisfied with their current match.&quot;</span><span class="o">.</span>\
+                         <span class="nb">format</span><span class="p">(</span><span class="n">nth_t_this_b_pref</span><span class="p">,</span><span class="n">nth_t_match_b_pref</span><span class="p">,</span><span class="n">nth_t_name</span><span class="p">)</span>
+                <span class="n">out_bot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">str_aux</span><span class="p">)</span>
+                <span class="n">out_bot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">out_bot</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">45</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_top</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out_bot</span><span class="p">))</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">unstables</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">This proposal is unstable due to:</span><span class="se">\n</span><span class="s2"> * &quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> * &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">unstables</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">This proposal is stable.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="case-1">
+<h1>Case 1<a class="headerlink" href="#case-1" title="Permalink to this headline">¶</a></h1>
+<p><img alt="GaleShapley_Imp_1.png" src="_images/GaleShapley_Imp_1.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pref_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">pref_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">pref</span> <span class="o">=</span> <span class="p">[</span><span class="n">pref_0</span><span class="p">,</span> <span class="n">pref_1</span><span class="p">]</span>
+
+<span class="n">names_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;Ann&quot;</span><span class="p">,</span><span class="s2">&quot;Beth&quot;</span><span class="p">,</span><span class="s2">&quot;Cher&quot;</span><span class="p">,</span><span class="s2">&quot;Dot&quot;</span><span class="p">])</span>
+<span class="n">names_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;Al&quot;</span><span class="p">,</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="s2">&quot;Cal&quot;</span><span class="p">,</span><span class="s2">&quot;Dan&quot;</span><span class="p">])</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">names_0</span><span class="p">,</span> <span class="n">names_1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="find-a-stable-proposition">
+<h2>1.1 Find a stable proposition:<a class="headerlink" href="#find-a-stable-proposition" title="Permalink to this headline">¶</a></h2>
+<section id="women-proposed-by-men">
+<h3>Women proposed by men:<a class="headerlink" href="#women-proposed-by-men" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop_1_1_pw</span> <span class="o">=</span> <span class="n">find_stable</span><span class="p">(</span><span class="n">pref</span><span class="p">,</span><span class="n">names</span><span class="p">,</span><span class="n">proposed_by</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span>
+                          <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Cher      Dot      Ann     Beth   
+    |        |        |        |    
+   Al       Bob      Cal      Dan   
+   3x1      3x1      3x1      4x4   
+
+*Details:*
+
+Al (0)&#39;s 1. preference: Cher(2)
+Bob(1)&#39;s 1. preference: Dot (3)
+Cal(2)&#39;s 1. preference: Ann (0)
+Dan(3)&#39;s 1. preference: Dot (3)
+[[2], [], [0], [1, 3]]
+
+---------------------------------------------
+
+Al (0)&#39;s 1. preference: Cher(2)
+Bob(1)&#39;s 1. preference: Dot (3)
+Cal(2)&#39;s 1. preference: Ann (0)
+Dan(3)&#39;s 2. preference: Cher(2)
+[[2], [], [0, 3], [1]]
+
+---------------------------------------------
+
+Al (0)&#39;s 1. preference: Cher(2)
+Bob(1)&#39;s 1. preference: Dot (3)
+Cal(2)&#39;s 1. preference: Ann (0)
+Dan(3)&#39;s 3. preference: Ann (0)
+[[2, 3], [], [0], [1]]
+
+---------------------------------------------
+
+Al (0)&#39;s 1. preference: Cher(2)
+Bob(1)&#39;s 1. preference: Dot (3)
+Cal(2)&#39;s 1. preference: Ann (0)
+Dan(3)&#39;s 4. preference: Beth(1)
+[[2], [3], [0], [1]]
+
+---------------------------------------------
+
+[[2], [3], [0], [1]]
+[[&#39;Cher&#39;, &#39;Al&#39;], [&#39;Dot&#39;, &#39;Bob&#39;], [&#39;Ann&#39;, &#39;Cal&#39;], [&#39;Beth&#39;, &#39;Dan&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Check the stability</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">check_stability</span><span class="p">(</span><span class="n">prop_1_1_pw</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Cher      Dot      Ann     Beth   
+    |        |        |        |    
+   Al       Bob      Cal      Dan   
+   3x1      3x1      3x1      4x4   
+
+* Cher is currently matched with Al - their 3. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Bob:
+      Bob is currently matched with Dot, their 1. choice.
+      Since Cher is Bob&#39;s 4. choice and 4&gt;1
+         --&gt; Bob is satisfied with their current match.
+
+   - Their 2. choice is Cal:
+      Cal is currently matched with Ann, their 1. choice.
+      Since Cher is Cal&#39;s 3. choice and 3&gt;1
+         --&gt; Cal is satisfied with their current match.
+
+---------------------------------------------
+
+* Dot is currently matched with Bob - their 3. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Cal:
+      Cal is currently matched with Ann, their 1. choice.
+      Since Dot is Cal&#39;s 4. choice and 4&gt;1
+         --&gt; Cal is satisfied with their current match.
+
+   - Their 2. choice is Al:
+      Al is currently matched with Cher, their 1. choice.
+      Since Dot is Al&#39;s 2. choice and 2&gt;1
+         --&gt; Al is satisfied with their current match.
+
+---------------------------------------------
+
+* Ann is currently matched with Cal - their 3. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Al:
+      Al is currently matched with Cher, their 1. choice.
+      Since Ann is Al&#39;s 3. choice and 3&gt;1
+         --&gt; Al is satisfied with their current match.
+
+   - Their 2. choice is Bob:
+      Bob is currently matched with Dot, their 1. choice.
+      Since Ann is Bob&#39;s 2. choice and 2&gt;1
+         --&gt; Bob is satisfied with their current match.
+
+---------------------------------------------
+
+* Beth is currently matched with Dan - their 4. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Al:
+      Al is currently matched with Cher, their 1. choice.
+      Since Beth is Al&#39;s 4. choice and 4&gt;1
+         --&gt; Al is satisfied with their current match.
+
+   - Their 2. choice is Bob:
+      Bob is currently matched with Dot, their 1. choice.
+      Since Beth is Bob&#39;s 3. choice and 3&gt;1
+         --&gt; Bob is satisfied with their current match.
+
+   - Their 3. choice is Cal:
+      Cal is currently matched with Ann, their 1. choice.
+      Since Beth is Cal&#39;s 2. choice and 2&gt;1
+         --&gt; Cal is satisfied with their current match.
+
+---------------------------------------------
+
+* Al is currently matched with Cher - their 1. choice
+  Al can&#39;t do any better because they already got their top choice!
+---------------------------------------------
+
+* Bob is currently matched with Dot - their 1. choice
+  Bob can&#39;t do any better because they already got their top choice!
+---------------------------------------------
+
+* Cal is currently matched with Ann - their 1. choice
+  Cal can&#39;t do any better because they already got their top choice!
+---------------------------------------------
+
+* Dan is currently matched with Beth - their 4. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Dot:
+      Dot is currently matched with Bob, their 3. choice.
+      Since Dan is Dot&#39;s 4. choice and 4&gt;3
+         --&gt; Dot is satisfied with their current match.
+
+   - Their 2. choice is Cher:
+      Cher is currently matched with Al, their 3. choice.
+      Since Dan is Cher&#39;s 4. choice and 4&gt;3
+         --&gt; Cher is satisfied with their current match.
+
+   - Their 3. choice is Ann:
+      Ann is currently matched with Cal, their 3. choice.
+      Since Dan is Ann&#39;s 4. choice and 4&gt;3
+         --&gt; Ann is satisfied with their current match.
+
+---------------------------------------------
+
+
+This proposal is stable.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="men-proposed-by-women">
+<h3>Men proposed by women:<a class="headerlink" href="#men-proposed-by-women" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop_1_1_pw</span> <span class="o">=</span> <span class="n">find_stable</span><span class="p">(</span><span class="n">pref</span><span class="p">,</span><span class="n">names</span><span class="p">,</span><span class="n">proposed_by</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
+                          <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Cal      Dan      Al       Bob   
+    |        |        |        |    
+   Ann     Beth     Cher      Dot   
+   1x3      4x4      1x3      1x3   
+
+*Details:*
+
+Ann(0)&#39;s 1. preference: Al  (0)
+Beth(1)&#39;s 1. preference: Al  (0)
+Cher(2)&#39;s 1. preference: Bob (1)
+Dot(3)&#39;s 1. preference: Cal (2)
+[[0, 1], [2], [3], []]
+
+---------------------------------------------
+
+Ann(0)&#39;s 1. preference: Al  (0)
+Beth(1)&#39;s 2. preference: Bob (1)
+Cher(2)&#39;s 1. preference: Bob (1)
+Dot(3)&#39;s 1. preference: Cal (2)
+[[0], [1, 2], [3], []]
+
+---------------------------------------------
+
+Ann(0)&#39;s 1. preference: Al  (0)
+Beth(1)&#39;s 2. preference: Bob (1)
+Cher(2)&#39;s 2. preference: Cal (2)
+Dot(3)&#39;s 1. preference: Cal (2)
+[[0], [1], [2, 3], []]
+
+---------------------------------------------
+
+Ann(0)&#39;s 1. preference: Al  (0)
+Beth(1)&#39;s 2. preference: Bob (1)
+Cher(2)&#39;s 2. preference: Cal (2)
+Dot(3)&#39;s 2. preference: Al  (0)
+[[0, 3], [1], [2], []]
+
+---------------------------------------------
+
+Ann(0)&#39;s 2. preference: Bob (1)
+Beth(1)&#39;s 2. preference: Bob (1)
+Cher(2)&#39;s 2. preference: Cal (2)
+Dot(3)&#39;s 2. preference: Al  (0)
+[[3], [0, 1], [2], []]
+
+---------------------------------------------
+
+Ann(0)&#39;s 2. preference: Bob (1)
+Beth(1)&#39;s 3. preference: Cal (2)
+Cher(2)&#39;s 2. preference: Cal (2)
+Dot(3)&#39;s 2. preference: Al  (0)
+[[3], [0], [1, 2], []]
+
+---------------------------------------------
+
+Ann(0)&#39;s 2. preference: Bob (1)
+Beth(1)&#39;s 3. preference: Cal (2)
+Cher(2)&#39;s 3. preference: Al  (0)
+Dot(3)&#39;s 2. preference: Al  (0)
+[[2, 3], [0], [1], []]
+
+---------------------------------------------
+
+Ann(0)&#39;s 2. preference: Bob (1)
+Beth(1)&#39;s 3. preference: Cal (2)
+Cher(2)&#39;s 3. preference: Al  (0)
+Dot(3)&#39;s 3. preference: Bob (1)
+[[2], [0, 3], [1], []]
+
+---------------------------------------------
+
+Ann(0)&#39;s 3. preference: Cal (2)
+Beth(1)&#39;s 3. preference: Cal (2)
+Cher(2)&#39;s 3. preference: Al  (0)
+Dot(3)&#39;s 3. preference: Bob (1)
+[[2], [3], [0, 1], []]
+
+---------------------------------------------
+
+Ann(0)&#39;s 3. preference: Cal (2)
+Beth(1)&#39;s 4. preference: Dan (3)
+Cher(2)&#39;s 3. preference: Al  (0)
+Dot(3)&#39;s 3. preference: Bob (1)
+[[2], [3], [0], [1]]
+
+---------------------------------------------
+
+[[2], [3], [0], [1]]
+[[&#39;Cal&#39;, &#39;Ann&#39;], [&#39;Dan&#39;, &#39;Beth&#39;], [&#39;Al&#39;, &#39;Cher&#39;], [&#39;Bob&#39;, &#39;Dot&#39;]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>So we see that both sides’ proposals yield the same matching. Hence this is a unique match.</p>
+<p>For breve output &amp; easier comparison:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop_1_1_pw</span> <span class="o">=</span> <span class="n">find_stable</span><span class="p">(</span><span class="n">pref</span><span class="p">,</span><span class="n">names</span><span class="p">,</span><span class="n">proposed_by</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span>
+                          <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">top</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Ann     Beth     Cher      Dot   
+    |        |        |        |    
+   Cal      Dan      Al       Bob   
+   3x1      4x4      3x1      3x1   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop_1_1_pm</span> <span class="o">=</span> <span class="n">find_stable</span><span class="p">(</span><span class="n">pref</span><span class="p">,</span><span class="n">names</span><span class="p">,</span><span class="n">proposed_by</span><span class="o">=</span><span class="s2">&quot;m&quot;</span><span class="p">,</span>
+                          <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  Cher      Dot      Ann     Beth   
+    |        |        |        |    
+   Al       Bob      Cal      Dan   
+   3x1      3x1      3x1      4x4   
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="evaluate-different-matches-straight-from-the-book">
+<h2>1.2 Evaluate different matches (straight from the book)<a class="headerlink" href="#evaluate-different-matches-straight-from-the-book" title="Permalink to this headline">¶</a></h2>
+<p><img alt="GaleShapley_Imp_2.png" src="_images/GaleShapley_Imp_2.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop_gura_1</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Al&quot;</span><span class="p">,</span><span class="s2">&quot;Dot&quot;</span><span class="p">],[</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="s2">&quot;Ann&quot;</span><span class="p">],[</span><span class="s2">&quot;Cal&quot;</span><span class="p">,</span><span class="s2">&quot;Beth&quot;</span><span class="p">],[</span><span class="s2">&quot;Dan&quot;</span><span class="p">,</span><span class="s2">&quot;Cher&quot;</span><span class="p">]]</span>
+<span class="n">prop_gura_1_input</span><span class="o">=</span><span class="p">(</span><span class="n">prop_gura_1</span><span class="p">,[</span><span class="n">pref_1</span><span class="p">,</span><span class="n">pref_0</span><span class="p">],[</span><span class="n">names_1</span><span class="p">,</span><span class="n">names_0</span><span class="p">])</span>
+<span class="n">check_stability</span><span class="p">(</span><span class="n">prop_gura_1_input</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Al       Bob      Cal      Dan   
+    |        |        |        |    
+   Dot      Ann     Beth     Cher   
+   2x2      2x2      2x3      2x4   
+
+* Al is currently matched with Dot - their 2. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Cher:
+      Cher is currently matched with Dan, their 4. choice.
+      Since Al is Cher&#39;s 3. choice and 3&lt;4
+         --&gt; Cher will reject their current match - Unstable!
+
+---------------------------------------------
+
+* Bob is currently matched with Ann - their 2. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Dot:
+      Dot is currently matched with Al, their 2. choice.
+      Since Bob is Dot&#39;s 3. choice and 3&gt;2
+         --&gt; Dot is satisfied with their current match.
+
+---------------------------------------------
+
+* Cal is currently matched with Beth - their 2. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Ann:
+      Ann is currently matched with Bob, their 2. choice.
+      Since Cal is Ann&#39;s 3. choice and 3&gt;2
+         --&gt; Ann is satisfied with their current match.
+
+---------------------------------------------
+
+* Dan is currently matched with Cher - their 2. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Dot:
+      Dot is currently matched with Al, their 2. choice.
+      Since Dan is Dot&#39;s 4. choice and 4&gt;2
+         --&gt; Dot is satisfied with their current match.
+
+---------------------------------------------
+
+* Dot is currently matched with Al - their 2. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Cal:
+      Cal is currently matched with Beth, their 2. choice.
+      Since Dot is Cal&#39;s 4. choice and 4&gt;2
+         --&gt; Cal is satisfied with their current match.
+
+---------------------------------------------
+
+* Ann is currently matched with Bob - their 2. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Al:
+      Al is currently matched with Dot, their 2. choice.
+      Since Ann is Al&#39;s 3. choice and 3&gt;2
+         --&gt; Al is satisfied with their current match.
+
+---------------------------------------------
+
+* Beth is currently matched with Cal - their 3. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Al:
+      Al is currently matched with Dot, their 2. choice.
+      Since Beth is Al&#39;s 4. choice and 4&gt;2
+         --&gt; Al is satisfied with their current match.
+
+   - Their 2. choice is Bob:
+      Bob is currently matched with Ann, their 2. choice.
+      Since Beth is Bob&#39;s 3. choice and 3&gt;2
+         --&gt; Bob is satisfied with their current match.
+
+---------------------------------------------
+
+* Cher is currently matched with Dan - their 4. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is Bob:
+      Bob is currently matched with Ann, their 2. choice.
+      Since Cher is Bob&#39;s 4. choice and 4&gt;2
+         --&gt; Bob is satisfied with their current match.
+
+   - Their 2. choice is Cal:
+      Cal is currently matched with Beth, their 2. choice.
+      Since Cher is Cal&#39;s 3. choice and 3&gt;2
+         --&gt; Cal is satisfied with their current match.
+
+   - Their 3. choice is Al:
+      Al is currently matched with Dot, their 2. choice.
+      Since Cher is Al&#39;s 1. choice and 1&lt;2
+         --&gt; Al will reject their current match - Unstable!
+
+---------------------------------------------
+
+
+This proposal is unstable due to:
+ * Al: x Dot -&gt; Cher
+ * Cher: x Dan -&gt; Al
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="men-s-first-choices">
+<h2>Men’s first choices<a class="headerlink" href="#men-s-first-choices" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop_gura_2</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Al&quot;</span><span class="p">,</span><span class="s2">&quot;Cher&quot;</span><span class="p">],[</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span><span class="s2">&quot;Dot&quot;</span><span class="p">],[</span><span class="s2">&quot;Cal&quot;</span><span class="p">,</span><span class="s2">&quot;Ann&quot;</span><span class="p">],[</span><span class="s2">&quot;Dan&quot;</span><span class="p">,</span><span class="s2">&quot;Beth&quot;</span><span class="p">]]</span>
+<span class="n">prop_gura_2_input</span><span class="o">=</span><span class="p">(</span><span class="n">prop_gura_2</span><span class="p">,[</span><span class="n">pref_1</span><span class="p">,</span><span class="n">pref_0</span><span class="p">],[</span><span class="n">names_1</span><span class="p">,</span><span class="n">names_0</span><span class="p">])</span>
+<span class="n">check_stability</span><span class="p">(</span><span class="n">prop_gura_2_input</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Al       Bob      Cal      Dan   
+    |        |        |        |    
+  Cher      Dot      Ann     Beth   
+   1x3      1x3      1x3      4x4   
+
+
+This proposal is stable.
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is also the same one we derived via men/women proposing. It was unique, so this is the only stable proposal.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="case-2-from-the-book">
+<h1>Case 2 (from the book)<a class="headerlink" href="#case-2-from-the-book" title="Permalink to this headline">¶</a></h1>
+<p><img alt="GaleShapley_Imp_3.png" src="_images/GaleShapley_Imp_3.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pref_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+<span class="n">pref_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],[</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="n">pref</span> <span class="o">=</span> <span class="p">[</span><span class="n">pref_0</span><span class="p">,</span> <span class="n">pref_1</span><span class="p">]</span>
+
+<span class="n">names_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">,</span><span class="s2">&quot;E&quot;</span><span class="p">])</span>
+<span class="n">names_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">])</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">names_0</span><span class="p">,</span> <span class="n">names_1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop1</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">],[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">],[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">],[</span><span class="s2">&quot;D&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">],[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">]]</span>
+<span class="n">prop1_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">prop1</span><span class="p">,</span><span class="n">pref</span><span class="p">,</span><span class="n">names</span><span class="p">)</span>
+<span class="n">check_stability</span><span class="p">(</span><span class="n">prop1_input</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    A        B        C        D        E    
+    |        |        |        |        |    
+    a        b        c        d        e    
+   5x1      5x1      5x1      5x1      5x1   
+
+* A is currently matched with a - their 5. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is b:
+      b is currently matched with B, their 1. choice.
+      Since A is b&#39;s 5. choice and 5&gt;1
+         --&gt; b is satisfied with their current match.
+
+   - Their 2. choice is c:
+      c is currently matched with C, their 1. choice.
+      Since A is c&#39;s 4. choice and 4&gt;1
+         --&gt; c is satisfied with their current match.
+
+   - Their 3. choice is d:
+      d is currently matched with D, their 1. choice.
+      Since A is d&#39;s 3. choice and 3&gt;1
+         --&gt; d is satisfied with their current match.
+
+   - Their 4. choice is e:
+      e is currently matched with E, their 1. choice.
+      Since A is e&#39;s 2. choice and 2&gt;1
+         --&gt; e is satisfied with their current match.
+
+---------------------------------------------
+
+* B is currently matched with b - their 5. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is c:
+      c is currently matched with C, their 1. choice.
+      Since B is c&#39;s 5. choice and 5&gt;1
+         --&gt; c is satisfied with their current match.
+
+   - Their 2. choice is d:
+      d is currently matched with D, their 1. choice.
+      Since B is d&#39;s 4. choice and 4&gt;1
+         --&gt; d is satisfied with their current match.
+
+   - Their 3. choice is e:
+      e is currently matched with E, their 1. choice.
+      Since B is e&#39;s 3. choice and 3&gt;1
+         --&gt; e is satisfied with their current match.
+
+   - Their 4. choice is a:
+      a is currently matched with A, their 1. choice.
+      Since B is a&#39;s 2. choice and 2&gt;1
+         --&gt; a is satisfied with their current match.
+
+---------------------------------------------
+
+* C is currently matched with c - their 5. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is d:
+      d is currently matched with D, their 1. choice.
+      Since C is d&#39;s 5. choice and 5&gt;1
+         --&gt; d is satisfied with their current match.
+
+   - Their 2. choice is e:
+      e is currently matched with E, their 1. choice.
+      Since C is e&#39;s 4. choice and 4&gt;1
+         --&gt; e is satisfied with their current match.
+
+   - Their 3. choice is a:
+      a is currently matched with A, their 1. choice.
+      Since C is a&#39;s 3. choice and 3&gt;1
+         --&gt; a is satisfied with their current match.
+
+   - Their 4. choice is b:
+      b is currently matched with B, their 1. choice.
+      Since C is b&#39;s 2. choice and 2&gt;1
+         --&gt; b is satisfied with their current match.
+
+---------------------------------------------
+
+* D is currently matched with d - their 5. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is e:
+      e is currently matched with E, their 1. choice.
+      Since D is e&#39;s 5. choice and 5&gt;1
+         --&gt; e is satisfied with their current match.
+
+   - Their 2. choice is a:
+      a is currently matched with A, their 1. choice.
+      Since D is a&#39;s 4. choice and 4&gt;1
+         --&gt; a is satisfied with their current match.
+
+   - Their 3. choice is b:
+      b is currently matched with B, their 1. choice.
+      Since D is b&#39;s 3. choice and 3&gt;1
+         --&gt; b is satisfied with their current match.
+
+   - Their 4. choice is c:
+      c is currently matched with C, their 1. choice.
+      Since D is c&#39;s 2. choice and 2&gt;1
+         --&gt; c is satisfied with their current match.
+
+---------------------------------------------
+
+* E is currently matched with e - their 5. choice
+  Let&#39;s see if they can persuade a higher preferred candidate.
+   - Their 1. choice is a:
+      a is currently matched with A, their 1. choice.
+      Since E is a&#39;s 5. choice and 5&gt;1
+         --&gt; a is satisfied with their current match.
+
+   - Their 2. choice is b:
+      b is currently matched with B, their 1. choice.
+      Since E is b&#39;s 4. choice and 4&gt;1
+         --&gt; b is satisfied with their current match.
+
+   - Their 3. choice is c:
+      c is currently matched with C, their 1. choice.
+      Since E is c&#39;s 3. choice and 3&gt;1
+         --&gt; c is satisfied with their current match.
+
+   - Their 4. choice is d:
+      d is currently matched with D, their 1. choice.
+      Since E is d&#39;s 2. choice and 2&gt;1
+         --&gt; d is satisfied with their current match.
+
+---------------------------------------------
+
+* a is currently matched with A - their 1. choice
+  a can&#39;t do any better because they already got their top choice!
+---------------------------------------------
+
+* b is currently matched with B - their 1. choice
+  b can&#39;t do any better because they already got their top choice!
+---------------------------------------------
+
+* c is currently matched with C - their 1. choice
+  c can&#39;t do any better because they already got their top choice!
+---------------------------------------------
+
+* d is currently matched with D - their 1. choice
+  d can&#39;t do any better because they already got their top choice!
+---------------------------------------------
+
+* e is currently matched with E - their 1. choice
+  e can&#39;t do any better because they already got their top choice!
+---------------------------------------------
+
+
+This proposal is stable.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop2</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">],[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">],[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">],[</span><span class="s2">&quot;D&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">],[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">]]</span>
+<span class="n">prop2_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">prop2</span><span class="p">,</span><span class="n">pref</span><span class="p">,</span><span class="n">names</span><span class="p">)</span>
+<span class="n">check_stability</span><span class="p">(</span><span class="n">prop2_input</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    A        B        C        D        E    
+    |        |        |        |        |    
+    e        a        b        c        d    
+   4x2      4x2      4x2      4x2      4x2   
+
+
+This proposal is stable.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop3</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">],[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">],[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">],[</span><span class="s2">&quot;D&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">],[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">]]</span>
+<span class="n">prop3_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">prop3</span><span class="p">,</span><span class="n">pref</span><span class="p">,</span><span class="n">names</span><span class="p">)</span>
+<span class="n">check_stability</span><span class="p">(</span><span class="n">prop3_input</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    A        B        C        D        E    
+    |        |        |        |        |    
+    d        e        a        b        c    
+   3x3      3x3      3x3      3x3      3x3   
+
+
+This proposal is stable.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop4</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">],[</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;d&quot;</span><span class="p">],[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">],[</span><span class="s2">&quot;D&quot;</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">],[</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="s2">&quot;b&quot;</span><span class="p">]]</span>
+<span class="n">prop4_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">prop4</span><span class="p">,</span><span class="n">pref</span><span class="p">,</span><span class="n">names</span><span class="p">)</span>
+<span class="n">check_stability</span><span class="p">(</span><span class="n">prop4_input</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    A        B        C        D        E    
+    |        |        |        |        |    
+    c        d        e        a        b    
+   2x4      2x4      2x4      2x4      2x4   
+
+
+This proposal is stable.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reference">
+<h1>Reference:<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<p>Ein-Ya Gura &amp; Michael B. Maschler, <a class="reference external" href="http://katalog.hacettepe.edu.tr/client/tr_TR/default_tr/search/detailnonmodal/ent:%24002f%24002fSD_ILS%24002f0%24002fSD_ILS:312448/one?qu=ein+ya+gura">“Insights Into Game Theory”</a>, Cambridge Uni. Press, 2008. <a class="reference external" href="https://www.google.com/search?q=ISBN+978-0-511-45538-4&amp;oq=ISBN+978-0-511-45538-4">ISBN 978-0-511-45538-4</a></p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Gale-Shapley Matching Algorithm</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_LN36_EST_Information_Theory.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Information Theory</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

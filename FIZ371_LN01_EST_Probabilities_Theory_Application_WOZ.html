@@ -1,0 +1,3278 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Probabilities Application: Letter Frequencies &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Probabilities" href="FIZ371_LN02_EST_Probabilities.html" />
+    <link rel="prev" title="Probabilities - Concept &amp; Theory" href="FIZ371_LN01_EST_Probabilities_Theory.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Final.html">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#letters">
+   Letters
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bigrams">
+   Bigrams
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Exercise
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-x-a-y-n">
+     <span class="math notranslate nohighlight">
+      \(p(x="a"|y="n")\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-y-n-x-a">
+     <span class="math notranslate nohighlight">
+      \(p(y="n"|x="a")\)
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-the-frequencies">
+   Visualizing the frequencies
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Probabilities Application: Letter Frequencies</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#letters">
+   Letters
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bigrams">
+   Bigrams
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercise">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Exercise
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-x-a-y-n">
+     <span class="math notranslate nohighlight">
+      \(p(x="a"|y="n")\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#p-y-n-x-a">
+     <span class="math notranslate nohighlight">
+      \(p(y="n"|x="a")\)
+     </span>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Exercise
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-the-frequencies">
+   Visualizing the frequencies
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="probabilities-application-letter-frequencies">
+<h1>Probabilities Application: Letter Frequencies<a class="headerlink" href="#probabilities-application-letter-frequencies" title="Permalink to this headline">¶</a></h1>
+<p><strong>FIZ371 - Scientific &amp; Technical Calculations | 11/10/2023</strong></p>
+<p>Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+<p>Using L. Frank Baum’s “The Wonderful Wizard of Oz” book, calculate the frequencies of the letters &amp; bigrams.</p>
+<p>(The book, written in 1900, is now in public domain and available from <a class="reference external" href="https://www.gutenberg.org/ebooks/55">Project Gutenberg</a>)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We first read the text into the <code class="docutils literal notranslate"><span class="pre">data</span></code> variable and define the set of letters we are interested in:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="s2">&quot;supp/wizardofoz_1990_publicdomain_guthenberg.txt&quot;</span>
+<span class="n">alphabet_str</span> <span class="o">=</span> <span class="s2">&quot;abcdefghijklmnopqrstuvwxyz &quot;</span>
+
+<span class="c1"># Convert the alphabet_str to alphabet array</span>
+<span class="n">alphabet</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">alphabet_str</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myfile</span><span class="p">:</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">myfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+    
+<span class="c1"># Convert it to all lowercase</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="letters">
+<h1>Letters<a class="headerlink" href="#letters" title="Permalink to this headline">¶</a></h1>
+<p>Count and store the frequencies into the <code class="docutils literal notranslate"><span class="pre">count_letter</span></code> dictionary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_letter</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="n">count_letter</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+<span class="n">count_letter</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a&#39;: 13887,
+ &#39;b&#39;: 2448,
+ &#39;c&#39;: 4161,
+ &#39;d&#39;: 8888,
+ &#39;e&#39;: 22261,
+ &#39;f&#39;: 3588,
+ &#39;g&#39;: 3587,
+ &#39;h&#39;: 11977,
+ &#39;i&#39;: 10350,
+ &#39;j&#39;: 240,
+ &#39;k&#39;: 1920,
+ &#39;l&#39;: 7256,
+ &#39;m&#39;: 3830,
+ &#39;n&#39;: 10752,
+ &#39;o&#39;: 14240,
+ &#39;p&#39;: 2466,
+ &#39;q&#39;: 144,
+ &#39;r&#39;: 10534,
+ &#39;s&#39;: 9689,
+ &#39;t&#39;: 16378,
+ &#39;u&#39;: 4600,
+ &#39;v&#39;: 1290,
+ &#39;w&#39;: 5229,
+ &#39;x&#39;: 209,
+ &#39;y&#39;: 4128,
+ &#39;z&#39;: 277,
+ &#39; &#39;: 44331}
+</pre></div>
+</div>
+</div>
+</div>
+<p>To calculate the probabilities, we divide each frequency by the total sum:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tot_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">count_letter</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tot_count</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>218660
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">probs_letter</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">count_letter</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">probs_letter</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_letter</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">/</span> <span class="n">tot_count</span>
+<span class="n">probs_letter</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;a&#39;: 0.06350955821823837,
+ &#39;b&#39;: 0.0111954632763194,
+ &#39;c&#39;: 0.019029543583645843,
+ &#39;d&#39;: 0.04064758071892436,
+ &#39;e&#39;: 0.1018064575139486,
+ &#39;f&#39;: 0.016409036860879904,
+ &#39;g&#39;: 0.01640446355071801,
+ &#39;h&#39;: 0.05477453580901857,
+ &#39;i&#39;: 0.04733376017561511,
+ &#39;j&#39;: 0.0010975944388548432,
+ &#39;k&#39;: 0.008780755510838746,
+ &#39;l&#39;: 0.033183938534711424,
+ &#39;m&#39;: 0.01751577792005854,
+ &#39;n&#39;: 0.04917223086069697,
+ &#39;o&#39;: 0.06512393670538735,
+ &#39;p&#39;: 0.011277782859233513,
+ &#39;q&#39;: 0.0006585566633129059,
+ &#39;r&#39;: 0.048175249245403826,
+ &#39;s&#39;: 0.0443108021586024,
+ &#39;t&#39;: 0.07490167383151926,
+ &#39;u&#39;: 0.021037226744717828,
+ &#39;v&#39;: 0.005899570108844782,
+ &#39;w&#39;: 0.023913838836549895,
+ &#39;x&#39;: 0.0009558218238360926,
+ &#39;y&#39;: 0.018878624348303303,
+ &#39;z&#39;: 0.0012668069148449649,
+ &#39; &#39;: 0.20273941278697521}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bigrams">
+<h1>Bigrams<a class="headerlink" href="#bigrams" title="Permalink to this headline">¶</a></h1>
+<p>We are going to generate all possible bigrams and count them, storing in <code class="docutils literal notranslate"><span class="pre">count_bigram</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_bigram</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">total_sum_bigram</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+        <span class="n">count_bigram</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">bigram</span><span class="p">)</span>
+        <span class="n">total_sum_bigram</span> <span class="o">+=</span> <span class="n">count_bigram</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_bigram</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;aa&#39;: 0,
+ &#39;ab&#39;: 124,
+ &#39;ac&#39;: 350,
+ &#39;ad&#39;: 789,
+ &#39;ae&#39;: 1,
+ &#39;af&#39;: 143,
+ &#39;ag&#39;: 264,
+ &#39;ah&#39;: 12,
+ &#39;ai&#39;: 790,
+ &#39;aj&#39;: 2,
+ &#39;ak&#39;: 156,
+ &#39;al&#39;: 999,
+ &#39;am&#39;: 310,
+ &#39;an&#39;: 3170,
+ &#39;ao&#39;: 0,
+ &#39;ap&#39;: 218,
+ &#39;aq&#39;: 0,
+ &#39;ar&#39;: 1552,
+ &#39;as&#39;: 1506,
+ &#39;at&#39;: 1442,
+ &#39;au&#39;: 147,
+ &#39;av&#39;: 343,
+ &#39;aw&#39;: 223,
+ &#39;ax&#39;: 36,
+ &#39;ay&#39;: 377,
+ &#39;az&#39;: 12,
+ &#39;a &#39;: 897,
+ &#39;ba&#39;: 254,
+ &#39;bb&#39;: 9,
+ &#39;bc&#39;: 0,
+ &#39;bd&#39;: 0,
+ &#39;be&#39;: 857,
+ &#39;bf&#39;: 0,
+ &#39;bg&#39;: 0,
+ &#39;bh&#39;: 0,
+ &#39;bi&#39;: 120,
+ &#39;bj&#39;: 2,
+ &#39;bk&#39;: 0,
+ &#39;bl&#39;: 191,
+ &#39;bm&#39;: 0,
+ &#39;bn&#39;: 0,
+ &#39;bo&#39;: 207,
+ &#39;bp&#39;: 0,
+ &#39;bq&#39;: 0,
+ &#39;br&#39;: 243,
+ &#39;bs&#39;: 7,
+ &#39;bt&#39;: 6,
+ &#39;bu&#39;: 393,
+ &#39;bv&#39;: 0,
+ &#39;bw&#39;: 0,
+ &#39;bx&#39;: 0,
+ &#39;by&#39;: 147,
+ &#39;bz&#39;: 0,
+ &#39;b &#39;: 7,
+ &#39;ca&#39;: 798,
+ &#39;cb&#39;: 0,
+ &#39;cc&#39;: 26,
+ &#39;cd&#39;: 0,
+ &#39;ce&#39;: 470,
+ &#39;cf&#39;: 0,
+ &#39;cg&#39;: 0,
+ &#39;ch&#39;: 699,
+ &#39;ci&#39;: 150,
+ &#39;cj&#39;: 0,
+ &#39;ck&#39;: 377,
+ &#39;cl&#39;: 189,
+ &#39;cm&#39;: 0,
+ &#39;cn&#39;: 0,
+ &#39;co&#39;: 692,
+ &#39;cp&#39;: 0,
+ &#39;cq&#39;: 0,
+ &#39;cr&#39;: 394,
+ &#39;cs&#39;: 0,
+ &#39;ct&#39;: 232,
+ &#39;cu&#39;: 67,
+ &#39;cv&#39;: 0,
+ &#39;cw&#39;: 0,
+ &#39;cx&#39;: 0,
+ &#39;cy&#39;: 21,
+ &#39;cz&#39;: 0,
+ &#39;c &#39;: 41,
+ &#39;da&#39;: 199,
+ &#39;db&#39;: 0,
+ &#39;dc&#39;: 6,
+ &#39;dd&#39;: 73,
+ &#39;de&#39;: 715,
+ &#39;df&#39;: 12,
+ &#39;dg&#39;: 19,
+ &#39;dh&#39;: 1,
+ &#39;di&#39;: 358,
+ &#39;dj&#39;: 0,
+ &#39;dk&#39;: 1,
+ &#39;dl&#39;: 130,
+ &#39;dm&#39;: 189,
+ &#39;dn&#39;: 16,
+ &#39;do&#39;: 781,
+ &#39;dp&#39;: 0,
+ &#39;dq&#39;: 0,
+ &#39;dr&#39;: 94,
+ &#39;ds&#39;: 170,
+ &#39;dt&#39;: 0,
+ &#39;du&#39;: 29,
+ &#39;dv&#39;: 7,
+ &#39;dw&#39;: 5,
+ &#39;dx&#39;: 0,
+ &#39;dy&#39;: 57,
+ &#39;dz&#39;: 0,
+ &#39;d &#39;: 5375,
+ &#39;ea&#39;: 1165,
+ &#39;eb&#39;: 28,
+ &#39;ec&#39;: 576,
+ &#39;ed&#39;: 2124,
+ &#39;ee&#39;: 806,
+ &#39;ef&#39;: 184,
+ &#39;eg&#39;: 88,
+ &#39;eh&#39;: 27,
+ &#39;ei&#39;: 175,
+ &#39;ej&#39;: 2,
+ &#39;ek&#39;: 17,
+ &#39;el&#39;: 660,
+ &#39;em&#39;: 512,
+ &#39;en&#39;: 1363,
+ &#39;eo&#39;: 68,
+ &#39;ep&#39;: 245,
+ &#39;eq&#39;: 14,
+ &#39;er&#39;: 2876,
+ &#39;es&#39;: 1090,
+ &#39;et&#39;: 472,
+ &#39;eu&#39;: 5,
+ &#39;ev&#39;: 279,
+ &#39;ew&#39;: 147,
+ &#39;ex&#39;: 105,
+ &#39;ey&#39;: 568,
+ &#39;ez&#39;: 1,
+ &#39;e &#39;: 7884,
+ &#39;fa&#39;: 192,
+ &#39;fb&#39;: 0,
+ &#39;fc&#39;: 0,
+ &#39;fd&#39;: 0,
+ &#39;fe&#39;: 246,
+ &#39;ff&#39;: 97,
+ &#39;fg&#39;: 0,
+ &#39;fh&#39;: 0,
+ &#39;fi&#39;: 234,
+ &#39;fj&#39;: 0,
+ &#39;fk&#39;: 0,
+ &#39;fl&#39;: 113,
+ &#39;fm&#39;: 0,
+ &#39;fn&#39;: 0,
+ &#39;fo&#39;: 749,
+ &#39;fp&#39;: 0,
+ &#39;fq&#39;: 0,
+ &#39;fr&#39;: 298,
+ &#39;fs&#39;: 1,
+ &#39;ft&#39;: 157,
+ &#39;fu&#39;: 214,
+ &#39;fv&#39;: 0,
+ &#39;fw&#39;: 1,
+ &#39;fx&#39;: 0,
+ &#39;fy&#39;: 2,
+ &#39;fz&#39;: 0,
+ &#39;f &#39;: 1214,
+ &#39;ga&#39;: 222,
+ &#39;gb&#39;: 0,
+ &#39;gc&#39;: 0,
+ &#39;gd&#39;: 2,
+ &#39;ge&#39;: 410,
+ &#39;gf&#39;: 0,
+ &#39;gg&#39;: 35,
+ &#39;gh&#39;: 444,
+ &#39;gi&#39;: 198,
+ &#39;gj&#39;: 0,
+ &#39;gk&#39;: 0,
+ &#39;gl&#39;: 84,
+ &#39;gm&#39;: 0,
+ &#39;gn&#39;: 4,
+ &#39;go&#39;: 288,
+ &#39;gp&#39;: 0,
+ &#39;gq&#39;: 0,
+ &#39;gr&#39;: 485,
+ &#39;gs&#39;: 75,
+ &#39;gt&#39;: 3,
+ &#39;gu&#39;: 135,
+ &#39;gv&#39;: 0,
+ &#39;gw&#39;: 0,
+ &#39;gx&#39;: 0,
+ &#39;gy&#39;: 5,
+ &#39;gz&#39;: 0,
+ &#39;g &#39;: 964,
+ &#39;ha&#39;: 1515,
+ &#39;hb&#39;: 0,
+ &#39;hc&#39;: 0,
+ &#39;hd&#39;: 0,
+ &#39;he&#39;: 6611,
+ &#39;hf&#39;: 2,
+ &#39;hg&#39;: 0,
+ &#39;hh&#39;: 0,
+ &#39;hi&#39;: 1157,
+ &#39;hj&#39;: 0,
+ &#39;hk&#39;: 34,
+ &#39;hl&#39;: 5,
+ &#39;hm&#39;: 0,
+ &#39;hn&#39;: 0,
+ &#39;ho&#39;: 688,
+ &#39;hp&#39;: 0,
+ &#39;hq&#39;: 0,
+ &#39;hr&#39;: 142,
+ &#39;hs&#39;: 21,
+ &#39;ht&#39;: 299,
+ &#39;hu&#39;: 69,
+ &#39;hv&#39;: 0,
+ &#39;hw&#39;: 2,
+ &#39;hx&#39;: 0,
+ &#39;hy&#39;: 416,
+ &#39;hz&#39;: 0,
+ &#39;h &#39;: 846,
+ &#39;ia&#39;: 59,
+ &#39;ib&#39;: 89,
+ &#39;ic&#39;: 423,
+ &#39;id&#39;: 677,
+ &#39;ie&#39;: 424,
+ &#39;if&#39;: 266,
+ &#39;ig&#39;: 309,
+ &#39;ih&#39;: 0,
+ &#39;ii&#39;: 22,
+ &#39;ij&#39;: 0,
+ &#39;ik&#39;: 71,
+ &#39;il&#39;: 624,
+ &#39;im&#39;: 386,
+ &#39;in&#39;: 2595,
+ &#39;io&#39;: 393,
+ &#39;ip&#39;: 42,
+ &#39;iq&#39;: 0,
+ &#39;ir&#39;: 440,
+ &#39;is&#39;: 1048,
+ &#39;it&#39;: 1504,
+ &#39;iu&#39;: 5,
+ &#39;iv&#39;: 207,
+ &#39;iw&#39;: 0,
+ &#39;ix&#39;: 7,
+ &#39;iy&#39;: 0,
+ &#39;iz&#39;: 68,
+ &#39;i &#39;: 611,
+ &#39;ja&#39;: 8,
+ &#39;jb&#39;: 0,
+ &#39;jc&#39;: 0,
+ &#39;jd&#39;: 0,
+ &#39;je&#39;: 97,
+ &#39;jf&#39;: 0,
+ &#39;jg&#39;: 0,
+ &#39;jh&#39;: 0,
+ &#39;ji&#39;: 0,
+ &#39;jj&#39;: 0,
+ &#39;jk&#39;: 0,
+ &#39;jl&#39;: 0,
+ &#39;jm&#39;: 0,
+ &#39;jn&#39;: 0,
+ &#39;jo&#39;: 75,
+ &#39;jp&#39;: 0,
+ &#39;jq&#39;: 0,
+ &#39;jr&#39;: 0,
+ &#39;js&#39;: 0,
+ &#39;jt&#39;: 0,
+ &#39;ju&#39;: 60,
+ &#39;jv&#39;: 0,
+ &#39;jw&#39;: 0,
+ &#39;jx&#39;: 0,
+ &#39;jy&#39;: 0,
+ &#39;jz&#39;: 0,
+ &#39;j &#39;: 0,
+ &#39;ka&#39;: 62,
+ &#39;kb&#39;: 0,
+ &#39;kc&#39;: 0,
+ &#39;kd&#39;: 0,
+ &#39;ke&#39;: 741,
+ &#39;kf&#39;: 10,
+ &#39;kg&#39;: 0,
+ &#39;kh&#39;: 0,
+ &#39;ki&#39;: 269,
+ &#39;kj&#39;: 0,
+ &#39;kk&#39;: 0,
+ &#39;kl&#39;: 27,
+ &#39;km&#39;: 7,
+ &#39;kn&#39;: 110,
+ &#39;ko&#39;: 1,
+ &#39;kp&#39;: 0,
+ &#39;kq&#39;: 0,
+ &#39;kr&#39;: 0,
+ &#39;ks&#39;: 82,
+ &#39;kt&#39;: 0,
+ &#39;ku&#39;: 0,
+ &#39;kv&#39;: 0,
+ &#39;kw&#39;: 3,
+ &#39;kx&#39;: 0,
+ &#39;ky&#39;: 20,
+ &#39;kz&#39;: 0,
+ &#39;k &#39;: 455,
+ &#39;la&#39;: 425,
+ &#39;lb&#39;: 2,
+ &#39;lc&#39;: 6,
+ &#39;ld&#39;: 637,
+ &#39;le&#39;: 1083,
+ &#39;lf&#39;: 90,
+ &#39;lg&#39;: 2,
+ &#39;lh&#39;: 0,
+ &#39;li&#39;: 828,
+ &#39;lj&#39;: 0,
+ &#39;lk&#39;: 117,
+ &#39;ll&#39;: 1165,
+ &#39;lm&#39;: 12,
+ &#39;ln&#39;: 1,
+ &#39;lo&#39;: 637,
+ &#39;lp&#39;: 52,
+ &#39;lq&#39;: 0,
+ &#39;lr&#39;: 4,
+ &#39;ls&#39;: 77,
+ &#39;lt&#39;: 71,
+ &#39;lu&#39;: 72,
+ &#39;lv&#39;: 58,
+ &#39;lw&#39;: 21,
+ &#39;lx&#39;: 0,
+ &#39;ly&#39;: 628,
+ &#39;lz&#39;: 0,
+ &#39;l &#39;: 1049,
+ &#39;ma&#39;: 770,
+ &#39;mb&#39;: 60,
+ &#39;mc&#39;: 0,
+ &#39;md&#39;: 0,
+ &#39;me&#39;: 948,
+ &#39;mf&#39;: 11,
+ &#39;mg&#39;: 0,
+ &#39;mh&#39;: 3,
+ &#39;mi&#39;: 241,
+ &#39;mj&#39;: 0,
+ &#39;mk&#39;: 0,
+ &#39;ml&#39;: 9,
+ &#39;mm&#39;: 34,
+ &#39;mn&#39;: 6,
+ &#39;mo&#39;: 279,
+ &#39;mp&#39;: 88,
+ &#39;mq&#39;: 0,
+ &#39;mr&#39;: 13,
+ &#39;ms&#39;: 119,
+ &#39;mt&#39;: 0,
+ &#39;mu&#39;: 174,
+ &#39;mv&#39;: 0,
+ &#39;mw&#39;: 0,
+ &#39;mx&#39;: 0,
+ &#39;my&#39;: 221,
+ &#39;mz&#39;: 0,
+ &#39;m &#39;: 654,
+ &#39;na&#39;: 99,
+ &#39;nb&#39;: 100,
+ &#39;nc&#39;: 242,
+ &#39;nd&#39;: 2476,
+ &#39;ne&#39;: 816,
+ &#39;nf&#39;: 23,
+ &#39;ng&#39;: 1192,
+ &#39;nh&#39;: 13,
+ &#39;ni&#39;: 221,
+ &#39;nj&#39;: 5,
+ &#39;nk&#39;: 204,
+ &#39;nl&#39;: 102,
+ &#39;nm&#39;: 1,
+ &#39;nn&#39;: 85,
+ &#39;no&#39;: 752,
+ &#39;np&#39;: 2,
+ &#39;nq&#39;: 14,
+ &#39;nr&#39;: 14,
+ &#39;ns&#39;: 393,
+ &#39;nt&#39;: 691,
+ &#39;nu&#39;: 40,
+ &#39;nv&#39;: 7,
+ &#39;nw&#39;: 1,
+ &#39;nx&#39;: 15,
+ &#39;ny&#39;: 194,
+ &#39;nz&#39;: 0,
+ &#39;n &#39;: 2485,
+ &#39;oa&#39;: 108,
+ &#39;ob&#39;: 35,
+ &#39;oc&#39;: 67,
+ &#39;od&#39;: 407,
+ &#39;oe&#39;: 62,
+ &#39;of&#39;: 1044,
+ &#39;og&#39;: 50,
+ &#39;oh&#39;: 40,
+ &#39;oi&#39;: 134,
+ &#39;oj&#39;: 88,
+ &#39;ok&#39;: 205,
+ &#39;ol&#39;: 320,
+ &#39;om&#39;: 580,
+ &#39;on&#39;: 1549,
+ &#39;oo&#39;: 808,
+ &#39;op&#39;: 245,
+ &#39;oq&#39;: 7,
+ &#39;or&#39;: 1641,
+ &#39;os&#39;: 200,
+ &#39;ot&#39;: 1062,
+ &#39;ou&#39;: 1952,
+ &#39;ov&#39;: 196,
+ &#39;ow&#39;: 979,
+ &#39;ox&#39;: 6,
+ &#39;oy&#39;: 43,
+ &#39;oz&#39;: 171,
+ &#39;o &#39;: 2101,
+ &#39;pa&#39;: 220,
+ &#39;pb&#39;: 8,
+ &#39;pc&#39;: 0,
+ &#39;pd&#39;: 2,
+ &#39;pe&#39;: 375,
+ &#39;pf&#39;: 0,
+ &#39;pg&#39;: 2,
+ &#39;ph&#39;: 28,
+ &#39;pi&#39;: 115,
+ &#39;pj&#39;: 0,
+ &#39;pk&#39;: 0,
+ &#39;pl&#39;: 287,
+ &#39;pm&#39;: 3,
+ &#39;pn&#39;: 0,
+ &#39;po&#39;: 281,
+ &#39;pp&#39;: 166,
+ &#39;pq&#39;: 0,
+ &#39;pr&#39;: 337,
+ &#39;ps&#39;: 35,
+ &#39;pt&#39;: 117,
+ &#39;pu&#39;: 77,
+ &#39;pv&#39;: 0,
+ &#39;pw&#39;: 1,
+ &#39;px&#39;: 0,
+ &#39;py&#39;: 67,
+ &#39;pz&#39;: 0,
+ &#39;p &#39;: 265,
+ &#39;qa&#39;: 0,
+ &#39;qb&#39;: 0,
+ &#39;qc&#39;: 0,
+ &#39;qd&#39;: 0,
+ &#39;qe&#39;: 0,
+ &#39;qf&#39;: 0,
+ &#39;qg&#39;: 0,
+ &#39;qh&#39;: 0,
+ &#39;qi&#39;: 0,
+ &#39;qj&#39;: 0,
+ &#39;qk&#39;: 0,
+ &#39;ql&#39;: 0,
+ &#39;qm&#39;: 0,
+ &#39;qn&#39;: 0,
+ &#39;qo&#39;: 0,
+ &#39;qp&#39;: 0,
+ &#39;qq&#39;: 0,
+ &#39;qr&#39;: 0,
+ &#39;qs&#39;: 0,
+ &#39;qt&#39;: 0,
+ &#39;qu&#39;: 139,
+ &#39;qv&#39;: 0,
+ &#39;qw&#39;: 0,
+ &#39;qx&#39;: 0,
+ &#39;qy&#39;: 0,
+ &#39;qz&#39;: 0,
+ &#39;q &#39;: 3,
+ &#39;ra&#39;: 654,
+ &#39;rb&#39;: 9,
+ &#39;rc&#39;: 71,
+ &#39;rd&#39;: 272,
+ &#39;re&#39;: 2572,
+ &#39;rf&#39;: 57,
+ &#39;rg&#39;: 137,
+ &#39;rh&#39;: 10,
+ &#39;ri&#39;: 608,
+ &#39;rj&#39;: 0,
+ &#39;rk&#39;: 199,
+ &#39;rl&#39;: 165,
+ &#39;rm&#39;: 181,
+ &#39;rn&#39;: 200,
+ &#39;ro&#39;: 1537,
+ &#39;rp&#39;: 63,
+ &#39;rq&#39;: 0,
+ &#39;rr&#39;: 182,
+ &#39;rs&#39;: 333,
+ &#39;rt&#39;: 334,
+ &#39;ru&#39;: 153,
+ &#39;rv&#39;: 16,
+ &#39;rw&#39;: 16,
+ &#39;rx&#39;: 0,
+ &#39;ry&#39;: 387,
+ &#39;rz&#39;: 0,
+ &#39;r &#39;: 2002,
+ &#39;sa&#39;: 599,
+ &#39;sb&#39;: 1,
+ &#39;sc&#39;: 302,
+ &#39;sd&#39;: 0,
+ &#39;se&#39;: 943,
+ &#39;sf&#39;: 4,
+ &#39;sg&#39;: 1,
+ &#39;sh&#39;: 870,
+ &#39;si&#39;: 281,
+ &#39;sj&#39;: 0,
+ &#39;sk&#39;: 197,
+ &#39;sl&#39;: 96,
+ &#39;sm&#39;: 58,
+ &#39;sn&#39;: 25,
+ &#39;so&#39;: 607,
+ &#39;sp&#39;: 128,
+ &#39;sq&#39;: 6,
+ &#39;sr&#39;: 0,
+ &#39;ss&#39;: 284,
+ &#39;st&#39;: 1202,
+ &#39;su&#39;: 190,
+ &#39;sv&#39;: 0,
+ &#39;sw&#39;: 122,
+ &#39;sx&#39;: 0,
+ &#39;sy&#39;: 16,
+ &#39;sz&#39;: 0,
+ &#39;s &#39;: 3081,
+ &#39;ta&#39;: 308,
+ &#39;tb&#39;: 0,
+ &#39;tc&#39;: 182,
+ &#39;td&#39;: 1,
+ &#39;te&#39;: 1125,
+ &#39;tf&#39;: 13,
+ &#39;tg&#39;: 0,
+ &#39;th&#39;: 6453,
+ &#39;ti&#39;: 721,
+ &#39;tj&#39;: 0,
+ &#39;tk&#39;: 0,
+ &#39;tl&#39;: 272,
+ &#39;tm&#39;: 3,
+ &#39;tn&#39;: 4,
+ &#39;to&#39;: 1762,
+ &#39;tp&#39;: 0,
+ &#39;tq&#39;: 0,
+ &#39;tr&#39;: 497,
+ &#39;ts&#39;: 178,
+ &#39;tt&#39;: 304,
+ &#39;tu&#39;: 159,
+ &#39;tv&#39;: 0,
+ &#39;tw&#39;: 44,
+ &#39;tx&#39;: 0,
+ &#39;ty&#39;: 187,
+ &#39;tz&#39;: 0,
+ &#39;t &#39;: 3602,
+ &#39;ua&#39;: 50,
+ &#39;ub&#39;: 26,
+ &#39;uc&#39;: 128,
+ &#39;ud&#39;: 62,
+ &#39;ue&#39;: 117,
+ &#39;uf&#39;: 34,
+ &#39;ug&#39;: 250,
+ &#39;uh&#39;: 0,
+ &#39;ui&#39;: 108,
+ &#39;uj&#39;: 0,
+ &#39;uk&#39;: 0,
+ &#39;ul&#39;: 547,
+ &#39;um&#39;: 62,
+ &#39;un&#39;: 615,
+ &#39;uo&#39;: 0,
+ &#39;up&#39;: 248,
+ &#39;uq&#39;: 0,
+ &#39;ur&#39;: 503,
+ &#39;us&#39;: 462,
+ &#39;ut&#39;: 802,
+ &#39;uu&#39;: 0,
+ &#39;uv&#39;: 0,
+ &#39;uw&#39;: 0,
+ &#39;ux&#39;: 0,
+ &#39;uy&#39;: 0,
+ &#39;uz&#39;: 7,
+ &#39;u &#39;: 490,
+ &#39;va&#39;: 13,
+ &#39;vb&#39;: 0,
+ &#39;vc&#39;: 0,
+ &#39;vd&#39;: 0,
+ &#39;ve&#39;: 1105,
+ &#39;vf&#39;: 0,
+ &#39;vg&#39;: 0,
+ &#39;vh&#39;: 0,
+ &#39;vi&#39;: 108,
+ &#39;vj&#39;: 0,
+ &#39;vk&#39;: 0,
+ &#39;vl&#39;: 0,
+ &#39;vm&#39;: 0,
+ &#39;vn&#39;: 0,
+ &#39;vo&#39;: 45,
+ &#39;vp&#39;: 0,
+ &#39;vq&#39;: 0,
+ &#39;vr&#39;: 0,
+ &#39;vs&#39;: 0,
+ &#39;vt&#39;: 0,
+ &#39;vu&#39;: 0,
+ &#39;vv&#39;: 0,
+ &#39;vw&#39;: 0,
+ &#39;vx&#39;: 0,
+ &#39;vy&#39;: 9,
+ &#39;vz&#39;: 0,
+ &#39;v &#39;: 5,
+ &#39;wa&#39;: 980,
+ &#39;wb&#39;: 0,
+ &#39;wc&#39;: 0,
+ &#39;wd&#39;: 5,
+ &#39;we&#39;: 794,
+ &#39;wf&#39;: 9,
+ &#39;wg&#39;: 0,
+ &#39;wh&#39;: 711,
+ &#39;wi&#39;: 1031,
+ &#39;wj&#39;: 0,
+ &#39;wk&#39;: 2,
+ &#39;wl&#39;: 24,
+ &#39;wm&#39;: 0,
+ &#39;wn&#39;: 163,
+ &#39;wo&#39;: 616,
+ &#39;wp&#39;: 0,
+ &#39;wq&#39;: 0,
+ &#39;wr&#39;: 19,
+ &#39;ws&#39;: 50,
+ &#39;wt&#39;: 0,
+ &#39;wu&#39;: 2,
+ &#39;wv&#39;: 0,
+ &#39;ww&#39;: 9,
+ &#39;wx&#39;: 0,
+ &#39;wy&#39;: 0,
+ &#39;wz&#39;: 0,
+ &#39;w &#39;: 588,
+ &#39;xa&#39;: 8,
+ &#39;xb&#39;: 0,
+ &#39;xc&#39;: 29,
+ &#39;xd&#39;: 0,
+ &#39;xe&#39;: 36,
+ &#39;xf&#39;: 0,
+ &#39;xg&#39;: 0,
+ &#39;xh&#39;: 1,
+ &#39;xi&#39;: 36,
+ &#39;xj&#39;: 0,
+ &#39;xk&#39;: 0,
+ &#39;xl&#39;: 0,
+ &#39;xm&#39;: 0,
+ &#39;xn&#39;: 0,
+ &#39;xo&#39;: 0,
+ &#39;xp&#39;: 24,
+ &#39;xq&#39;: 0,
+ &#39;xr&#39;: 0,
+ &#39;xs&#39;: 0,
+ &#39;xt&#39;: 37,
+ &#39;xu&#39;: 0,
+ &#39;xv&#39;: 8,
+ &#39;xw&#39;: 0,
+ &#39;xx&#39;: 10,
+ &#39;xy&#39;: 0,
+ &#39;xz&#39;: 0,
+ &#39;x &#39;: 12,
+ &#39;ya&#39;: 16,
+ &#39;yb&#39;: 3,
+ &#39;yc&#39;: 16,
+ &#39;yd&#39;: 0,
+ &#39;ye&#39;: 182,
+ &#39;yf&#39;: 4,
+ &#39;yg&#39;: 0,
+ &#39;yh&#39;: 0,
+ &#39;yi&#39;: 61,
+ &#39;yj&#39;: 0,
+ &#39;yk&#39;: 0,
+ &#39;yl&#39;: 3,
+ &#39;ym&#39;: 4,
+ &#39;yn&#39;: 1,
+ &#39;yo&#39;: 703,
+ &#39;yp&#39;: 3,
+ &#39;yq&#39;: 0,
+ &#39;yr&#39;: 20,
+ &#39;ys&#39;: 101,
+ &#39;yt&#39;: 41,
+ &#39;yu&#39;: 0,
+ &#39;yv&#39;: 0,
+ &#39;yw&#39;: 12,
+ &#39;yx&#39;: 0,
+ &#39;yy&#39;: 0,
+ &#39;yz&#39;: 0,
+ &#39;y &#39;: 2351,
+ &#39;za&#39;: 47,
+ &#39;zb&#39;: 0,
+ &#39;zc&#39;: 0,
+ &#39;zd&#39;: 0,
+ &#39;ze&#39;: 29,
+ &#39;zf&#39;: 0,
+ &#39;zg&#39;: 0,
+ &#39;zh&#39;: 0,
+ &#39;zi&#39;: 6,
+ &#39;zj&#39;: 0,
+ &#39;zk&#39;: 0,
+ &#39;zl&#39;: 6,
+ &#39;zm&#39;: 0,
+ &#39;zn&#39;: 0,
+ &#39;zo&#39;: 0,
+ &#39;zp&#39;: 0,
+ &#39;zq&#39;: 0,
+ &#39;zr&#39;: 0,
+ &#39;zs&#39;: 0,
+ &#39;zt&#39;: 0,
+ &#39;zu&#39;: 2,
+ &#39;zv&#39;: 0,
+ &#39;zw&#39;: 0,
+ &#39;zx&#39;: 0,
+ &#39;zy&#39;: 7,
+ &#39;zz&#39;: 8,
+ &#39;z &#39;: 93,
+ &#39; a&#39;: 5006,
+ &#39; b&#39;: 1847,
+ &#39; c&#39;: 1691,
+ &#39; d&#39;: 1331,
+ &#39; e&#39;: 667,
+ &#39; f&#39;: 1531,
+ &#39; g&#39;: 1208,
+ &#39; h&#39;: 2599,
+ &#39; i&#39;: 2128,
+ &#39; j&#39;: 139,
+ &#39; k&#39;: 335,
+ &#39; l&#39;: 1203,
+ &#39; m&#39;: 1441,
+ &#39; n&#39;: 808,
+ &#39; o&#39;: 2198,
+ &#39; p&#39;: 918,
+ &#39; q&#39;: 100,
+ &#39; r&#39;: 765,
+ &#39; s&#39;: 3324,
+ &#39; t&#39;: 7379,
+ &#39; u&#39;: 514,
+ &#39; v&#39;: 154,
+ &#39; w&#39;: 3466,
+ &#39; x&#39;: 30,
+ &#39; y&#39;: 705,
+ &#39; z&#39;: 4,
+ &#39;  &#39;: 1401}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercise">
+<h1>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h1>
+<p>Calculate the probabilities:</p>
+<div class="math notranslate nohighlight">
+\[p(&quot;b&quot;) = ?\]</div>
+<div class="math notranslate nohighlight">
+\[p(&quot;an&quot;) = ?\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_b</span> <span class="o">=</span> <span class="n">probs_letter</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span>
+<span class="n">p_b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0111954632763194
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_an</span> <span class="o">=</span> <span class="n">count_bigram</span><span class="p">[</span><span class="s2">&quot;an&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">total_sum_bigram</span>
+<span class="n">p_an</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.015006982744336875
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>Exercise<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Calculate the probabilities:</p>
+<div class="math notranslate nohighlight">
+\[p(x=&quot;a&quot; | y =&quot;n&quot;) =?\]</div>
+<div class="math notranslate nohighlight">
+\[p(y=&quot;n&quot;|x=&quot;a&quot;) =?\]</div>
+<section id="p-x-a-y-n">
+<h2><span class="math notranslate nohighlight">\(p(x=&quot;a&quot;|y=&quot;n&quot;)\)</span><a class="headerlink" href="#p-x-a-y-n" title="Permalink to this headline">¶</a></h2>
+<p>To calculate the first probability, we need to define a subset that contains all the bigrams whose second letter is equal to “n”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subset_x_yn</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="n">bigram</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">&quot;n&quot;</span>
+    <span class="n">subset_x_yn</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_bigram</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span>
+<span class="n">subset_x_yn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;an&#39;: 3170,
+ &#39;bn&#39;: 0,
+ &#39;cn&#39;: 0,
+ &#39;dn&#39;: 16,
+ &#39;en&#39;: 1363,
+ &#39;fn&#39;: 0,
+ &#39;gn&#39;: 4,
+ &#39;hn&#39;: 0,
+ &#39;in&#39;: 2595,
+ &#39;jn&#39;: 0,
+ &#39;kn&#39;: 110,
+ &#39;ln&#39;: 1,
+ &#39;mn&#39;: 6,
+ &#39;nn&#39;: 85,
+ &#39;on&#39;: 1549,
+ &#39;pn&#39;: 0,
+ &#39;qn&#39;: 0,
+ &#39;rn&#39;: 200,
+ &#39;sn&#39;: 25,
+ &#39;tn&#39;: 4,
+ &#39;un&#39;: 615,
+ &#39;vn&#39;: 0,
+ &#39;wn&#39;: 163,
+ &#39;xn&#39;: 0,
+ &#39;yn&#39;: 1,
+ &#39;zn&#39;: 0,
+ &#39; n&#39;: 808}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The total of the subset, <code class="docutils literal notranslate"><span class="pre">sum_subset_x_yn</span></code> is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subset_x_yn</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_values([3170, 0, 0, 16, 1363, 0, 4, 0, 2595, 0, 110, 1, 6, 85, 1549, 0, 0, 200, 25, 4, 615, 0, 163, 0, 1, 0, 808])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We are converting the values to a numpy array</span>
+<span class="c1"># to directly evaluate using the &#39;sum()&#39; method:</span>
+<span class="n">array_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">subset_x_yn</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">array_1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3170,    0,    0,   16, 1363,    0,    4,    0, 2595,    0,  110,
+          1,    6,   85, 1549,    0,    0,  200,   25,    4,  615,    0,
+        163,    0,    1,    0,  808])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_subset_x_yn</span> <span class="o">=</span> <span class="n">array_1</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">total_subset_x_yn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10715
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, <span class="math notranslate nohighlight">\(p(x=&quot;a&quot;|y=&quot;n&quot;)\)</span> probability is:</p>
+<div class="math notranslate nohighlight">
+\[p(x=&quot;a&quot;|y=&quot;n&quot;) = \frac{3170}{10715}\approx0.296\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_xa_yn</span> <span class="o">=</span> <span class="n">subset_x_yn</span><span class="p">[</span><span class="s2">&quot;an&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">total_subset_x_yn</span>
+<span class="n">prob_xa_yn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2958469435370975
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="p-y-n-x-a">
+<h2><span class="math notranslate nohighlight">\(p(y=&quot;n&quot;|x=&quot;a&quot;)\)</span><a class="headerlink" href="#p-y-n-x-a" title="Permalink to this headline">¶</a></h2>
+<p>For the second probability, we construct a new subset that contains the bigrams whose first letter is “a”:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subset_y_xa</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="n">bigram</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">subset_y_xa</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_bigram</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span>
+<span class="n">subset_y_xa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;aa&#39;: 0,
+ &#39;ab&#39;: 124,
+ &#39;ac&#39;: 350,
+ &#39;ad&#39;: 789,
+ &#39;ae&#39;: 1,
+ &#39;af&#39;: 143,
+ &#39;ag&#39;: 264,
+ &#39;ah&#39;: 12,
+ &#39;ai&#39;: 790,
+ &#39;aj&#39;: 2,
+ &#39;ak&#39;: 156,
+ &#39;al&#39;: 999,
+ &#39;am&#39;: 310,
+ &#39;an&#39;: 3170,
+ &#39;ao&#39;: 0,
+ &#39;ap&#39;: 218,
+ &#39;aq&#39;: 0,
+ &#39;ar&#39;: 1552,
+ &#39;as&#39;: 1506,
+ &#39;at&#39;: 1442,
+ &#39;au&#39;: 147,
+ &#39;av&#39;: 343,
+ &#39;aw&#39;: 223,
+ &#39;ax&#39;: 36,
+ &#39;ay&#39;: 377,
+ &#39;az&#39;: 12,
+ &#39;a &#39;: 897}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The rest is similar to the first one:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">array_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">subset_y_xa</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">array_2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   0,  124,  350,  789,    1,  143,  264,   12,  790,    2,  156,
+        999,  310, 3170,    0,  218,    0, 1552, 1506, 1442,  147,  343,
+        223,   36,  377,   12,  897])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_subset_y_xa</span> <span class="o">=</span> <span class="n">array_2</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">total_subset_y_xa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13863
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight">
+\[p(y=&quot;n&quot;|x=&quot;a&quot;) = \frac{3172}{13863}\approx0.229\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_yn_xa</span> <span class="o">=</span> <span class="n">subset_y_xa</span><span class="p">[</span><span class="s2">&quot;an&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">total_subset_y_xa</span>
+<span class="n">prob_yn_xa</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.22866623385991489
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h1>
+<p>Calculate the probability:</p>
+<div class="math notranslate nohighlight">
+\[\frac{p(y=&quot;n&quot;|x=&quot;a&quot;)p(&quot;a&quot;)}{p(&quot;n&quot;)}\]</div>
+<p>For this one, we have all the factors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_yn_xa</span> <span class="o">*</span> <span class="n">probs_letter</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">probs_letter</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.29533928474819926
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check if this is equal to <span class="math notranslate nohighlight">\(p(x=&quot;a&quot;|y=&quot;n&quot;)\)</span> as Bayes Theorem dictates:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_xa_yn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2958469435370975
+</pre></div>
+</div>
+</div>
+</div>
+<p>The two values are close but not equal. I hope that you are able to figure out the reason for this difference. If not, please ponder on it a while before proceeding! 8)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre></div>
+</div>
+<center><i><b>Wait while the reader ponders!<br>(Spoilers ahead!)</center></b></i>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre></div>
+</div>
+<p>The reason is due to the characters unaccounted for (e.g., “d.”). Consider the following paragraph:</p>
+<blockquote>
+<div><p>“My darling child!” she cried, folding the little girl in her arms and covering her face with kisses. “Where in the world did you come from?”</p>
+</div></blockquote>
+<p>If we were to calculate the marginal probability of <span class="math notranslate nohighlight">\(p(&quot;n&quot;)\)</span>, for example, we would first count all the occurences of the letter “n” and then divide by all the characters included in the text:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;&quot;My darling child!&quot; she cried, folding the little girl in her arms and</span>
+<span class="s1">covering her face with kisses. &quot;Where in the world did you come from?&quot;&#39;&#39;&#39;</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;my darling child!&quot; she cried, folding the little girl in her arms and
+covering her face with kisses. &quot;where in the world did you come from?&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_n</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">)</span>
+<span class="n">count_n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">count_all</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="n">count_all</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>141
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_n</span> <span class="o">=</span> <span class="n">count_n</span> <span class="o">/</span> <span class="n">count_all</span>
+<span class="n">p_n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0425531914893617
+</pre></div>
+</div>
+</div>
+</div>
+<p>However, this marginal probability includes the uncounted characters such as {”’”,”””,”,”,”.”,”!”} which aren’t accounted for when we were calculating the bigram probabilities, thus messing with our calculations. This also goes for the bigram probabilities, thus causing an inconsistency.</p>
+<p>To remedy this issue, we should have excluded all the characters except the ones we had in our <code class="docutils literal notranslate"><span class="pre">alphabet</span></code> before we had started. This filtering can be done via the regular expression module <em>re</em>’s <code class="docutils literal notranslate"><span class="pre">sub()</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">text_filtered</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;[^a-z ]&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text_filtered</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> my darling child   she cried  folding the little girl in her arms and covering her face with kisses   where in the world did you come from  
+</pre></div>
+</div>
+</div>
+</div>
+<p><em>Although the regular expressions is a whole topic by itself, to briefly explain, we are first defining a range inside the square brackets to include any letter from a to z ([a-z]), and then also add the space character to this range ([a-z ]). But since these are the characters we want to keep, we negate our statement by putting the negation sign (“^”) to mean “every character that is not in this range” ([^a-z ]). The second parameter is the replacement, by putting in ” “, we are saying that replace all the matching characters with space. The third parameter is the text we want to operate on.</em></p>
+<p>Thus, we end up with a text that only contains the characters we are taking into account.</p>
+<p>Below, we’ll repeat the same procedures we did above, only this time we’ll filter our text to only include the letters from a to z and the space character:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">myfile</span><span class="p">:</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">myfile</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+
+<span class="c1"># Convert it to all lowercase</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;[^a-z ]&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">count_letter</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="n">count_letter</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+    
+<span class="n">tot_count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">count_letter</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="n">probs_letter</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">count_letter</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">probs_letter</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_letter</span><span class="p">[</span><span class="n">letter</span><span class="p">]</span> <span class="o">/</span> <span class="n">tot_count</span>
+
+<span class="n">count_bigram</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">total_sum_bigram</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="n">bigram</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+        <span class="n">count_bigram</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">bigram</span><span class="p">)</span>
+        <span class="n">total_sum_bigram</span> <span class="o">+=</span> <span class="n">count_bigram</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span>
+
+<span class="n">p_b</span> <span class="o">=</span> <span class="n">probs_letter</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span>
+
+<span class="n">p_an</span> <span class="o">=</span> <span class="n">count_bigram</span><span class="p">[</span><span class="s2">&quot;an&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">total_sum_bigram</span>
+
+<span class="n">subset_x_yn</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="n">bigram</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="s2">&quot;n&quot;</span>
+    <span class="n">subset_x_yn</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_bigram</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span>
+    
+<span class="n">array_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">subset_x_yn</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="n">total_subset_x_yn</span> <span class="o">=</span> <span class="n">array_1</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">prob_xa_yn</span> <span class="o">=</span> <span class="n">subset_x_yn</span><span class="p">[</span><span class="s2">&quot;an&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">total_subset_x_yn</span>
+
+<span class="n">subset_y_xa</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="n">bigram</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="n">subset_y_xa</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span> <span class="o">=</span> <span class="n">count_bigram</span><span class="p">[</span><span class="n">bigram</span><span class="p">]</span>
+
+<span class="n">array_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">subset_y_xa</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="n">total_subset_y_xa</span> <span class="o">=</span> <span class="n">array_2</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="n">prob_yn_xa</span> <span class="o">=</span> <span class="n">subset_y_xa</span><span class="p">[</span><span class="s2">&quot;an&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">total_subset_y_xa</span>
+
+<span class="n">prob_yn_xa</span> <span class="o">*</span> <span class="n">probs_letter</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">probs_letter</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.29482886904761907
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prob_xa_yn</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.29482886904761907
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, we have saved the Bayes Theorem! 8)</p>
+<div class="math notranslate nohighlight">
+\[p(a|b) = \frac{p(b|a)p(a)}{p(b)}\]</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="visualizing-the-frequencies">
+<h1>Visualizing the frequencies<a class="headerlink" href="#visualizing-the-frequencies" title="Permalink to this headline">¶</a></h1>
+<p>Using the pandas module, we can also “visualize” the frequencies:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_letter</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">count_letter</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span>
+                         <span class="n">index</span><span class="o">=</span><span class="n">alphabet</span><span class="p">,</span>
+                         <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;count&quot;</span><span class="p">])</span>
+<span class="n">df_letter</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
+
+<span class="c1">#https://matplotlib.org/stable/tutorials/colors/colormaps.html</span>
+<span class="c1"># https://stackoverflow.com/a/50605020</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_711f1_row0_col0 {
+  background-color: #bdbdbd;
+  color: #000000;
+}
+#T_711f1_row1_col0, #T_711f1_row15_col0 {
+  background-color: #f4f4f4;
+  color: #000000;
+}
+#T_711f1_row2_col0, #T_711f1_row24_col0 {
+  background-color: #ececec;
+  color: #000000;
+}
+#T_711f1_row3_col0 {
+  background-color: #d5d5d5;
+  color: #000000;
+}
+#T_711f1_row4_col0 {
+  background-color: #949494;
+  color: #f1f1f1;
+}
+#T_711f1_row5_col0, #T_711f1_row6_col0 {
+  background-color: #efefef;
+  color: #000000;
+}
+#T_711f1_row7_col0 {
+  background-color: #c6c6c6;
+  color: #000000;
+}
+#T_711f1_row8_col0 {
+  background-color: #cecece;
+  color: #000000;
+}
+#T_711f1_row9_col0, #T_711f1_row16_col0, #T_711f1_row23_col0, #T_711f1_row25_col0 {
+  background-color: #ffffff;
+  color: #000000;
+}
+#T_711f1_row10_col0 {
+  background-color: #f7f7f7;
+  color: #000000;
+}
+#T_711f1_row11_col0 {
+  background-color: #dddddd;
+  color: #000000;
+}
+#T_711f1_row12_col0 {
+  background-color: #eeeeee;
+  color: #000000;
+}
+#T_711f1_row13_col0 {
+  background-color: #cccccc;
+  color: #000000;
+}
+#T_711f1_row14_col0 {
+  background-color: #bbbbbb;
+  color: #000000;
+}
+#T_711f1_row17_col0 {
+  background-color: #cdcdcd;
+  color: #000000;
+}
+#T_711f1_row18_col0 {
+  background-color: #d1d1d1;
+  color: #000000;
+}
+#T_711f1_row19_col0 {
+  background-color: #b1b1b1;
+  color: #000000;
+}
+#T_711f1_row20_col0 {
+  background-color: #eaeaea;
+  color: #000000;
+}
+#T_711f1_row21_col0 {
+  background-color: #fafafa;
+  color: #000000;
+}
+#T_711f1_row22_col0 {
+  background-color: #e7e7e7;
+  color: #000000;
+}
+#T_711f1_row26_col0 {
+  background-color: #000000;
+  color: #f1f1f1;
+}
+</style>
+<table id="T_711f1">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_711f1_level0_col0" class="col_heading level0 col0" >count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_711f1_level0_row0" class="row_heading level0 row0" >a</th>
+      <td id="T_711f1_row0_col0" class="data row0 col0" >13887</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row1" class="row_heading level0 row1" >b</th>
+      <td id="T_711f1_row1_col0" class="data row1 col0" >2448</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row2" class="row_heading level0 row2" >c</th>
+      <td id="T_711f1_row2_col0" class="data row2 col0" >4161</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row3" class="row_heading level0 row3" >d</th>
+      <td id="T_711f1_row3_col0" class="data row3 col0" >8888</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row4" class="row_heading level0 row4" >e</th>
+      <td id="T_711f1_row4_col0" class="data row4 col0" >22261</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row5" class="row_heading level0 row5" >f</th>
+      <td id="T_711f1_row5_col0" class="data row5 col0" >3588</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row6" class="row_heading level0 row6" >g</th>
+      <td id="T_711f1_row6_col0" class="data row6 col0" >3587</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row7" class="row_heading level0 row7" >h</th>
+      <td id="T_711f1_row7_col0" class="data row7 col0" >11977</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row8" class="row_heading level0 row8" >i</th>
+      <td id="T_711f1_row8_col0" class="data row8 col0" >10350</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row9" class="row_heading level0 row9" >j</th>
+      <td id="T_711f1_row9_col0" class="data row9 col0" >240</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row10" class="row_heading level0 row10" >k</th>
+      <td id="T_711f1_row10_col0" class="data row10 col0" >1920</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row11" class="row_heading level0 row11" >l</th>
+      <td id="T_711f1_row11_col0" class="data row11 col0" >7256</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row12" class="row_heading level0 row12" >m</th>
+      <td id="T_711f1_row12_col0" class="data row12 col0" >3830</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row13" class="row_heading level0 row13" >n</th>
+      <td id="T_711f1_row13_col0" class="data row13 col0" >10752</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row14" class="row_heading level0 row14" >o</th>
+      <td id="T_711f1_row14_col0" class="data row14 col0" >14240</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row15" class="row_heading level0 row15" >p</th>
+      <td id="T_711f1_row15_col0" class="data row15 col0" >2466</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row16" class="row_heading level0 row16" >q</th>
+      <td id="T_711f1_row16_col0" class="data row16 col0" >144</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row17" class="row_heading level0 row17" >r</th>
+      <td id="T_711f1_row17_col0" class="data row17 col0" >10534</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row18" class="row_heading level0 row18" >s</th>
+      <td id="T_711f1_row18_col0" class="data row18 col0" >9689</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row19" class="row_heading level0 row19" >t</th>
+      <td id="T_711f1_row19_col0" class="data row19 col0" >16378</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row20" class="row_heading level0 row20" >u</th>
+      <td id="T_711f1_row20_col0" class="data row20 col0" >4600</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row21" class="row_heading level0 row21" >v</th>
+      <td id="T_711f1_row21_col0" class="data row21 col0" >1290</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row22" class="row_heading level0 row22" >w</th>
+      <td id="T_711f1_row22_col0" class="data row22 col0" >5229</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row23" class="row_heading level0 row23" >x</th>
+      <td id="T_711f1_row23_col0" class="data row23 col0" >209</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row24" class="row_heading level0 row24" >y</th>
+      <td id="T_711f1_row24_col0" class="data row24 col0" >4128</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row25" class="row_heading level0 row25" >z</th>
+      <td id="T_711f1_row25_col0" class="data row25 col0" >277</td>
+    </tr>
+    <tr>
+      <th id="T_711f1_level0_row26" class="row_heading level0 row26" > </th>
+      <td id="T_711f1_row26_col0" class="data row26 col0" >52771</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;l1&quot;</span><span class="p">:[],</span><span class="s2">&quot;l2&quot;</span><span class="p">:[],</span><span class="s2">&quot;count&quot;</span><span class="p">:[]})</span>
+<span class="k">for</span> <span class="n">letter1</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">letter2</span> <span class="ow">in</span> <span class="n">alphabet</span><span class="p">:</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">letter1</span><span class="o">+</span><span class="n">letter2</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">letter1</span><span class="p">,</span><span class="n">letter2</span><span class="p">,</span><span class="n">data</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">word</span><span class="p">)]</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">df</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;word&quot;</span><span class="p">,</span><span class="n">value</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;l1&quot;</span><span class="p">]</span><span class="o">+</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;l2&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>l1</th>
+      <th>l2</th>
+      <th>word</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>728</th>
+      <td>a</td>
+      <td>a</td>
+      <td>aa</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>727</th>
+      <td>a</td>
+      <td>b</td>
+      <td>ab</td>
+      <td>124</td>
+    </tr>
+    <tr>
+      <th>726</th>
+      <td>a</td>
+      <td>c</td>
+      <td>ac</td>
+      <td>350</td>
+    </tr>
+    <tr>
+      <th>725</th>
+      <td>a</td>
+      <td>d</td>
+      <td>ad</td>
+      <td>789</td>
+    </tr>
+    <tr>
+      <th>724</th>
+      <td>a</td>
+      <td>e</td>
+      <td>ae</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td></td>
+      <td>w</td>
+      <td>w</td>
+      <td>3634</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td></td>
+      <td>x</td>
+      <td>x</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td></td>
+      <td>y</td>
+      <td>y</td>
+      <td>756</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td></td>
+      <td>z</td>
+      <td>z</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>6884</td>
+    </tr>
+  </tbody>
+</table>
+<p>729 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">len_alpha</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphabet</span><span class="p">)</span>
+
+<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">len_alpha</span><span class="p">,</span><span class="n">len_alpha</span><span class="p">),</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_alpha</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">len_alpha</span><span class="p">):</span>
+        <span class="n">mat</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">word</span><span class="o">==</span><span class="p">(</span><span class="n">alphabet</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">alphabet</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span><span class="s2">&quot;count&quot;</span><span class="p">]</span>
+        
+<span class="n">df_bi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="n">alphabet</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">alphabet</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">colors</span>
+
+<span class="k">def</span> <span class="nf">background_gradient</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;PuBu&#39;</span><span class="p">,</span> <span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">M</span> <span class="o">-</span> <span class="n">m</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="p">(</span><span class="n">rng</span> <span class="o">*</span> <span class="n">low</span><span class="p">),</span>
+                            <span class="n">M</span> <span class="o">+</span> <span class="p">(</span><span class="n">rng</span> <span class="o">*</span> <span class="n">high</span><span class="p">))</span>
+    <span class="n">normed</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">colors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">cmap</span><span class="p">)(</span><span class="n">normed</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;background-color: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">color</span> <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">c</span><span class="p">]</span>
+
+
+<span class="n">df_bi</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">background_gradient</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">,</span>
+               <span class="n">m</span><span class="o">=</span><span class="n">df_bi</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+               <span class="n">M</span><span class="o">=</span><span class="n">df_bi</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+               <span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+               <span class="n">high</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+
+<span class="c1"># https://stackoverflow.com/a/42563850</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+#T_9a40b_row0_col0, #T_9a40b_row0_col4, #T_9a40b_row0_col7, #T_9a40b_row0_col9, #T_9a40b_row0_col14, #T_9a40b_row0_col16, #T_9a40b_row0_col23, #T_9a40b_row0_col25, #T_9a40b_row1_col1, #T_9a40b_row1_col2, #T_9a40b_row1_col3, #T_9a40b_row1_col5, #T_9a40b_row1_col6, #T_9a40b_row1_col7, #T_9a40b_row1_col9, #T_9a40b_row1_col10, #T_9a40b_row1_col12, #T_9a40b_row1_col13, #T_9a40b_row1_col15, #T_9a40b_row1_col16, #T_9a40b_row1_col18, #T_9a40b_row1_col19, #T_9a40b_row1_col21, #T_9a40b_row1_col22, #T_9a40b_row1_col23, #T_9a40b_row1_col25, #T_9a40b_row1_col26, #T_9a40b_row2_col1, #T_9a40b_row2_col2, #T_9a40b_row2_col3, #T_9a40b_row2_col5, #T_9a40b_row2_col6, #T_9a40b_row2_col9, #T_9a40b_row2_col12, #T_9a40b_row2_col13, #T_9a40b_row2_col15, #T_9a40b_row2_col16, #T_9a40b_row2_col18, #T_9a40b_row2_col21, #T_9a40b_row2_col22, #T_9a40b_row2_col23, #T_9a40b_row2_col24, #T_9a40b_row2_col25, #T_9a40b_row2_col26, #T_9a40b_row3_col1, #T_9a40b_row3_col2, #T_9a40b_row3_col5, #T_9a40b_row3_col6, #T_9a40b_row3_col7, #T_9a40b_row3_col9, #T_9a40b_row3_col10, #T_9a40b_row3_col13, #T_9a40b_row3_col15, #T_9a40b_row3_col16, #T_9a40b_row3_col19, #T_9a40b_row3_col20, #T_9a40b_row3_col21, #T_9a40b_row3_col22, #T_9a40b_row3_col23, #T_9a40b_row3_col24, #T_9a40b_row3_col25, #T_9a40b_row4_col1, #T_9a40b_row4_col7, #T_9a40b_row4_col9, #T_9a40b_row4_col10, #T_9a40b_row4_col16, #T_9a40b_row4_col20, #T_9a40b_row4_col25, #T_9a40b_row5_col1, #T_9a40b_row5_col2, #T_9a40b_row5_col3, #T_9a40b_row5_col6, #T_9a40b_row5_col7, #T_9a40b_row5_col9, #T_9a40b_row5_col10, #T_9a40b_row5_col12, #T_9a40b_row5_col13, #T_9a40b_row5_col15, #T_9a40b_row5_col16, #T_9a40b_row5_col18, #T_9a40b_row5_col21, #T_9a40b_row5_col22, #T_9a40b_row5_col23, #T_9a40b_row5_col24, #T_9a40b_row5_col25, #T_9a40b_row6_col1, #T_9a40b_row6_col2, #T_9a40b_row6_col3, #T_9a40b_row6_col5, #T_9a40b_row6_col6, #T_9a40b_row6_col9, #T_9a40b_row6_col10, #T_9a40b_row6_col12, #T_9a40b_row6_col13, #T_9a40b_row6_col15, #T_9a40b_row6_col16, #T_9a40b_row6_col19, #T_9a40b_row6_col21, #T_9a40b_row6_col22, #T_9a40b_row6_col23, #T_9a40b_row6_col24, #T_9a40b_row6_col25, #T_9a40b_row7_col1, #T_9a40b_row7_col2, #T_9a40b_row7_col3, #T_9a40b_row7_col5, #T_9a40b_row7_col6, #T_9a40b_row7_col7, #T_9a40b_row7_col9, #T_9a40b_row7_col10, #T_9a40b_row7_col11, #T_9a40b_row7_col12, #T_9a40b_row7_col13, #T_9a40b_row7_col15, #T_9a40b_row7_col16, #T_9a40b_row7_col18, #T_9a40b_row7_col21, #T_9a40b_row7_col22, #T_9a40b_row7_col23, #T_9a40b_row7_col25, #T_9a40b_row8_col0, #T_9a40b_row8_col7, #T_9a40b_row8_col8, #T_9a40b_row8_col9, #T_9a40b_row8_col15, #T_9a40b_row8_col16, #T_9a40b_row8_col20, #T_9a40b_row8_col22, #T_9a40b_row8_col23, #T_9a40b_row8_col24, #T_9a40b_row9_col0, #T_9a40b_row9_col1, #T_9a40b_row9_col2, #T_9a40b_row9_col3, #T_9a40b_row9_col5, #T_9a40b_row9_col6, #T_9a40b_row9_col7, #T_9a40b_row9_col8, #T_9a40b_row9_col9, #T_9a40b_row9_col10, #T_9a40b_row9_col11, #T_9a40b_row9_col12, #T_9a40b_row9_col13, #T_9a40b_row9_col15, #T_9a40b_row9_col16, #T_9a40b_row9_col17, #T_9a40b_row9_col18, #T_9a40b_row9_col19, #T_9a40b_row9_col20, #T_9a40b_row9_col21, #T_9a40b_row9_col22, #T_9a40b_row9_col23, #T_9a40b_row9_col24, #T_9a40b_row9_col25, #T_9a40b_row9_col26, #T_9a40b_row10_col0, #T_9a40b_row10_col1, #T_9a40b_row10_col2, #T_9a40b_row10_col3, #T_9a40b_row10_col5, #T_9a40b_row10_col6, #T_9a40b_row10_col7, #T_9a40b_row10_col9, #T_9a40b_row10_col10, #T_9a40b_row10_col11, #T_9a40b_row10_col12, #T_9a40b_row10_col14, #T_9a40b_row10_col15, #T_9a40b_row10_col16, #T_9a40b_row10_col17, #T_9a40b_row10_col19, #T_9a40b_row10_col20, #T_9a40b_row10_col21, #T_9a40b_row10_col22, #T_9a40b_row10_col23, #T_9a40b_row10_col24, #T_9a40b_row10_col25, #T_9a40b_row11_col1, #T_9a40b_row11_col2, #T_9a40b_row11_col6, #T_9a40b_row11_col7, #T_9a40b_row11_col9, #T_9a40b_row11_col12, #T_9a40b_row11_col13, #T_9a40b_row11_col15, #T_9a40b_row11_col16, #T_9a40b_row11_col17, #T_9a40b_row11_col21, #T_9a40b_row11_col22, #T_9a40b_row11_col23, #T_9a40b_row11_col25, #T_9a40b_row12_col1, #T_9a40b_row12_col2, #T_9a40b_row12_col3, #T_9a40b_row12_col5, #T_9a40b_row12_col6, #T_9a40b_row12_col7, #T_9a40b_row12_col9, #T_9a40b_row12_col10, #T_9a40b_row12_col11, #T_9a40b_row12_col12, #T_9a40b_row12_col13, #T_9a40b_row12_col16, #T_9a40b_row12_col17, #T_9a40b_row12_col19, #T_9a40b_row12_col21, #T_9a40b_row12_col22, #T_9a40b_row12_col23, #T_9a40b_row12_col25, #T_9a40b_row13_col5, #T_9a40b_row13_col7, #T_9a40b_row13_col9, #T_9a40b_row13_col12, #T_9a40b_row13_col15, #T_9a40b_row13_col16, #T_9a40b_row13_col17, #T_9a40b_row13_col20, #T_9a40b_row13_col21, #T_9a40b_row13_col22, #T_9a40b_row13_col23, #T_9a40b_row13_col25, #T_9a40b_row14_col1, #T_9a40b_row14_col4, #T_9a40b_row14_col6, #T_9a40b_row14_col7, #T_9a40b_row14_col16, #T_9a40b_row14_col23, #T_9a40b_row14_col24, #T_9a40b_row15_col1, #T_9a40b_row15_col2, #T_9a40b_row15_col3, #T_9a40b_row15_col5, #T_9a40b_row15_col6, #T_9a40b_row15_col7, #T_9a40b_row15_col9, #T_9a40b_row15_col10, #T_9a40b_row15_col12, #T_9a40b_row15_col13, #T_9a40b_row15_col16, #T_9a40b_row15_col18, #T_9a40b_row15_col21, #T_9a40b_row15_col22, #T_9a40b_row15_col23, #T_9a40b_row15_col25, #T_9a40b_row16_col0, #T_9a40b_row16_col1, #T_9a40b_row16_col2, #T_9a40b_row16_col3, #T_9a40b_row16_col4, #T_9a40b_row16_col5, #T_9a40b_row16_col6, #T_9a40b_row16_col7, #T_9a40b_row16_col8, #T_9a40b_row16_col9, #T_9a40b_row16_col10, #T_9a40b_row16_col11, #T_9a40b_row16_col12, #T_9a40b_row16_col13, #T_9a40b_row16_col14, #T_9a40b_row16_col15, #T_9a40b_row16_col16, #T_9a40b_row16_col17, #T_9a40b_row16_col18, #T_9a40b_row16_col19, #T_9a40b_row16_col21, #T_9a40b_row16_col22, #T_9a40b_row16_col23, #T_9a40b_row16_col24, #T_9a40b_row16_col25, #T_9a40b_row16_col26, #T_9a40b_row17_col1, #T_9a40b_row17_col5, #T_9a40b_row17_col7, #T_9a40b_row17_col9, #T_9a40b_row17_col16, #T_9a40b_row17_col21, #T_9a40b_row17_col22, #T_9a40b_row17_col23, #T_9a40b_row17_col25, #T_9a40b_row18_col1, #T_9a40b_row18_col3, #T_9a40b_row18_col5, #T_9a40b_row18_col6, #T_9a40b_row18_col9, #T_9a40b_row18_col12, #T_9a40b_row18_col13, #T_9a40b_row18_col16, #T_9a40b_row18_col17, #T_9a40b_row18_col21, #T_9a40b_row18_col23, #T_9a40b_row18_col24, #T_9a40b_row18_col25, #T_9a40b_row19_col1, #T_9a40b_row19_col3, #T_9a40b_row19_col5, #T_9a40b_row19_col6, #T_9a40b_row19_col9, #T_9a40b_row19_col10, #T_9a40b_row19_col12, #T_9a40b_row19_col13, #T_9a40b_row19_col15, #T_9a40b_row19_col16, #T_9a40b_row19_col21, #T_9a40b_row19_col22, #T_9a40b_row19_col23, #T_9a40b_row19_col25, #T_9a40b_row20_col0, #T_9a40b_row20_col1, #T_9a40b_row20_col3, #T_9a40b_row20_col5, #T_9a40b_row20_col7, #T_9a40b_row20_col9, #T_9a40b_row20_col10, #T_9a40b_row20_col12, #T_9a40b_row20_col14, #T_9a40b_row20_col16, #T_9a40b_row20_col20, #T_9a40b_row20_col21, #T_9a40b_row20_col22, #T_9a40b_row20_col23, #T_9a40b_row20_col24, #T_9a40b_row20_col25, #T_9a40b_row21_col0, #T_9a40b_row21_col1, #T_9a40b_row21_col2, #T_9a40b_row21_col3, #T_9a40b_row21_col5, #T_9a40b_row21_col6, #T_9a40b_row21_col7, #T_9a40b_row21_col9, #T_9a40b_row21_col10, #T_9a40b_row21_col11, #T_9a40b_row21_col12, #T_9a40b_row21_col13, #T_9a40b_row21_col14, #T_9a40b_row21_col15, #T_9a40b_row21_col16, #T_9a40b_row21_col17, #T_9a40b_row21_col18, #T_9a40b_row21_col19, #T_9a40b_row21_col20, #T_9a40b_row21_col21, #T_9a40b_row21_col22, #T_9a40b_row21_col23, #T_9a40b_row21_col24, #T_9a40b_row21_col25, #T_9a40b_row21_col26, #T_9a40b_row22_col1, #T_9a40b_row22_col2, #T_9a40b_row22_col3, #T_9a40b_row22_col5, #T_9a40b_row22_col6, #T_9a40b_row22_col9, #T_9a40b_row22_col10, #T_9a40b_row22_col11, #T_9a40b_row22_col12, #T_9a40b_row22_col15, #T_9a40b_row22_col16, #T_9a40b_row22_col17, #T_9a40b_row22_col18, #T_9a40b_row22_col19, #T_9a40b_row22_col20, #T_9a40b_row22_col21, #T_9a40b_row22_col22, #T_9a40b_row22_col23, #T_9a40b_row22_col24, #T_9a40b_row22_col25, #T_9a40b_row23_col0, #T_9a40b_row23_col1, #T_9a40b_row23_col2, #T_9a40b_row23_col3, #T_9a40b_row23_col4, #T_9a40b_row23_col5, #T_9a40b_row23_col6, #T_9a40b_row23_col7, #T_9a40b_row23_col8, #T_9a40b_row23_col9, #T_9a40b_row23_col10, #T_9a40b_row23_col11, #T_9a40b_row23_col12, #T_9a40b_row23_col13, #T_9a40b_row23_col14, #T_9a40b_row23_col15, #T_9a40b_row23_col16, #T_9a40b_row23_col17, #T_9a40b_row23_col18, #T_9a40b_row23_col19, #T_9a40b_row23_col20, #T_9a40b_row23_col21, #T_9a40b_row23_col22, #T_9a40b_row23_col23, #T_9a40b_row23_col24, #T_9a40b_row23_col25, #T_9a40b_row23_col26, #T_9a40b_row24_col0, #T_9a40b_row24_col1, #T_9a40b_row24_col2, #T_9a40b_row24_col3, #T_9a40b_row24_col5, #T_9a40b_row24_col6, #T_9a40b_row24_col7, #T_9a40b_row24_col8, #T_9a40b_row24_col9, #T_9a40b_row24_col10, #T_9a40b_row24_col11, #T_9a40b_row24_col12, #T_9a40b_row24_col13, #T_9a40b_row24_col15, #T_9a40b_row24_col16, #T_9a40b_row24_col17, #T_9a40b_row24_col19, #T_9a40b_row24_col20, #T_9a40b_row24_col21, #T_9a40b_row24_col22, #T_9a40b_row24_col23, #T_9a40b_row24_col24, #T_9a40b_row24_col25, #T_9a40b_row25_col0, #T_9a40b_row25_col1, #T_9a40b_row25_col2, #T_9a40b_row25_col3, #T_9a40b_row25_col4, #T_9a40b_row25_col5, #T_9a40b_row25_col6, #T_9a40b_row25_col7, #T_9a40b_row25_col8, #T_9a40b_row25_col9, #T_9a40b_row25_col10, #T_9a40b_row25_col11, #T_9a40b_row25_col12, #T_9a40b_row25_col13, #T_9a40b_row25_col14, #T_9a40b_row25_col15, #T_9a40b_row25_col16, #T_9a40b_row25_col17, #T_9a40b_row25_col18, #T_9a40b_row25_col19, #T_9a40b_row25_col20, #T_9a40b_row25_col21, #T_9a40b_row25_col22, #T_9a40b_row25_col23, #T_9a40b_row25_col24, #T_9a40b_row25_col25, #T_9a40b_row26_col23, #T_9a40b_row26_col25 {
+  background-color: #ffffff;
+}
+#T_9a40b_row0_col1, #T_9a40b_row1_col8, #T_9a40b_row2_col20, #T_9a40b_row3_col3, #T_9a40b_row3_col17, #T_9a40b_row4_col6, #T_9a40b_row4_col14, #T_9a40b_row4_col23, #T_9a40b_row5_col5, #T_9a40b_row5_col11, #T_9a40b_row6_col11, #T_9a40b_row6_col18, #T_9a40b_row7_col20, #T_9a40b_row8_col1, #T_9a40b_row8_col10, #T_9a40b_row8_col25, #T_9a40b_row9_col4, #T_9a40b_row9_col14, #T_9a40b_row10_col13, #T_9a40b_row10_col18, #T_9a40b_row11_col5, #T_9a40b_row11_col10, #T_9a40b_row11_col18, #T_9a40b_row11_col19, #T_9a40b_row11_col20, #T_9a40b_row12_col15, #T_9a40b_row12_col18, #T_9a40b_row13_col0, #T_9a40b_row13_col1, #T_9a40b_row13_col11, #T_9a40b_row13_col13, #T_9a40b_row14_col0, #T_9a40b_row14_col2, #T_9a40b_row14_col9, #T_9a40b_row15_col8, #T_9a40b_row15_col19, #T_9a40b_row15_col20, #T_9a40b_row15_col24, #T_9a40b_row17_col2, #T_9a40b_row17_col15, #T_9a40b_row18_col11, #T_9a40b_row18_col22, #T_9a40b_row20_col4, #T_9a40b_row20_col8, #T_9a40b_row21_col8, #T_9a40b_row24_col18, #T_9a40b_row26_col16 {
+  background-color: #fefefe;
+}
+#T_9a40b_row0_col2, #T_9a40b_row0_col21, #T_9a40b_row3_col8, #T_9a40b_row14_col11, #T_9a40b_row15_col4, #T_9a40b_row15_col17, #T_9a40b_row15_col26, #T_9a40b_row17_col18, #T_9a40b_row17_col19, #T_9a40b_row26_col10 {
+  background-color: #fafafa;
+}
+#T_9a40b_row0_col3, #T_9a40b_row0_col8, #T_9a40b_row2_col0, #T_9a40b_row3_col14, #T_9a40b_row4_col4, #T_9a40b_row12_col0, #T_9a40b_row13_col14, #T_9a40b_row14_col14, #T_9a40b_row20_col19, #T_9a40b_row22_col4, #T_9a40b_row22_col26, #T_9a40b_row26_col17, #T_9a40b_row26_col24 {
+  background-color: #f3f3f3;
+}
+#T_9a40b_row0_col5, #T_9a40b_row0_col10, #T_9a40b_row0_col20, #T_9a40b_row1_col24, #T_9a40b_row2_col8, #T_9a40b_row3_col11, #T_9a40b_row3_col18, #T_9a40b_row4_col5, #T_9a40b_row4_col8, #T_9a40b_row4_col22, #T_9a40b_row5_col19, #T_9a40b_row6_col20, #T_9a40b_row7_col17, #T_9a40b_row12_col20, #T_9a40b_row14_col8, #T_9a40b_row14_col25, #T_9a40b_row15_col15, #T_9a40b_row16_col20, #T_9a40b_row17_col6, #T_9a40b_row17_col11, #T_9a40b_row17_col12, #T_9a40b_row17_col17, #T_9a40b_row17_col20, #T_9a40b_row18_col15, #T_9a40b_row19_col2, #T_9a40b_row19_col18, #T_9a40b_row19_col20, #T_9a40b_row19_col24, #T_9a40b_row20_col2, #T_9a40b_row22_col13, #T_9a40b_row24_col4, #T_9a40b_row25_col26, #T_9a40b_row26_col9, #T_9a40b_row26_col21 {
+  background-color: #fdfdfd;
+}
+#T_9a40b_row0_col6, #T_9a40b_row0_col12, #T_9a40b_row1_col0, #T_9a40b_row4_col21, #T_9a40b_row5_col17, #T_9a40b_row6_col14, #T_9a40b_row7_col19, #T_9a40b_row8_col5, #T_9a40b_row8_col6, #T_9a40b_row10_col8, #T_9a40b_row12_col14, #T_9a40b_row15_col11, #T_9a40b_row15_col14, #T_9a40b_row17_col3, #T_9a40b_row18_col2, #T_9a40b_row18_col8, #T_9a40b_row18_col18, #T_9a40b_row19_col0, #T_9a40b_row19_col11, #T_9a40b_row19_col19 {
+  background-color: #fbfbfb;
+}
+#T_9a40b_row0_col11, #T_9a40b_row12_col4, #T_9a40b_row14_col22, #T_9a40b_row18_col4, #T_9a40b_row22_col0, #T_9a40b_row26_col15 {
+  background-color: #f0f0f0;
+}
+#T_9a40b_row0_col13 {
+  background-color: #cdcdcd;
+}
+#T_9a40b_row0_col15, #T_9a40b_row0_col22, #T_9a40b_row1_col11, #T_9a40b_row1_col14, #T_9a40b_row1_col17, #T_9a40b_row2_col11, #T_9a40b_row2_col19, #T_9a40b_row3_col0, #T_9a40b_row3_col12, #T_9a40b_row4_col15, #T_9a40b_row5_col0, #T_9a40b_row5_col4, #T_9a40b_row5_col8, #T_9a40b_row5_col20, #T_9a40b_row6_col0, #T_9a40b_row6_col8, #T_9a40b_row8_col21, #T_9a40b_row12_col8, #T_9a40b_row12_col24, #T_9a40b_row13_col2, #T_9a40b_row13_col8, #T_9a40b_row13_col10, #T_9a40b_row13_col24, #T_9a40b_row14_col10, #T_9a40b_row14_col15, #T_9a40b_row14_col18, #T_9a40b_row14_col21, #T_9a40b_row15_col0, #T_9a40b_row17_col10, #T_9a40b_row17_col13, #T_9a40b_row18_col10, #T_9a40b_row18_col20, #T_9a40b_row20_col6, #T_9a40b_row20_col15 {
+  background-color: #fcfcfc;
+}
+#T_9a40b_row0_col17, #T_9a40b_row0_col18, #T_9a40b_row7_col0, #T_9a40b_row8_col19, #T_9a40b_row14_col13, #T_9a40b_row17_col14 {
+  background-color: #e7e7e7;
+}
+#T_9a40b_row0_col19, #T_9a40b_row26_col12 {
+  background-color: #e8e8e8;
+}
+#T_9a40b_row0_col24, #T_9a40b_row1_col20, #T_9a40b_row2_col10, #T_9a40b_row2_col17, #T_9a40b_row6_col4, #T_9a40b_row7_col24, #T_9a40b_row8_col2, #T_9a40b_row8_col4, #T_9a40b_row8_col12, #T_9a40b_row8_col14, #T_9a40b_row11_col0, #T_9a40b_row13_col18, #T_9a40b_row14_col3, #T_9a40b_row17_col24 {
+  background-color: #f9f9f9;
+}
+#T_9a40b_row0_col26 {
+  background-color: #f1f1f1;
+}
+#T_9a40b_row1_col4, #T_9a40b_row11_col8, #T_9a40b_row12_col26, #T_9a40b_row13_col4, #T_9a40b_row18_col7, #T_9a40b_row26_col13 {
+  background-color: #f2f2f2;
+}
+#T_9a40b_row2_col4, #T_9a40b_row4_col19, #T_9a40b_row6_col7, #T_9a40b_row6_col17, #T_9a40b_row8_col17, #T_9a40b_row19_col17, #T_9a40b_row20_col18 {
+  background-color: #f8f8f8;
+}
+#T_9a40b_row2_col7, #T_9a40b_row2_col14, #T_9a40b_row3_col4, #T_9a40b_row5_col14, #T_9a40b_row10_col4, #T_9a40b_row13_col19, #T_9a40b_row19_col8, #T_9a40b_row22_col7, #T_9a40b_row24_col14, #T_9a40b_row26_col4 {
+  background-color: #f4f4f4;
+}
+#T_9a40b_row3_col26 {
+  background-color: #9f9f9f;
+}
+#T_9a40b_row4_col0, #T_9a40b_row7_col8, #T_9a40b_row11_col11 {
+  background-color: #ededed;
+}
+#T_9a40b_row4_col2, #T_9a40b_row4_col24, #T_9a40b_row8_col11, #T_9a40b_row10_col26, #T_9a40b_row14_col12, #T_9a40b_row17_col8, #T_9a40b_row18_col0, #T_9a40b_row18_col14, #T_9a40b_row20_col13, #T_9a40b_row20_col26, #T_9a40b_row22_col14 {
+  background-color: #f6f6f6;
+}
+#T_9a40b_row4_col3 {
+  background-color: #dedede;
+}
+#T_9a40b_row4_col11, #T_9a40b_row7_col14, #T_9a40b_row8_col3, #T_9a40b_row8_col26, #T_9a40b_row11_col3, #T_9a40b_row11_col14, #T_9a40b_row11_col24, #T_9a40b_row17_col0 {
+  background-color: #f5f5f5;
+}
+#T_9a40b_row4_col12, #T_9a40b_row20_col11, #T_9a40b_row20_col17, #T_9a40b_row26_col20 {
+  background-color: #f7f7f7;
+}
+#T_9a40b_row4_col13, #T_9a40b_row26_col3 {
+  background-color: #eaeaea;
+}
+#T_9a40b_row4_col17 {
+  background-color: #d2d2d2;
+}
+#T_9a40b_row4_col18, #T_9a40b_row11_col4, #T_9a40b_row19_col4, #T_9a40b_row21_col4 {
+  background-color: #eeeeee;
+}
+#T_9a40b_row4_col26 {
+  background-color: #757575;
+}
+#T_9a40b_row5_col26, #T_9a40b_row11_col26 {
+  background-color: #ebebeb;
+}
+#T_9a40b_row6_col26, #T_9a40b_row13_col6, #T_9a40b_row18_col19, #T_9a40b_row26_col6, #T_9a40b_row26_col11 {
+  background-color: #ececec;
+}
+#T_9a40b_row7_col4 {
+  background-color: #969696;
+}
+#T_9a40b_row7_col26, #T_9a40b_row8_col18, #T_9a40b_row14_col5, #T_9a40b_row14_col19, #T_9a40b_row22_col8 {
+  background-color: #efefef;
+}
+#T_9a40b_row8_col13, #T_9a40b_row17_col4 {
+  background-color: #d6d6d6;
+}
+#T_9a40b_row13_col3 {
+  background-color: #d8d8d8;
+}
+#T_9a40b_row13_col26 {
+  background-color: #cfcfcf;
+}
+#T_9a40b_row14_col17 {
+  background-color: #e5e5e5;
+}
+#T_9a40b_row14_col20, #T_9a40b_row26_col1 {
+  background-color: #e0e0e0;
+}
+#T_9a40b_row14_col26 {
+  background-color: #dcdcdc;
+}
+#T_9a40b_row17_col26, #T_9a40b_row26_col8 {
+  background-color: #dadada;
+}
+#T_9a40b_row18_col26 {
+  background-color: #c3c3c3;
+}
+#T_9a40b_row19_col7 {
+  background-color: #989898;
+}
+#T_9a40b_row19_col14 {
+  background-color: #e3e3e3;
+}
+#T_9a40b_row19_col26 {
+  background-color: #bdbdbd;
+}
+#T_9a40b_row24_col26 {
+  background-color: #d0d0d0;
+}
+#T_9a40b_row26_col0 {
+  background-color: #aeaeae;
+}
+#T_9a40b_row26_col2 {
+  background-color: #e4e4e4;
+}
+#T_9a40b_row26_col5 {
+  background-color: #e6e6e6;
+}
+#T_9a40b_row26_col7 {
+  background-color: #d5d5d5;
+}
+#T_9a40b_row26_col14 {
+  background-color: #dbdbdb;
+}
+#T_9a40b_row26_col18 {
+  background-color: #c8c8c8;
+}
+#T_9a40b_row26_col19 {
+  background-color: #868686;
+}
+#T_9a40b_row26_col22 {
+  background-color: #c5c5c5;
+}
+#T_9a40b_row26_col26 {
+  background-color: #929292;
+}
+</style>
+<table id="T_9a40b">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_9a40b_level0_col0" class="col_heading level0 col0" >a</th>
+      <th id="T_9a40b_level0_col1" class="col_heading level0 col1" >b</th>
+      <th id="T_9a40b_level0_col2" class="col_heading level0 col2" >c</th>
+      <th id="T_9a40b_level0_col3" class="col_heading level0 col3" >d</th>
+      <th id="T_9a40b_level0_col4" class="col_heading level0 col4" >e</th>
+      <th id="T_9a40b_level0_col5" class="col_heading level0 col5" >f</th>
+      <th id="T_9a40b_level0_col6" class="col_heading level0 col6" >g</th>
+      <th id="T_9a40b_level0_col7" class="col_heading level0 col7" >h</th>
+      <th id="T_9a40b_level0_col8" class="col_heading level0 col8" >i</th>
+      <th id="T_9a40b_level0_col9" class="col_heading level0 col9" >j</th>
+      <th id="T_9a40b_level0_col10" class="col_heading level0 col10" >k</th>
+      <th id="T_9a40b_level0_col11" class="col_heading level0 col11" >l</th>
+      <th id="T_9a40b_level0_col12" class="col_heading level0 col12" >m</th>
+      <th id="T_9a40b_level0_col13" class="col_heading level0 col13" >n</th>
+      <th id="T_9a40b_level0_col14" class="col_heading level0 col14" >o</th>
+      <th id="T_9a40b_level0_col15" class="col_heading level0 col15" >p</th>
+      <th id="T_9a40b_level0_col16" class="col_heading level0 col16" >q</th>
+      <th id="T_9a40b_level0_col17" class="col_heading level0 col17" >r</th>
+      <th id="T_9a40b_level0_col18" class="col_heading level0 col18" >s</th>
+      <th id="T_9a40b_level0_col19" class="col_heading level0 col19" >t</th>
+      <th id="T_9a40b_level0_col20" class="col_heading level0 col20" >u</th>
+      <th id="T_9a40b_level0_col21" class="col_heading level0 col21" >v</th>
+      <th id="T_9a40b_level0_col22" class="col_heading level0 col22" >w</th>
+      <th id="T_9a40b_level0_col23" class="col_heading level0 col23" >x</th>
+      <th id="T_9a40b_level0_col24" class="col_heading level0 col24" >y</th>
+      <th id="T_9a40b_level0_col25" class="col_heading level0 col25" >z</th>
+      <th id="T_9a40b_level0_col26" class="col_heading level0 col26" > </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_9a40b_level0_row0" class="row_heading level0 row0" >a</th>
+      <td id="T_9a40b_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_9a40b_row0_col1" class="data row0 col1" >124</td>
+      <td id="T_9a40b_row0_col2" class="data row0 col2" >350</td>
+      <td id="T_9a40b_row0_col3" class="data row0 col3" >789</td>
+      <td id="T_9a40b_row0_col4" class="data row0 col4" >1</td>
+      <td id="T_9a40b_row0_col5" class="data row0 col5" >143</td>
+      <td id="T_9a40b_row0_col6" class="data row0 col6" >264</td>
+      <td id="T_9a40b_row0_col7" class="data row0 col7" >12</td>
+      <td id="T_9a40b_row0_col8" class="data row0 col8" >790</td>
+      <td id="T_9a40b_row0_col9" class="data row0 col9" >2</td>
+      <td id="T_9a40b_row0_col10" class="data row0 col10" >156</td>
+      <td id="T_9a40b_row0_col11" class="data row0 col11" >999</td>
+      <td id="T_9a40b_row0_col12" class="data row0 col12" >310</td>
+      <td id="T_9a40b_row0_col13" class="data row0 col13" >3170</td>
+      <td id="T_9a40b_row0_col14" class="data row0 col14" >0</td>
+      <td id="T_9a40b_row0_col15" class="data row0 col15" >218</td>
+      <td id="T_9a40b_row0_col16" class="data row0 col16" >0</td>
+      <td id="T_9a40b_row0_col17" class="data row0 col17" >1552</td>
+      <td id="T_9a40b_row0_col18" class="data row0 col18" >1506</td>
+      <td id="T_9a40b_row0_col19" class="data row0 col19" >1442</td>
+      <td id="T_9a40b_row0_col20" class="data row0 col20" >147</td>
+      <td id="T_9a40b_row0_col21" class="data row0 col21" >343</td>
+      <td id="T_9a40b_row0_col22" class="data row0 col22" >223</td>
+      <td id="T_9a40b_row0_col23" class="data row0 col23" >36</td>
+      <td id="T_9a40b_row0_col24" class="data row0 col24" >377</td>
+      <td id="T_9a40b_row0_col25" class="data row0 col25" >12</td>
+      <td id="T_9a40b_row0_col26" class="data row0 col26" >921</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row1" class="row_heading level0 row1" >b</th>
+      <td id="T_9a40b_row1_col0" class="data row1 col0" >254</td>
+      <td id="T_9a40b_row1_col1" class="data row1 col1" >9</td>
+      <td id="T_9a40b_row1_col2" class="data row1 col2" >0</td>
+      <td id="T_9a40b_row1_col3" class="data row1 col3" >0</td>
+      <td id="T_9a40b_row1_col4" class="data row1 col4" >857</td>
+      <td id="T_9a40b_row1_col5" class="data row1 col5" >0</td>
+      <td id="T_9a40b_row1_col6" class="data row1 col6" >0</td>
+      <td id="T_9a40b_row1_col7" class="data row1 col7" >0</td>
+      <td id="T_9a40b_row1_col8" class="data row1 col8" >120</td>
+      <td id="T_9a40b_row1_col9" class="data row1 col9" >2</td>
+      <td id="T_9a40b_row1_col10" class="data row1 col10" >0</td>
+      <td id="T_9a40b_row1_col11" class="data row1 col11" >191</td>
+      <td id="T_9a40b_row1_col12" class="data row1 col12" >0</td>
+      <td id="T_9a40b_row1_col13" class="data row1 col13" >0</td>
+      <td id="T_9a40b_row1_col14" class="data row1 col14" >207</td>
+      <td id="T_9a40b_row1_col15" class="data row1 col15" >0</td>
+      <td id="T_9a40b_row1_col16" class="data row1 col16" >0</td>
+      <td id="T_9a40b_row1_col17" class="data row1 col17" >243</td>
+      <td id="T_9a40b_row1_col18" class="data row1 col18" >7</td>
+      <td id="T_9a40b_row1_col19" class="data row1 col19" >6</td>
+      <td id="T_9a40b_row1_col20" class="data row1 col20" >393</td>
+      <td id="T_9a40b_row1_col21" class="data row1 col21" >0</td>
+      <td id="T_9a40b_row1_col22" class="data row1 col22" >0</td>
+      <td id="T_9a40b_row1_col23" class="data row1 col23" >0</td>
+      <td id="T_9a40b_row1_col24" class="data row1 col24" >147</td>
+      <td id="T_9a40b_row1_col25" class="data row1 col25" >0</td>
+      <td id="T_9a40b_row1_col26" class="data row1 col26" >12</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row2" class="row_heading level0 row2" >c</th>
+      <td id="T_9a40b_row2_col0" class="data row2 col0" >798</td>
+      <td id="T_9a40b_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_9a40b_row2_col2" class="data row2 col2" >26</td>
+      <td id="T_9a40b_row2_col3" class="data row2 col3" >0</td>
+      <td id="T_9a40b_row2_col4" class="data row2 col4" >470</td>
+      <td id="T_9a40b_row2_col5" class="data row2 col5" >0</td>
+      <td id="T_9a40b_row2_col6" class="data row2 col6" >0</td>
+      <td id="T_9a40b_row2_col7" class="data row2 col7" >699</td>
+      <td id="T_9a40b_row2_col8" class="data row2 col8" >150</td>
+      <td id="T_9a40b_row2_col9" class="data row2 col9" >0</td>
+      <td id="T_9a40b_row2_col10" class="data row2 col10" >377</td>
+      <td id="T_9a40b_row2_col11" class="data row2 col11" >189</td>
+      <td id="T_9a40b_row2_col12" class="data row2 col12" >0</td>
+      <td id="T_9a40b_row2_col13" class="data row2 col13" >0</td>
+      <td id="T_9a40b_row2_col14" class="data row2 col14" >692</td>
+      <td id="T_9a40b_row2_col15" class="data row2 col15" >0</td>
+      <td id="T_9a40b_row2_col16" class="data row2 col16" >0</td>
+      <td id="T_9a40b_row2_col17" class="data row2 col17" >394</td>
+      <td id="T_9a40b_row2_col18" class="data row2 col18" >0</td>
+      <td id="T_9a40b_row2_col19" class="data row2 col19" >232</td>
+      <td id="T_9a40b_row2_col20" class="data row2 col20" >67</td>
+      <td id="T_9a40b_row2_col21" class="data row2 col21" >0</td>
+      <td id="T_9a40b_row2_col22" class="data row2 col22" >0</td>
+      <td id="T_9a40b_row2_col23" class="data row2 col23" >0</td>
+      <td id="T_9a40b_row2_col24" class="data row2 col24" >21</td>
+      <td id="T_9a40b_row2_col25" class="data row2 col25" >0</td>
+      <td id="T_9a40b_row2_col26" class="data row2 col26" >46</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row3" class="row_heading level0 row3" >d</th>
+      <td id="T_9a40b_row3_col0" class="data row3 col0" >199</td>
+      <td id="T_9a40b_row3_col1" class="data row3 col1" >0</td>
+      <td id="T_9a40b_row3_col2" class="data row3 col2" >6</td>
+      <td id="T_9a40b_row3_col3" class="data row3 col3" >73</td>
+      <td id="T_9a40b_row3_col4" class="data row3 col4" >715</td>
+      <td id="T_9a40b_row3_col5" class="data row3 col5" >12</td>
+      <td id="T_9a40b_row3_col6" class="data row3 col6" >19</td>
+      <td id="T_9a40b_row3_col7" class="data row3 col7" >1</td>
+      <td id="T_9a40b_row3_col8" class="data row3 col8" >358</td>
+      <td id="T_9a40b_row3_col9" class="data row3 col9" >0</td>
+      <td id="T_9a40b_row3_col10" class="data row3 col10" >1</td>
+      <td id="T_9a40b_row3_col11" class="data row3 col11" >130</td>
+      <td id="T_9a40b_row3_col12" class="data row3 col12" >189</td>
+      <td id="T_9a40b_row3_col13" class="data row3 col13" >16</td>
+      <td id="T_9a40b_row3_col14" class="data row3 col14" >781</td>
+      <td id="T_9a40b_row3_col15" class="data row3 col15" >0</td>
+      <td id="T_9a40b_row3_col16" class="data row3 col16" >0</td>
+      <td id="T_9a40b_row3_col17" class="data row3 col17" >94</td>
+      <td id="T_9a40b_row3_col18" class="data row3 col18" >170</td>
+      <td id="T_9a40b_row3_col19" class="data row3 col19" >0</td>
+      <td id="T_9a40b_row3_col20" class="data row3 col20" >29</td>
+      <td id="T_9a40b_row3_col21" class="data row3 col21" >7</td>
+      <td id="T_9a40b_row3_col22" class="data row3 col22" >5</td>
+      <td id="T_9a40b_row3_col23" class="data row3 col23" >0</td>
+      <td id="T_9a40b_row3_col24" class="data row3 col24" >57</td>
+      <td id="T_9a40b_row3_col25" class="data row3 col25" >0</td>
+      <td id="T_9a40b_row3_col26" class="data row3 col26" >6026</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row4" class="row_heading level0 row4" >e</th>
+      <td id="T_9a40b_row4_col0" class="data row4 col0" >1165</td>
+      <td id="T_9a40b_row4_col1" class="data row4 col1" >28</td>
+      <td id="T_9a40b_row4_col2" class="data row4 col2" >576</td>
+      <td id="T_9a40b_row4_col3" class="data row4 col3" >2124</td>
+      <td id="T_9a40b_row4_col4" class="data row4 col4" >806</td>
+      <td id="T_9a40b_row4_col5" class="data row4 col5" >184</td>
+      <td id="T_9a40b_row4_col6" class="data row4 col6" >88</td>
+      <td id="T_9a40b_row4_col7" class="data row4 col7" >27</td>
+      <td id="T_9a40b_row4_col8" class="data row4 col8" >175</td>
+      <td id="T_9a40b_row4_col9" class="data row4 col9" >2</td>
+      <td id="T_9a40b_row4_col10" class="data row4 col10" >17</td>
+      <td id="T_9a40b_row4_col11" class="data row4 col11" >660</td>
+      <td id="T_9a40b_row4_col12" class="data row4 col12" >512</td>
+      <td id="T_9a40b_row4_col13" class="data row4 col13" >1363</td>
+      <td id="T_9a40b_row4_col14" class="data row4 col14" >68</td>
+      <td id="T_9a40b_row4_col15" class="data row4 col15" >245</td>
+      <td id="T_9a40b_row4_col16" class="data row4 col16" >14</td>
+      <td id="T_9a40b_row4_col17" class="data row4 col17" >2876</td>
+      <td id="T_9a40b_row4_col18" class="data row4 col18" >1090</td>
+      <td id="T_9a40b_row4_col19" class="data row4 col19" >472</td>
+      <td id="T_9a40b_row4_col20" class="data row4 col20" >5</td>
+      <td id="T_9a40b_row4_col21" class="data row4 col21" >279</td>
+      <td id="T_9a40b_row4_col22" class="data row4 col22" >147</td>
+      <td id="T_9a40b_row4_col23" class="data row4 col23" >105</td>
+      <td id="T_9a40b_row4_col24" class="data row4 col24" >568</td>
+      <td id="T_9a40b_row4_col25" class="data row4 col25" >1</td>
+      <td id="T_9a40b_row4_col26" class="data row4 col26" >8664</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row5" class="row_heading level0 row5" >f</th>
+      <td id="T_9a40b_row5_col0" class="data row5 col0" >192</td>
+      <td id="T_9a40b_row5_col1" class="data row5 col1" >0</td>
+      <td id="T_9a40b_row5_col2" class="data row5 col2" >0</td>
+      <td id="T_9a40b_row5_col3" class="data row5 col3" >0</td>
+      <td id="T_9a40b_row5_col4" class="data row5 col4" >246</td>
+      <td id="T_9a40b_row5_col5" class="data row5 col5" >97</td>
+      <td id="T_9a40b_row5_col6" class="data row5 col6" >0</td>
+      <td id="T_9a40b_row5_col7" class="data row5 col7" >0</td>
+      <td id="T_9a40b_row5_col8" class="data row5 col8" >234</td>
+      <td id="T_9a40b_row5_col9" class="data row5 col9" >0</td>
+      <td id="T_9a40b_row5_col10" class="data row5 col10" >0</td>
+      <td id="T_9a40b_row5_col11" class="data row5 col11" >113</td>
+      <td id="T_9a40b_row5_col12" class="data row5 col12" >0</td>
+      <td id="T_9a40b_row5_col13" class="data row5 col13" >0</td>
+      <td id="T_9a40b_row5_col14" class="data row5 col14" >749</td>
+      <td id="T_9a40b_row5_col15" class="data row5 col15" >0</td>
+      <td id="T_9a40b_row5_col16" class="data row5 col16" >0</td>
+      <td id="T_9a40b_row5_col17" class="data row5 col17" >298</td>
+      <td id="T_9a40b_row5_col18" class="data row5 col18" >1</td>
+      <td id="T_9a40b_row5_col19" class="data row5 col19" >157</td>
+      <td id="T_9a40b_row5_col20" class="data row5 col20" >214</td>
+      <td id="T_9a40b_row5_col21" class="data row5 col21" >0</td>
+      <td id="T_9a40b_row5_col22" class="data row5 col22" >1</td>
+      <td id="T_9a40b_row5_col23" class="data row5 col23" >0</td>
+      <td id="T_9a40b_row5_col24" class="data row5 col24" >2</td>
+      <td id="T_9a40b_row5_col25" class="data row5 col25" >0</td>
+      <td id="T_9a40b_row5_col26" class="data row5 col26" >1284</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row6" class="row_heading level0 row6" >g</th>
+      <td id="T_9a40b_row6_col0" class="data row6 col0" >222</td>
+      <td id="T_9a40b_row6_col1" class="data row6 col1" >0</td>
+      <td id="T_9a40b_row6_col2" class="data row6 col2" >0</td>
+      <td id="T_9a40b_row6_col3" class="data row6 col3" >2</td>
+      <td id="T_9a40b_row6_col4" class="data row6 col4" >410</td>
+      <td id="T_9a40b_row6_col5" class="data row6 col5" >0</td>
+      <td id="T_9a40b_row6_col6" class="data row6 col6" >35</td>
+      <td id="T_9a40b_row6_col7" class="data row6 col7" >444</td>
+      <td id="T_9a40b_row6_col8" class="data row6 col8" >198</td>
+      <td id="T_9a40b_row6_col9" class="data row6 col9" >0</td>
+      <td id="T_9a40b_row6_col10" class="data row6 col10" >0</td>
+      <td id="T_9a40b_row6_col11" class="data row6 col11" >84</td>
+      <td id="T_9a40b_row6_col12" class="data row6 col12" >0</td>
+      <td id="T_9a40b_row6_col13" class="data row6 col13" >4</td>
+      <td id="T_9a40b_row6_col14" class="data row6 col14" >288</td>
+      <td id="T_9a40b_row6_col15" class="data row6 col15" >0</td>
+      <td id="T_9a40b_row6_col16" class="data row6 col16" >0</td>
+      <td id="T_9a40b_row6_col17" class="data row6 col17" >485</td>
+      <td id="T_9a40b_row6_col18" class="data row6 col18" >75</td>
+      <td id="T_9a40b_row6_col19" class="data row6 col19" >3</td>
+      <td id="T_9a40b_row6_col20" class="data row6 col20" >135</td>
+      <td id="T_9a40b_row6_col21" class="data row6 col21" >0</td>
+      <td id="T_9a40b_row6_col22" class="data row6 col22" >0</td>
+      <td id="T_9a40b_row6_col23" class="data row6 col23" >0</td>
+      <td id="T_9a40b_row6_col24" class="data row6 col24" >5</td>
+      <td id="T_9a40b_row6_col25" class="data row6 col25" >0</td>
+      <td id="T_9a40b_row6_col26" class="data row6 col26" >1197</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row7" class="row_heading level0 row7" >h</th>
+      <td id="T_9a40b_row7_col0" class="data row7 col0" >1515</td>
+      <td id="T_9a40b_row7_col1" class="data row7 col1" >0</td>
+      <td id="T_9a40b_row7_col2" class="data row7 col2" >0</td>
+      <td id="T_9a40b_row7_col3" class="data row7 col3" >0</td>
+      <td id="T_9a40b_row7_col4" class="data row7 col4" >6611</td>
+      <td id="T_9a40b_row7_col5" class="data row7 col5" >2</td>
+      <td id="T_9a40b_row7_col6" class="data row7 col6" >0</td>
+      <td id="T_9a40b_row7_col7" class="data row7 col7" >0</td>
+      <td id="T_9a40b_row7_col8" class="data row7 col8" >1157</td>
+      <td id="T_9a40b_row7_col9" class="data row7 col9" >0</td>
+      <td id="T_9a40b_row7_col10" class="data row7 col10" >34</td>
+      <td id="T_9a40b_row7_col11" class="data row7 col11" >5</td>
+      <td id="T_9a40b_row7_col12" class="data row7 col12" >0</td>
+      <td id="T_9a40b_row7_col13" class="data row7 col13" >0</td>
+      <td id="T_9a40b_row7_col14" class="data row7 col14" >688</td>
+      <td id="T_9a40b_row7_col15" class="data row7 col15" >0</td>
+      <td id="T_9a40b_row7_col16" class="data row7 col16" >0</td>
+      <td id="T_9a40b_row7_col17" class="data row7 col17" >142</td>
+      <td id="T_9a40b_row7_col18" class="data row7 col18" >21</td>
+      <td id="T_9a40b_row7_col19" class="data row7 col19" >299</td>
+      <td id="T_9a40b_row7_col20" class="data row7 col20" >69</td>
+      <td id="T_9a40b_row7_col21" class="data row7 col21" >0</td>
+      <td id="T_9a40b_row7_col22" class="data row7 col22" >2</td>
+      <td id="T_9a40b_row7_col23" class="data row7 col23" >0</td>
+      <td id="T_9a40b_row7_col24" class="data row7 col24" >416</td>
+      <td id="T_9a40b_row7_col25" class="data row7 col25" >0</td>
+      <td id="T_9a40b_row7_col26" class="data row7 col26" >1016</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row8" class="row_heading level0 row8" >i</th>
+      <td id="T_9a40b_row8_col0" class="data row8 col0" >59</td>
+      <td id="T_9a40b_row8_col1" class="data row8 col1" >89</td>
+      <td id="T_9a40b_row8_col2" class="data row8 col2" >423</td>
+      <td id="T_9a40b_row8_col3" class="data row8 col3" >677</td>
+      <td id="T_9a40b_row8_col4" class="data row8 col4" >424</td>
+      <td id="T_9a40b_row8_col5" class="data row8 col5" >266</td>
+      <td id="T_9a40b_row8_col6" class="data row8 col6" >309</td>
+      <td id="T_9a40b_row8_col7" class="data row8 col7" >0</td>
+      <td id="T_9a40b_row8_col8" class="data row8 col8" >22</td>
+      <td id="T_9a40b_row8_col9" class="data row8 col9" >0</td>
+      <td id="T_9a40b_row8_col10" class="data row8 col10" >71</td>
+      <td id="T_9a40b_row8_col11" class="data row8 col11" >624</td>
+      <td id="T_9a40b_row8_col12" class="data row8 col12" >386</td>
+      <td id="T_9a40b_row8_col13" class="data row8 col13" >2595</td>
+      <td id="T_9a40b_row8_col14" class="data row8 col14" >393</td>
+      <td id="T_9a40b_row8_col15" class="data row8 col15" >42</td>
+      <td id="T_9a40b_row8_col16" class="data row8 col16" >0</td>
+      <td id="T_9a40b_row8_col17" class="data row8 col17" >440</td>
+      <td id="T_9a40b_row8_col18" class="data row8 col18" >1048</td>
+      <td id="T_9a40b_row8_col19" class="data row8 col19" >1504</td>
+      <td id="T_9a40b_row8_col20" class="data row8 col20" >5</td>
+      <td id="T_9a40b_row8_col21" class="data row8 col21" >207</td>
+      <td id="T_9a40b_row8_col22" class="data row8 col22" >0</td>
+      <td id="T_9a40b_row8_col23" class="data row8 col23" >7</td>
+      <td id="T_9a40b_row8_col24" class="data row8 col24" >0</td>
+      <td id="T_9a40b_row8_col25" class="data row8 col25" >68</td>
+      <td id="T_9a40b_row8_col26" class="data row8 col26" >681</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row9" class="row_heading level0 row9" >j</th>
+      <td id="T_9a40b_row9_col0" class="data row9 col0" >8</td>
+      <td id="T_9a40b_row9_col1" class="data row9 col1" >0</td>
+      <td id="T_9a40b_row9_col2" class="data row9 col2" >0</td>
+      <td id="T_9a40b_row9_col3" class="data row9 col3" >0</td>
+      <td id="T_9a40b_row9_col4" class="data row9 col4" >97</td>
+      <td id="T_9a40b_row9_col5" class="data row9 col5" >0</td>
+      <td id="T_9a40b_row9_col6" class="data row9 col6" >0</td>
+      <td id="T_9a40b_row9_col7" class="data row9 col7" >0</td>
+      <td id="T_9a40b_row9_col8" class="data row9 col8" >0</td>
+      <td id="T_9a40b_row9_col9" class="data row9 col9" >0</td>
+      <td id="T_9a40b_row9_col10" class="data row9 col10" >0</td>
+      <td id="T_9a40b_row9_col11" class="data row9 col11" >0</td>
+      <td id="T_9a40b_row9_col12" class="data row9 col12" >0</td>
+      <td id="T_9a40b_row9_col13" class="data row9 col13" >0</td>
+      <td id="T_9a40b_row9_col14" class="data row9 col14" >75</td>
+      <td id="T_9a40b_row9_col15" class="data row9 col15" >0</td>
+      <td id="T_9a40b_row9_col16" class="data row9 col16" >0</td>
+      <td id="T_9a40b_row9_col17" class="data row9 col17" >0</td>
+      <td id="T_9a40b_row9_col18" class="data row9 col18" >0</td>
+      <td id="T_9a40b_row9_col19" class="data row9 col19" >0</td>
+      <td id="T_9a40b_row9_col20" class="data row9 col20" >60</td>
+      <td id="T_9a40b_row9_col21" class="data row9 col21" >0</td>
+      <td id="T_9a40b_row9_col22" class="data row9 col22" >0</td>
+      <td id="T_9a40b_row9_col23" class="data row9 col23" >0</td>
+      <td id="T_9a40b_row9_col24" class="data row9 col24" >0</td>
+      <td id="T_9a40b_row9_col25" class="data row9 col25" >0</td>
+      <td id="T_9a40b_row9_col26" class="data row9 col26" >0</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row10" class="row_heading level0 row10" >k</th>
+      <td id="T_9a40b_row10_col0" class="data row10 col0" >62</td>
+      <td id="T_9a40b_row10_col1" class="data row10 col1" >0</td>
+      <td id="T_9a40b_row10_col2" class="data row10 col2" >0</td>
+      <td id="T_9a40b_row10_col3" class="data row10 col3" >0</td>
+      <td id="T_9a40b_row10_col4" class="data row10 col4" >741</td>
+      <td id="T_9a40b_row10_col5" class="data row10 col5" >10</td>
+      <td id="T_9a40b_row10_col6" class="data row10 col6" >0</td>
+      <td id="T_9a40b_row10_col7" class="data row10 col7" >0</td>
+      <td id="T_9a40b_row10_col8" class="data row10 col8" >269</td>
+      <td id="T_9a40b_row10_col9" class="data row10 col9" >0</td>
+      <td id="T_9a40b_row10_col10" class="data row10 col10" >0</td>
+      <td id="T_9a40b_row10_col11" class="data row10 col11" >27</td>
+      <td id="T_9a40b_row10_col12" class="data row10 col12" >7</td>
+      <td id="T_9a40b_row10_col13" class="data row10 col13" >110</td>
+      <td id="T_9a40b_row10_col14" class="data row10 col14" >1</td>
+      <td id="T_9a40b_row10_col15" class="data row10 col15" >0</td>
+      <td id="T_9a40b_row10_col16" class="data row10 col16" >0</td>
+      <td id="T_9a40b_row10_col17" class="data row10 col17" >0</td>
+      <td id="T_9a40b_row10_col18" class="data row10 col18" >82</td>
+      <td id="T_9a40b_row10_col19" class="data row10 col19" >0</td>
+      <td id="T_9a40b_row10_col20" class="data row10 col20" >0</td>
+      <td id="T_9a40b_row10_col21" class="data row10 col21" >0</td>
+      <td id="T_9a40b_row10_col22" class="data row10 col22" >3</td>
+      <td id="T_9a40b_row10_col23" class="data row10 col23" >0</td>
+      <td id="T_9a40b_row10_col24" class="data row10 col24" >20</td>
+      <td id="T_9a40b_row10_col25" class="data row10 col25" >0</td>
+      <td id="T_9a40b_row10_col26" class="data row10 col26" >588</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row11" class="row_heading level0 row11" >l</th>
+      <td id="T_9a40b_row11_col0" class="data row11 col0" >425</td>
+      <td id="T_9a40b_row11_col1" class="data row11 col1" >2</td>
+      <td id="T_9a40b_row11_col2" class="data row11 col2" >6</td>
+      <td id="T_9a40b_row11_col3" class="data row11 col3" >637</td>
+      <td id="T_9a40b_row11_col4" class="data row11 col4" >1083</td>
+      <td id="T_9a40b_row11_col5" class="data row11 col5" >90</td>
+      <td id="T_9a40b_row11_col6" class="data row11 col6" >2</td>
+      <td id="T_9a40b_row11_col7" class="data row11 col7" >0</td>
+      <td id="T_9a40b_row11_col8" class="data row11 col8" >828</td>
+      <td id="T_9a40b_row11_col9" class="data row11 col9" >0</td>
+      <td id="T_9a40b_row11_col10" class="data row11 col10" >117</td>
+      <td id="T_9a40b_row11_col11" class="data row11 col11" >1165</td>
+      <td id="T_9a40b_row11_col12" class="data row11 col12" >12</td>
+      <td id="T_9a40b_row11_col13" class="data row11 col13" >1</td>
+      <td id="T_9a40b_row11_col14" class="data row11 col14" >637</td>
+      <td id="T_9a40b_row11_col15" class="data row11 col15" >52</td>
+      <td id="T_9a40b_row11_col16" class="data row11 col16" >0</td>
+      <td id="T_9a40b_row11_col17" class="data row11 col17" >4</td>
+      <td id="T_9a40b_row11_col18" class="data row11 col18" >77</td>
+      <td id="T_9a40b_row11_col19" class="data row11 col19" >71</td>
+      <td id="T_9a40b_row11_col20" class="data row11 col20" >72</td>
+      <td id="T_9a40b_row11_col21" class="data row11 col21" >58</td>
+      <td id="T_9a40b_row11_col22" class="data row11 col22" >21</td>
+      <td id="T_9a40b_row11_col23" class="data row11 col23" >0</td>
+      <td id="T_9a40b_row11_col24" class="data row11 col24" >628</td>
+      <td id="T_9a40b_row11_col25" class="data row11 col25" >0</td>
+      <td id="T_9a40b_row11_col26" class="data row11 col26" >1268</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row12" class="row_heading level0 row12" >m</th>
+      <td id="T_9a40b_row12_col0" class="data row12 col0" >770</td>
+      <td id="T_9a40b_row12_col1" class="data row12 col1" >60</td>
+      <td id="T_9a40b_row12_col2" class="data row12 col2" >0</td>
+      <td id="T_9a40b_row12_col3" class="data row12 col3" >0</td>
+      <td id="T_9a40b_row12_col4" class="data row12 col4" >948</td>
+      <td id="T_9a40b_row12_col5" class="data row12 col5" >11</td>
+      <td id="T_9a40b_row12_col6" class="data row12 col6" >0</td>
+      <td id="T_9a40b_row12_col7" class="data row12 col7" >3</td>
+      <td id="T_9a40b_row12_col8" class="data row12 col8" >241</td>
+      <td id="T_9a40b_row12_col9" class="data row12 col9" >0</td>
+      <td id="T_9a40b_row12_col10" class="data row12 col10" >0</td>
+      <td id="T_9a40b_row12_col11" class="data row12 col11" >9</td>
+      <td id="T_9a40b_row12_col12" class="data row12 col12" >34</td>
+      <td id="T_9a40b_row12_col13" class="data row12 col13" >6</td>
+      <td id="T_9a40b_row12_col14" class="data row12 col14" >279</td>
+      <td id="T_9a40b_row12_col15" class="data row12 col15" >88</td>
+      <td id="T_9a40b_row12_col16" class="data row12 col16" >0</td>
+      <td id="T_9a40b_row12_col17" class="data row12 col17" >13</td>
+      <td id="T_9a40b_row12_col18" class="data row12 col18" >119</td>
+      <td id="T_9a40b_row12_col19" class="data row12 col19" >0</td>
+      <td id="T_9a40b_row12_col20" class="data row12 col20" >174</td>
+      <td id="T_9a40b_row12_col21" class="data row12 col21" >0</td>
+      <td id="T_9a40b_row12_col22" class="data row12 col22" >0</td>
+      <td id="T_9a40b_row12_col23" class="data row12 col23" >0</td>
+      <td id="T_9a40b_row12_col24" class="data row12 col24" >221</td>
+      <td id="T_9a40b_row12_col25" class="data row12 col25" >0</td>
+      <td id="T_9a40b_row12_col26" class="data row12 col26" >854</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row13" class="row_heading level0 row13" >n</th>
+      <td id="T_9a40b_row13_col0" class="data row13 col0" >99</td>
+      <td id="T_9a40b_row13_col1" class="data row13 col1" >100</td>
+      <td id="T_9a40b_row13_col2" class="data row13 col2" >242</td>
+      <td id="T_9a40b_row13_col3" class="data row13 col3" >2476</td>
+      <td id="T_9a40b_row13_col4" class="data row13 col4" >816</td>
+      <td id="T_9a40b_row13_col5" class="data row13 col5" >23</td>
+      <td id="T_9a40b_row13_col6" class="data row13 col6" >1192</td>
+      <td id="T_9a40b_row13_col7" class="data row13 col7" >13</td>
+      <td id="T_9a40b_row13_col8" class="data row13 col8" >221</td>
+      <td id="T_9a40b_row13_col9" class="data row13 col9" >5</td>
+      <td id="T_9a40b_row13_col10" class="data row13 col10" >204</td>
+      <td id="T_9a40b_row13_col11" class="data row13 col11" >102</td>
+      <td id="T_9a40b_row13_col12" class="data row13 col12" >1</td>
+      <td id="T_9a40b_row13_col13" class="data row13 col13" >85</td>
+      <td id="T_9a40b_row13_col14" class="data row13 col14" >752</td>
+      <td id="T_9a40b_row13_col15" class="data row13 col15" >2</td>
+      <td id="T_9a40b_row13_col16" class="data row13 col16" >14</td>
+      <td id="T_9a40b_row13_col17" class="data row13 col17" >14</td>
+      <td id="T_9a40b_row13_col18" class="data row13 col18" >393</td>
+      <td id="T_9a40b_row13_col19" class="data row13 col19" >691</td>
+      <td id="T_9a40b_row13_col20" class="data row13 col20" >40</td>
+      <td id="T_9a40b_row13_col21" class="data row13 col21" >7</td>
+      <td id="T_9a40b_row13_col22" class="data row13 col22" >1</td>
+      <td id="T_9a40b_row13_col23" class="data row13 col23" >15</td>
+      <td id="T_9a40b_row13_col24" class="data row13 col24" >194</td>
+      <td id="T_9a40b_row13_col25" class="data row13 col25" >0</td>
+      <td id="T_9a40b_row13_col26" class="data row13 col26" >3050</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row14" class="row_heading level0 row14" >o</th>
+      <td id="T_9a40b_row14_col0" class="data row14 col0" >108</td>
+      <td id="T_9a40b_row14_col1" class="data row14 col1" >35</td>
+      <td id="T_9a40b_row14_col2" class="data row14 col2" >67</td>
+      <td id="T_9a40b_row14_col3" class="data row14 col3" >407</td>
+      <td id="T_9a40b_row14_col4" class="data row14 col4" >62</td>
+      <td id="T_9a40b_row14_col5" class="data row14 col5" >1044</td>
+      <td id="T_9a40b_row14_col6" class="data row14 col6" >50</td>
+      <td id="T_9a40b_row14_col7" class="data row14 col7" >40</td>
+      <td id="T_9a40b_row14_col8" class="data row14 col8" >134</td>
+      <td id="T_9a40b_row14_col9" class="data row14 col9" >88</td>
+      <td id="T_9a40b_row14_col10" class="data row14 col10" >205</td>
+      <td id="T_9a40b_row14_col11" class="data row14 col11" >320</td>
+      <td id="T_9a40b_row14_col12" class="data row14 col12" >580</td>
+      <td id="T_9a40b_row14_col13" class="data row14 col13" >1549</td>
+      <td id="T_9a40b_row14_col14" class="data row14 col14" >808</td>
+      <td id="T_9a40b_row14_col15" class="data row14 col15" >245</td>
+      <td id="T_9a40b_row14_col16" class="data row14 col16" >7</td>
+      <td id="T_9a40b_row14_col17" class="data row14 col17" >1641</td>
+      <td id="T_9a40b_row14_col18" class="data row14 col18" >200</td>
+      <td id="T_9a40b_row14_col19" class="data row14 col19" >1062</td>
+      <td id="T_9a40b_row14_col20" class="data row14 col20" >1952</td>
+      <td id="T_9a40b_row14_col21" class="data row14 col21" >196</td>
+      <td id="T_9a40b_row14_col22" class="data row14 col22" >979</td>
+      <td id="T_9a40b_row14_col23" class="data row14 col23" >6</td>
+      <td id="T_9a40b_row14_col24" class="data row14 col24" >43</td>
+      <td id="T_9a40b_row14_col25" class="data row14 col25" >171</td>
+      <td id="T_9a40b_row14_col26" class="data row14 col26" >2241</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row15" class="row_heading level0 row15" >p</th>
+      <td id="T_9a40b_row15_col0" class="data row15 col0" >220</td>
+      <td id="T_9a40b_row15_col1" class="data row15 col1" >8</td>
+      <td id="T_9a40b_row15_col2" class="data row15 col2" >0</td>
+      <td id="T_9a40b_row15_col3" class="data row15 col3" >2</td>
+      <td id="T_9a40b_row15_col4" class="data row15 col4" >375</td>
+      <td id="T_9a40b_row15_col5" class="data row15 col5" >0</td>
+      <td id="T_9a40b_row15_col6" class="data row15 col6" >2</td>
+      <td id="T_9a40b_row15_col7" class="data row15 col7" >28</td>
+      <td id="T_9a40b_row15_col8" class="data row15 col8" >115</td>
+      <td id="T_9a40b_row15_col9" class="data row15 col9" >0</td>
+      <td id="T_9a40b_row15_col10" class="data row15 col10" >0</td>
+      <td id="T_9a40b_row15_col11" class="data row15 col11" >287</td>
+      <td id="T_9a40b_row15_col12" class="data row15 col12" >3</td>
+      <td id="T_9a40b_row15_col13" class="data row15 col13" >0</td>
+      <td id="T_9a40b_row15_col14" class="data row15 col14" >281</td>
+      <td id="T_9a40b_row15_col15" class="data row15 col15" >166</td>
+      <td id="T_9a40b_row15_col16" class="data row15 col16" >0</td>
+      <td id="T_9a40b_row15_col17" class="data row15 col17" >337</td>
+      <td id="T_9a40b_row15_col18" class="data row15 col18" >35</td>
+      <td id="T_9a40b_row15_col19" class="data row15 col19" >117</td>
+      <td id="T_9a40b_row15_col20" class="data row15 col20" >77</td>
+      <td id="T_9a40b_row15_col21" class="data row15 col21" >0</td>
+      <td id="T_9a40b_row15_col22" class="data row15 col22" >1</td>
+      <td id="T_9a40b_row15_col23" class="data row15 col23" >0</td>
+      <td id="T_9a40b_row15_col24" class="data row15 col24" >67</td>
+      <td id="T_9a40b_row15_col25" class="data row15 col25" >0</td>
+      <td id="T_9a40b_row15_col26" class="data row15 col26" >345</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row16" class="row_heading level0 row16" >q</th>
+      <td id="T_9a40b_row16_col0" class="data row16 col0" >0</td>
+      <td id="T_9a40b_row16_col1" class="data row16 col1" >0</td>
+      <td id="T_9a40b_row16_col2" class="data row16 col2" >0</td>
+      <td id="T_9a40b_row16_col3" class="data row16 col3" >0</td>
+      <td id="T_9a40b_row16_col4" class="data row16 col4" >0</td>
+      <td id="T_9a40b_row16_col5" class="data row16 col5" >0</td>
+      <td id="T_9a40b_row16_col6" class="data row16 col6" >0</td>
+      <td id="T_9a40b_row16_col7" class="data row16 col7" >0</td>
+      <td id="T_9a40b_row16_col8" class="data row16 col8" >0</td>
+      <td id="T_9a40b_row16_col9" class="data row16 col9" >0</td>
+      <td id="T_9a40b_row16_col10" class="data row16 col10" >0</td>
+      <td id="T_9a40b_row16_col11" class="data row16 col11" >0</td>
+      <td id="T_9a40b_row16_col12" class="data row16 col12" >0</td>
+      <td id="T_9a40b_row16_col13" class="data row16 col13" >0</td>
+      <td id="T_9a40b_row16_col14" class="data row16 col14" >0</td>
+      <td id="T_9a40b_row16_col15" class="data row16 col15" >0</td>
+      <td id="T_9a40b_row16_col16" class="data row16 col16" >0</td>
+      <td id="T_9a40b_row16_col17" class="data row16 col17" >0</td>
+      <td id="T_9a40b_row16_col18" class="data row16 col18" >0</td>
+      <td id="T_9a40b_row16_col19" class="data row16 col19" >0</td>
+      <td id="T_9a40b_row16_col20" class="data row16 col20" >139</td>
+      <td id="T_9a40b_row16_col21" class="data row16 col21" >0</td>
+      <td id="T_9a40b_row16_col22" class="data row16 col22" >0</td>
+      <td id="T_9a40b_row16_col23" class="data row16 col23" >0</td>
+      <td id="T_9a40b_row16_col24" class="data row16 col24" >0</td>
+      <td id="T_9a40b_row16_col25" class="data row16 col25" >0</td>
+      <td id="T_9a40b_row16_col26" class="data row16 col26" >5</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row17" class="row_heading level0 row17" >r</th>
+      <td id="T_9a40b_row17_col0" class="data row17 col0" >654</td>
+      <td id="T_9a40b_row17_col1" class="data row17 col1" >9</td>
+      <td id="T_9a40b_row17_col2" class="data row17 col2" >71</td>
+      <td id="T_9a40b_row17_col3" class="data row17 col3" >272</td>
+      <td id="T_9a40b_row17_col4" class="data row17 col4" >2572</td>
+      <td id="T_9a40b_row17_col5" class="data row17 col5" >57</td>
+      <td id="T_9a40b_row17_col6" class="data row17 col6" >137</td>
+      <td id="T_9a40b_row17_col7" class="data row17 col7" >10</td>
+      <td id="T_9a40b_row17_col8" class="data row17 col8" >608</td>
+      <td id="T_9a40b_row17_col9" class="data row17 col9" >0</td>
+      <td id="T_9a40b_row17_col10" class="data row17 col10" >199</td>
+      <td id="T_9a40b_row17_col11" class="data row17 col11" >165</td>
+      <td id="T_9a40b_row17_col12" class="data row17 col12" >181</td>
+      <td id="T_9a40b_row17_col13" class="data row17 col13" >200</td>
+      <td id="T_9a40b_row17_col14" class="data row17 col14" >1537</td>
+      <td id="T_9a40b_row17_col15" class="data row17 col15" >63</td>
+      <td id="T_9a40b_row17_col16" class="data row17 col16" >0</td>
+      <td id="T_9a40b_row17_col17" class="data row17 col17" >182</td>
+      <td id="T_9a40b_row17_col18" class="data row17 col18" >333</td>
+      <td id="T_9a40b_row17_col19" class="data row17 col19" >334</td>
+      <td id="T_9a40b_row17_col20" class="data row17 col20" >153</td>
+      <td id="T_9a40b_row17_col21" class="data row17 col21" >16</td>
+      <td id="T_9a40b_row17_col22" class="data row17 col22" >16</td>
+      <td id="T_9a40b_row17_col23" class="data row17 col23" >0</td>
+      <td id="T_9a40b_row17_col24" class="data row17 col24" >387</td>
+      <td id="T_9a40b_row17_col25" class="data row17 col25" >0</td>
+      <td id="T_9a40b_row17_col26" class="data row17 col26" >2378</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row18" class="row_heading level0 row18" >s</th>
+      <td id="T_9a40b_row18_col0" class="data row18 col0" >599</td>
+      <td id="T_9a40b_row18_col1" class="data row18 col1" >1</td>
+      <td id="T_9a40b_row18_col2" class="data row18 col2" >302</td>
+      <td id="T_9a40b_row18_col3" class="data row18 col3" >0</td>
+      <td id="T_9a40b_row18_col4" class="data row18 col4" >943</td>
+      <td id="T_9a40b_row18_col5" class="data row18 col5" >4</td>
+      <td id="T_9a40b_row18_col6" class="data row18 col6" >1</td>
+      <td id="T_9a40b_row18_col7" class="data row18 col7" >870</td>
+      <td id="T_9a40b_row18_col8" class="data row18 col8" >281</td>
+      <td id="T_9a40b_row18_col9" class="data row18 col9" >0</td>
+      <td id="T_9a40b_row18_col10" class="data row18 col10" >197</td>
+      <td id="T_9a40b_row18_col11" class="data row18 col11" >96</td>
+      <td id="T_9a40b_row18_col12" class="data row18 col12" >58</td>
+      <td id="T_9a40b_row18_col13" class="data row18 col13" >25</td>
+      <td id="T_9a40b_row18_col14" class="data row18 col14" >607</td>
+      <td id="T_9a40b_row18_col15" class="data row18 col15" >128</td>
+      <td id="T_9a40b_row18_col16" class="data row18 col16" >6</td>
+      <td id="T_9a40b_row18_col17" class="data row18 col17" >0</td>
+      <td id="T_9a40b_row18_col18" class="data row18 col18" >284</td>
+      <td id="T_9a40b_row18_col19" class="data row18 col19" >1202</td>
+      <td id="T_9a40b_row18_col20" class="data row18 col20" >190</td>
+      <td id="T_9a40b_row18_col21" class="data row18 col21" >0</td>
+      <td id="T_9a40b_row18_col22" class="data row18 col22" >122</td>
+      <td id="T_9a40b_row18_col23" class="data row18 col23" >0</td>
+      <td id="T_9a40b_row18_col24" class="data row18 col24" >16</td>
+      <td id="T_9a40b_row18_col25" class="data row18 col25" >0</td>
+      <td id="T_9a40b_row18_col26" class="data row18 col26" >3757</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row19" class="row_heading level0 row19" >t</th>
+      <td id="T_9a40b_row19_col0" class="data row19 col0" >308</td>
+      <td id="T_9a40b_row19_col1" class="data row19 col1" >0</td>
+      <td id="T_9a40b_row19_col2" class="data row19 col2" >182</td>
+      <td id="T_9a40b_row19_col3" class="data row19 col3" >1</td>
+      <td id="T_9a40b_row19_col4" class="data row19 col4" >1125</td>
+      <td id="T_9a40b_row19_col5" class="data row19 col5" >13</td>
+      <td id="T_9a40b_row19_col6" class="data row19 col6" >0</td>
+      <td id="T_9a40b_row19_col7" class="data row19 col7" >6453</td>
+      <td id="T_9a40b_row19_col8" class="data row19 col8" >721</td>
+      <td id="T_9a40b_row19_col9" class="data row19 col9" >0</td>
+      <td id="T_9a40b_row19_col10" class="data row19 col10" >0</td>
+      <td id="T_9a40b_row19_col11" class="data row19 col11" >272</td>
+      <td id="T_9a40b_row19_col12" class="data row19 col12" >3</td>
+      <td id="T_9a40b_row19_col13" class="data row19 col13" >4</td>
+      <td id="T_9a40b_row19_col14" class="data row19 col14" >1762</td>
+      <td id="T_9a40b_row19_col15" class="data row19 col15" >0</td>
+      <td id="T_9a40b_row19_col16" class="data row19 col16" >0</td>
+      <td id="T_9a40b_row19_col17" class="data row19 col17" >497</td>
+      <td id="T_9a40b_row19_col18" class="data row19 col18" >178</td>
+      <td id="T_9a40b_row19_col19" class="data row19 col19" >304</td>
+      <td id="T_9a40b_row19_col20" class="data row19 col20" >159</td>
+      <td id="T_9a40b_row19_col21" class="data row19 col21" >0</td>
+      <td id="T_9a40b_row19_col22" class="data row19 col22" >44</td>
+      <td id="T_9a40b_row19_col23" class="data row19 col23" >0</td>
+      <td id="T_9a40b_row19_col24" class="data row19 col24" >187</td>
+      <td id="T_9a40b_row19_col25" class="data row19 col25" >0</td>
+      <td id="T_9a40b_row19_col26" class="data row19 col26" >4165</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row20" class="row_heading level0 row20" >u</th>
+      <td id="T_9a40b_row20_col0" class="data row20 col0" >50</td>
+      <td id="T_9a40b_row20_col1" class="data row20 col1" >26</td>
+      <td id="T_9a40b_row20_col2" class="data row20 col2" >128</td>
+      <td id="T_9a40b_row20_col3" class="data row20 col3" >62</td>
+      <td id="T_9a40b_row20_col4" class="data row20 col4" >117</td>
+      <td id="T_9a40b_row20_col5" class="data row20 col5" >34</td>
+      <td id="T_9a40b_row20_col6" class="data row20 col6" >250</td>
+      <td id="T_9a40b_row20_col7" class="data row20 col7" >0</td>
+      <td id="T_9a40b_row20_col8" class="data row20 col8" >108</td>
+      <td id="T_9a40b_row20_col9" class="data row20 col9" >0</td>
+      <td id="T_9a40b_row20_col10" class="data row20 col10" >0</td>
+      <td id="T_9a40b_row20_col11" class="data row20 col11" >547</td>
+      <td id="T_9a40b_row20_col12" class="data row20 col12" >62</td>
+      <td id="T_9a40b_row20_col13" class="data row20 col13" >615</td>
+      <td id="T_9a40b_row20_col14" class="data row20 col14" >0</td>
+      <td id="T_9a40b_row20_col15" class="data row20 col15" >248</td>
+      <td id="T_9a40b_row20_col16" class="data row20 col16" >0</td>
+      <td id="T_9a40b_row20_col17" class="data row20 col17" >503</td>
+      <td id="T_9a40b_row20_col18" class="data row20 col18" >462</td>
+      <td id="T_9a40b_row20_col19" class="data row20 col19" >802</td>
+      <td id="T_9a40b_row20_col20" class="data row20 col20" >0</td>
+      <td id="T_9a40b_row20_col21" class="data row20 col21" >0</td>
+      <td id="T_9a40b_row20_col22" class="data row20 col22" >0</td>
+      <td id="T_9a40b_row20_col23" class="data row20 col23" >0</td>
+      <td id="T_9a40b_row20_col24" class="data row20 col24" >0</td>
+      <td id="T_9a40b_row20_col25" class="data row20 col25" >7</td>
+      <td id="T_9a40b_row20_col26" class="data row20 col26" >579</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row21" class="row_heading level0 row21" >v</th>
+      <td id="T_9a40b_row21_col0" class="data row21 col0" >13</td>
+      <td id="T_9a40b_row21_col1" class="data row21 col1" >0</td>
+      <td id="T_9a40b_row21_col2" class="data row21 col2" >0</td>
+      <td id="T_9a40b_row21_col3" class="data row21 col3" >0</td>
+      <td id="T_9a40b_row21_col4" class="data row21 col4" >1105</td>
+      <td id="T_9a40b_row21_col5" class="data row21 col5" >0</td>
+      <td id="T_9a40b_row21_col6" class="data row21 col6" >0</td>
+      <td id="T_9a40b_row21_col7" class="data row21 col7" >0</td>
+      <td id="T_9a40b_row21_col8" class="data row21 col8" >108</td>
+      <td id="T_9a40b_row21_col9" class="data row21 col9" >0</td>
+      <td id="T_9a40b_row21_col10" class="data row21 col10" >0</td>
+      <td id="T_9a40b_row21_col11" class="data row21 col11" >0</td>
+      <td id="T_9a40b_row21_col12" class="data row21 col12" >0</td>
+      <td id="T_9a40b_row21_col13" class="data row21 col13" >0</td>
+      <td id="T_9a40b_row21_col14" class="data row21 col14" >45</td>
+      <td id="T_9a40b_row21_col15" class="data row21 col15" >0</td>
+      <td id="T_9a40b_row21_col16" class="data row21 col16" >0</td>
+      <td id="T_9a40b_row21_col17" class="data row21 col17" >0</td>
+      <td id="T_9a40b_row21_col18" class="data row21 col18" >0</td>
+      <td id="T_9a40b_row21_col19" class="data row21 col19" >0</td>
+      <td id="T_9a40b_row21_col20" class="data row21 col20" >0</td>
+      <td id="T_9a40b_row21_col21" class="data row21 col21" >0</td>
+      <td id="T_9a40b_row21_col22" class="data row21 col22" >0</td>
+      <td id="T_9a40b_row21_col23" class="data row21 col23" >0</td>
+      <td id="T_9a40b_row21_col24" class="data row21 col24" >9</td>
+      <td id="T_9a40b_row21_col25" class="data row21 col25" >0</td>
+      <td id="T_9a40b_row21_col26" class="data row21 col26" >10</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row22" class="row_heading level0 row22" >w</th>
+      <td id="T_9a40b_row22_col0" class="data row22 col0" >980</td>
+      <td id="T_9a40b_row22_col1" class="data row22 col1" >0</td>
+      <td id="T_9a40b_row22_col2" class="data row22 col2" >0</td>
+      <td id="T_9a40b_row22_col3" class="data row22 col3" >5</td>
+      <td id="T_9a40b_row22_col4" class="data row22 col4" >794</td>
+      <td id="T_9a40b_row22_col5" class="data row22 col5" >9</td>
+      <td id="T_9a40b_row22_col6" class="data row22 col6" >0</td>
+      <td id="T_9a40b_row22_col7" class="data row22 col7" >711</td>
+      <td id="T_9a40b_row22_col8" class="data row22 col8" >1031</td>
+      <td id="T_9a40b_row22_col9" class="data row22 col9" >0</td>
+      <td id="T_9a40b_row22_col10" class="data row22 col10" >2</td>
+      <td id="T_9a40b_row22_col11" class="data row22 col11" >24</td>
+      <td id="T_9a40b_row22_col12" class="data row22 col12" >0</td>
+      <td id="T_9a40b_row22_col13" class="data row22 col13" >163</td>
+      <td id="T_9a40b_row22_col14" class="data row22 col14" >616</td>
+      <td id="T_9a40b_row22_col15" class="data row22 col15" >0</td>
+      <td id="T_9a40b_row22_col16" class="data row22 col16" >0</td>
+      <td id="T_9a40b_row22_col17" class="data row22 col17" >19</td>
+      <td id="T_9a40b_row22_col18" class="data row22 col18" >50</td>
+      <td id="T_9a40b_row22_col19" class="data row22 col19" >0</td>
+      <td id="T_9a40b_row22_col20" class="data row22 col20" >2</td>
+      <td id="T_9a40b_row22_col21" class="data row22 col21" >0</td>
+      <td id="T_9a40b_row22_col22" class="data row22 col22" >9</td>
+      <td id="T_9a40b_row22_col23" class="data row22 col23" >0</td>
+      <td id="T_9a40b_row22_col24" class="data row22 col24" >0</td>
+      <td id="T_9a40b_row22_col25" class="data row22 col25" >0</td>
+      <td id="T_9a40b_row22_col26" class="data row22 col26" >805</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row23" class="row_heading level0 row23" >x</th>
+      <td id="T_9a40b_row23_col0" class="data row23 col0" >8</td>
+      <td id="T_9a40b_row23_col1" class="data row23 col1" >0</td>
+      <td id="T_9a40b_row23_col2" class="data row23 col2" >29</td>
+      <td id="T_9a40b_row23_col3" class="data row23 col3" >0</td>
+      <td id="T_9a40b_row23_col4" class="data row23 col4" >36</td>
+      <td id="T_9a40b_row23_col5" class="data row23 col5" >0</td>
+      <td id="T_9a40b_row23_col6" class="data row23 col6" >0</td>
+      <td id="T_9a40b_row23_col7" class="data row23 col7" >1</td>
+      <td id="T_9a40b_row23_col8" class="data row23 col8" >36</td>
+      <td id="T_9a40b_row23_col9" class="data row23 col9" >0</td>
+      <td id="T_9a40b_row23_col10" class="data row23 col10" >0</td>
+      <td id="T_9a40b_row23_col11" class="data row23 col11" >0</td>
+      <td id="T_9a40b_row23_col12" class="data row23 col12" >0</td>
+      <td id="T_9a40b_row23_col13" class="data row23 col13" >0</td>
+      <td id="T_9a40b_row23_col14" class="data row23 col14" >0</td>
+      <td id="T_9a40b_row23_col15" class="data row23 col15" >24</td>
+      <td id="T_9a40b_row23_col16" class="data row23 col16" >0</td>
+      <td id="T_9a40b_row23_col17" class="data row23 col17" >0</td>
+      <td id="T_9a40b_row23_col18" class="data row23 col18" >0</td>
+      <td id="T_9a40b_row23_col19" class="data row23 col19" >37</td>
+      <td id="T_9a40b_row23_col20" class="data row23 col20" >0</td>
+      <td id="T_9a40b_row23_col21" class="data row23 col21" >8</td>
+      <td id="T_9a40b_row23_col22" class="data row23 col22" >0</td>
+      <td id="T_9a40b_row23_col23" class="data row23 col23" >10</td>
+      <td id="T_9a40b_row23_col24" class="data row23 col24" >0</td>
+      <td id="T_9a40b_row23_col25" class="data row23 col25" >0</td>
+      <td id="T_9a40b_row23_col26" class="data row23 col26" >20</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row24" class="row_heading level0 row24" >y</th>
+      <td id="T_9a40b_row24_col0" class="data row24 col0" >16</td>
+      <td id="T_9a40b_row24_col1" class="data row24 col1" >3</td>
+      <td id="T_9a40b_row24_col2" class="data row24 col2" >16</td>
+      <td id="T_9a40b_row24_col3" class="data row24 col3" >0</td>
+      <td id="T_9a40b_row24_col4" class="data row24 col4" >182</td>
+      <td id="T_9a40b_row24_col5" class="data row24 col5" >4</td>
+      <td id="T_9a40b_row24_col6" class="data row24 col6" >0</td>
+      <td id="T_9a40b_row24_col7" class="data row24 col7" >0</td>
+      <td id="T_9a40b_row24_col8" class="data row24 col8" >61</td>
+      <td id="T_9a40b_row24_col9" class="data row24 col9" >0</td>
+      <td id="T_9a40b_row24_col10" class="data row24 col10" >0</td>
+      <td id="T_9a40b_row24_col11" class="data row24 col11" >3</td>
+      <td id="T_9a40b_row24_col12" class="data row24 col12" >4</td>
+      <td id="T_9a40b_row24_col13" class="data row24 col13" >1</td>
+      <td id="T_9a40b_row24_col14" class="data row24 col14" >703</td>
+      <td id="T_9a40b_row24_col15" class="data row24 col15" >3</td>
+      <td id="T_9a40b_row24_col16" class="data row24 col16" >0</td>
+      <td id="T_9a40b_row24_col17" class="data row24 col17" >20</td>
+      <td id="T_9a40b_row24_col18" class="data row24 col18" >101</td>
+      <td id="T_9a40b_row24_col19" class="data row24 col19" >41</td>
+      <td id="T_9a40b_row24_col20" class="data row24 col20" >0</td>
+      <td id="T_9a40b_row24_col21" class="data row24 col21" >0</td>
+      <td id="T_9a40b_row24_col22" class="data row24 col22" >12</td>
+      <td id="T_9a40b_row24_col23" class="data row24 col23" >0</td>
+      <td id="T_9a40b_row24_col24" class="data row24 col24" >0</td>
+      <td id="T_9a40b_row24_col25" class="data row24 col25" >0</td>
+      <td id="T_9a40b_row24_col26" class="data row24 col26" >2958</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row25" class="row_heading level0 row25" >z</th>
+      <td id="T_9a40b_row25_col0" class="data row25 col0" >47</td>
+      <td id="T_9a40b_row25_col1" class="data row25 col1" >0</td>
+      <td id="T_9a40b_row25_col2" class="data row25 col2" >0</td>
+      <td id="T_9a40b_row25_col3" class="data row25 col3" >0</td>
+      <td id="T_9a40b_row25_col4" class="data row25 col4" >29</td>
+      <td id="T_9a40b_row25_col5" class="data row25 col5" >0</td>
+      <td id="T_9a40b_row25_col6" class="data row25 col6" >0</td>
+      <td id="T_9a40b_row25_col7" class="data row25 col7" >0</td>
+      <td id="T_9a40b_row25_col8" class="data row25 col8" >6</td>
+      <td id="T_9a40b_row25_col9" class="data row25 col9" >0</td>
+      <td id="T_9a40b_row25_col10" class="data row25 col10" >0</td>
+      <td id="T_9a40b_row25_col11" class="data row25 col11" >6</td>
+      <td id="T_9a40b_row25_col12" class="data row25 col12" >0</td>
+      <td id="T_9a40b_row25_col13" class="data row25 col13" >0</td>
+      <td id="T_9a40b_row25_col14" class="data row25 col14" >0</td>
+      <td id="T_9a40b_row25_col15" class="data row25 col15" >0</td>
+      <td id="T_9a40b_row25_col16" class="data row25 col16" >0</td>
+      <td id="T_9a40b_row25_col17" class="data row25 col17" >0</td>
+      <td id="T_9a40b_row25_col18" class="data row25 col18" >0</td>
+      <td id="T_9a40b_row25_col19" class="data row25 col19" >0</td>
+      <td id="T_9a40b_row25_col20" class="data row25 col20" >2</td>
+      <td id="T_9a40b_row25_col21" class="data row25 col21" >0</td>
+      <td id="T_9a40b_row25_col22" class="data row25 col22" >0</td>
+      <td id="T_9a40b_row25_col23" class="data row25 col23" >0</td>
+      <td id="T_9a40b_row25_col24" class="data row25 col24" >7</td>
+      <td id="T_9a40b_row25_col25" class="data row25 col25" >8</td>
+      <td id="T_9a40b_row25_col26" class="data row25 col26" >172</td>
+    </tr>
+    <tr>
+      <th id="T_9a40b_level0_row26" class="row_heading level0 row26" > </th>
+      <td id="T_9a40b_row26_col0" class="data row26 col0" >5116</td>
+      <td id="T_9a40b_row26_col1" class="data row26 col1" >1954</td>
+      <td id="T_9a40b_row26_col2" class="data row26 col2" >1737</td>
+      <td id="T_9a40b_row26_col3" class="data row26 col3" >1361</td>
+      <td id="T_9a40b_row26_col4" class="data row26 col4" >696</td>
+      <td id="T_9a40b_row26_col5" class="data row26 col5" >1585</td>
+      <td id="T_9a40b_row26_col6" class="data row26 col6" >1238</td>
+      <td id="T_9a40b_row26_col7" class="data row26 col7" >2665</td>
+      <td id="T_9a40b_row26_col8" class="data row26 col8" >2368</td>
+      <td id="T_9a40b_row26_col9" class="data row26 col9" >141</td>
+      <td id="T_9a40b_row26_col10" class="data row26 col10" >340</td>
+      <td id="T_9a40b_row26_col11" class="data row26 col11" >1238</td>
+      <td id="T_9a40b_row26_col12" class="data row26 col12" >1488</td>
+      <td id="T_9a40b_row26_col13" class="data row26 col13" >845</td>
+      <td id="T_9a40b_row26_col14" class="data row26 col14" >2271</td>
+      <td id="T_9a40b_row26_col15" class="data row26 col15" >942</td>
+      <td id="T_9a40b_row26_col16" class="data row26 col16" >103</td>
+      <td id="T_9a40b_row26_col17" class="data row26 col17" >780</td>
+      <td id="T_9a40b_row26_col18" class="data row26 col18" >3457</td>
+      <td id="T_9a40b_row26_col19" class="data row26 col19" >7602</td>
+      <td id="T_9a40b_row26_col20" class="data row26 col20" >516</td>
+      <td id="T_9a40b_row26_col21" class="data row26 col21" >169</td>
+      <td id="T_9a40b_row26_col22" class="data row26 col22" >3634</td>
+      <td id="T_9a40b_row26_col23" class="data row26 col23" >30</td>
+      <td id="T_9a40b_row26_col24" class="data row26 col24" >756</td>
+      <td id="T_9a40b_row26_col25" class="data row26 col25" >10</td>
+      <td id="T_9a40b_row26_col26" class="data row26 col26" >6884</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="FIZ371_LN01_EST_Probabilities_Theory.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Probabilities - Concept &amp; Theory</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_LN02_EST_Probabilities.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Probabilities</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

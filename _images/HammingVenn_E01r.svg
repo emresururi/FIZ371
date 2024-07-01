@@ -1,0 +1,101 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.6a -->
+<!-- CreationDate: 2020-04-29 10:28:06 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="715pt" height="292pt"
+	viewBox="-1554 10050 11342 4635">
+<g fill="none">
+<!-- Circle -->
+<circle cx="2235" cy="13137" r="1525"
+	stroke="#0000ff" stroke-width="30px"/>
+<!-- Circle -->
+<circle cx="4065" cy="13137" r="1525"
+	stroke="#0000ff" stroke-width="30px"/>
+<!-- Circle -->
+<circle cx="3150" cy="11613" r="1525"
+	stroke="#0000ff" stroke-width="30px"/>
+<!-- Text -->
+<text xml:space="preserve" x="45" y="11125" fill="#000000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">r: (s  flipped)</text>
+<!-- Text -->
+<text xml:space="preserve" x="-495" y="11250" fill="#000000" font-family="Times" font-style="italic" font-weight="normal" font-size="192" text-anchor="middle">2</text>
+<!-- Text -->
+<text xml:space="preserve" x="3109" y="12680" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="3140" y="13686" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="2316" y="12284" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="3109" y="11125" fill="#000000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="1889" y="13625" fill="#000000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">1</text>
+<!-- Text -->
+<text xml:space="preserve" x="4436" y="13625" fill="#000000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">0</text>
+<!-- Text -->
+<text xml:space="preserve" x="3994" y="12284" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="408" text-anchor="middle">1</text>
+<!-- Circle -->
+<circle cx="4050" cy="13140" r="1464"
+	stroke="#0000ff" stroke-width="30px" stroke-dasharray="40 40"/>
+<!-- Circle -->
+<circle cx="3139" cy="11610" r="1464"
+	stroke="#0000ff" stroke-width="30px" stroke-dasharray="40 40"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp0">
+	<path clip-rule="evenodd" d="M -1554,10050 H 9788 V 14685 H -1554 z
+		M 5154,10613 5224,10779 5604,10540 5590,10506z"/>
+</clipPath>
+</defs>
+<polyline points=" 4023,11192 5580,10530" clip-path="url(#cp0)"
+	stroke="#0000ff" stroke-width="30px"/>
+<!-- Forward arrow to point 5580,10530 -->
+<polygon points=" 5224,10779 5520,10555 5154,10613 5224,10779"
+	stroke="#0000ff" stroke-width="30px" stroke-miterlimit="8" fill="#0000ff"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp1">
+	<path clip-rule="evenodd" d="M -1554,10050 H 9788 V 14685 H -1554 z
+		M 5563,11486 5720,11574 5875,11153 5843,11135z"/>
+</clipPath>
+</defs>
+<polyline points=" 5040,12600 5850,11160" clip-path="url(#cp1)"
+	stroke="#0000ff" stroke-width="30px"/>
+<!-- Forward arrow to point 5850,11160 -->
+<polygon points=" 5720,11574 5818,11216 5563,11486 5720,11574"
+	stroke="#0000ff" stroke-width="30px" stroke-miterlimit="8" fill="#0000ff"/>
+<!-- Text -->
+<text xml:space="preserve" x="7470" y="10350" fill="#0000ff" font-family="Times" font-style="italic" font-weight="normal" font-size="288" text-anchor="middle">These two circles'</text>
+<!-- Text -->
+<text xml:space="preserve" x="7470" y="10815" fill="#0000ff" font-family="Times" font-style="italic" font-weight="normal" font-size="288" text-anchor="middle">parities are not even!</text>
+<!-- Circle -->
+<circle cx="3989" cy="12109" r="382"
+	stroke="#ff0000" stroke-width="30px" stroke-dasharray="40 40"/>
+<!-- Line -->
+<defs>
+<clipPath id="cp2">
+	<path clip-rule="evenodd" d="M -1554,10050 H 9788 V 14685 H -1554 z
+		M 5563,11486 5720,11574 5875,11153 5843,11135z"/>
+</clipPath>
+</defs>
+<polyline points=" 4239,12442 4240,12443 4241,12446 4243,12450 4246,12457 4252,12467 4258,12481
+ 4267,12498 4278,12518 4290,12542 4305,12569 4321,12599 4340,12632 4360,12668
+ 4381,12705 4405,12744 4429,12784 4456,12825 4483,12865 4511,12906 4541,12946
+ 4571,12986 4603,13024 4636,13061 4670,13097 4706,13130 4743,13162 4782,13191
+ 4822,13218 4865,13242 4910,13263 4957,13280 5007,13294 5059,13304 5113,13309
+ 5170,13309 5229,13303 5289,13292 5344,13276 5399,13256 5452,13232 5505,13204
+ 5557,13174 5607,13140 5655,13104 5702,13066 5747,13026 5792,12985 5834,12941
+ 5876,12897 5916,12851 5956,12804 5994,12755 6032,12706 6069,12656 6105,12606
+ 6140,12555 6174,12504 6208,12453 6240,12402 6272,12352 6302,12303 6331,12256
+ 6358,12210 6384,12166 6408,12125 6430,12086 6450,12051 6468,12020 6484,11991
+ 6498,11967 6509,11947 6518,11930 6526,11917 6531,11907 6539,11892" clip-path="url(#cp2)"
+	stroke="#ff0000" stroke-width="30px" stroke-linejoin="bevel"/>
+<!-- Forward arrow to point 0,0 -->
+<polyline points=""
+	stroke="#ff0000" stroke-width="30px" stroke-miterlimit="8" fill="#ff0000"/>
+<!-- Text -->
+<text xml:space="preserve" x="7750" y="11761" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="288" text-anchor="middle">Common element of the</text>
+<!-- Text -->
+<text xml:space="preserve" x="7750" y="12226" fill="#ff0000" font-family="Times" font-style="italic" font-weight="normal" font-size="288" text-anchor="middle">two circles</text>
+</g>
+</svg>

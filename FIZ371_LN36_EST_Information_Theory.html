@@ -1,0 +1,1356 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Information Theory &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Information Theory Application" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html" />
+    <link rel="prev" title="Gale-Shapley Algorithm Implementation" href="GaleShapleyMatching_Implementation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to your Jupyter Book
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Cover.html">
+   FIZ371 - Scientific and Technical Calculations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
+   Probabilities - Concept &amp; Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
+   Probabilities Application: Letter Frequencies
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
+   Probabilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
+   Monty Hall Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="WhiteTokenOutOf2.html">
+   Application White Token Out Of 2 Bags
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
+   Six Switch Puzzle
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
+   Discrete Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
+   Distributions 2 : Continous Distributions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
+   Game Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
+   Application Prisonner's Dilemma (with Memory)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN75_EST_Gale-ShapleyAlgo.html">
+   Gale-Shapley Matching Algorithm
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
+   Gale-Shapley Algorithm Implementation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Information Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
+   Information Theory Application
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
+   Cellular Automata
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
+   2D Ising Model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN58_EST_ClusteringAndClassification.html">
+   Clustering and Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
+   Neural Networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_MT.html">
+   2022-23 Fall Term Midterm Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Final.html">
+   2022-23 Fall Term Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20221_Resit.html">
+   2022-23 Fall Term Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_MT_MakeUp.html">
+   Midterm Resit Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final.html">
+   Final Exam
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="FIZ371_20231_Final_Resit.html">
+   Final Exam’s Resit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="MinimizeOptimizeFit.html">
+   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="_sources/FIZ371_LN36_EST_Information_Theory.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/FIZ371_LN36_EST_Information_Theory.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN36_EST_Information_Theory.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Information Theory
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-problem">
+   The Problem
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reducing-the-error-improving-the-reliability">
+   Reducing the error &amp; Improving the reliability
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-probability-of-error">
+   The probability of error
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shannon-weaver-communication-model">
+   Shannon - Weaver Communication Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parity-concept">
+   Parity Concept
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-credit-card-number-validation-luhn-s-algorithm">
+     Application: Credit Card Number Validation (Luhn’s Algorithm)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-iban-validation">
+     Application: IBAN Validation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-tc-id-validation">
+     Application TC ID # Validation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hamming-code-7-4">
+     Hamming Code (7,4)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examples">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#probability-of-error">
+       Probability of Error
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-error-correction-algorithms">
+   Comparison of error-correction algorithms
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948">
+   Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References:
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Information Theory</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Information Theory
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-problem">
+   The Problem
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reducing-the-error-improving-the-reliability">
+   Reducing the error &amp; Improving the reliability
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-probability-of-error">
+   The probability of error
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shannon-weaver-communication-model">
+   Shannon - Weaver Communication Model
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parity-concept">
+   Parity Concept
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-credit-card-number-validation-luhn-s-algorithm">
+     Application: Credit Card Number Validation (Luhn’s Algorithm)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-iban-validation">
+     Application: IBAN Validation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-tc-id-validation">
+     Application TC ID # Validation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hamming-code-7-4">
+     Hamming Code (7,4)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#examples">
+       Examples
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#probability-of-error">
+       Probability of Error
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-error-correction-algorithms">
+   Comparison of error-correction algorithms
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948">
+   Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References:
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <section id="information-theory">
+<h1>Information Theory<a class="headerlink" href="#information-theory" title="Permalink to this headline">¶</a></h1>
+<p><strong>FIZ371 - Scientific &amp; Technical Computations | 27/04/2020</strong></p>
+<p><strong>Information Theory</strong></p>
+<ul class="simple">
+<li><p>Introduction</p></li>
+<li><p>The Problem</p></li>
+<li><p>Reducing the error &amp; Improving the reliability</p></li>
+<li><p>The probability of error</p></li>
+<li><p>Shannon - Weaver Communication Model</p></li>
+<li><p>Parity Concept</p>
+<ul>
+<li><p>Application: Credit Card Number Validation (Luhn’s Algorithm)</p></li>
+<li><p>Application: IBAN Validation</p></li>
+<li><p>Application TC ID # Validation</p></li>
+<li><p>Hamming Code (7,4)</p>
+<ul>
+<li><p>Examples</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Comparison of error-correction algorithms</p></li>
+<li><p>Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)</p></li>
+<li><p>References</p></li>
+</ul>
+<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Information theory is concerned with the delivery of a message from one point to the other. It has been established by Claude Shannon (1916-2001) in 1948, while working on telecommunication systems at the Bell Laboratories.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-problem">
+<h1>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h1>
+<p>A digitized message (consisting of 1s and 0s, i.e. “bits”) is transferred with a transfer ratio of 1 binary digit per second, and there is a probability of error that can “flip” the bit (i.e., transmitting a 1 as a 0 and vice-versa).</p>
+<p><img alt="IO.svg" src="_images/IO.svg" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reducing-the-error-improving-the-reliability">
+<h1>Reducing the error &amp; Improving the reliability<a class="headerlink" href="#reducing-the-error-improving-the-reliability" title="Permalink to this headline">¶</a></h1>
+<p>Send the source digit through the channel repeatedly.</p>
+<p><strong>Ex: Repeating 3 times</strong>
+<img alt="IO_Repeated.png" src="_images/IO_Repeated.png" /></p>
+<p>But it’s still prone to errors. If, for the case of:</p>
+<ul class="simple">
+<li><p>‘0 <span class="math notranslate nohighlight">\(\rightarrow\)</span> 000’, more than one 0 are flipped <span class="math notranslate nohighlight">\(\rightarrow\)</span> 1</p></li>
+<li><p>‘1 <span class="math notranslate nohighlight">\(\rightarrow\)</span> 111’, more than one 1 are flipped <span class="math notranslate nohighlight">\(\rightarrow\)</span> 0</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="the-probability-of-error">
+<h1>The probability of error<a class="headerlink" href="#the-probability-of-error" title="Permalink to this headline">¶</a></h1>
+<p>Given that the probability of a flip occuring for 1 digit being <span class="math notranslate nohighlight">\(\beta=\frac{1}{4}\)</span>, the probability that at least 2 of a sequence of 3 digits will be received incorrectly:</p>
+<p><span class="math notranslate nohighlight">\(\left( {n \choose k} = \frac{n!}{(n-k)!k!}\right)\,,\quad\quad {3 \choose 2}\left(\frac{1}{4}\right)^2\left(\frac{3}{4}\right)+{3 \choose 3}\left(\frac{1}{4}\right)^3=\frac{10}{64}=0.15625\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">comb</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">comb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">comb</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.15625
+</pre></div>
+</div>
+</div>
+</div>
+<p>General case for (2n+1) repetition and <span class="math notranslate nohighlight">\(\beta\)</span> probability of error:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}P\left(\begin{matrix}\text{n+1 or more}\\\text{digits in error}\\\text{ in a 2n+1 sequence}\end{matrix}\right)=\sum_{k=n+1}^{2n+1}{{2n+1}\choose k}\beta^k(1-\beta)^{2n+1-k}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">beta1</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">beta2</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2n+1&quot;</span><span class="p">,</span><span class="s2">&quot;beta=0.1&quot;</span><span class="p">,</span><span class="s2">&quot;beta=0.25&quot;</span><span class="p">),</span><span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="c1">#print(2*n+1)</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">p1</span> <span class="o">+=</span> <span class="n">comb</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">beta1</span><span class="o">**</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">beta1</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">p2</span> <span class="o">+=</span> <span class="n">comb</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">beta2</span><span class="o">**</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">beta2</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;2n+1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;beta=0.1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p1</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;beta=0.25&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&quot;2n+1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="s2">&quot;-*&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s2">&quot;2n+1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="s2">&quot;-o&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;(2n+1)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;P(err)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s2">&quot;beta=0.1&quot;</span><span class="p">,</span><span class="s2">&quot;beta=0.25&quot;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2n+1  beta=0.1 beta=0.25
+   1       0.1      0.25
+   3     0.028   0.15625
+   5   0.00856  0.103516
+   7  0.002728  0.070557
+   9  0.000891  0.048927
+  11  0.000296  0.034328
+  13  0.000099   0.02429
+  15  0.000034    0.0173
+</pre></div>
+</div>
+<img alt="_images/FIZ371_LN36_EST_Information_Theory_7_1.png" src="_images/FIZ371_LN36_EST_Information_Theory_7_1.png" />
+</div>
+</div>
+<p>Effective transmission rate of the source is:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2n+1}\]</div>
+<p>(actual intended message length / transmitted message length)</p>
+<p><strong>Example:</strong> A normal, noisy hard disk has an error probability of 0.1. In order to have a reliability in <span class="math notranslate nohighlight">\(10^{-15}\)</span>, what must the # of repetitions be?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">comb</span>
+
+<span class="n">p_err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">beta1</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">repetitions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">61</span><span class="p">,</span><span class="mi">62</span><span class="p">,</span><span class="mi">63</span><span class="p">,</span><span class="mi">64</span><span class="p">])</span>
+<span class="n">repetitions</span> <span class="o">=</span> <span class="p">(</span><span class="n">repetitions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+
+<span class="k">def</span> <span class="nf">perr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">beta</span><span class="p">):</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">p1</span> <span class="o">+=</span> <span class="n">comb</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="n">k</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">p1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:&gt;10}</span><span class="s1"> | </span><span class="si">{:&lt;40}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span><span class="s2">&quot;P(e)&quot;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">repetitions</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">perr</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:&gt;10}</span><span class="s1"> | </span><span class="si">{:&lt;40}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         # | P(e)                                    
+       1.0 | 0.1                                     
+       2.0 | 0.050929581789406514                    
+       3.0 | 0.028000000000000008                    
+       4.0 | 0.015366182391318081                    
+       5.0 | 0.008560000000000002                    
+       6.0 | 0.004813890527660308                    
+       7.0 | 0.002728000000000001                    
+      10.0 | 0.000512414723086138                    
+      20.0 | 2.304792882349986e-06                   
+      50.0 | 3.335204046451669e-13                   
+      59.0 | 3.1056495720556027e-15                  
+      61.0 | 1.1003005338682953e-15                  
+      62.0 | 6.550468634760461e-16                   
+      63.0 | 3.9001884227808104e-16                  
+      64.0 | 2.322466150634593e-16                   
+</pre></div>
+</div>
+</div>
+</div>
+<p>62 hard disks!!! Way too many!</p>
+<p>(We need to be smarter than this..)</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="shannon-weaver-communication-model">
+<h1>Shannon - Weaver Communication Model<a class="headerlink" href="#shannon-weaver-communication-model" title="Permalink to this headline">¶</a></h1>
+<p><img alt="ShannonChannel.svg" src="_images/ShannonChannel.svg" /></p>
+<p>This is the model Shannon (&amp; Weaver) used to identify the essential stages for message relaying. Note how the noise is introduced only in the transfer channel.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="parity-concept">
+<h1>Parity Concept<a class="headerlink" href="#parity-concept" title="Permalink to this headline">¶</a></h1>
+<p>Before we start on the Hamming Code, which improves the repeatition method, let’s try to understand the parity concept: Parity checks are implemented when it is necessary to quickly validate long sequences where typing is highly prone to errors (e.g., credit card numbers, IBAN numbers, national ID numbers, etc.). One or more digits are also included in the resulting number that is dependent of the other digits, so that a quick validation reference is already available within the data to be validated.</p>
+<section id="application-credit-card-number-validation-luhn-s-algorithm">
+<h2>Application: Credit Card Number Validation (<a class="reference external" href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn’s Algorithm</a>)<a class="headerlink" href="#application-credit-card-number-validation-luhn-s-algorithm" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Let the credit card number be: 4556 7375 8689 9855</p></li>
+<li><p>Last digit is the check digit: 455673758689985<b><u>5</u></b></p></li>
+<li><p>Drop the last digit: 455673758689985</p></li>
+<li><p>Reverse the numbers: 589986857376554</p></li>
+<li><p>Multiply the digits in odd (1., 3., 5., …) by 2: 10|8|18|9|16|6|16|5|14|3|14|6|10|5|8</p></li>
+<li><p>Subtract 9 from any result higher that 9: 1 8 9 9 7 6 7 5 5 3 5 6 1 5 8</p></li>
+<li><p>Add all the numbers together: 1+8+9+9+7+6+7+5+5+3+5+6+1+5+8 = 85</p></li>
+<li><p>Multiply the sum by 9, take modulo 10 (divide by 10, get the remainder): 5 <span class="math notranslate nohighlight">\(\rightarrow\)</span> this should be equal to the check digit</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="s2">&quot;4556737586899855&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;num (1):&quot;</span><span class="p">,</span><span class="n">num</span><span class="p">)</span>
+<span class="n">num_2</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">num</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;num (2):&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">num_2</span><span class="p">)))</span>
+<span class="n">num_3</span> <span class="o">=</span> <span class="n">num_2</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;num (3): &quot;</span><span class="o">+</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">num_3</span><span class="p">))</span>
+<span class="n">num_4</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="n">num_3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">),</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">num_4</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">num_4</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">fmt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;</span><span class="si">{:&gt;2}</span><span class="s1">&#39;</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">num_4</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;num (4): &quot;</span><span class="o">+</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">num_4</span><span class="p">)))))</span>
+<span class="n">num_5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">num_4</span><span class="p">)</span>
+<span class="n">num_5</span><span class="p">[</span><span class="n">num_5</span><span class="o">&gt;=</span><span class="mi">10</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">9</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;num (5): &quot;</span><span class="o">+</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">num_5</span><span class="p">))</span>
+<span class="n">num_6</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">num_5</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;num (6): &quot;</span><span class="p">,</span><span class="n">num_6</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;num (7): &quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">num_6</span><span class="o">*</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="s2">&quot;&lt;-- Check digit&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>num (1): 4556737586899855
+num (2): 455673758689985
+num (3): 589986857376554
+num (4): 10| 8|18| 9|16| 6|16| 5|14| 3|14| 6|10| 5| 8
+num (5):  1| 8| 9| 9| 7| 6| 7| 5| 5| 3| 5| 6| 1| 5| 8
+num (6):  85
+num (7):  5 &lt;-- Check digit
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Proposition: Alternative to 7. step</strong></p>
+<p>At the 7. step, instead of taking the modulo 10 of sum multiplied by 9 and then comparing it to the check digit, just take the modulo 10 of the sum (without multiplying it by 9) and add it to the check digit – the result must be either 0 or 10.</p>
+<p><strong><em>Homework: Why does this work? Prove that it does.</em></strong></p>
+</section>
+<section id="application-iban-validation">
+<h2>Application: IBAN Validation<a class="headerlink" href="#application-iban-validation" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Let the IBAN number be: TR40 0001 2345 6789 8765 4321 21</p></li>
+<li><p>Move the four initial characters to the end: 0001234567898765432121TR40</p></li>
+<li><p>Replace each letter in the string with two digits (A:10, B=11, …, Z=35):<br />
+0001234567898765432121292740</p></li>
+<li><p>Divide this number by 97 <span class="math notranslate nohighlight">\(\rightarrow\)</span> remainder must be: 1.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">IBAN</span> <span class="o">=</span> <span class="s2">&quot;TR400001234567898765432121&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IBAN (0): &quot;</span><span class="p">,</span><span class="n">IBAN</span><span class="p">)</span>
+
+<span class="n">IBAN</span> <span class="o">=</span> <span class="n">IBAN</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span><span class="o">+</span><span class="n">IBAN</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IBAN (1): &quot;</span><span class="p">,</span><span class="n">IBAN</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">IBAN</span><span class="p">)</span>
+
+<span class="n">IBAN_num</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">IBAN</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()):</span>
+        <span class="c1">#print(IBAN[i],ord(IBAN[i])-48)</span>
+        <span class="n">IBAN_num</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">IBAN</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="mi">48</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1">#print(&quot;*&quot;,IBAN[i],ord(IBAN[i])-35)</span>
+        <span class="n">IBAN_num</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">IBAN</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="mi">55</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IBAN (2): &quot;</span><span class="p">,</span><span class="n">IBAN_num</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;IBAN (3): &quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">IBAN_num</span><span class="p">),</span><span class="mi">97</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IBAN (0):  TR400001234567898765432121
+IBAN (1):  0001234567898765432121TR40
+IBAN (2):  0001234567898765432121292740
+IBAN (3):  1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="application-tc-id-validation">
+<h2>Application TC ID # Validation<a class="headerlink" href="#application-tc-id-validation" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Let the TC ID# be: 12345678950</p></li>
+<li><p>Add the digits in odd positions (1., 3.,…,9.) together, multiply by 7: 25*7=175</p></li>
+<li><p>Add the digits in even positions (2., 4.,…,8.): 20</p></li>
+<li><p>Subtract the sum in the 2nd step from the product in the 1st step: 175 - 20 = 155</p></li>
+<li><p>Take the modulo 10 – this number must be equal to the 10th digit: <span class="math notranslate nohighlight">\(\rightarrow\, \mod_{10}(155)=5\)</span> (1st check)</p></li>
+<li><p>Add all the digits but the last one (1., 2.,…,10) – modulo 10 of this sum must give you the 11th (last) digit: <span class="math notranslate nohighlight">\(50\rightarrow \mod_{10}(50)=0\)</span> (2nd check)</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">TCID</span> <span class="o">=</span> <span class="s2">&quot;12345678950&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TCID# (0): &quot;</span><span class="p">,</span><span class="n">TCID</span><span class="p">)</span>
+
+<span class="n">TCID</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span><span class="n">TCID</span><span class="p">)))</span>
+<span class="c1">#print(TCID)</span>
+
+<span class="n">s1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">TCID</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">9</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="mi">7</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TCID# (1): &quot;</span><span class="p">,</span><span class="n">s1</span><span class="p">)</span>
+
+<span class="n">s2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">TCID</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TCID# (2): &quot;</span><span class="p">,</span><span class="n">s2</span><span class="p">)</span>
+
+<span class="n">s3</span> <span class="o">=</span> <span class="n">s1</span> <span class="o">-</span> <span class="n">s2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TCID# (3): &quot;</span><span class="p">,</span><span class="n">s3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TCID# (4): &quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">s3</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span><span class="s2">&quot; == &quot;</span><span class="p">,</span><span class="n">TCID</span><span class="p">[</span><span class="mi">9</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TCID# (5): &quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">TCID</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]),</span><span class="mi">10</span><span class="p">),</span><span class="s2">&quot; == &quot;</span><span class="p">,</span><span class="n">TCID</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TCID# (0):  12345678950
+TCID# (1):  175
+TCID# (2):  20
+TCID# (3):  155
+TCID# (4):  5  ==  5
+TCID# (5):  0  ==  0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Thus, TC ID # system uses a double check algorithm.</p>
+</section>
+<section id="hamming-code-7-4">
+<h2>Hamming Code (7,4)<a class="headerlink" href="#hamming-code-7-4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>s: source message (length: 4)</p></li>
+<li><p>t: transmitted message (length: 7)</p></li>
+</ul>
+<p>That means that we are using 7 bits to transmit 4 bits.</p>
+<p>The extra 3 bits (located at the end) in the transmitted message contains the following parities (calculated as <span class="math notranslate nohighlight">\(\bmod_{2}{(sum)}\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}t_{1-4} = s_{1-4}\\
+t_5 = (s_1,s_2,s_3)\\
+t_6 = (s_2,s_3,s_4)\\
+t_7 = (s_1,s_3,s_4)
+\end{split}\]</div>
+<p><img alt="HammingVenn.svg" src="_images/HammingVenn.svg" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">sett</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:^3}</span><span class="s2"> |</span><span class="si">{:^3}</span><span class="s2"> |</span><span class="si">{:^3}</span><span class="s2"> |</span><span class="si">{:^3}</span><span class="s2"> |</span><span class="si">{:^3}</span><span class="s2"> |</span><span class="si">{:^3}</span><span class="s2"> |</span><span class="si">{:^3}</span><span class="s2">&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;s1&quot;</span><span class="p">,</span><span class="s2">&quot;s2&quot;</span><span class="p">,</span><span class="s2">&quot;s3&quot;</span><span class="p">,</span><span class="s2">&quot;s4&quot;</span><span class="p">,</span><span class="s2">&quot;t5&quot;</span><span class="p">,</span><span class="s2">&quot;t6&quot;</span><span class="p">,</span><span class="s2">&quot;t7&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;---&quot;</span><span class="p">,</span><span class="s2">&quot;---&quot;</span><span class="p">,</span><span class="s2">&quot;---&quot;</span><span class="p">,</span><span class="s2">&quot;---&quot;</span><span class="p">,</span><span class="s2">&quot;---&quot;</span><span class="p">,</span><span class="s2">&quot;---&quot;</span><span class="p">,</span><span class="s2">&quot;---&quot;</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">s1</span> <span class="ow">in</span> <span class="n">sett</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">s2</span> <span class="ow">in</span> <span class="n">sett</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">s3</span> <span class="ow">in</span> <span class="n">sett</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">s4</span> <span class="ow">in</span> <span class="n">sett</span><span class="p">:</span>
+                <span class="n">t5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">s1</span><span class="o">+</span><span class="n">s2</span><span class="o">+</span><span class="n">s3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">t6</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">s2</span><span class="o">+</span><span class="n">s3</span><span class="o">+</span><span class="n">s4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">t7</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">s1</span><span class="o">+</span><span class="n">s3</span><span class="o">+</span><span class="n">s4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">,</span><span class="n">s3</span><span class="p">,</span><span class="n">s4</span><span class="p">,</span><span class="n">t5</span><span class="p">,</span><span class="n">t6</span><span class="p">,</span><span class="n">t7</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>s1  |s2  |s3  |s4  |t5  |t6  |t7 
+--- |--- |--- |--- |--- |--- |---
+ 0  | 0  | 0  | 0  | 0  | 0  | 0 
+ 0  | 0  | 0  | 1  | 0  | 1  | 1 
+ 0  | 0  | 1  | 0  | 1  | 1  | 1 
+ 0  | 0  | 1  | 1  | 1  | 0  | 0 
+ 0  | 1  | 0  | 0  | 1  | 1  | 0 
+ 0  | 1  | 0  | 1  | 1  | 0  | 1 
+ 0  | 1  | 1  | 0  | 0  | 0  | 1 
+ 0  | 1  | 1  | 1  | 0  | 1  | 0 
+ 1  | 0  | 0  | 0  | 1  | 0  | 1 
+ 1  | 0  | 0  | 1  | 1  | 1  | 0 
+ 1  | 0  | 1  | 0  | 0  | 1  | 0 
+ 1  | 0  | 1  | 1  | 0  | 0  | 1 
+ 1  | 1  | 0  | 0  | 0  | 1  | 1 
+ 1  | 1  | 0  | 1  | 0  | 0  | 0 
+ 1  | 1  | 1  | 0  | 1  | 0  | 0 
+ 1  | 1  | 1  | 1  | 1  | 1  | 1 
+</pre></div>
+</div>
+</div>
+</div>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>s1</p></th>
+<th class="head"><p>s2</p></th>
+<th class="head"><p>s3</p></th>
+<th class="head"><p>s4</p></th>
+<th class="head"><p>t5</p></th>
+<th class="head"><p>t6</p></th>
+<th class="head"><p>t7</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that any pair of codewords differ from each other in at least three bits!</p>
+<p><strong>Syndromes (parities):</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}z_1 = (t_5,s_1,s_2,s_3)\\
+z_2 = (t_6,s_2,s_3,s_4)\\
+z_3 = (t_7,s_1,s_3,s_4)\end{split}\]</div>
+<p>A syndrome <span class="math notranslate nohighlight">\(z=(z_1,z_2,z_3)\)</span> is actually the combination of the parities of each circle’s 4 components in the Venn diagram: We just add them up and then take 0 for even, 1 for odd (mod<sub>2</sub>).</p>
+<p>Note that the parities are always 0 (even) for a healthy message (the syndrome is then: <span class="math notranslate nohighlight">\(z=(z_1,z_2,z_3) = (0,0,0)\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">sett</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">fmt</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{:}</span><span class="s2">-</span><span class="si">{:}</span><span class="s2">-</span><span class="si">{:}</span><span class="s2">-</span><span class="si">{:}</span><span class="s2">|</span><span class="si">{:}</span><span class="s2">-</span><span class="si">{:}</span><span class="s2">-</span><span class="si">{:}</span><span class="s2">|</span><span class="si">{:}</span><span class="s2">-</span><span class="si">{:}</span><span class="s2">-</span><span class="si">{:}</span><span class="s2">&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:^7}</span><span class="s2">|</span><span class="si">{:^5}</span><span class="s2">|</span><span class="si">{:^5}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span><span class="s2">&quot;t&quot;</span><span class="p">,</span><span class="s2">&quot;z&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="s2">&quot;5&quot;</span><span class="p">,</span><span class="s2">&quot;6&quot;</span><span class="p">,</span><span class="s2">&quot;7&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="s2">&quot;3&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">7</span><span class="o">+</span><span class="s2">&quot;|&quot;</span><span class="o">+</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">5</span><span class="o">+</span><span class="s2">&quot;|&quot;</span><span class="o">+</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">s1</span> <span class="ow">in</span> <span class="n">sett</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">s2</span> <span class="ow">in</span> <span class="n">sett</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">s3</span> <span class="ow">in</span> <span class="n">sett</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">s4</span> <span class="ow">in</span> <span class="n">sett</span><span class="p">:</span>
+                <span class="n">t5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">s1</span><span class="o">+</span><span class="n">s2</span><span class="o">+</span><span class="n">s3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">t6</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">s2</span><span class="o">+</span><span class="n">s3</span><span class="o">+</span><span class="n">s4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">t7</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">s1</span><span class="o">+</span><span class="n">s3</span><span class="o">+</span><span class="n">s4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">z1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">t5</span><span class="o">+</span><span class="n">s1</span><span class="o">+</span><span class="n">s2</span><span class="o">+</span><span class="n">s3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">z2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">t6</span><span class="o">+</span><span class="n">s2</span><span class="o">+</span><span class="n">s3</span><span class="o">+</span><span class="n">s4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">z3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">t7</span><span class="o">+</span><span class="n">s1</span><span class="o">+</span><span class="n">s3</span><span class="o">+</span><span class="n">s4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="n">fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span><span class="n">s2</span><span class="p">,</span><span class="n">s3</span><span class="p">,</span><span class="n">s4</span><span class="p">,</span><span class="n">t5</span><span class="p">,</span><span class="n">t6</span><span class="p">,</span><span class="n">t7</span><span class="p">,</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">,</span><span class="n">z3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   s   |  t  |  z  
+1-2-3-4|5-6-7|1-2-3
+-------|-----|-----
+0-0-0-0|0-0-0|0-0-0
+0-0-0-1|0-1-1|0-0-0
+0-0-1-0|1-1-1|0-0-0
+0-0-1-1|1-0-0|0-0-0
+0-1-0-0|1-1-0|0-0-0
+0-1-0-1|1-0-1|0-0-0
+0-1-1-0|0-0-1|0-0-0
+0-1-1-1|0-1-0|0-0-0
+1-0-0-0|1-0-1|0-0-0
+1-0-0-1|1-1-0|0-0-0
+1-0-1-0|0-1-0|0-0-0
+1-0-1-1|0-0-1|0-0-0
+1-1-0-0|0-1-1|0-0-0
+1-1-0-1|0-0-0|0-0-0
+1-1-1-0|1-0-0|0-0-0
+1-1-1-1|1-1-1|0-0-0
+</pre></div>
+</div>
+</div>
+</div>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>1. <code class="docutils literal notranslate"><span class="pre">t=1000|101</span>&#160;&#160; <span class="pre">s1</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">s2</span> <span class="pre">=</span> <span class="pre">s3</span> <span class="pre">=</span> <span class="pre">s4</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">t5</span> <span class="pre">=</span> <span class="pre">s1+s2+s3</span> <span class="pre">=</span> <span class="pre">1+0+0</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">t6</span> <span class="pre">=</span> <span class="pre">s2+s3+s4</span> <span class="pre">=</span> <span class="pre">0+0+0</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">t7</span> <span class="pre">=</span> <span class="pre">s1+s3+s4</span> <span class="pre">=</span> <span class="pre">1+0+0</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
+<p><img alt="HammingVenn_E01.svg" src="_images/HammingVenn_E01.svg" /></p>
+<p>Now, let’s assume that, during transmission, noise flips the 2nd bit, thus the received signal becomes:</p>
+<div class="math notranslate nohighlight">
+\[1000101 \rightarrow r = 1000101 + \overline{0100000} = 1\underline{1}00101\]</div>
+<p>If we are to draw the diagram for the message we received, then it would be like this:</p>
+<p><img alt="HammingVenn_E01r.svg" src="_images/HammingVenn_E01r.svg" /></p>
+<p>Syndrome: z = (1,1,0)</p>
+<p>From this syndrome, we see that something is wrong, because there are 1s among the parities.</p>
+<p>Find a bit that lies in all the odd parity circles and outside of all the  even parity circles –&gt; from the intersection of the odd parity circles, we see that r<sub>2</sub> should be flipped!</p>
+<p>2. <span class="math notranslate nohighlight">\(t_5\)</span> flipped <span class="math notranslate nohighlight">\(\rightarrow r=1000\underline{0}01\)</span></p>
+<p><img alt="HammingVenn_E02r.png" src="_images/HammingVenn_E02r.png" /></p>
+<p><span class="math notranslate nohighlight">\(z(1,0,0)\rightarrow r_5\)</span> should be flipped</p>
+<p>3. <span class="math notranslate nohighlight">\(s_3\)</span> flipped <span class="math notranslate nohighlight">\(\rightarrow r=10\underline{1}0101\)</span></p>
+<p><img alt="HammingVenn_E03r.svg" src="_images/HammingVenn_E03r.svg" /></p>
+<p><span class="math notranslate nohighlight">\(z(1,1,1)\rightarrow r_3\)</span> should be flipped</p>
+<p><strong>Syndromes and fixes chart</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Syndrome z</p></th>
+<th class="head"><p>000</p></th>
+<th class="head"><p>001</p></th>
+<th class="head"><p>010</p></th>
+<th class="head"><p>011</p></th>
+<th class="head"><p>100</p></th>
+<th class="head"><p>101</p></th>
+<th class="head"><p>110</p></th>
+<th class="head"><p>111</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Unflip this bit</p></td>
+<td><p>none</p></td>
+<td><p><span class="math notranslate nohighlight">\(r_7\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_6\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_4\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_5\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(r_3\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<p>4. <span class="math notranslate nohighlight">\(t_3\, \&amp;\, t_7\)</span> are flipped <span class="math notranslate nohighlight">\(\rightarrow r=10\underline{1}010\underline{0}\)</span></p>
+<p><img alt="HammingVenn_E04r.svg" src="_images/HammingVenn_E04r.svg" /></p>
+<p><span class="math notranslate nohighlight">\(z(1,1,0)\rightarrow r_2\)</span> should be flipped:</p>
+</section>
+<section id="probability-of-error">
+<h3>Probability of Error<a class="headerlink" href="#probability-of-error" title="Permalink to this headline">¶</a></h3>
+<p>Let’s calculate the probability that two or more bits will be flipped (hence, the received and corrected message will still be wrong) when <span class="math notranslate nohighlight">\(\beta\)</span>, the probability that the noise will flip a bit be:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta=1/4\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}P(err) &amp;= \underbrace{{7\choose 2}\left(\frac{1}{4}\right)^2\left(\frac{3}{4}\right)^5}_{2:0.31146240}
++\underbrace{{7\choose 3}\left(\frac{1}{4}\right)^3\left(\frac{3}{4}\right)^4}_{3:0.17303467}+\underbrace{\dots}_{\begin{matrix}4:\,0.05767822\\\,5:0.01153564\\6:\,0.00128174\end{matrix}}+\underbrace{{7\choose 7}\left(\frac{1}{4}\right)^7}_{7:\,0.00006104}\\
+&amp;=0.55505
+\end{align*}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">comb</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">i_beta</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">beta</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">result</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">comb</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="n">k</span><span class="o">*</span><span class="n">i_beta</span><span class="o">**</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">P(err): </span><span class="si">{:7.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">result</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2.         0.3114624 ]
+ [3.         0.17303467]
+ [4.         0.05767822]
+ [5.         0.01153564]
+ [6.         0.00128174]
+ [7.         0.00006104]]
+
+P(err): 0.55505
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\beta=0.1\)</span>:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align*}P(err) &amp;= \underbrace{{7\choose 2}\left(\frac{1}{10}\right)^2\left(\frac{9}{10}\right)^5}_{2:0.1240029}
++\underbrace{{7\choose 3}\left(\frac{1}{10}\right)^3\left(\frac{9}{10}\right)^4}_{3:0.0229635}+\underbrace{\dots}_{\begin{matrix}4:\,0.0025515\\\,5:0.0001701\\6:\,0.0000063\end{matrix}}+\underbrace{{7\choose 7}\left(\frac{1}{10}\right)^7}_{7:\,0.0000001}\\
+&amp;=0.14969
+\end{align*}\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">comb</span>
+
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">i_beta</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">beta</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">result</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">):</span>
+    <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">comb</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">beta</span><span class="o">**</span><span class="n">k</span><span class="o">*</span><span class="n">i_beta</span><span class="o">**</span><span class="p">(</span><span class="mi">7</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">P(err): </span><span class="si">{:7.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">result</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[2.        0.1240029]
+ [3.        0.0229635]
+ [4.        0.0025515]
+ [5.        0.0001701]
+ [6.        0.0000063]
+ [7.        0.0000001]]
+
+P(err): 0.14969
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="comparison-of-error-correction-algorithms">
+<h1>Comparison of error-correction algorithms<a class="headerlink" href="#comparison-of-error-correction-algorithms" title="Permalink to this headline">¶</a></h1>
+<p><img alt="MacKay_1_18.png" src="_images/MacKay_1_18.png" />
+<a class="reference external" href="https://www.inference.org.uk/mackay/itila/book.html">David MacKay - Information Theory, Inference, and Learning Algorithms</a></p>
+<p>In the graph above, repetition algorithms (<em>R#</em>) are compared against Hamming(7,4) code and more widely used BCH (<a class="reference external" href="https://en.wikipedia.org/wiki/BCH_code">Bose–Chaudhuri–Hocquenghem</a>) codes.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948">
+<h1>Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)<a class="headerlink" href="#shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948" title="Permalink to this headline">¶</a></h1>
+<p>Shannon proposed an upper limit for which he defined as the channel capacity which can not be overcome by any algorithm (even in the ideal limit).</p>
+<p>Channel capacity <span class="math notranslate nohighlight">\(C(\beta)\)</span> is defined in terms of entropy <span class="math notranslate nohighlight">\(H_2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[C(\beta) = 1 - H_2(\beta) = 1 -\left[\beta\log_2{\frac{1}{\beta}}+(1-\beta)\log_2{\frac{1}{1-\beta}}\right]\]</div>
+<p>We can also use mutual information <span class="math notranslate nohighlight">\(I\)</span> to calculate <span class="math notranslate nohighlight">\(C\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[C=\sup\limits_{P_R(x)} I(X;Y)\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+I(X;Y)&amp;=H(X)-H(X|Y)\\
+&amp;=H(Y)-H(Y|X)\\
+&amp;=H(X)+H(Y)-H(X,Y)\\
+&amp;=H(X,Y)-H(X|Y)-H(Y|X)
+\end{align}
+\end{split}\]</div>
+<p>and taking <span class="math notranslate nohighlight">\(R(p_b)\)</span> as the required repetition, for a given probability error, we have:</p>
+<div class="math notranslate nohighlight">
+\[R(p_b) = \frac{C}{1-H_2(p_b)}\]</div>
+<p>As an example, for <span class="math notranslate nohighlight">\(\beta=0.1\)</span>, <span class="math notranslate nohighlight">\(C\approx0.531\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[C(\beta) = 1-H_2(\beta)=1-[0.1\,\log_2{\frac{1}{0.1}}+(1-0.1)\log_2{\frac{1}{1-0.1}}]=0.531\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">beta</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">beta</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">beta</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5310044064107187
+</pre></div>
+</div>
+</div>
+</div>
+<p>Combining it with our previous faulty hard disk example for the desired <span class="math notranslate nohighlight">\(p(e)&lt;10^{-15}\)</span>:<br />
+Since <span class="math notranslate nohighlight">\(C=0.531\)</span>, <span class="math notranslate nohighlight">\(R=\frac{1}{2}=0.5\,(&lt;0.531)\)</span>. Therefore, in theory, <u>two harddisks</u> are sufficient for arbitrarily small error probability (<span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span>).</p>
+<p><img alt="MacKay_1_19.png" src="_images/MacKay_1_19.png" />
+<a class="reference external" href="https://www.inference.org.uk/mackay/itila/book.html">David MacKay - Information Theory, Inference, and Learning Algorithms</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References:<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>The lecture textbook: David MacKay, “Information Theory, Inference, and Learning Algorithms” <a class="reference external" href="http://www.inference.org.uk/mackay/itprnn/book.html">http://www.inference.org.uk/mackay/itprnn/book.html</a></p></li>
+</ul>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="GaleShapleyMatching_Implementation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Gale-Shapley Algorithm Implementation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Information Theory Application</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dr. Emre S. Tasci<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
