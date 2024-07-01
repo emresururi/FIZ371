@@ -20,7 +20,7 @@ Eng. Physics Dept.
 Hacettepe University  
 Ankara, Turkey
 
-# Midterm Resit Exam
+# Midterm Make-Up Exam
 You can solve the problems analytically or stochastically, it's up to you. You can present your solution having been calculated on a paper, or as a jupyter notebook, or as a mixture of both.
 
 * Please prepare one jupyter notebook per question.
@@ -33,7 +33,7 @@ You can solve the problems analytically or stochastically, it's up to you. You c
 <center><h2>Pick 3 out of the following 5 questions!</h2></center>
 
 
-# 1. Distributions
+## 1. Distributions
 
 Maxwell-Boltzmann distribution relating the probabilities of speeds of gas molecules to the temperature of the environment is defined as:
 
@@ -41,7 +41,7 @@ $$f(v)=\left(\frac{m}{2\pi k T}\right)^{3/2}4\pi v^2 e^{-\frac{mv^2}{2kT}}$$
 
 and at 25<sup>o</sup>C, it is plotted for some of the noble gases below:
 
-![images/MaxwellBoltzmann-en.png](images/MaxwellBoltzmann-en.png)
+![images/MaxwellBoltzmann-en.png](../images/MaxwellBoltzmann-en.png)
 
 Image Source: [Wikipedia/Maxwell-Boltzmann distribution](https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution)
 
@@ -50,20 +50,20 @@ Suppose that you need to conduct a molecular dynamics simulation of 100000 He at
 (Definitely not necessary for this questions purpose, but if you'd like to have scientifically correct values, you can take $m_{He} = 6.65\times10^{-27}$ kg, $k = 1.38\times10^{-23}$ J/K, $T=300$ K)
 
 
-# 2. Decision Theory
+## 2. Decision Theory
 
 The sleeping beauty is put to sleep on Sunday. That night a coin is tossed: if it's tails she's woken the next day (Monday), if it's heads, she's woken on Monday, but then is put to sleep and is woken the next day (Tuesday) as well. She immediately forgets about the previous wakings when she falls asleep.
 
 The question goes like this: Upon being awakened, she is asked to guess the probability that heads came up on the last tossing. If you were in her shoes, what would your reply be?
 
-![images/Sleeping_beauty_problem.png](images/Sleeping_beauty_problem.png)
+![images/Sleeping_beauty_problem.png](../images/Sleeping_beauty_problem.png)
 
 Image Source: [Wikipedia/Sleeping Beauty problem](https://en.wikipedia.org/wiki/Sleeping_Beauty_problem))
 
 _Note: This is a very famous case with an active debate still ongoing, hence it doesn't have a definite solution. Your take on the problem is being examined, thus, if you want, you can follow different approaches to analyze the situation._
 
 
-# 3. Bayesian Inference
+## 3. Bayesian Inference
 
 Suppose that you have been watching Monty’s Hall game for a very long time and have observed that the prize is behind door 1: 45% of the time, behind door 2: 40% of the time and behind door 3: 15% of the time. The rest is as before.
 
@@ -76,7 +76,7 @@ What is the probability for each of the cases that you should switch to win the 
 (This question is taken from Dr. Luc Rey-Bellet’s lecture notes)
 
 
-# 4. Game of Life
+## 4. Game of Life
 
 Modify and run a 25 cell 1-D Game of Life with the following rules for 100 turns:
 
@@ -101,7 +101,7 @@ state|binary|representation|$\rightarrow$|outcome (#90)|representation (#90)|out
 0|000|◻◻◻ |$\rightarrow$|0|◻|0|◻
 
 
-# 5. Game Theory
+## 5. Game Theory
 
 Suppose that you have failed a course but to your luck, that year the university senate decided to introduce the make-up
 exams to be taken by the end of the summer. You have to options: you can either study hard through the summer (thus,
@@ -118,3 +118,7 @@ Draw the reaction-correspondence graph, indicate Nash equilibrium points if ther
 Calculate the probabilities that you should (have) study all through the summer or not **(if any of the probabilities is 0
 or 1 then re-construct the pay-off table, and redo the calculations! You can’t also use similar values to those we
 have covered during the lectures.)**.
+
+```python
+
+```

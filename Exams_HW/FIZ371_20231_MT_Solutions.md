@@ -257,20 +257,12 @@ Here, the red arrows indicate the preference directions of $B$ while the blue ar
 
 Consider the following preference chart:
 
-![Ein Ya Gura](images/20231_MT1_GaleShapley_EinYaGura.png)
+![Ein Ya Gura](../images/20231_MT1_GaleShapley_EinYaGura.png)
 
 where capital letters indicate the women and lower cases indicate men.
 
 a) Find a stable matching.  
 b) Is the matching you have found unique? If so, why? If not, find another alternative & stable matching.
-
-```python
-
-```
-
-```python
-
-```
 
 <!-- #region -->
 ## Solution

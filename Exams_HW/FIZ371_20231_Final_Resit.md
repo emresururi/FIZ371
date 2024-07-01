@@ -33,13 +33,13 @@ You can solve the problems analytically or stochastically, it's up to you. You c
 
 +++
 
-# 1. Probability
+## 1. Probability
 
 An unbiased coin is flipped until one head is thrown. What is the expected number of tails and the expected number of heads?
 
 +++
 
-# 2. Neural Networks
+## 2. Neural Networks
 
 Define the activity rule of a neuron that performs the following table:
 
@@ -66,13 +66,13 @@ _Don't forget to use the bias signal if you are stuck!_
 
 +++
 
-# 3. Matching Problem
+## 3. Matching Problem
 
 5 students are applying for 3 advisors for their project. An advisor can accept at most 2 students. The preference tables for the students and the advisors are given below, with lowercase letters indicating the students while the uppercase letters indicating the advisors.
 
-![advisors](images/20231_FinalResit_Advisors.png)
+![advisors](../images/20231_FinalResit_Advisors.png)
 
-![students](images/20231_FinalResit_Students.png)
+![students](../images/20231_FinalResit_Students.png)
 
 
 In these tables, the same number indicates equal preferences (e.g., Advisor C equally prefers students c and d as their 2nd choice); while a "-" indicates that the advisor won't accept the corresponding student under any condition (i.e., Advisor C has a terrible experience with student e and therefore won't work with them).
@@ -84,7 +84,7 @@ c) Is the matching you have proposed unique?
 
 +++
 
-# 4. Parity Concept
+## 4. Parity Concept
 
 In our university, recently, the id assignment is done as follows:
 
@@ -106,6 +106,10 @@ Let's say that the transmission channel has a noise ratio of $\beta = 0.02$: cal
 
 +++
 
-# 5. Putting the skills to work
+## 5. Putting the skills to work
 
 Describe a physical situation/case/problem (that haven't already been covered during this course's lectures) that doesn't have an analytical solution but could be solved using stochastic methods. Suggest the method and also try to implement & apply it to the problem you have proposed.
+
+```{code-cell} ipython3
+
+```
