@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Creator: fig2dev Version 3.2.6a -->
+<!-- CreationDate: 2020-04-12 15:01:22 -->
+<!-- Magnification: 1.05 -->
+<svg	xmlns="http://www.w3.org/2000/svg"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	width="146pt" height="90pt"
+	viewBox="3117 3342 2316 1416">
+<g fill="none">
+<!-- Circle -->
+<circle cx="4837" cy="4387" r="160" fill="#5c005c"
+	stroke="#b000b0" stroke-width="30px"/>
+<!-- Line -->
+<rect x="3150" y="3375" width="2250" height="1350"
+	stroke="#000000" stroke-width="30px"/>
+<!-- Line -->
+<polyline points=" 3150,4050 5400,4050"
+	stroke="#000000" stroke-width="30px"/>
+<!-- Line -->
+<polyline points=" 4275,3375 4275,4725"
+	stroke="#000000" stroke-width="30px"/>
+<!-- Line -->
+<polygon points=" 4029,3606 4108,3704 4029,3802 4403,3802 4403,3960 4659,3693 4403,3429 4403,3606
+" fill="#ff0000"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polygon points=" 4953,3771 4855,3850 4757,3771 4757,4145 4599,4145 4866,4401 5130,4145 4953,4145
+" fill="#0000ff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polygon points=" 3819,3771 3721,3850 3623,3771 3623,4145 3465,4145 3732,4401 3996,4145 3819,4145
+" fill="#0000ff"
+	stroke="#000000" stroke-width="8px"/>
+<!-- Line -->
+<polygon points=" 4025,4326 4104,4424 4025,4522 4399,4522 4399,4680 4655,4413 4399,4149 4399,4326
+" fill="#ff0000"
+	stroke="#000000" stroke-width="8px"/>
+</g>
+</svg>

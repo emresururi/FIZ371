@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-## Distributions 2 : Continous Distributions
+# Distributions 2 : Continous Distributions
 **FIZ371 - Scientific & Technical Computations | 06/04/2020**
 
 **Continous Distributions**
@@ -32,8 +32,8 @@ Emre S. Tasci <emre.tasci@hacettepe.edu.tr>
 
 +++
 
-## Reprise: Galton Machine
-In our [previous lecture](FIZ371_LN03_EST_Distributions_1.html), we defined and analyzed the Galton machine and also implemented a simulator for it. That code is reproduced below, this time functionalized with the number of levels & balls as its input parameters:
+# Reprise: Galton Machine
+In our [previous lecture](FIZ371_LN10_EST_Distributions_1.md), we defined and analyzed the Galton machine and also implemented a simulator for it. That code is reproduced below, this time functionalized with the number of levels & balls as its input parameters:
 
 ```{code-cell} ipython3
 import numpy as np
@@ -117,7 +117,7 @@ So, you can see that, as the number of levels increase, naturally the number of 
 
 +++
 
-## Gaussian (Normal) Distribution
+# Gaussian (Normal) Distribution
 
 This bell-like shaped curve has its very special place in statistics and in nature: it is called a Gaussian curve and [we are going to derive the fact][Howard Haber's Physics 116 page] that as $n \rightarrow \infty$, binomial distribution becomes Gaussian distribution, just as the graphs above suggest. This distribution occurs so frequently that, it is also called the "normal" distribution.
 
@@ -148,13 +148,14 @@ To get rid of the factorials, we will use [Stirling's approximation](https://en.
 $$n! \approx n^n e^{-n} \sqrt{2\pi n}$$
 
 Substitution of all the factorials yields:
-\begin{align*}
+
+$$\begin{align*}
 P(x) &= \frac{n^n e^{-n} \sqrt{2\pi n}}{\left[x^x e^{-x} \sqrt{2\pi x}\right]
 \left[(n-x)^{n-x} e^{-(n-x)}\sqrt{2 \pi (n-x)}\right]
 }p^x q^{n-x}\\
 &=(p\,/x)^x (q\,/(n-x))^{n-x} n^n \sqrt{\frac{n}{2\pi x (n-x)}}\\
 &=\left(\frac{np}{x}\right)^x\left(\frac{nq}{n-x}\right)^{n-x} \sqrt{\frac{n}{2\pi x (n-x)}}
-\end{align*}
+\end{align*}$$
 
 +++
 
@@ -207,13 +208,13 @@ $$P(x) =  \frac{1}{\sqrt{2\pi npq}} e^{-(x-np)^2/2npq}$$
 
 +++
 
-## Mean and standard variance of the binomial distribution (or is it the normal distribution?.. ;)
-### Mean Value ($\mu$)
+# Mean and standard variance of the binomial distribution (or is it the normal distribution?.. ;)
+## Mean Value ($\mu$)
 (Once again, we are using [Howard Haber's Physics 116 page]( http://scipp.ucsc.edu/~haber/ph116C/NormalApprox.pdf) for this section, as well)
 
 We start from the binomial distribution:
 
-$$P(x) = C(n,k)\,p^k\, q^{n-k}$$
+$$P(n,k) = C(n,k)\,p^k\, q^{n-k}$$
 
 where
 
@@ -241,11 +242,13 @@ $$np=\sum_{k=0}^{n}{k P(k)}$$
 
 Which is the mean value of the distribution by definition ("summing up the possible values multiplied by their probability"), so:
 
-$$\mu = <x> = \bar{x} = np$$
+$$\mu = <k> = \bar{k} = np$$
+
+_In the limit $n\rightarrow\infty$, discrete $k$ values becomes continous $x$ values_
 
 +++
 
-### Standard variation ($\sigma$)
+## Standard variation ($\sigma$)
 We follow a similar path for the calculation of the variance and standard variation. In this case we take:
 
 
@@ -279,7 +282,7 @@ $$\sigma^2 = npq\\
 
 +++
 
-## Gaussian distribution, final form
+# Gaussian distribution, final form
 Checking out the derived distribution by taking $n\rightarrow\infty$ and thus allowing many possible $k$ values such that we switch from discrete $k$ values to _continous_ $x$ values, we have:
 
 $$P(x) =  \frac{1}{\sqrt{2\pi npq}} e^{-(x-np)^2/2npq}$$
@@ -380,7 +383,8 @@ So, for a Gaussian distribution, we can alternatively define the standard deviat
 
 +++
 
-#### Duh?...
+**Duh?...**
+
 Let's proceed from math's point of view, using the Gaussian distribution formula:
 
 $$P(x) =  \frac{1}{\sqrt{2\pi}\sigma} e^{-(x-\mu)^2/2\sigma^2}$$
@@ -410,7 +414,7 @@ Now it doesn't seem to be so mindblowing but just a boring (and an obvious) deri
 
 +++
 
-## Application: The Six $\sigma$
+# Application: The Six $\sigma$
 I recommend you to stop reading at this instant and google for "[the six sigma](https://www.google.com/search?q=the+six+sigma&oq=the+six+sigma&hl=en)". Most of the results you are going to fine will be <strike>stupid</strike> self-pompitous "excel yourself, reach the skies bla bla..." junk sites but their root lies on pure statistics. Here is how.
 
 So, let's start once again with a nice Gaussian distribution characterized by $\mu = 5$ & $\sigma = 2.5$ $\Rightarrow P(x|\mu=5,\sigma=2.5)$:
@@ -516,7 +520,7 @@ In another example: consider the following news back from the days when the evas
 
 +++
 
-## A code of our own: Deriving the $\sigma$ distribution ratios stochastically
+# A code of our own: Deriving the $\sigma$ distribution ratios stochastically
 One of the questions in the final exam of (20191's) FIZ353 : Numerical Analysis course was:
 
 _Show that when N is sufficiently great (~10000), for an ideal Gaussian distribution the number of the elements within the  $\sigma$ neighborhood of the mean constitute around 68.2% of the total; those lying within $\sigma$ and  $2\sigma$ constitute 13.6% of the total and between $2\sigma$ and  $3\sigma$ amounts to 2.1% of the total._

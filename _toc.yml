@@ -6,6 +6,7 @@ root: intro
 chapters:
 - file: Cover
 - file: FIZ371_LN01_EST_Probabilities_Theory
+- file: FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ
 - file: FIZ371_LN02_EST_Probabilities
 - file: FIZ371_LN08_EST_Application_Monty_Hall
   title: Application Monty Hall Problem
@@ -31,17 +32,23 @@ chapters:
   title: Application Message Transmission Over a Noisy Channel
 - file: FIZ371_LN47_EST_CellularAutomata_GameOfLife
   title: Cellular Automata - Game of Life
+- file: FIZ371_LN80_EST_2DIsing
+  title: 2D Ising Model
 - file: FIZ371_LN58_EST_ClusteringAndClassification
   title: Clustering and Classification
 - file: FIZ371_LN69_EST_NeuralNetworks
   title: Artificial Neural Networks
-- file: FIZ371_LN80_EST_2DIsing
-  title: 2D Ising Model
 - file: FIZ371_20221_MT
-  title: 2022-23 Fall Term Mid-Term Exam
+  title: 2022-23 Fall Term Midterm Exam
 - file: FIZ371_20221_Final
   title: 2022-23 Fall Term Final Exam
 - file: FIZ371_20221_Resit
   title: 2022-23 Fall Term Resit Exam
+- file: FIZ371_20231_MT_MakeUp
+  title: 2023-24 Fall Term Midterm Resit Exam
+- file: FIZ371_20231_Final
+  title: 2023-24 Fall Term Final Exam
+- file: FIZ371_20231_Final_Resit
+  title: 2023-24 Fall Term Final's Resit Exam
 - file: MinimizeOptimizeFit
   title: Optimization, Minimization & Fitting Notes & Recipes

@@ -53,7 +53,7 @@ A digitized message (consisting of 1s and 0s, i.e. "bits") is transferred with a
 Send the source digit through the channel repeatedly.
 
 **Ex: Repeating 3 times**
-![IO_Repeated.svg](attachment:IO_Repeated.svg)
+![IO_Repeated.png](images/IO_Repeated.png)
 
 But it's still prone to errors. If, for the case of: 
 * '0 $\rightarrow$ 000', more than one 0 are flipped $\rightarrow$ 1

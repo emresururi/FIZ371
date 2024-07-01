@@ -368,7 +368,7 @@ When each player knows about the choice of the others and yet won't change their
 So, for simple systems such as the ones we have considered, where a 2 dimensional pay-off table is sufficient, we consider each player's stance from the other's possible choice. 
 
 In a 2 player setup, start from one of the cells:
-* Take the column player's point of view. For each of the cells in that row, compare the immediate neighbours (to the left and right) and point it towards the one with the better yield (higher pay-off). If the current cell is higher yielding, then direct the arorows towards that.
+* Take the column player's point of view. For each of the cells in that row, compare the immediate neighbours (to the left and right) and point it towards the one with the better yield (higher pay-off). If the current cell is higher yielding, then direct the arrows towards that.
 * Once you finish the comparison of the rows, then take on the role of the row player and repeat the procedure, this time considering the neighbours above and below.
 
 ## Prisoner's Dilemma
@@ -418,7 +418,7 @@ From the graph above, we can see that, no matter where we start, we are forced t
 
 From its definition, Nash equilibrium is the state where, given that the other player's choice is revealed, the player won't change their own choice. 
 
-Consider the case that Alice is thinking of remaining silent but then she learns that Bob has defected: in that case, she'll also defect. The same goes for Bob -- for any of Alice's possible choices, himself defecting is the most rewarding, so he will always defect. Both of them defecting is the **only** case where upon learning other's intentions, they will not change their selection.
+Consider the case that Alice is thinking of remaining silent but then she learns that Bob has defected: in that case, she'll also defect. The same goes for Bob -- for any of Alice's possible choices, himself defecting is the most rewarding, so he will always defect. Both of them defecting is the **only** case where upon learning other's intentions, they will not change their decision.
 
 +++
 

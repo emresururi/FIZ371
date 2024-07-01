@@ -68,6 +68,10 @@ print(aa)
 ```
 
 ```{code-cell} ipython3
+np.sum(aa<0.25)
+```
+
+```{code-cell} ipython3
 aa[aa<0.25] = 1
 aa[aa<1] = 0
 aa

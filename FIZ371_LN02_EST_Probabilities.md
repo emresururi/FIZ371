@@ -258,14 +258,14 @@ $$93\times\frac{1}{256} = \frac{93}{256} = 0.36328125$$
 
 As a last remark: 256 is nothing but the **total number of possible outcomes** out of 8 coin tossings as each toss has 2 possible outcomes thus: 
 
-$$ \underbrace{2\times 2\times\dots\times 2}_{\text{8 tosses}}= 2^8 = 256 $$.
+$$\underbrace{2\times 2\times\dots\times 2}_{\text{8 tosses}}= 2^8 = 256$$
 
 This way of producing variations are discussed in the next section, "Products".
 
 +++
 
 # Products
-There is another yet different way of producing variations, but this one preserves each one in its lane and we get combinations that we can not achieve with the previous permutations and combinations (each one to its own way). So suppose that we have three slots and each slot has a different set of possibilities, like {a,b,c} for the first slot; {1,2} for the second and {!,#,?,\*} for the third slots. There are obviously $3x2x4=24$ possibile outcomes and we use products to get them.
+There is another yet different way of producing variations, but this one preserves each one in its lane and we get combinations that we can not achieve with the previous permutations and combinations (each one to its own way). So suppose that we have three slots and each slot has a different set of possibilities, like {a,b,c} for the first slot; {1,2} for the second and {!,#,?,\*} for the third slots. There are obviously $3\times2\times4=24$ possibile outcomes and we use products to get them.
 
 Products work pretty much like distribution of multiplication over summation:
 
@@ -324,5 +324,9 @@ print("Analtyical solution: {:.3f}".format(93/256))
 ```
 
 **References:**
-* [Miguel A. Lerma - Mathematical Foundations of Computer Science Lecture Notes] (https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/)(["More Combinatorics"](https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/notes/dm-gcomb))
+* [Miguel A. Lerma - Mathematical Foundations of Computer Science Lecture Notes](https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/)(["More Combinatorics"](https://sites.math.northwestern.edu/~mlerma/courses/cs310-05s/notes/dm-gcomb))
 * [Ken A. Dill & Sarina Bromberg - Molecular Driving Forces](https://www.amazon.com/Molecular-Driving-Forces-Statistical-Thermodynamics/dp/0815344309) (Chp 1: "Principles of Probability")
+
+```{code-cell} ipython3
+
+```
