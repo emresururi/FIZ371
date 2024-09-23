@@ -674,7 +674,7 @@ p(x_i=9)=0.2\end{matrix}\end{split}\]</div>
 <section class="tex2jax_ignore mathjax_ignore" id="variance-sigma-2">
 <h1>Variance <span class="math notranslate nohighlight">\((\sigma^2)\)</span><a class="headerlink" href="#variance-sigma-2" title="Permalink to this heading">#</a></h1>
 <div class="math notranslate nohighlight">
-\[\sigma^2=&lt;x^2&gt;-&lt;x&gt;^2=\sum_{x_i}{x_i^2p(x_i)} \;- \sum_{x_i}{x_ip(x_i)}\]</div>
+\[\sigma^2=&lt;x^2&gt;-&lt;x&gt;^2=\left(\sum_{x_i}{x_i^2p(x_i)}\right) \;- \left(\sum_{x_i}{x_ip(x_i)}\right)^2\]</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">var</span> <span class="o">+=</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
