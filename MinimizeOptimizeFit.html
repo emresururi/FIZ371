@@ -1,441 +1,462 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Optimization, Minimization &amp; Fitting Notes &amp; Recipes &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'MinimizeOptimizeFit';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Exercises &amp; Exams" href="FIZ371_ExercisesExams.html" />
     <link rel="prev" title="Neural Networks" href="FIZ371_LN69_EST_NeuralNetworks.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Cover.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Cover.html">
-   FIZ371 - Scientific and Technical Calculations
-  </a>
- </li>
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="FIZ371 - Scientific and Technical Computations Lecture Notes - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="FIZ371 - Scientific and Technical Computations Lecture Notes - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Cover.html">
+                    FIZ371 - Scientific and Technical Calculations
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="FIZ371_LectureNotes.html">Lecture Notes</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">Probabilities - Concept &amp; Theory</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">Probabilities Application: Letter Frequencies</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">Probabilities</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">Monty Hall Problem</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="WhiteTokenOutOf2.html">Application White Token Out Of 2 Bags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">Six Switch Puzzle</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">Discrete Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">Distributions 2 : Continous Distributions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">Game Theory</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">Application Prisonner's Dilemma (with Memory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GaleShapleyMatching_Implementation.html">Gale-Shapley Algorithm Implementation</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">Information Theory</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">Information Theory Application</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">Cellular Automata</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">2D Ising Model</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">Neural Networks</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Optimization, Minimization &amp; Fitting Notes &amp; Recipes</a></li>
+
+
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="FIZ371_LectureNotes.html">
-   Lecture Notes
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
-     Probabilities - Concept &amp; Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
-     Probabilities Application: Letter Frequencies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
-     Probabilities
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
-     Monty Hall Problem
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="WhiteTokenOutOf2.html">
-     Application White Token Out Of 2 Bags
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
-     Six Switch Puzzle
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
-     Discrete Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
-     Distributions 2 : Continous Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
-     Game Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
-     Application Prisonner's Dilemma (with Memory)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
-     Gale-Shapley Algorithm Implementation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
-     Information Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
-     Information Theory Application
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
-     Cellular Automata
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
-     2D Ising Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
-     Neural Networks
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Optimization, Minimization &amp; Fitting Notes &amp; Recipes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="FIZ371_ExercisesExams.html">
-   Exercises &amp; Exams
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_MT.html">
-     2022-23 Fall Term Midterm Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_Final.html">
-     2022-23 Fall Term Final Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_Resit.html">
-     2022-23 Fall Term Resit Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_MT.html">
-     2023-24 Fall Term Midterm Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_MT_MakeUp.html">
-     2023-24 Fall Term Midterm MakeUp Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_Final.html">
-     2023-24 Fall Term Final Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_Final_Resit.html">
-     2023-24 Fall Term Resit Exam
-    </a>
-   </li>
-  </ul>
- </li>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="FIZ371_ExercisesExams.html">Exercises &amp; Exams</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_MT.html">2022-23 Fall Term Midterm Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_Final.html">2022-23 Fall Term Final Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_Resit.html">2022-23 Fall Term Resit Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_MT.html">2023-24 Fall Term Midterm Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_MT_MakeUp.html">2023-24 Fall Term Midterm MakeUp Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_Final.html">2023-24 Fall Term Final Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_Final_Resit.html">2023-24 Fall Term Resit Exam</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/MinimizeOptimizeFit.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/MinimizeOptimizeFit.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/MinimizeOptimizeFit.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
         
         
-        
-        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/MinimizeOptimizeFit.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-        </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Optimization, Minimization & Fitting Notes & Recipes</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gradient-descent-algorithm">
-   Gradient Descent Algorithm
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parabol">
-     Parabol
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#negative-gaussian">
-     “Negative” Gaussian
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fitting-parameters-via-gradient-descent-algorithm">
-   Fitting parameters via gradient descent algorithm
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stochastic-gradient-descent-algorithm">
-     Stochastic Gradient Descent Algorithm
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Optimization, Minimization &amp; Fitting Notes &amp; Recipes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-algorithm">Gradient Descent Algorithm</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parabol">Parabol</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-gaussian">“Negative” Gaussian</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-parameters-via-gradient-descent-algorithm">Fitting parameters via gradient descent algorithm</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent-algorithm">Stochastic Gradient Descent Algorithm</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Optimization, Minimization & Fitting Notes & Recipes</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Optimization, Minimization &amp; Fitting Notes &amp; Recipes
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gradient-descent-algorithm">
-   Gradient Descent Algorithm
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parabol">
-     Parabol
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#negative-gaussian">
-     “Negative” Gaussian
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#fitting-parameters-via-gradient-descent-algorithm">
-   Fitting parameters via gradient descent algorithm
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stochastic-gradient-descent-algorithm">
-     Stochastic Gradient Descent Algorithm
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="optimization-minimization-fitting-notes-recipes">
-<h1>Optimization, Minimization &amp; Fitting Notes &amp; Recipes<a class="headerlink" href="#optimization-minimization-fitting-notes-recipes" title="Permalink to this headline">¶</a></h1>
+<h1>Optimization, Minimization &amp; Fitting Notes &amp; Recipes<a class="headerlink" href="#optimization-minimization-fitting-notes-recipes" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -471,7 +492,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/MinimizeOptimizeFit_4_0.png" src="_images/MinimizeOptimizeFit_4_0.png" />
+<img alt="_images/a1760a2745e81524ee4ba80a03f8841893c5e232f129a330c2f0a7c755ee9cf5.png" src="_images/a1760a2745e81524ee4ba80a03f8841893c5e232f129a330c2f0a7c755ee9cf5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -497,9 +518,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="gradient-descent-algorithm">
-<h1>Gradient Descent Algorithm<a class="headerlink" href="#gradient-descent-algorithm" title="Permalink to this headline">¶</a></h1>
+<h1>Gradient Descent Algorithm<a class="headerlink" href="#gradient-descent-algorithm" title="Permalink to this heading">#</a></h1>
 <section id="parabol">
-<h2>Parabol<a class="headerlink" href="#parabol" title="Permalink to this headline">¶</a></h2>
+<h2>Parabol<a class="headerlink" href="#parabol" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">abc</span><span class="p">):</span>
@@ -521,7 +542,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/MinimizeOptimizeFit_9_0.png" src="_images/MinimizeOptimizeFit_9_0.png" />
+<img alt="_images/b91cca97507d666bd9edd2232e31cb2eae88702fcfd9e849dd666fd2f1cec2db.png" src="_images/b91cca97507d666bd9edd2232e31cb2eae88702fcfd9e849dd666fd2f1cec2db.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -568,7 +589,7 @@ The derivative (gradient) at x = 5.00000 is 23.000
 	==&gt; The new x is 5.00000-9.20000=-4.20000
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_1.png" src="_images/MinimizeOptimizeFit_10_1.png" />
+<img alt="_images/214042c14acb0f1c5298e0105213fce954fa69cdcc0b3c57a35f26d129fa9880.png" src="_images/214042c14acb0f1c5298e0105213fce954fa69cdcc0b3c57a35f26d129fa9880.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #2
 The derivative (gradient) at x = -4.20000 is -13.800
@@ -576,7 +597,7 @@ The derivative (gradient) at x = -4.20000 is -13.800
 	==&gt; The new x is -4.20000+5.52000=1.32000
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_3.png" src="_images/MinimizeOptimizeFit_10_3.png" />
+<img alt="_images/7ed722d9327b7b8ef000acec300020bb07652d6e3b4873a21d62de93a3d17ba7.png" src="_images/7ed722d9327b7b8ef000acec300020bb07652d6e3b4873a21d62de93a3d17ba7.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #3
 The derivative (gradient) at x = 1.32000 is 8.280
@@ -584,7 +605,7 @@ The derivative (gradient) at x = 1.32000 is 8.280
 	==&gt; The new x is 1.32000-3.31200=-1.99200
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_5.png" src="_images/MinimizeOptimizeFit_10_5.png" />
+<img alt="_images/6c3304d22e99cd301ab76a84a4b6273b14c83fa9b7c7d17a2a3048bcc5525ece.png" src="_images/6c3304d22e99cd301ab76a84a4b6273b14c83fa9b7c7d17a2a3048bcc5525ece.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #4
 The derivative (gradient) at x = -1.99200 is -4.968
@@ -592,7 +613,7 @@ The derivative (gradient) at x = -1.99200 is -4.968
 	==&gt; The new x is -1.99200+1.98720=-0.00480
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_7.png" src="_images/MinimizeOptimizeFit_10_7.png" />
+<img alt="_images/de00290c9074a7054790165530e8644fc7db4bc31af2ada6e0007e8b4ce35925.png" src="_images/de00290c9074a7054790165530e8644fc7db4bc31af2ada6e0007e8b4ce35925.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #5
 The derivative (gradient) at x = -0.00480 is 2.981
@@ -600,7 +621,7 @@ The derivative (gradient) at x = -0.00480 is 2.981
 	==&gt; The new x is -0.00480-1.19232=-1.19712
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_9.png" src="_images/MinimizeOptimizeFit_10_9.png" />
+<img alt="_images/c4ac4b7270c491e5460c1ef9ac606287b37b0db4973aec8f2de6d8882e52660b.png" src="_images/c4ac4b7270c491e5460c1ef9ac606287b37b0db4973aec8f2de6d8882e52660b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #6
 The derivative (gradient) at x = -1.19712 is -1.788
@@ -608,7 +629,7 @@ The derivative (gradient) at x = -1.19712 is -1.788
 	==&gt; The new x is -1.19712+0.71539=-0.48173
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_11.png" src="_images/MinimizeOptimizeFit_10_11.png" />
+<img alt="_images/2c6e96adab9c4cbf9ee15b5f409d914d3656632ab2790a9995d0f443a2b9f9c6.png" src="_images/2c6e96adab9c4cbf9ee15b5f409d914d3656632ab2790a9995d0f443a2b9f9c6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #7
 The derivative (gradient) at x = -0.48173 is 1.073
@@ -616,7 +637,7 @@ The derivative (gradient) at x = -0.48173 is 1.073
 	==&gt; The new x is -0.48173-0.42924=-0.91096
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_13.png" src="_images/MinimizeOptimizeFit_10_13.png" />
+<img alt="_images/e1d2685741e36922cd00d0175d4803fefb21309da96ca739b2f73341a336565b.png" src="_images/e1d2685741e36922cd00d0175d4803fefb21309da96ca739b2f73341a336565b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #8
 The derivative (gradient) at x = -0.91096 is -0.644
@@ -624,7 +645,7 @@ The derivative (gradient) at x = -0.91096 is -0.644
 	==&gt; The new x is -0.91096+0.25754=-0.65342
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_15.png" src="_images/MinimizeOptimizeFit_10_15.png" />
+<img alt="_images/33ff63fd3ad75c0c96f664f1af34f98589a522e34500eefe9d572efc4f051bcf.png" src="_images/33ff63fd3ad75c0c96f664f1af34f98589a522e34500eefe9d572efc4f051bcf.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #9
 The derivative (gradient) at x = -0.65342 is 0.386
@@ -632,7 +653,7 @@ The derivative (gradient) at x = -0.65342 is 0.386
 	==&gt; The new x is -0.65342-0.15452=-0.80795
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_17.png" src="_images/MinimizeOptimizeFit_10_17.png" />
+<img alt="_images/76ca9c37954e68d4826844703297c236d48ef15a104c074b17cdd5d61b41c289.png" src="_images/76ca9c37954e68d4826844703297c236d48ef15a104c074b17cdd5d61b41c289.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #10
 The derivative (gradient) at x = -0.80795 is -0.232
@@ -640,7 +661,7 @@ The derivative (gradient) at x = -0.80795 is -0.232
 	==&gt; The new x is -0.80795+0.09271=-0.71523
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_19.png" src="_images/MinimizeOptimizeFit_10_19.png" />
+<img alt="_images/11da8d23bed550662a3490073d5a7bcdcfdb9a14290dbf5e984ddf7ad34f4ec8.png" src="_images/11da8d23bed550662a3490073d5a7bcdcfdb9a14290dbf5e984ddf7ad34f4ec8.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #11
 The derivative (gradient) at x = -0.71523 is 0.139
@@ -648,7 +669,7 @@ The derivative (gradient) at x = -0.71523 is 0.139
 	==&gt; The new x is -0.71523-0.05563=-0.77086
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_21.png" src="_images/MinimizeOptimizeFit_10_21.png" />
+<img alt="_images/8efd0838890c0755cac3a8bd9e9432e918e83a95ce1e56f50d940f0f6dc2bd44.png" src="_images/8efd0838890c0755cac3a8bd9e9432e918e83a95ce1e56f50d940f0f6dc2bd44.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #12
 The derivative (gradient) at x = -0.77086 is -0.083
@@ -656,7 +677,7 @@ The derivative (gradient) at x = -0.77086 is -0.083
 	==&gt; The new x is -0.77086+0.03338=-0.73748
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_23.png" src="_images/MinimizeOptimizeFit_10_23.png" />
+<img alt="_images/327056065cb613e5fb9e563162e0f3e36c9c6061e35d56df80fa33e4a90ecde3.png" src="_images/327056065cb613e5fb9e563162e0f3e36c9c6061e35d56df80fa33e4a90ecde3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #13
 The derivative (gradient) at x = -0.73748 is 0.050
@@ -664,7 +685,7 @@ The derivative (gradient) at x = -0.73748 is 0.050
 	==&gt; The new x is -0.73748-0.02003=-0.75751
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_25.png" src="_images/MinimizeOptimizeFit_10_25.png" />
+<img alt="_images/7bb5bb27281091a63a006081c1340c7ff8b2ae66c0931361fc1f742b83d76315.png" src="_images/7bb5bb27281091a63a006081c1340c7ff8b2ae66c0931361fc1f742b83d76315.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #14
 The derivative (gradient) at x = -0.75751 is -0.030
@@ -672,7 +693,7 @@ The derivative (gradient) at x = -0.75751 is -0.030
 	==&gt; The new x is -0.75751+0.01202=-0.74549
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_27.png" src="_images/MinimizeOptimizeFit_10_27.png" />
+<img alt="_images/85f3c77b90a2260e2d86f0ab809e470d9498da9142741a4f07bb6a5354293d76.png" src="_images/85f3c77b90a2260e2d86f0ab809e470d9498da9142741a4f07bb6a5354293d76.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #15
 The derivative (gradient) at x = -0.74549 is 0.018
@@ -680,7 +701,7 @@ The derivative (gradient) at x = -0.74549 is 0.018
 	==&gt; The new x is -0.74549-0.00721=-0.75270
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_29.png" src="_images/MinimizeOptimizeFit_10_29.png" />
+<img alt="_images/69b3a72fe2917c50c9358493f641c9a24e3a671c0f25d32a88f26ad01550aab4.png" src="_images/69b3a72fe2917c50c9358493f641c9a24e3a671c0f25d32a88f26ad01550aab4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #16
 The derivative (gradient) at x = -0.75270 is -0.011
@@ -688,7 +709,7 @@ The derivative (gradient) at x = -0.75270 is -0.011
 	==&gt; The new x is -0.75270+0.00433=-0.74838
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_31.png" src="_images/MinimizeOptimizeFit_10_31.png" />
+<img alt="_images/0ed7d72e50051c48ba23d52957b2d006e03e34e0214cbe8a64950aae0c57eca2.png" src="_images/0ed7d72e50051c48ba23d52957b2d006e03e34e0214cbe8a64950aae0c57eca2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #17
 The derivative (gradient) at x = -0.74838 is 0.006
@@ -696,7 +717,7 @@ The derivative (gradient) at x = -0.74838 is 0.006
 	==&gt; The new x is -0.74838-0.00260=-0.75097
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_33.png" src="_images/MinimizeOptimizeFit_10_33.png" />
+<img alt="_images/e480df3a4e8a9f493d4a799ea6e60ab72d5c272e82e08b87b11e7d65c8a52e5f.png" src="_images/e480df3a4e8a9f493d4a799ea6e60ab72d5c272e82e08b87b11e7d65c8a52e5f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #18
 The derivative (gradient) at x = -0.75097 is -0.004
@@ -704,7 +725,7 @@ The derivative (gradient) at x = -0.75097 is -0.004
 	==&gt; The new x is -0.75097+0.00156=-0.74942
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_35.png" src="_images/MinimizeOptimizeFit_10_35.png" />
+<img alt="_images/494d6400cf894f8b0740cdc4ee93a746f4ae207b3ddcf791f7c122734a8f9d1a.png" src="_images/494d6400cf894f8b0740cdc4ee93a746f4ae207b3ddcf791f7c122734a8f9d1a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #19
 The derivative (gradient) at x = -0.74942 is 0.002
@@ -712,7 +733,7 @@ The derivative (gradient) at x = -0.74942 is 0.002
 	==&gt; The new x is -0.74942-0.00093=-0.75035
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_37.png" src="_images/MinimizeOptimizeFit_10_37.png" />
+<img alt="_images/d9e73cf437a2bfff01e4ffe155efb70c16e0117b9da6f03246def2a21b3431b2.png" src="_images/d9e73cf437a2bfff01e4ffe155efb70c16e0117b9da6f03246def2a21b3431b2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #20
 The derivative (gradient) at x = -0.75035 is -0.001
@@ -720,7 +741,7 @@ The derivative (gradient) at x = -0.75035 is -0.001
 	==&gt; The new x is -0.75035+0.00056=-0.74979
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_39.png" src="_images/MinimizeOptimizeFit_10_39.png" />
+<img alt="_images/cec672047075ebf2ea480dc288f7741eddaf595bfd7da26d9a662bc9a2c247b4.png" src="_images/cec672047075ebf2ea480dc288f7741eddaf595bfd7da26d9a662bc9a2c247b4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #21
 The derivative (gradient) at x = -0.74979 is 0.001
@@ -728,7 +749,7 @@ The derivative (gradient) at x = -0.74979 is 0.001
 	==&gt; The new x is -0.74979-0.00034=-0.75013
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_41.png" src="_images/MinimizeOptimizeFit_10_41.png" />
+<img alt="_images/673216174d4865ab1502bb0c3e9e0778fe4f32031406f6397a17be5ef5dfa4e7.png" src="_images/673216174d4865ab1502bb0c3e9e0778fe4f32031406f6397a17be5ef5dfa4e7.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #22
 The derivative (gradient) at x = -0.75013 is -0.001
@@ -736,7 +757,7 @@ The derivative (gradient) at x = -0.75013 is -0.001
 	==&gt; The new x is -0.75013+0.00020=-0.74992
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_43.png" src="_images/MinimizeOptimizeFit_10_43.png" />
+<img alt="_images/90a298ec5ef61f7523ace18ddf4898b81f15d26aecc0d7c6383eb3d533c02731.png" src="_images/90a298ec5ef61f7523ace18ddf4898b81f15d26aecc0d7c6383eb3d533c02731.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #23
 The derivative (gradient) at x = -0.74992 is 0.000
@@ -744,7 +765,7 @@ The derivative (gradient) at x = -0.74992 is 0.000
 	==&gt; The new x is -0.74992-0.00012=-0.75005
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_45.png" src="_images/MinimizeOptimizeFit_10_45.png" />
+<img alt="_images/9cc386ce831f58422f282203aa63089aa71815a232b8960f550d1edc17e64b79.png" src="_images/9cc386ce831f58422f282203aa63089aa71815a232b8960f550d1edc17e64b79.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #24
 The derivative (gradient) at x = -0.75005 is -0.000
@@ -752,7 +773,7 @@ The derivative (gradient) at x = -0.75005 is -0.000
 	==&gt; The new x is -0.75005+0.00007=-0.74997
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_47.png" src="_images/MinimizeOptimizeFit_10_47.png" />
+<img alt="_images/7073fd668d3b789326ae2eac3db8026965379f96320efe5cbb1d17a7de449710.png" src="_images/7073fd668d3b789326ae2eac3db8026965379f96320efe5cbb1d17a7de449710.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #25
 The derivative (gradient) at x = -0.74997 is 0.000
@@ -760,7 +781,7 @@ The derivative (gradient) at x = -0.74997 is 0.000
 	==&gt; The new x is -0.74997-0.00004=-0.75002
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_10_49.png" src="_images/MinimizeOptimizeFit_10_49.png" />
+<img alt="_images/eea0ca77f8fa67091832cbbccc06feabc7fc50cce38b3d240834a8d1e54e2180.png" src="_images/eea0ca77f8fa67091832cbbccc06feabc7fc50cce38b3d240834a8d1e54e2180.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #26
 The derivative (gradient) at x = -0.75002 is -0.000
@@ -784,7 +805,7 @@ The derivative (gradient) at x = -0.75002 is -0.000
 </div>
 </section>
 <section id="negative-gaussian">
-<h2>“Negative” Gaussian<a class="headerlink" href="#negative-gaussian" title="Permalink to this headline">¶</a></h2>
+<h2>“Negative” Gaussian<a class="headerlink" href="#negative-gaussian" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span><span class="n">sigma</span><span class="p">):</span>
@@ -812,7 +833,7 @@ The derivative (gradient) at x = -0.75002 is -0.000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/MinimizeOptimizeFit_15_0.png" src="_images/MinimizeOptimizeFit_15_0.png" />
+<img alt="_images/a1760a2745e81524ee4ba80a03f8841893c5e232f129a330c2f0a7c755ee9cf5.png" src="_images/a1760a2745e81524ee4ba80a03f8841893c5e232f129a330c2f0a7c755ee9cf5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -859,7 +880,7 @@ The derivative (gradient) at x = 8.00000 is 0.0333
 	==&gt; The new x is 8.00000-0.01333=7.98667
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_1.png" src="_images/MinimizeOptimizeFit_16_1.png" />
+<img alt="_images/19e2cf037d901d0325bbc976a4a5364357e7a209da05789f79c26bccafebcc15.png" src="_images/19e2cf037d901d0325bbc976a4a5364357e7a209da05789f79c26bccafebcc15.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #2
 The derivative (gradient) at x = 7.98667 is 0.0345
@@ -867,7 +888,7 @@ The derivative (gradient) at x = 7.98667 is 0.0345
 	==&gt; The new x is 7.98667-0.01381=7.97286
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_3.png" src="_images/MinimizeOptimizeFit_16_3.png" />
+<img alt="_images/171f344434a82b1f8f3a3a6e4ea84758ec49b46b5364782c07507868e21782cc.png" src="_images/171f344434a82b1f8f3a3a6e4ea84758ec49b46b5364782c07507868e21782cc.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #3
 The derivative (gradient) at x = 7.97286 is 0.0358
@@ -875,7 +896,7 @@ The derivative (gradient) at x = 7.97286 is 0.0358
 	==&gt; The new x is 7.97286-0.01433=7.95853
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_5.png" src="_images/MinimizeOptimizeFit_16_5.png" />
+<img alt="_images/880ed4770f9d625e067b66fcdd0fae9b0beda88579530b7dd224429b835874b6.png" src="_images/880ed4770f9d625e067b66fcdd0fae9b0beda88579530b7dd224429b835874b6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #4
 The derivative (gradient) at x = 7.95853 is 0.0372
@@ -883,7 +904,7 @@ The derivative (gradient) at x = 7.95853 is 0.0372
 	==&gt; The new x is 7.95853-0.01488=7.94366
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_7.png" src="_images/MinimizeOptimizeFit_16_7.png" />
+<img alt="_images/0c52d5893890f65a135f99ff78fbd93b81c74b3f3cdc17d593cf032c4afc0659.png" src="_images/0c52d5893890f65a135f99ff78fbd93b81c74b3f3cdc17d593cf032c4afc0659.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #5
 The derivative (gradient) at x = 7.94366 is 0.0387
@@ -891,7 +912,7 @@ The derivative (gradient) at x = 7.94366 is 0.0387
 	==&gt; The new x is 7.94366-0.01546=7.92819
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_9.png" src="_images/MinimizeOptimizeFit_16_9.png" />
+<img alt="_images/677c9f8c0e8ba4edf54f5e74e51a31251483412adc32ccd9ed6c2e72a368a5a9.png" src="_images/677c9f8c0e8ba4edf54f5e74e51a31251483412adc32ccd9ed6c2e72a368a5a9.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #6
 The derivative (gradient) at x = 7.92819 is 0.0402
@@ -899,7 +920,7 @@ The derivative (gradient) at x = 7.92819 is 0.0402
 	==&gt; The new x is 7.92819-0.01610=7.91209
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_11.png" src="_images/MinimizeOptimizeFit_16_11.png" />
+<img alt="_images/c8b4cd52033e22a71b55d010cb5a23b3d7f51b0cada4677dd1117b3cc107e41c.png" src="_images/c8b4cd52033e22a71b55d010cb5a23b3d7f51b0cada4677dd1117b3cc107e41c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #7
 The derivative (gradient) at x = 7.91209 is 0.0420
@@ -907,7 +928,7 @@ The derivative (gradient) at x = 7.91209 is 0.0420
 	==&gt; The new x is 7.91209-0.01678=7.89531
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_13.png" src="_images/MinimizeOptimizeFit_16_13.png" />
+<img alt="_images/8ed5b995697c025ca5c35436833a6aeed17ccafd625067cb12eec0be007d3797.png" src="_images/8ed5b995697c025ca5c35436833a6aeed17ccafd625067cb12eec0be007d3797.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #8
 The derivative (gradient) at x = 7.89531 is 0.0438
@@ -915,7 +936,7 @@ The derivative (gradient) at x = 7.89531 is 0.0438
 	==&gt; The new x is 7.89531-0.01752=7.87780
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_15.png" src="_images/MinimizeOptimizeFit_16_15.png" />
+<img alt="_images/bb6944bdeab0becf73ef78be28bd7327c07d864bc6f81ef8d5571313ea850a32.png" src="_images/bb6944bdeab0becf73ef78be28bd7327c07d864bc6f81ef8d5571313ea850a32.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #9
 The derivative (gradient) at x = 7.87780 is 0.0458
@@ -923,7 +944,7 @@ The derivative (gradient) at x = 7.87780 is 0.0458
 	==&gt; The new x is 7.87780-0.01831=7.85948
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_17.png" src="_images/MinimizeOptimizeFit_16_17.png" />
+<img alt="_images/f61573d26e8c77a057056d00227e613641a2d60b50f54b43c08557cfbb313a51.png" src="_images/f61573d26e8c77a057056d00227e613641a2d60b50f54b43c08557cfbb313a51.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #10
 The derivative (gradient) at x = 7.85948 is 0.0479
@@ -931,7 +952,7 @@ The derivative (gradient) at x = 7.85948 is 0.0479
 	==&gt; The new x is 7.85948-0.01918=7.84031
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_19.png" src="_images/MinimizeOptimizeFit_16_19.png" />
+<img alt="_images/5b1e80efd67cc6bac28cedfb1120cdb7f2b908e94413f4d52727ca6b605518ef.png" src="_images/5b1e80efd67cc6bac28cedfb1120cdb7f2b908e94413f4d52727ca6b605518ef.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #11
 The derivative (gradient) at x = 7.84031 is 0.0503
@@ -939,7 +960,7 @@ The derivative (gradient) at x = 7.84031 is 0.0503
 	==&gt; The new x is 7.84031-0.02012=7.82019
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_21.png" src="_images/MinimizeOptimizeFit_16_21.png" />
+<img alt="_images/378f0399ecdd5f84ad3e1c3850b98f482567ae27f83efa27b8c41e6394490e0c.png" src="_images/378f0399ecdd5f84ad3e1c3850b98f482567ae27f83efa27b8c41e6394490e0c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #12
 The derivative (gradient) at x = 7.82019 is 0.0529
@@ -947,7 +968,7 @@ The derivative (gradient) at x = 7.82019 is 0.0529
 	==&gt; The new x is 7.82019-0.02115=7.79904
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_23.png" src="_images/MinimizeOptimizeFit_16_23.png" />
+<img alt="_images/030c5dac2afec508eab470cf39f1a8031e806ee37c8d9f8eacbab2ddcb0e5bfe.png" src="_images/030c5dac2afec508eab470cf39f1a8031e806ee37c8d9f8eacbab2ddcb0e5bfe.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #13
 The derivative (gradient) at x = 7.79904 is 0.0557
@@ -955,7 +976,7 @@ The derivative (gradient) at x = 7.79904 is 0.0557
 	==&gt; The new x is 7.79904-0.02227=7.77676
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_25.png" src="_images/MinimizeOptimizeFit_16_25.png" />
+<img alt="_images/8c695f419bb30a5421ce32373f0bd436730d68acdb8a4d05cbe654d76015d22e.png" src="_images/8c695f419bb30a5421ce32373f0bd436730d68acdb8a4d05cbe654d76015d22e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #14
 The derivative (gradient) at x = 7.77676 is 0.0588
@@ -963,7 +984,7 @@ The derivative (gradient) at x = 7.77676 is 0.0588
 	==&gt; The new x is 7.77676-0.02351=7.75325
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_27.png" src="_images/MinimizeOptimizeFit_16_27.png" />
+<img alt="_images/ba62879153acf752fcd18b94d6f038fc891310e213f5a1d966acb44695c937f0.png" src="_images/ba62879153acf752fcd18b94d6f038fc891310e213f5a1d966acb44695c937f0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #15
 The derivative (gradient) at x = 7.75325 is 0.0622
@@ -971,7 +992,7 @@ The derivative (gradient) at x = 7.75325 is 0.0622
 	==&gt; The new x is 7.75325-0.02488=7.72837
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_29.png" src="_images/MinimizeOptimizeFit_16_29.png" />
+<img alt="_images/e7ac55f5f8bcbf711668a926dcb709720e4dfcab74b644855281f45e60566063.png" src="_images/e7ac55f5f8bcbf711668a926dcb709720e4dfcab74b644855281f45e60566063.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #16
 The derivative (gradient) at x = 7.72837 is 0.0660
@@ -979,7 +1000,7 @@ The derivative (gradient) at x = 7.72837 is 0.0660
 	==&gt; The new x is 7.72837-0.02639=7.70198
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_31.png" src="_images/MinimizeOptimizeFit_16_31.png" />
+<img alt="_images/a427f5a7f9d12eb9c755121332ad39e8c26fa2b679f3947adcdf1daeed9eb9ca.png" src="_images/a427f5a7f9d12eb9c755121332ad39e8c26fa2b679f3947adcdf1daeed9eb9ca.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #17
 The derivative (gradient) at x = 7.70198 is 0.0702
@@ -987,7 +1008,7 @@ The derivative (gradient) at x = 7.70198 is 0.0702
 	==&gt; The new x is 7.70198-0.02808=7.67389
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_33.png" src="_images/MinimizeOptimizeFit_16_33.png" />
+<img alt="_images/1b877fc43bf4525790d37c83cf899c66bf9d07ed99bd71ea9add2935f79b4926.png" src="_images/1b877fc43bf4525790d37c83cf899c66bf9d07ed99bd71ea9add2935f79b4926.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #18
 The derivative (gradient) at x = 7.67389 is 0.0749
@@ -995,7 +1016,7 @@ The derivative (gradient) at x = 7.67389 is 0.0749
 	==&gt; The new x is 7.67389-0.02997=7.64393
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_35.png" src="_images/MinimizeOptimizeFit_16_35.png" />
+<img alt="_images/cb87ac0b761d5c5791ecd4adc2a62e1b3e766b70695ec492e34645be75e0647c.png" src="_images/cb87ac0b761d5c5791ecd4adc2a62e1b3e766b70695ec492e34645be75e0647c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #19
 The derivative (gradient) at x = 7.64393 is 0.0802
@@ -1003,7 +1024,7 @@ The derivative (gradient) at x = 7.64393 is 0.0802
 	==&gt; The new x is 7.64393-0.03209=7.61184
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_37.png" src="_images/MinimizeOptimizeFit_16_37.png" />
+<img alt="_images/952bbe2e5dee31a380fe3a7646f45f772f685e00e1d1620139f25bf4777da2c3.png" src="_images/952bbe2e5dee31a380fe3a7646f45f772f685e00e1d1620139f25bf4777da2c3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #20
 The derivative (gradient) at x = 7.61184 is 0.0862
@@ -1011,7 +1032,7 @@ The derivative (gradient) at x = 7.61184 is 0.0862
 	==&gt; The new x is 7.61184-0.03449=7.57735
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_39.png" src="_images/MinimizeOptimizeFit_16_39.png" />
+<img alt="_images/a8b2cf5bf3823c68d01d3407ee29d91ac700de397b29be79cff7e77790b9bd76.png" src="_images/a8b2cf5bf3823c68d01d3407ee29d91ac700de397b29be79cff7e77790b9bd76.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #21
 The derivative (gradient) at x = 7.57735 is 0.0931
@@ -1019,7 +1040,7 @@ The derivative (gradient) at x = 7.57735 is 0.0931
 	==&gt; The new x is 7.57735-0.03722=7.54012
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_41.png" src="_images/MinimizeOptimizeFit_16_41.png" />
+<img alt="_images/675d8e7e2a9166982a9a10d2ef2acfe9bc070cb811eaa2cc90866355f9bf33bb.png" src="_images/675d8e7e2a9166982a9a10d2ef2acfe9bc070cb811eaa2cc90866355f9bf33bb.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #22
 The derivative (gradient) at x = 7.54012 is 0.1009
@@ -1027,7 +1048,7 @@ The derivative (gradient) at x = 7.54012 is 0.1009
 	==&gt; The new x is 7.54012-0.04035=7.49978
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_43.png" src="_images/MinimizeOptimizeFit_16_43.png" />
+<img alt="_images/6be98950e2585a18ca9ad9949e53d4a2ac39879857ca48f90c2221f79091bb08.png" src="_images/6be98950e2585a18ca9ad9949e53d4a2ac39879857ca48f90c2221f79091bb08.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #23
 The derivative (gradient) at x = 7.49978 is 0.1099
@@ -1035,7 +1056,7 @@ The derivative (gradient) at x = 7.49978 is 0.1099
 	==&gt; The new x is 7.49978-0.04396=7.45582
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_45.png" src="_images/MinimizeOptimizeFit_16_45.png" />
+<img alt="_images/9fe2b58417b91cd7a38a37344851c3d76ba9d239e9d819da0420c9adea3708da.png" src="_images/9fe2b58417b91cd7a38a37344851c3d76ba9d239e9d819da0420c9adea3708da.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #24
 The derivative (gradient) at x = 7.45582 is 0.1204
@@ -1043,7 +1064,7 @@ The derivative (gradient) at x = 7.45582 is 0.1204
 	==&gt; The new x is 7.45582-0.04815=7.40766
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_47.png" src="_images/MinimizeOptimizeFit_16_47.png" />
+<img alt="_images/8c40ad2d3032d31cb3e5f4ef9d7b373c8b8f047ee043222203b7d44285f7f3e6.png" src="_images/8c40ad2d3032d31cb3e5f4ef9d7b373c8b8f047ee043222203b7d44285f7f3e6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #25
 The derivative (gradient) at x = 7.40766 is 0.1327
@@ -1051,7 +1072,7 @@ The derivative (gradient) at x = 7.40766 is 0.1327
 	==&gt; The new x is 7.40766-0.05307=7.35459
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_49.png" src="_images/MinimizeOptimizeFit_16_49.png" />
+<img alt="_images/5c8af3a3da1336c752f1f6f4f92113d6e091355068cacd59837de202f11b1252.png" src="_images/5c8af3a3da1336c752f1f6f4f92113d6e091355068cacd59837de202f11b1252.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #26
 The derivative (gradient) at x = 7.35459 is 0.1472
@@ -1059,7 +1080,7 @@ The derivative (gradient) at x = 7.35459 is 0.1472
 	==&gt; The new x is 7.35459-0.05890=7.29569
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_51.png" src="_images/MinimizeOptimizeFit_16_51.png" />
+<img alt="_images/4bd203c2c6be70a901e5e99b236b276d925fc7d5f976a19858a5e422bc33ccb4.png" src="_images/4bd203c2c6be70a901e5e99b236b276d925fc7d5f976a19858a5e422bc33ccb4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #27
 The derivative (gradient) at x = 7.29569 is 0.1646
@@ -1067,7 +1088,7 @@ The derivative (gradient) at x = 7.29569 is 0.1646
 	==&gt; The new x is 7.29569-0.06585=7.22984
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_53.png" src="_images/MinimizeOptimizeFit_16_53.png" />
+<img alt="_images/86101dbd05edb45a301e36c5277e861d57fd37db044dc2d32aff5850968fb4ee.png" src="_images/86101dbd05edb45a301e36c5277e861d57fd37db044dc2d32aff5850968fb4ee.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #28
 The derivative (gradient) at x = 7.22984 is 0.1856
@@ -1075,7 +1096,7 @@ The derivative (gradient) at x = 7.22984 is 0.1856
 	==&gt; The new x is 7.22984-0.07424=7.15560
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_55.png" src="_images/MinimizeOptimizeFit_16_55.png" />
+<img alt="_images/acbf678a2c6eff2d6c8be688a2535016d86a703c3f8e78732325fbfacf5660bd.png" src="_images/acbf678a2c6eff2d6c8be688a2535016d86a703c3f8e78732325fbfacf5660bd.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #29
 The derivative (gradient) at x = 7.15560 is 0.2111
@@ -1083,7 +1104,7 @@ The derivative (gradient) at x = 7.15560 is 0.2111
 	==&gt; The new x is 7.15560-0.08446=7.07115
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_57.png" src="_images/MinimizeOptimizeFit_16_57.png" />
+<img alt="_images/dd4cb631c1aeb3bf50466b6a363e57db6995069320383e250db33eb46a6d9427.png" src="_images/dd4cb631c1aeb3bf50466b6a363e57db6995069320383e250db33eb46a6d9427.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #30
 The derivative (gradient) at x = 7.07115 is 0.2425
@@ -1091,7 +1112,7 @@ The derivative (gradient) at x = 7.07115 is 0.2425
 	==&gt; The new x is 7.07115-0.09700=6.97414
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_59.png" src="_images/MinimizeOptimizeFit_16_59.png" />
+<img alt="_images/5d8191044a4500adba44bc73c619b1243fc9ec54ec9ea58f75daf20776d1e298.png" src="_images/5d8191044a4500adba44bc73c619b1243fc9ec54ec9ea58f75daf20776d1e298.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #31
 The derivative (gradient) at x = 6.97414 is 0.2813
@@ -1099,7 +1120,7 @@ The derivative (gradient) at x = 6.97414 is 0.2813
 	==&gt; The new x is 6.97414-0.11250=6.86164
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_61.png" src="_images/MinimizeOptimizeFit_16_61.png" />
+<img alt="_images/d60bed6c02958bc0bac712071cd18275207fa39a1c185de667488d2f4f0fb9f3.png" src="_images/d60bed6c02958bc0bac712071cd18275207fa39a1c185de667488d2f4f0fb9f3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #32
 The derivative (gradient) at x = 6.86164 is 0.3291
@@ -1107,7 +1128,7 @@ The derivative (gradient) at x = 6.86164 is 0.3291
 	==&gt; The new x is 6.86164-0.13164=6.73000
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_63.png" src="_images/MinimizeOptimizeFit_16_63.png" />
+<img alt="_images/390bc75c26b508d6908321d33b5e6abb5caea8dff347dbcae11b487fd3b6cddb.png" src="_images/390bc75c26b508d6908321d33b5e6abb5caea8dff347dbcae11b487fd3b6cddb.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #33
 The derivative (gradient) at x = 6.73000 is 0.3874
@@ -1115,7 +1136,7 @@ The derivative (gradient) at x = 6.73000 is 0.3874
 	==&gt; The new x is 6.73000-0.15495=6.57505
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_65.png" src="_images/MinimizeOptimizeFit_16_65.png" />
+<img alt="_images/b325c37e408c9d53ed03d93197d259194b257ea57b2b4c1e47a84934ffd4f3ea.png" src="_images/b325c37e408c9d53ed03d93197d259194b257ea57b2b4c1e47a84934ffd4f3ea.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #34
 The derivative (gradient) at x = 6.57505 is 0.4556
@@ -1123,7 +1144,7 @@ The derivative (gradient) at x = 6.57505 is 0.4556
 	==&gt; The new x is 6.57505-0.18225=6.39280
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_67.png" src="_images/MinimizeOptimizeFit_16_67.png" />
+<img alt="_images/58680011b25c48446b5bc1982eac5239c99cdf678b8755c285fe4ba792db011c.png" src="_images/58680011b25c48446b5bc1982eac5239c99cdf678b8755c285fe4ba792db011c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #35
 The derivative (gradient) at x = 6.39280 is 0.5280
@@ -1131,7 +1152,7 @@ The derivative (gradient) at x = 6.39280 is 0.5280
 	==&gt; The new x is 6.39280-0.21121=6.18159
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_69.png" src="_images/MinimizeOptimizeFit_16_69.png" />
+<img alt="_images/110f8c5c8bd64e268b871ef43381ff18b9975898f2689af51fba5f194481a543.png" src="_images/110f8c5c8bd64e268b871ef43381ff18b9975898f2689af51fba5f194481a543.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #36
 The derivative (gradient) at x = 6.18159 is 0.5879
@@ -1139,7 +1160,7 @@ The derivative (gradient) at x = 6.18159 is 0.5879
 	==&gt; The new x is 6.18159-0.23516=5.94644
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_71.png" src="_images/MinimizeOptimizeFit_16_71.png" />
+<img alt="_images/07f2fb028b3781268b35377c12d3c881d789aa7c8796d5642217bd88859f7309.png" src="_images/07f2fb028b3781268b35377c12d3c881d789aa7c8796d5642217bd88859f7309.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #37
 The derivative (gradient) at x = 5.94644 is 0.6048
@@ -1147,7 +1168,7 @@ The derivative (gradient) at x = 5.94644 is 0.6048
 	==&gt; The new x is 5.94644-0.24190=5.70453
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_73.png" src="_images/MinimizeOptimizeFit_16_73.png" />
+<img alt="_images/51909271bcac9e8b9d657980a87aa17b015b2f164ddd378a9c05581bbae5fce5.png" src="_images/51909271bcac9e8b9d657980a87aa17b015b2f164ddd378a9c05581bbae5fce5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #38
 The derivative (gradient) at x = 5.70453 is 0.5497
@@ -1155,7 +1176,7 @@ The derivative (gradient) at x = 5.70453 is 0.5497
 	==&gt; The new x is 5.70453-0.21988=5.48466
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_75.png" src="_images/MinimizeOptimizeFit_16_75.png" />
+<img alt="_images/284eae138e6c13b3af63f1451724560ce42a9d75c5642f4267785680add61450.png" src="_images/284eae138e6c13b3af63f1451724560ce42a9d75c5642f4267785680add61450.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #39
 The derivative (gradient) at x = 5.48466 is 0.4310
@@ -1163,7 +1184,7 @@ The derivative (gradient) at x = 5.48466 is 0.4310
 	==&gt; The new x is 5.48466-0.17238=5.31228
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_77.png" src="_images/MinimizeOptimizeFit_16_77.png" />
+<img alt="_images/afa1e40e6e405863a3fbbfffffcafcab179e9876bead690b03e8cef5b290409b.png" src="_images/afa1e40e6e405863a3fbbfffffcafcab179e9876bead690b03e8cef5b290409b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #40
 The derivative (gradient) at x = 5.31228 is 0.2974
@@ -1171,7 +1192,7 @@ The derivative (gradient) at x = 5.31228 is 0.2974
 	==&gt; The new x is 5.31228-0.11897=5.19331
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_79.png" src="_images/MinimizeOptimizeFit_16_79.png" />
+<img alt="_images/9c27ee01ae4bfbe351915516e6a414eb4f3646c375330a18c72ccb68b485d101.png" src="_images/9c27ee01ae4bfbe351915516e6a414eb4f3646c375330a18c72ccb68b485d101.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #41
 The derivative (gradient) at x = 5.19331 is 0.1897
@@ -1179,7 +1200,7 @@ The derivative (gradient) at x = 5.19331 is 0.1897
 	==&gt; The new x is 5.19331-0.07589=5.11742
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_81.png" src="_images/MinimizeOptimizeFit_16_81.png" />
+<img alt="_images/37a28514a5a339496d5d96cea03b308a607bfbc0f153e94a15b5486de249f469.png" src="_images/37a28514a5a339496d5d96cea03b308a607bfbc0f153e94a15b5486de249f469.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #42
 The derivative (gradient) at x = 5.11742 is 0.1166
@@ -1187,7 +1208,7 @@ The derivative (gradient) at x = 5.11742 is 0.1166
 	==&gt; The new x is 5.11742-0.04664=5.07077
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_83.png" src="_images/MinimizeOptimizeFit_16_83.png" />
+<img alt="_images/5a83cbe6327bec0dfe76ba8b690b4fda5e857f42f98c8dfb0b0567e3617b8a37.png" src="_images/5a83cbe6327bec0dfe76ba8b690b4fda5e857f42f98c8dfb0b0567e3617b8a37.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #43
 The derivative (gradient) at x = 5.07077 is 0.0706
@@ -1195,7 +1216,7 @@ The derivative (gradient) at x = 5.07077 is 0.0706
 	==&gt; The new x is 5.07077-0.02824=5.04253
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_85.png" src="_images/MinimizeOptimizeFit_16_85.png" />
+<img alt="_images/663f30ab10773d7bb4826d18a256822a6b7f67d9bc9d5b0db83a60f34d75d862.png" src="_images/663f30ab10773d7bb4826d18a256822a6b7f67d9bc9d5b0db83a60f34d75d862.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #44
 The derivative (gradient) at x = 5.04253 is 0.0425
@@ -1203,7 +1224,7 @@ The derivative (gradient) at x = 5.04253 is 0.0425
 	==&gt; The new x is 5.04253-0.01700=5.02554
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_87.png" src="_images/MinimizeOptimizeFit_16_87.png" />
+<img alt="_images/4e3b5be4841732bfe05264a93168f783eb0595c9dc1079c7bfab629132567941.png" src="_images/4e3b5be4841732bfe05264a93168f783eb0595c9dc1079c7bfab629132567941.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #45
 The derivative (gradient) at x = 5.02554 is 0.0255
@@ -1211,7 +1232,7 @@ The derivative (gradient) at x = 5.02554 is 0.0255
 	==&gt; The new x is 5.02554-0.01021=5.01533
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_89.png" src="_images/MinimizeOptimizeFit_16_89.png" />
+<img alt="_images/9aa9715117d77f35ee74a0e8f9ca6fe4386891776f36cc80c2317361674ead1e.png" src="_images/9aa9715117d77f35ee74a0e8f9ca6fe4386891776f36cc80c2317361674ead1e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #46
 The derivative (gradient) at x = 5.01533 is 0.0153
@@ -1219,7 +1240,7 @@ The derivative (gradient) at x = 5.01533 is 0.0153
 	==&gt; The new x is 5.01533-0.00613=5.00920
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_91.png" src="_images/MinimizeOptimizeFit_16_91.png" />
+<img alt="_images/96d561ac80127c55c1c64a314fe9cdacc3582a75828cf713897f286dae0bebb6.png" src="_images/96d561ac80127c55c1c64a314fe9cdacc3582a75828cf713897f286dae0bebb6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #47
 The derivative (gradient) at x = 5.00920 is 0.0092
@@ -1227,7 +1248,7 @@ The derivative (gradient) at x = 5.00920 is 0.0092
 	==&gt; The new x is 5.00920-0.00368=5.00552
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_93.png" src="_images/MinimizeOptimizeFit_16_93.png" />
+<img alt="_images/1cf14716cf63d2e4274d9a29159fd2a4e5a2eaf5a37ab683bed07c7b348a82ab.png" src="_images/1cf14716cf63d2e4274d9a29159fd2a4e5a2eaf5a37ab683bed07c7b348a82ab.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #48
 The derivative (gradient) at x = 5.00552 is 0.0055
@@ -1235,7 +1256,7 @@ The derivative (gradient) at x = 5.00552 is 0.0055
 	==&gt; The new x is 5.00552-0.00221=5.00331
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_95.png" src="_images/MinimizeOptimizeFit_16_95.png" />
+<img alt="_images/18ecfe978ae34da8a992b54cde6a24881ffbd22d66e1b463fdf379d8237a425d.png" src="_images/18ecfe978ae34da8a992b54cde6a24881ffbd22d66e1b463fdf379d8237a425d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #49
 The derivative (gradient) at x = 5.00331 is 0.0033
@@ -1243,7 +1264,7 @@ The derivative (gradient) at x = 5.00331 is 0.0033
 	==&gt; The new x is 5.00331-0.00132=5.00199
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_97.png" src="_images/MinimizeOptimizeFit_16_97.png" />
+<img alt="_images/dd46278bf025b6ec15754197753fe821793213f67480e3f52e379253f4589af2.png" src="_images/dd46278bf025b6ec15754197753fe821793213f67480e3f52e379253f4589af2.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #50
 The derivative (gradient) at x = 5.00199 is 0.0020
@@ -1251,7 +1272,7 @@ The derivative (gradient) at x = 5.00199 is 0.0020
 	==&gt; The new x is 5.00199-0.00079=5.00119
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_99.png" src="_images/MinimizeOptimizeFit_16_99.png" />
+<img alt="_images/50bdd6a5fcffa4ceceeda944a2e09bd303f0cf4ae52024f5c14e9abd710f4ed6.png" src="_images/50bdd6a5fcffa4ceceeda944a2e09bd303f0cf4ae52024f5c14e9abd710f4ed6.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #51
 The derivative (gradient) at x = 5.00119 is 0.0012
@@ -1259,7 +1280,7 @@ The derivative (gradient) at x = 5.00119 is 0.0012
 	==&gt; The new x is 5.00119-0.00048=5.00072
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_101.png" src="_images/MinimizeOptimizeFit_16_101.png" />
+<img alt="_images/c0dd886b05ab7403f6ea781358817162e98487bb361fe95a3101934445fa542a.png" src="_images/c0dd886b05ab7403f6ea781358817162e98487bb361fe95a3101934445fa542a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #52
 The derivative (gradient) at x = 5.00072 is 0.0007
@@ -1267,7 +1288,7 @@ The derivative (gradient) at x = 5.00072 is 0.0007
 	==&gt; The new x is 5.00072-0.00029=5.00043
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_103.png" src="_images/MinimizeOptimizeFit_16_103.png" />
+<img alt="_images/014859e3ed487907a4b70cde2dbdc744ab8f3d67b109648e98076746ec9682d4.png" src="_images/014859e3ed487907a4b70cde2dbdc744ab8f3d67b109648e98076746ec9682d4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #53
 The derivative (gradient) at x = 5.00043 is 0.0004
@@ -1275,7 +1296,7 @@ The derivative (gradient) at x = 5.00043 is 0.0004
 	==&gt; The new x is 5.00043-0.00017=5.00026
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_105.png" src="_images/MinimizeOptimizeFit_16_105.png" />
+<img alt="_images/a6498c51d62ec2f33ea375b33cfc2d8b1d9f0edf9e3d98499d29f2d0f9a3e8d1.png" src="_images/a6498c51d62ec2f33ea375b33cfc2d8b1d9f0edf9e3d98499d29f2d0f9a3e8d1.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #54
 The derivative (gradient) at x = 5.00026 is 0.0003
@@ -1283,7 +1304,7 @@ The derivative (gradient) at x = 5.00026 is 0.0003
 	==&gt; The new x is 5.00026-0.00010=5.00015
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_107.png" src="_images/MinimizeOptimizeFit_16_107.png" />
+<img alt="_images/bdea1a1aa3d1e123a3937daf3d4c05883a3bd77596a3a9128893b4d0995babec.png" src="_images/bdea1a1aa3d1e123a3937daf3d4c05883a3bd77596a3a9128893b4d0995babec.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #55
 The derivative (gradient) at x = 5.00015 is 0.0002
@@ -1291,7 +1312,7 @@ The derivative (gradient) at x = 5.00015 is 0.0002
 	==&gt; The new x is 5.00015-0.00006=5.00009
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_16_109.png" src="_images/MinimizeOptimizeFit_16_109.png" />
+<img alt="_images/d05d9d692afd40b5444ff05301bf736fea07bbd5597a1d33ad36f88bc787d220.png" src="_images/d05d9d692afd40b5444ff05301bf736fea07bbd5597a1d33ad36f88bc787d220.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 Step #56
 The derivative (gradient) at x = 5.00009 is 0.0001
@@ -1303,7 +1324,7 @@ The derivative (gradient) at x = 5.00009 is 0.0001
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="fitting-parameters-via-gradient-descent-algorithm">
-<h1>Fitting parameters via gradient descent algorithm<a class="headerlink" href="#fitting-parameters-via-gradient-descent-algorithm" title="Permalink to this headline">¶</a></h1>
+<h1>Fitting parameters via gradient descent algorithm<a class="headerlink" href="#fitting-parameters-via-gradient-descent-algorithm" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mu</span> <span class="o">=</span> <span class="mi">5</span>
@@ -1322,7 +1343,7 @@ The derivative (gradient) at x = 5.00009 is 0.0001
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/MinimizeOptimizeFit_18_0.png" src="_images/MinimizeOptimizeFit_18_0.png" />
+<img alt="_images/8b717ceac463ae1b396c7444767d9a91fc515bd6c19e6c3ed98099ea95a83884.png" src="_images/8b717ceac463ae1b396c7444767d9a91fc515bd6c19e6c3ed98099ea95a83884.png" />
 </div>
 </div>
 <p><span class="math notranslate nohighlight">\(\newcommand{\diff}{\text{d}}
@@ -1431,11 +1452,11 @@ The derivative (gradient) at x = 5.00009 is 0.0001
 mu: 5.0000	sigma: 1.0000
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_24_1.png" src="_images/MinimizeOptimizeFit_24_1.png" />
+<img alt="_images/5d65b56f16c318f47c15a47c14b086f54077243c592e5492bf68dfe55f8858a3.png" src="_images/5d65b56f16c318f47c15a47c14b086f54077243c592e5492bf68dfe55f8858a3.png" />
 </div>
 </div>
 <section id="stochastic-gradient-descent-algorithm">
-<h2>Stochastic Gradient Descent Algorithm<a class="headerlink" href="#stochastic-gradient-descent-algorithm" title="Permalink to this headline">¶</a></h2>
+<h2>Stochastic Gradient Descent Algorithm<a class="headerlink" href="#stochastic-gradient-descent-algorithm" title="Permalink to this heading">#</a></h2>
 <p>In this approach, instead of optimizing the variables at every step for one data point, we optimize them as a whole:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1476,7 +1497,7 @@ mu: 5.0000	sigma: 1.0000
 mu: 5.0000	sigma: 1.0000
 </pre></div>
 </div>
-<img alt="_images/MinimizeOptimizeFit_26_1.png" src="_images/MinimizeOptimizeFit_26_1.png" />
+<img alt="_images/50a44d62a36b3fd1f11894e18015ccdea1529675761737736e5a22ce3ad9aed2.png" src="_images/50a44d62a36b3fd1f11894e18015ccdea1529675761737736e5a22ce3ad9aed2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1528,7 +1549,7 @@ mu: 5.0000	sigma: 1.0000
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1536,44 +1557,113 @@ mu: 5.0000	sigma: 1.0000
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="FIZ371_LN69_EST_NeuralNetworks.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Neural Networks</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="FIZ371_LN69_EST_NeuralNetworks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Neural Networks</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="FIZ371_ExercisesExams.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="FIZ371_ExercisesExams.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Exercises &amp; Exams</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Dr. Emre S. Tasci<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-      </div>
-    </div>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Optimization, Minimization &amp; Fitting Notes &amp; Recipes</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent-algorithm">Gradient Descent Algorithm</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parabol">Parabol</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#negative-gaussian">“Negative” Gaussian</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fitting-parameters-via-gradient-descent-algorithm">Fitting parameters via gradient descent algorithm</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stochastic-gradient-descent-algorithm">Stochastic Gradient Descent Algorithm</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Emre S. Tasci
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

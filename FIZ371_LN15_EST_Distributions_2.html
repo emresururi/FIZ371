@@ -1,531 +1,468 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Distributions 2 : Continous Distributions &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'FIZ371_LN15_EST_Distributions_2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Game Theory" href="FIZ371_LN25_EST_Game_Theory.html" />
     <link rel="prev" title="Distributions 1 : Discrete Distributions" href="FIZ371_LN10_EST_Distributions_1.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Cover.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Cover.html">
-   FIZ371 - Scientific and Technical Calculations
-  </a>
- </li>
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="FIZ371 - Scientific and Technical Computations Lecture Notes - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="FIZ371 - Scientific and Technical Computations Lecture Notes - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Cover.html">
+                    FIZ371 - Scientific and Technical Calculations
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="FIZ371_LectureNotes.html">Lecture Notes</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">Probabilities - Concept &amp; Theory</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">Probabilities Application: Letter Frequencies</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">Probabilities</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">Monty Hall Problem</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="WhiteTokenOutOf2.html">Application White Token Out Of 2 Bags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">Six Switch Puzzle</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">Discrete Distributions</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Distributions 2 : Continous Distributions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">Game Theory</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">Application Prisonner's Dilemma (with Memory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GaleShapleyMatching_Implementation.html">Gale-Shapley Algorithm Implementation</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">Information Theory</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">Information Theory Application</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">Cellular Automata</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">2D Ising Model</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">Neural Networks</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="MinimizeOptimizeFit.html">Optimization, Minimization &amp; Fitting Notes &amp; Recipes</a></li>
+
+
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="FIZ371_LectureNotes.html">
-   Lecture Notes
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
-     Probabilities - Concept &amp; Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
-     Probabilities Application: Letter Frequencies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
-     Probabilities
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
-     Monty Hall Problem
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="WhiteTokenOutOf2.html">
-     Application White Token Out Of 2 Bags
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
-     Six Switch Puzzle
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
-     Discrete Distributions
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Distributions 2 : Continous Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
-     Game Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
-     Application Prisonner's Dilemma (with Memory)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
-     Gale-Shapley Algorithm Implementation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
-     Information Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
-     Information Theory Application
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
-     Cellular Automata
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
-     2D Ising Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
-     Neural Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="MinimizeOptimizeFit.html">
-     Optimization, Minimization &amp; Fitting Notes &amp; Recipes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="FIZ371_ExercisesExams.html">
-   Exercises &amp; Exams
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_MT.html">
-     2022-23 Fall Term Midterm Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_Final.html">
-     2022-23 Fall Term Final Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_Resit.html">
-     2022-23 Fall Term Resit Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_MT.html">
-     2023-24 Fall Term Midterm Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_MT_MakeUp.html">
-     2023-24 Fall Term Midterm MakeUp Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_Final.html">
-     2023-24 Fall Term Final Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_Final_Resit.html">
-     2023-24 Fall Term Resit Exam
-    </a>
-   </li>
-  </ul>
- </li>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="FIZ371_ExercisesExams.html">Exercises &amp; Exams</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_MT.html">2022-23 Fall Term Midterm Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_Final.html">2022-23 Fall Term Final Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_Resit.html">2022-23 Fall Term Resit Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_MT.html">2023-24 Fall Term Midterm Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_MT_MakeUp.html">2023-24 Fall Term Midterm MakeUp Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_Final.html">2023-24 Fall Term Final Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_Final_Resit.html">2023-24 Fall Term Resit Exam</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/FIZ371_LN15_EST_Distributions_2.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/FIZ371_LN15_EST_Distributions_2.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN15_EST_Distributions_2.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
         
         
-        
-        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/FIZ371_LN15_EST_Distributions_2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-        </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Distributions 2 : Continous Distributions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Distributions 2 : Continous Distributions
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reprise-galton-machine">
-   Reprise: Galton Machine
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gaussian-normal-distribution">
-   Gaussian (Normal) Distribution
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mean-and-standard-variance-of-the-binomial-distribution-or-is-it-the-normal-distribution">
-   Mean and standard variance of the binomial distribution (or is it the normal distribution?.. ;)
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mean-value-mu">
-     Mean Value (
-     <span class="math notranslate nohighlight">
-      \(\mu\)
-     </span>
-     )
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#standard-variation-sigma">
-     Standard variation (
-     <span class="math notranslate nohighlight">
-      \(\sigma\)
-     </span>
-     )
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gaussian-distribution-final-form">
-   Gaussian distribution, final form
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#application-the-six-sigma">
-   Application: The Six
-   <span class="math notranslate nohighlight">
-    \(\sigma\)
-   </span>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-code-of-our-own-deriving-the-sigma-distribution-ratios-stochastically">
-   A code of our own: Deriving the
-   <span class="math notranslate nohighlight">
-    \(\sigma\)
-   </span>
-   distribution ratios stochastically
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#poisson-distribution">
-   Poisson Distribution
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#assignment-hw-mean-and-variance-of-poisson-distribution">
-     Assignment / HW : mean and variance of Poisson distribution
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-airplane-accidents">
-     Example: Airplane accidents
-    </a>
-   </li>
-  </ul>
- </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Distributions 2 : Continous Distributions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reprise-galton-machine">Reprise: Galton Machine</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-normal-distribution">Gaussian (Normal) Distribution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-standard-variance-of-the-binomial-distribution-or-is-it-the-normal-distribution">Mean and standard variance of the binomial distribution (or is it the normal distribution?.. ;)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-value-mu">Mean Value (<span class="math notranslate nohighlight">\(\mu\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-variation-sigma">Standard variation (<span class="math notranslate nohighlight">\(\sigma\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-distribution-final-form">Gaussian distribution, final form</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#application-the-six-sigma">Application: The Six <span class="math notranslate nohighlight">\(\sigma\)</span></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-code-of-our-own-deriving-the-sigma-distribution-ratios-stochastically">A code of our own: Deriving the <span class="math notranslate nohighlight">\(\sigma\)</span> distribution ratios stochastically</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-distribution">Poisson Distribution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-hw-mean-and-variance-of-poisson-distribution">Assignment / HW : mean and variance of Poisson distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-airplane-accidents">Example: Airplane accidents</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Distributions 2 : Continous Distributions</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Distributions 2 : Continous Distributions
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reprise-galton-machine">
-   Reprise: Galton Machine
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gaussian-normal-distribution">
-   Gaussian (Normal) Distribution
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mean-and-standard-variance-of-the-binomial-distribution-or-is-it-the-normal-distribution">
-   Mean and standard variance of the binomial distribution (or is it the normal distribution?.. ;)
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mean-value-mu">
-     Mean Value (
-     <span class="math notranslate nohighlight">
-      \(\mu\)
-     </span>
-     )
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#standard-variation-sigma">
-     Standard variation (
-     <span class="math notranslate nohighlight">
-      \(\sigma\)
-     </span>
-     )
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gaussian-distribution-final-form">
-   Gaussian distribution, final form
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#application-the-six-sigma">
-   Application: The Six
-   <span class="math notranslate nohighlight">
-    \(\sigma\)
-   </span>
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-code-of-our-own-deriving-the-sigma-distribution-ratios-stochastically">
-   A code of our own: Deriving the
-   <span class="math notranslate nohighlight">
-    \(\sigma\)
-   </span>
-   distribution ratios stochastically
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#poisson-distribution">
-   Poisson Distribution
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#assignment-hw-mean-and-variance-of-poisson-distribution">
-     Assignment / HW : mean and variance of Poisson distribution
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#example-airplane-accidents">
-     Example: Airplane accidents
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="distributions-2-continous-distributions">
-<h1>Distributions 2 : Continous Distributions<a class="headerlink" href="#distributions-2-continous-distributions" title="Permalink to this headline">¶</a></h1>
+<h1>Distributions 2 : Continous Distributions<a class="headerlink" href="#distributions-2-continous-distributions" title="Permalink to this heading">#</a></h1>
 <p><strong>FIZ371 - Scientific &amp; Technical Computations | 06/04/2020</strong></p>
 <p><strong>Continous Distributions</strong></p>
 <ul class="simple">
@@ -550,11 +487,11 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p>Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+<p>Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="reprise-galton-machine">
-<h1>Reprise: Galton Machine<a class="headerlink" href="#reprise-galton-machine" title="Permalink to this headline">¶</a></h1>
-<p>In our <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html"><span class="doc std std-doc">previous lecture</span></a>, we defined and analyzed the Galton machine and also implemented a simulator for it. That code is reproduced below, this time functionalized with the number of levels &amp; balls as its input parameters:</p>
+<h1>Reprise: Galton Machine<a class="headerlink" href="#reprise-galton-machine" title="Permalink to this heading">#</a></h1>
+<p>In our <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html"><span class="std std-doc">previous lecture</span></a>, we defined and analyzed the Galton machine and also implemented a simulator for it. That code is reproduced below, this time functionalized with the number of levels &amp; balls as its input parameters:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -634,7 +571,7 @@ n:  4 Levels | N:10000 Balls
 mean: 1.99480 | std dev: 0.99638
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_3_1.png" src="_images/FIZ371_LN15_EST_Distributions_2_3_1.png" />
+<img alt="_images/4cae56362b6df1b38d5f1a2969c6364814e167b0cebf71187315ee19efd32689.png" src="_images/4cae56362b6df1b38d5f1a2969c6364814e167b0cebf71187315ee19efd32689.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.061  0.2525 0.3807 0.2423 0.0635]
 </pre></div>
 </div>
@@ -657,37 +594,37 @@ n: 10 Levels | N:1000 Balls
 mean: 5.01900 | std dev: 1.58134
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_5_1.png" src="_images/FIZ371_LN15_EST_Distributions_2_5_1.png" />
+<img alt="_images/aa92453e41c7ea6265a436f5fc6188e6efe5d367c8c6acb6c3012047b991b201.png" src="_images/aa92453e41c7ea6265a436f5fc6188e6efe5d367c8c6acb6c3012047b991b201.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------
 n: 25 Levels | N:2500 Balls
 mean: 12.44880 | std dev: 2.46661
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_5_3.png" src="_images/FIZ371_LN15_EST_Distributions_2_5_3.png" />
+<img alt="_images/322f81e03338fb23d882bbe2d64fdd03fd02a2d9b5c5aebc7e46a06c90d5a09b.png" src="_images/322f81e03338fb23d882bbe2d64fdd03fd02a2d9b5c5aebc7e46a06c90d5a09b.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------
 n: 50 Levels | N:5000 Balls
 mean: 24.88080 | std dev: 3.53579
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_5_5.png" src="_images/FIZ371_LN15_EST_Distributions_2_5_5.png" />
+<img alt="_images/624e2605540d0ddfc56dad1dbfb1b784709192936432f2f6807b9637626905c0.png" src="_images/624e2605540d0ddfc56dad1dbfb1b784709192936432f2f6807b9637626905c0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------
 n:100 Levels | N:10000 Balls
 mean: 49.89790 | std dev: 4.96444
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_5_7.png" src="_images/FIZ371_LN15_EST_Distributions_2_5_7.png" />
+<img alt="_images/ea2c37b8c4de738af16c2d38348033e39e0286884af833d939b226a1e2944dc7.png" src="_images/ea2c37b8c4de738af16c2d38348033e39e0286884af833d939b226a1e2944dc7.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------
 n:250 Levels | N:25000 Balls
 mean: 124.97924 | std dev: 7.93965
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_5_9.png" src="_images/FIZ371_LN15_EST_Distributions_2_5_9.png" />
+<img alt="_images/ca3f36fe6a4aae6a845679c7fcd412e676532fabd4b932f8e996c93b4e15d5e8.png" src="_images/ca3f36fe6a4aae6a845679c7fcd412e676532fabd4b932f8e996c93b4e15d5e8.png" />
 </div>
 </div>
 <p>So, you can see that, as the number of levels increase, naturally the number of “boxes” also increase and a pattern emerges. The “thickness” of the boxes becomes thinner, as we “zoom out” to fit more and more boxes in our graph and the overall distribution looks like a symmetrical “bell” centered on the middle box.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="gaussian-normal-distribution">
-<h1>Gaussian (Normal) Distribution<a class="headerlink" href="#gaussian-normal-distribution" title="Permalink to this headline">¶</a></h1>
+<h1>Gaussian (Normal) Distribution<a class="headerlink" href="#gaussian-normal-distribution" title="Permalink to this heading">#</a></h1>
 <p>This bell-like shaped curve has its very special place in statistics and in nature: it is called a Gaussian curve and <a class="reference external" href="http://scipp.ucsc.edu/~haber/ph116C/NormalApprox.pdf">we are going to derive the fact</a> that as <span class="math notranslate nohighlight">\(n \rightarrow \infty\)</span>, binomial distribution becomes Gaussian distribution, just as the graphs above suggest. This distribution occurs so frequently that, it is also called the “normal” distribution.</p>
 <p>Remember that, the probability of the chosen outcome happening <span class="math notranslate nohighlight">\(k\)</span> times out of <span class="math notranslate nohighlight">\(n\)</span> tries was given by the binomial probability distribution function as:</p>
 <div class="math notranslate nohighlight">
@@ -749,9 +686,9 @@ P(x) &amp;= \frac{n^n e^{-n} \sqrt{2\pi n}}{\left[x^x e^{-x} \sqrt{2\pi x}\right
 \[P(x) =  \frac{1}{\sqrt{2\pi npq}} e^{-(x-np)^2/2npq}\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="mean-and-standard-variance-of-the-binomial-distribution-or-is-it-the-normal-distribution">
-<h1>Mean and standard variance of the binomial distribution (or is it the normal distribution?.. ;)<a class="headerlink" href="#mean-and-standard-variance-of-the-binomial-distribution-or-is-it-the-normal-distribution" title="Permalink to this headline">¶</a></h1>
+<h1>Mean and standard variance of the binomial distribution (or is it the normal distribution?.. ;)<a class="headerlink" href="#mean-and-standard-variance-of-the-binomial-distribution-or-is-it-the-normal-distribution" title="Permalink to this heading">#</a></h1>
 <section id="mean-value-mu">
-<h2>Mean Value (<span class="math notranslate nohighlight">\(\mu\)</span>)<a class="headerlink" href="#mean-value-mu" title="Permalink to this headline">¶</a></h2>
+<h2>Mean Value (<span class="math notranslate nohighlight">\(\mu\)</span>)<a class="headerlink" href="#mean-value-mu" title="Permalink to this heading">#</a></h2>
 <p>(Once again, we are using <a class="reference external" href="http://scipp.ucsc.edu/~haber/ph116C/NormalApprox.pdf">Howard Haber’s Physics 116 page</a> for this section, as well)</p>
 <p>We start from the binomial distribution:</p>
 <div class="math notranslate nohighlight">
@@ -779,7 +716,7 @@ np (p+q)^{n-1} = \sum_{k=0}^{n}{k C(n,k)\,p^{k} q^{n-k}}\end{split}\]</div>
 <p><em>In the limit <span class="math notranslate nohighlight">\(n\rightarrow\infty\)</span>, discrete <span class="math notranslate nohighlight">\(k\)</span> values becomes continous <span class="math notranslate nohighlight">\(x\)</span> values</em></p>
 </section>
 <section id="standard-variation-sigma">
-<h2>Standard variation (<span class="math notranslate nohighlight">\(\sigma\)</span>)<a class="headerlink" href="#standard-variation-sigma" title="Permalink to this headline">¶</a></h2>
+<h2>Standard variation (<span class="math notranslate nohighlight">\(\sigma\)</span>)<a class="headerlink" href="#standard-variation-sigma" title="Permalink to this heading">#</a></h2>
 <p>We follow a similar path for the calculation of the variance and standard variation. In this case we take:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}p^2 \frac{d^2}{dp^2}\left[(p+q)^n = \sum_{k=0}^{n}{C(n,k)\,p^k q^{n-k}}\right]\\
@@ -800,7 +737,7 @@ n (n-1)p^2(p+q)^{n-2} = \sum_{k=0}^{n}{k (k-1) C(n,k)\,p^{k} q^{n-k}}\end{split}
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="gaussian-distribution-final-form">
-<h1>Gaussian distribution, final form<a class="headerlink" href="#gaussian-distribution-final-form" title="Permalink to this headline">¶</a></h1>
+<h1>Gaussian distribution, final form<a class="headerlink" href="#gaussian-distribution-final-form" title="Permalink to this heading">#</a></h1>
 <p>Checking out the derived distribution by taking <span class="math notranslate nohighlight">\(n\rightarrow\infty\)</span> and thus allowing many possible <span class="math notranslate nohighlight">\(k\)</span> values such that we switch from discrete <span class="math notranslate nohighlight">\(k\)</span> values to <em>continous</em> <span class="math notranslate nohighlight">\(x\)</span> values, we have:</p>
 <div class="math notranslate nohighlight">
 \[P(x) =  \frac{1}{\sqrt{2\pi npq}} e^{-(x-np)^2/2npq}\]</div>
@@ -850,13 +787,13 @@ n (n-1)p^2(p+q)^{n-2} = \sum_{k=0}^{n}{k (k-1) C(n,k)\,p^{k} q^{n-k}}\end{split}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_17_0.png" src="_images/FIZ371_LN15_EST_Distributions_2_17_0.png" />
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_17_1.png" src="_images/FIZ371_LN15_EST_Distributions_2_17_1.png" />
+<img alt="_images/b59547daa0a5862e2bf14b5dd7d1a0446c12dfcc9ae407896956dc463ac814fe.png" src="_images/b59547daa0a5862e2bf14b5dd7d1a0446c12dfcc9ae407896956dc463ac814fe.png" />
+<img alt="_images/ce42ab09dbc0589ea37fafee5eb2831390d07d06827e70988778bec36aa9fc2f.png" src="_images/ce42ab09dbc0589ea37fafee5eb2831390d07d06827e70988778bec36aa9fc2f.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_17_3.png" src="_images/FIZ371_LN15_EST_Distributions_2_17_3.png" />
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_17_4.png" src="_images/FIZ371_LN15_EST_Distributions_2_17_4.png" />
+<img alt="_images/1481c50f2e6272b1c18efb6f77381249805aaa7e3a0153526c2a29e0328668c5.png" src="_images/1481c50f2e6272b1c18efb6f77381249805aaa7e3a0153526c2a29e0328668c5.png" />
+<img alt="_images/aee1fcd4e2ad3a0ecb8abe88a19a755f0dde70fde04d9fc4615ebd32adaa371e.png" src="_images/aee1fcd4e2ad3a0ecb8abe88a19a755f0dde70fde04d9fc4615ebd32adaa371e.png" />
 </div>
 </div>
 <p>Let’s find out the value of a distribution when it’s <span class="math notranslate nohighlight">\(\sigma\)</span> away from the mean:</p>
@@ -945,8 +882,8 @@ P(\mu\pm\sigma) &amp;=  \frac{1}{\sqrt{2\pi}\sigma} e^{-(\mu\pm\sigma-\mu)^2/2\s
 <p>Now it doesn’t seem to be so mindblowing but just a boring (and an obvious) derivation… but remember, this is <em>just</em> maths. We will be doing physics and modeling, so it’s more important to pay attention to the <u>meaning</u> of the <span class="math notranslate nohighlight">\(\sigma\)</span> than what it does on a dull mathematical formula (it’s similar to the information transferred by saying “the magnitude of the space a circle covers is equal to <span class="math notranslate nohighlight">\(\pi r^2\)</span>” than simply writing a general and vague math equation of <span class="math notranslate nohighlight">\(\pi r^2\)</span> which can mean anything and nothing).</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="application-the-six-sigma">
-<h1>Application: The Six <span class="math notranslate nohighlight">\(\sigma\)</span><a class="headerlink" href="#application-the-six-sigma" title="Permalink to this headline">¶</a></h1>
-<p>I recommend you to stop reading at this instant and google for “<a class="reference external" href="https://www.google.com/search?q=the+six+sigma&amp;oq=the+six+sigma&amp;hl=en">the six sigma</a>”. Most of the results you are going to fine will be <strike>stupid</strike> self-pompitous “excel yourself, reach the skies bla bla…” junk sites but their root lies on pure statistics. Here is how.</p>
+<h1>Application: The Six <span class="math notranslate nohighlight">\(\sigma\)</span><a class="headerlink" href="#application-the-six-sigma" title="Permalink to this heading">#</a></h1>
+<p>I recommend you to stop reading at this instant and google for “<a class="reference external" href="https://www.google.com/search?q=the+six+sigma&amp;amp;oq=the+six+sigma&amp;amp;hl=en">the six sigma</a>”. Most of the results you are going to fine will be <strike>stupid</strike> self-pompitous “excel yourself, reach the skies bla bla…” junk sites but their root lies on pure statistics. Here is how.</p>
 <p>So, let’s start once again with a nice Gaussian distribution characterized by <span class="math notranslate nohighlight">\(\mu = 5\)</span> &amp; <span class="math notranslate nohighlight">\(\sigma = 2.5\)</span> <span class="math notranslate nohighlight">\(\Rightarrow P(x|\mu=5,\sigma=2.5)\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -965,7 +902,7 @@ P(\mu\pm\sigma) &amp;=  \frac{1}{\sqrt{2\pi}\sigma} e^{-(\mu\pm\sigma-\mu)^2/2\s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/FIZ371_LN15_EST_Distributions_2_26_0.png" src="_images/FIZ371_LN15_EST_Distributions_2_26_0.png" />
+<img alt="_images/9cd6c02ce4fc597d165f24ffb9b619977cdf570647ca9a9b1a44af68e6bde12e.png" src="_images/9cd6c02ce4fc597d165f24ffb9b619977cdf570647ca9a9b1a44af68e6bde12e.png" />
 </div>
 </div>
 <p>Since our distribution is normalized, when we calculate the integral:</p>
@@ -1029,7 +966,7 @@ n:7 - Range: [μ-7σ,μ] U [μ,μ+7σ]
 </div>
 </div>
 <p>Formatting the output:</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(n\)</span></p></th>
 <th class="head"><p><span class="math notranslate nohighlight">\(P(x\in \mathfrak{R}_A)\)</span></p></th>
@@ -1075,6 +1012,7 @@ n:7 - Range: [μ-7σ,μ] U [μ,μ+7σ]
 </tr>
 </tbody>
 </table>
+</div>
 <p>where the ranges in the probabilities are defined as:</p>
 <p><span class="math notranslate nohighlight">\(\mathfrak{R}_A: x \in \left[\mu - n \sigma,\,\mu - (n-1) \sigma\right]\)</span>
 <span class="math notranslate nohighlight">\(\mathfrak{R}_B: x \in \left[\mu-n\sigma,\,\mu-(n-1)\sigma\right] \cup \left[\mu+(n-1)\sigma,\,\mu+n\sigma\right]\)</span><br />
@@ -1100,11 +1038,11 @@ n:7 - Range: [μ-7σ,μ] U [μ,μ+7σ]
 <p>(You can also check <a class="reference external" href="http://www.physics.org/article-questions.asp?id=103">What does the 5 sigma mean?</a>)</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="a-code-of-our-own-deriving-the-sigma-distribution-ratios-stochastically">
-<h1>A code of our own: Deriving the <span class="math notranslate nohighlight">\(\sigma\)</span> distribution ratios stochastically<a class="headerlink" href="#a-code-of-our-own-deriving-the-sigma-distribution-ratios-stochastically" title="Permalink to this headline">¶</a></h1>
+<h1>A code of our own: Deriving the <span class="math notranslate nohighlight">\(\sigma\)</span> distribution ratios stochastically<a class="headerlink" href="#a-code-of-our-own-deriving-the-sigma-distribution-ratios-stochastically" title="Permalink to this heading">#</a></h1>
 <p>One of the questions in the final exam of (20191’s) FIZ353 : Numerical Analysis course was:</p>
 <p><em>Show that when N is sufficiently great (~10000), for an ideal Gaussian distribution the number of the elements within the  <span class="math notranslate nohighlight">\(\sigma\)</span> neighborhood of the mean constitute around 68.2% of the total; those lying within <span class="math notranslate nohighlight">\(\sigma\)</span> and  <span class="math notranslate nohighlight">\(2\sigma\)</span> constitute 13.6% of the total and between <span class="math notranslate nohighlight">\(2\sigma\)</span> and  <span class="math notranslate nohighlight">\(3\sigma\)</span> amounts to 2.1% of the total.</em></p>
 <p>In the above, we’ve derived these numbers/ratios via integration but we can also do it stochastically, i.e., by drawing random numbers from a Gaussian distribution and then analyzing their range frequencies, so let’s do that!</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Define a Gaussian distribution by specifying <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
 <li><p>Draw <span class="math notranslate nohighlight">\(N\)</span> random values to build a set.</p></li>
 <li><p>Calculate the mean and standard deviation of this set (they will be close to but not exactly the same as the ones we specified in step 1 – why is that?)</p></li>
@@ -1174,7 +1112,7 @@ n:7 - Range: [μ-7σ,μ] U [μ,μ+7σ]
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="poisson-distribution">
-<h1>Poisson Distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this headline">¶</a></h1>
+<h1>Poisson Distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this heading">#</a></h1>
 <p>When we took the limit of the number of possible outcomes through a binomial decision tree (i.e., drastically increased the levels of the Galton machine), we arrived to Gaussian (normal) distribution. We mentioned that, the Gaussian distribution was the way nature worked around: there is a most likely defined average (mean) and then the further you moved away from this average, the less probable you’d encounter a specimen from that region. For instance: let the average height of adult Turkish females be 1.63m<a class="reference external" href="http://www.cumhuriyet.com.tr/haber/iste-turkiyedeki-ortalama-erkek-ve-kadin-boyu-864030">*</a>. This means that we’ll likely find many people between 1.60m - 1.65m alas not that many with heights around 1.30m. Or if the average of the grades in regard to an exam is 45% – we don’t expect many people with a grade higher than 80%. These are all normally expected outcomes and it comes to us naturally.</p>
 <p>But there are cases when the probability of something occuring is very low, like a plane crashing or a harddisk recently out of the factory to malfunction or a radioactive element’s decay within a short time margin. For these kinds of situations we once again begin from binomial distribution but this time we take the probability to be very low such that aside from the <span class="math notranslate nohighlight">\(n\rightarrow\infty\)</span>, we now also have the limit: <span class="math notranslate nohighlight">\(p\rightarrow0\)</span>). Since the first is very high and the latter very low, it is sufficient that their product is some finit number (which we’ll refer to as <span class="math notranslate nohighlight">\(\lambda\; (np \rightarrow \lambda &gt; 0\)</span>).</p>
 <p>For our derivation, let’s start once again by this wonderful intution to take the limit of <span class="math notranslate nohighlight">\(y=(1-p)^{1/p}\)</span> as <span class="math notranslate nohighlight">\(p\rightarrow 0\)</span>:</p>
@@ -1205,7 +1143,7 @@ n:7 - Range: [μ-7σ,μ] U [μ,μ+7σ]
 \[P(k) = \frac{\lambda^k e^{-\lambda}}{k!}\]</div>
 <p>that describes the probability of a very-low chance outcome (<span class="math notranslate nohighlight">\(p\rightarrow0\)</span>) happening k times out of a very high (practically infinite) number of drawings/tries/choosings (<span class="math notranslate nohighlight">\(n\rightarrow\infty\)</span>) is called as the <strong>Poisson Distribution</strong>.</p>
 <section id="assignment-hw-mean-and-variance-of-poisson-distribution">
-<h2>Assignment / HW : mean and variance of Poisson distribution<a class="headerlink" href="#assignment-hw-mean-and-variance-of-poisson-distribution" title="Permalink to this headline">¶</a></h2>
+<h2>Assignment / HW : mean and variance of Poisson distribution<a class="headerlink" href="#assignment-hw-mean-and-variance-of-poisson-distribution" title="Permalink to this heading">#</a></h2>
 <p>Show that the mean value and the variance of a Poisson distribution, characterized by a <span class="math notranslate nohighlight">\(\lambda\)</span> parameter, are as follows:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\mu = \lambda\)</span></p></li>
@@ -1213,7 +1151,7 @@ n:7 - Range: [μ-7σ,μ] U [μ,μ+7σ]
 </ul>
 </section>
 <section id="example-airplane-accidents">
-<h2>Example: Airplane accidents<a class="headerlink" href="#example-airplane-accidents" title="Permalink to this headline">¶</a></h2>
+<h2>Example: Airplane accidents<a class="headerlink" href="#example-airplane-accidents" title="Permalink to this heading">#</a></h2>
 <p>On every <span class="math notranslate nohighlight">\(10^{12}\)</span> flight miles, an accident occurs on average.</p>
 <p>What is the probability of an accident happening up to:<br />
 a) <span class="math notranslate nohighlight">\(10^9\)</span> flight miles?<br />
@@ -1277,7 +1215,7 @@ P(k=0) = \frac{\left(e^{-\left(10\right)}\right)\left(10^{-1}\right)^0}{0!} = 0.
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1285,44 +1223,119 @@ P(k=0) = \frac{\left(e^{-\left(10\right)}\right)\left(10^{-1}\right)^0}{0!} = 0.
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="FIZ371_LN10_EST_Distributions_1.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Distributions 1 : Discrete Distributions</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="FIZ371_LN10_EST_Distributions_1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Distributions 1 : Discrete Distributions</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="FIZ371_LN25_EST_Game_Theory.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="FIZ371_LN25_EST_Game_Theory.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Game Theory</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Dr. Emre S. Tasci<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-      </div>
-    </div>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Distributions 2 : Continous Distributions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reprise-galton-machine">Reprise: Galton Machine</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-normal-distribution">Gaussian (Normal) Distribution</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-and-standard-variance-of-the-binomial-distribution-or-is-it-the-normal-distribution">Mean and standard variance of the binomial distribution (or is it the normal distribution?.. ;)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-value-mu">Mean Value (<span class="math notranslate nohighlight">\(\mu\)</span>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-variation-sigma">Standard variation (<span class="math notranslate nohighlight">\(\sigma\)</span>)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-distribution-final-form">Gaussian distribution, final form</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#application-the-six-sigma">Application: The Six <span class="math notranslate nohighlight">\(\sigma\)</span></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-code-of-our-own-deriving-the-sigma-distribution-ratios-stochastically">A code of our own: Deriving the <span class="math notranslate nohighlight">\(\sigma\)</span> distribution ratios stochastically</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#poisson-distribution">Poisson Distribution</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assignment-hw-mean-and-variance-of-poisson-distribution">Assignment / HW : mean and variance of Poisson distribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-airplane-accidents">Example: Airplane accidents</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Emre S. Tasci
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -1,495 +1,469 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>2D Ising Model &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'FIZ371_LN80_EST_2DIsing';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Neural Networks" href="FIZ371_LN69_EST_NeuralNetworks.html" />
     <link rel="prev" title="Cellular Automata" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Cover.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Cover.html">
-   FIZ371 - Scientific and Technical Calculations
-  </a>
- </li>
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="FIZ371 - Scientific and Technical Computations Lecture Notes - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="FIZ371 - Scientific and Technical Computations Lecture Notes - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Cover.html">
+                    FIZ371 - Scientific and Technical Calculations
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="FIZ371_LectureNotes.html">Lecture Notes</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">Probabilities - Concept &amp; Theory</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">Probabilities Application: Letter Frequencies</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">Probabilities</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">Monty Hall Problem</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="WhiteTokenOutOf2.html">Application White Token Out Of 2 Bags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">Six Switch Puzzle</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">Discrete Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">Distributions 2 : Continous Distributions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">Game Theory</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">Application Prisonner's Dilemma (with Memory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GaleShapleyMatching_Implementation.html">Gale-Shapley Algorithm Implementation</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">Information Theory</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">Information Theory Application</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">Cellular Automata</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2D Ising Model</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">Neural Networks</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="MinimizeOptimizeFit.html">Optimization, Minimization &amp; Fitting Notes &amp; Recipes</a></li>
+
+
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="FIZ371_LectureNotes.html">
-   Lecture Notes
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
-     Probabilities - Concept &amp; Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
-     Probabilities Application: Letter Frequencies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
-     Probabilities
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
-     Monty Hall Problem
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="WhiteTokenOutOf2.html">
-     Application White Token Out Of 2 Bags
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
-     Six Switch Puzzle
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
-     Discrete Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
-     Distributions 2 : Continous Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
-     Game Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
-     Application Prisonner's Dilemma (with Memory)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
-     Gale-Shapley Algorithm Implementation
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory.html">
-     Information Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
-     Information Theory Application
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
-     Cellular Automata
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     2D Ising Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
-     Neural Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="MinimizeOptimizeFit.html">
-     Optimization, Minimization &amp; Fitting Notes &amp; Recipes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="FIZ371_ExercisesExams.html">
-   Exercises &amp; Exams
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_MT.html">
-     2022-23 Fall Term Midterm Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_Final.html">
-     2022-23 Fall Term Final Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_Resit.html">
-     2022-23 Fall Term Resit Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_MT.html">
-     2023-24 Fall Term Midterm Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_MT_MakeUp.html">
-     2023-24 Fall Term Midterm MakeUp Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_Final.html">
-     2023-24 Fall Term Final Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_Final_Resit.html">
-     2023-24 Fall Term Resit Exam
-    </a>
-   </li>
-  </ul>
- </li>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="FIZ371_ExercisesExams.html">Exercises &amp; Exams</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_MT.html">2022-23 Fall Term Midterm Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_Final.html">2022-23 Fall Term Final Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_Resit.html">2022-23 Fall Term Resit Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_MT.html">2023-24 Fall Term Midterm Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_MT_MakeUp.html">2023-24 Fall Term Midterm MakeUp Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_Final.html">2023-24 Fall Term Final Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_Final_Resit.html">2023-24 Fall Term Resit Exam</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/FIZ371_LN80_EST_2DIsing.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/FIZ371_LN80_EST_2DIsing.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN80_EST_2DIsing.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
         
         
-        
-        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/FIZ371_LN80_EST_2DIsing.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-        </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>2D Ising Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   2D Ising Model
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relevance-of-ising-models">
-     Relevance of Ising models
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ferromagnetic-materials">
-   Ferromagnetic Materials
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#difficulties">
-   Difficulties
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#monte-carlo-simulation">
-     Monte Carlo simulation
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#metropolis-algorithm">
-       Metropolis algorithm
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementation">
-   Implementation
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#homework">
-   Homework
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid">
-   Appendix : Evolution of the configuration probabilities for a 2x2 Ising Grid
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#external-link-s">
-   External link(s)
-  </a>
- </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2D Ising Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-of-ising-models">Relevance of Ising models</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ferromagnetic-materials">Ferromagnetic Materials</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difficulties">Difficulties</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo-simulation">Monte Carlo simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metropolis-algorithm">Metropolis algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">Homework</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid">Appendix : Evolution of the configuration probabilities for a 2x2 Ising Grid</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#external-link-s">External link(s)</a></li>
 </ul>
 
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>2D Ising Model</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   2D Ising Model
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#relevance-of-ising-models">
-     Relevance of Ising models
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ferromagnetic-materials">
-   Ferromagnetic Materials
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#difficulties">
-   Difficulties
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#monte-carlo-simulation">
-     Monte Carlo simulation
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#metropolis-algorithm">
-       Metropolis algorithm
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#implementation">
-   Implementation
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#homework">
-   Homework
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid">
-   Appendix : Evolution of the configuration probabilities for a 2x2 Ising Grid
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#external-link-s">
-   External link(s)
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="d-ising-model">
-<h1>2D Ising Model<a class="headerlink" href="#d-ising-model" title="Permalink to this headline">¶</a></h1>
+<h1>2D Ising Model<a class="headerlink" href="#d-ising-model" title="Permalink to this heading">#</a></h1>
 <p><strong>FIZ371 - Scientific &amp; Technical Computations | 10/06/2020</strong></p>
 <p><strong>2D Ising Model</strong></p>
 <ul class="simple">
@@ -510,13 +484,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Appendix: Evolution of the configuration probabilities for a 2x2 Ising Grid</p></li>
 <li><p>External link(s)</p></li>
 </ul>
-<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
 <p>The Ising model is the modelling of a network with nodes interacting with each other with respect to some order. Initially developed by Ernst Ising in 1925 to model the phase transition in 1D in order to observe critical variables in action, alas Ising didn’t manage to encounter any phase transition and gave up the model, until much later. The model was analytically solved by Lars Onsager in 1944. The 3D version has not yet been solved although there are a couple of claims.</p>
 <section id="relevance-of-ising-models">
-<h2>Relevance of Ising models<a class="headerlink" href="#relevance-of-ising-models" title="Permalink to this headline">¶</a></h2>
+<h2>Relevance of Ising models<a class="headerlink" href="#relevance-of-ising-models" title="Permalink to this heading">#</a></h2>
 <p>As for the relevance and importance of Ising models, I’m quoting directly from our textbook, <a class="reference external" href="http://www.inference.org.uk/mackay/itprnn/book.html">MacKay’s “Information Theory, Inference, and Learning Algorithms”</a>:</p>
 <p>Ising models are relevant for three reasons.</p>
 <p>Ising models are important first as models of magnetic systems that have a phase transition. The theory of universality in statistical physics shows that all systems with the same dimension (here, two), and the same symmetries, have equivalent critical properties, i.e., the scaling laws shown by their phase transitions are identical. So by studying Ising models we can find out not only about magnetic phase transitions but also about phase transitions in many other systems.</p>
@@ -528,7 +502,7 @@ const thebe_selector_output = ".output, .cell_output"
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="ferromagnetic-materials">
-<h1>Ferromagnetic Materials<a class="headerlink" href="#ferromagnetic-materials" title="Permalink to this headline">¶</a></h1>
+<h1>Ferromagnetic Materials<a class="headerlink" href="#ferromagnetic-materials" title="Permalink to this heading">#</a></h1>
 <p>A ferromagnetic material is a material whose atomic spins align with the applied external magnetic field and even at the lack of an external field, its atoms also tend to align their magnetic moments with that of their neighbours resulting in spin domains:</p>
 <p><img alt="NdFeB-Domains.jpg" src="_images/NdFeB-Domains.jpg" />
 <a class="reference external" href="https://en.wikipedia.org/wiki/Magnetic_domain">Source: Wikipedia</a></p>
@@ -552,14 +526,14 @@ const thebe_selector_output = ".output, .cell_output"
 \[F=-k_B T\ln Z\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="difficulties">
-<h1>Difficulties<a class="headerlink" href="#difficulties" title="Permalink to this headline">¶</a></h1>
+<h1>Difficulties<a class="headerlink" href="#difficulties" title="Permalink to this heading">#</a></h1>
 <p>So, from the previous section, as we have the probability equation, we can use the partition function <span class="math notranslate nohighlight">\(Z\)</span> to first to calculate the free energy and then the entropy of our system. However, there is a very bit tiny problem with the calculation of the partition function.</p>
 <p>Even with a very small system of <span class="math notranslate nohighlight">\(10\times10\)</span> grid, where each site can have a sping value of <span class="math notranslate nohighlight">\(\pm1\)</span>, we will have <span class="math notranslate nohighlight">\(2^{100}\)</span> possible configurations (<span class="math notranslate nohighlight">\(\{\vec x\}\)</span>), which will take more than the age of the universe to calculate on a supercomputer as we know it.</p>
 <p>In contrast to this, calculating the energy of any given configuration <span class="math notranslate nohighlight">\(\vec{x}\)</span> is pretty much straightforward and fast, so we need to be able to exploit this fact for <em>sampling</em>.</p>
 <section id="monte-carlo-simulation">
-<h2>Monte Carlo simulation<a class="headerlink" href="#monte-carlo-simulation" title="Permalink to this headline">¶</a></h2>
+<h2>Monte Carlo simulation<a class="headerlink" href="#monte-carlo-simulation" title="Permalink to this heading">#</a></h2>
 <section id="metropolis-algorithm">
-<h3>Metropolis algorithm<a class="headerlink" href="#metropolis-algorithm" title="Permalink to this headline">¶</a></h3>
+<h3>Metropolis algorithm<a class="headerlink" href="#metropolis-algorithm" title="Permalink to this heading">#</a></h3>
 <p>We will employ the Metropolis algorithm (which we have already considered as one of the stochastic activation functions of the artificial neural networks) and will randomly choose a site whose spin is in the state <span class="math notranslate nohighlight">\(x_n\)</span>. If the spin is flipped, the change in the energy will be equal to:</p>
 <div class="math notranslate nohighlight">
 \[\Delta E=2x_n b_n\]</div>
@@ -574,7 +548,7 @@ const thebe_selector_output = ".output, .cell_output"
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="implementation">
-<h1>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h1>
+<h1>Implementation<a class="headerlink" href="#implementation" title="Permalink to this heading">#</a></h1>
 <p>The following code is more suitable for an environment other than Jupyter as it produces many output plots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -690,7 +664,7 @@ const thebe_selector_output = ".output, .cell_output"
 49 up | 51 down 
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_1.png" src="_images/FIZ371_LN80_EST_2DIsing_8_1.png" />
+<img alt="_images/3dcafdfeae2856b5aa53d69b2fa45e3ca94d71fa77b1caed1d72b9a2cd0f8725.png" src="_images/3dcafdfeae2856b5aa53d69b2fa45e3ca94d71fa77b1caed1d72b9a2cd0f8725.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=============================================
 </pre></div>
 </div>
@@ -708,7 +682,7 @@ T:10.0	|47 up | 53 down	|Mag: -0.06000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_4.png" src="_images/FIZ371_LN80_EST_2DIsing_8_4.png" />
+<img alt="_images/6212f845c115c02afb656fed5c0aca10ce7b19ca1a8d80166db015cf91a54301.png" src="_images/6212f845c115c02afb656fed5c0aca10ce7b19ca1a8d80166db015cf91a54301.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1 -1 -1 -1 -1 -1 -1  1  1  1]
  [ 1 -1 -1 -1 -1  1  1 -1 -1 -1]
  [-1 -1 -1 -1  1  1 -1 -1  1 -1]
@@ -723,7 +697,7 @@ T:9.5	|46 up | 54 down	|Mag: -0.08000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_6.png" src="_images/FIZ371_LN80_EST_2DIsing_8_6.png" />
+<img alt="_images/149bfafde4c48a1805dfa010b1a5780233bee4161f20648162d4eba2603efeb1.png" src="_images/149bfafde4c48a1805dfa010b1a5780233bee4161f20648162d4eba2603efeb1.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1 -1  1  1 -1  1  1  1  1 -1]
  [ 1  1 -1  1 -1 -1 -1  1  1 -1]
  [-1  1 -1  1 -1 -1  1 -1  1  1]
@@ -738,7 +712,7 @@ T:9.0	|52 up | 48 down	|Mag: 0.04000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_8.png" src="_images/FIZ371_LN80_EST_2DIsing_8_8.png" />
+<img alt="_images/ec3f5955c08efcb463218135a5c6f5849b754b2bb49a0a901c85d469b2f2415d.png" src="_images/ec3f5955c08efcb463218135a5c6f5849b754b2bb49a0a901c85d469b2f2415d.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1  1 -1 -1  1 -1  1 -1 -1 -1]
  [-1  1 -1  1 -1  1 -1  1  1  1]
  [-1  1  1  1 -1 -1 -1  1  1  1]
@@ -753,7 +727,7 @@ T:8.5	|46 up | 54 down	|Mag: -0.08000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_10.png" src="_images/FIZ371_LN80_EST_2DIsing_8_10.png" />
+<img alt="_images/7f546edb92dd4b2af352f9f322635c08d8c8e4548e38871d041198cf54f165d7.png" src="_images/7f546edb92dd4b2af352f9f322635c08d8c8e4548e38871d041198cf54f165d7.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1 -1  1 -1 -1 -1 -1  1 -1  1]
  [-1 -1 -1 -1 -1  1  1  1  1  1]
  [ 1  1 -1  1 -1  1  1 -1 -1  1]
@@ -768,7 +742,7 @@ T:8.0	|47 up | 53 down	|Mag: -0.06000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_12.png" src="_images/FIZ371_LN80_EST_2DIsing_8_12.png" />
+<img alt="_images/51d009e2d7e8cc0106609e90b4f6345f061630dcd6cfb92a6328c47de4426c80.png" src="_images/51d009e2d7e8cc0106609e90b4f6345f061630dcd6cfb92a6328c47de4426c80.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1 -1 -1 -1 -1  1 -1 -1  1  1]
  [ 1 -1 -1 -1 -1 -1 -1  1  1  1]
  [ 1 -1 -1 -1 -1  1  1  1  1  1]
@@ -783,7 +757,7 @@ T:7.5	|54 up | 46 down	|Mag: 0.08000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_14.png" src="_images/FIZ371_LN80_EST_2DIsing_8_14.png" />
+<img alt="_images/8d9fe7f4b9322c5bf2d60e8994e93a4ba0627787ae09737d4997d12b8f73f820.png" src="_images/8d9fe7f4b9322c5bf2d60e8994e93a4ba0627787ae09737d4997d12b8f73f820.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  1  1  1  1 -1  1  1  1  1]
  [ 1 -1  1 -1 -1 -1 -1 -1 -1  1]
  [ 1 -1  1 -1 -1  1 -1 -1  1  1]
@@ -798,7 +772,7 @@ T:7.0	|49 up | 51 down	|Mag: -0.02000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_16.png" src="_images/FIZ371_LN80_EST_2DIsing_8_16.png" />
+<img alt="_images/1d8dfcc8d9deab5cfa01aa7f88bb44014e04a9cd1cf0cd473701580eaef2f6cb.png" src="_images/1d8dfcc8d9deab5cfa01aa7f88bb44014e04a9cd1cf0cd473701580eaef2f6cb.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1 -1 -1 -1  1 -1  1 -1 -1 -1]
  [-1 -1 -1 -1  1 -1 -1  1  1 -1]
  [-1 -1 -1  1 -1 -1 -1  1  1 -1]
@@ -813,7 +787,7 @@ T:6.5	|42 up | 58 down	|Mag: -0.16000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_18.png" src="_images/FIZ371_LN80_EST_2DIsing_8_18.png" />
+<img alt="_images/2f72523708a7e6d0b9ea1f1b0d37dcea862e6acdd131cd7878f3820dd8c1fb6e.png" src="_images/2f72523708a7e6d0b9ea1f1b0d37dcea862e6acdd131cd7878f3820dd8c1fb6e.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1 -1 -1 -1  1  1 -1 -1  1 -1]
  [ 1  1 -1 -1  1 -1 -1  1  1 -1]
  [ 1  1  1  1  1 -1 -1 -1 -1  1]
@@ -828,7 +802,7 @@ T:6.0	|54 up | 46 down	|Mag: 0.08000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_20.png" src="_images/FIZ371_LN80_EST_2DIsing_8_20.png" />
+<img alt="_images/7a47dccddc1699b8728a34a1b6fed3aab4b0afde97f8778cdf2a1e3e7a5c5a82.png" src="_images/7a47dccddc1699b8728a34a1b6fed3aab4b0afde97f8778cdf2a1e3e7a5c5a82.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  1 -1 -1  1 -1 -1 -1  1  1]
  [ 1  1  1  1 -1 -1 -1 -1  1 -1]
  [ 1 -1 -1  1 -1  1 -1 -1  1  1]
@@ -843,7 +817,7 @@ T:5.5	|43 up | 57 down	|Mag: -0.14000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_22.png" src="_images/FIZ371_LN80_EST_2DIsing_8_22.png" />
+<img alt="_images/b19976f78bdd9ccea0d96abf1822a03d3c13f1aca75e39d1bb00ba2b0f9829d9.png" src="_images/b19976f78bdd9ccea0d96abf1822a03d3c13f1aca75e39d1bb00ba2b0f9829d9.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  1 -1 -1 -1  1 -1 -1  1 -1]
  [-1 -1 -1  1  1  1 -1  1 -1 -1]
  [ 1  1  1  1  1  1 -1 -1 -1  1]
@@ -858,7 +832,7 @@ T:5.0	|57 up | 43 down	|Mag: 0.14000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_24.png" src="_images/FIZ371_LN80_EST_2DIsing_8_24.png" />
+<img alt="_images/9e0f0c6666d84403d3abde56f4036a3f86753e75a461dc799b3b542f5595cdab.png" src="_images/9e0f0c6666d84403d3abde56f4036a3f86753e75a461dc799b3b542f5595cdab.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[-1 -1 -1 -1  1  1  1  1  1  1]
  [-1 -1 -1 -1  1  1 -1 -1 -1  1]
  [-1 -1  1 -1  1  1  1 -1 -1  1]
@@ -873,7 +847,7 @@ T:4.5	|53 up | 47 down	|Mag: 0.06000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_26.png" src="_images/FIZ371_LN80_EST_2DIsing_8_26.png" />
+<img alt="_images/7e97d3eb1d0715ac7bbe94d52a245b65c85e69edf2f27e5455b164522ad0d822.png" src="_images/7e97d3eb1d0715ac7bbe94d52a245b65c85e69edf2f27e5455b164522ad0d822.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  1  1  1  1 -1  1  1 -1  1]
  [ 1  1  1  1  1 -1 -1  1 -1  1]
  [ 1  1  1  1  1  1  1  1  1  1]
@@ -888,7 +862,7 @@ T:4.0	|52 up | 48 down	|Mag: 0.04000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_28.png" src="_images/FIZ371_LN80_EST_2DIsing_8_28.png" />
+<img alt="_images/7846eeffe022916baae49f68a91a83d43ae27e31e80e16b925c0031436ba08e3.png" src="_images/7846eeffe022916baae49f68a91a83d43ae27e31e80e16b925c0031436ba08e3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1 -1  1  1  1  1 -1  1 -1  1]
  [-1 -1  1  1 -1 -1 -1 -1 -1 -1]
  [ 1 -1 -1 -1  1  1  1 -1  1  1]
@@ -903,7 +877,7 @@ T:3.5	|50 up | 50 down	|Mag: 0.00000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_30.png" src="_images/FIZ371_LN80_EST_2DIsing_8_30.png" />
+<img alt="_images/0821911a2959e98dd882af5cd40ba81ee737754bbae8e710b4c1ac8cf3e04f6c.png" src="_images/0821911a2959e98dd882af5cd40ba81ee737754bbae8e710b4c1ac8cf3e04f6c.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1 -1 -1 -1 -1 -1 -1  1  1 -1]
  [ 1 -1 -1 -1 -1 -1 -1  1 -1  1]
  [-1 -1 -1 -1 -1 -1 -1  1  1 -1]
@@ -918,7 +892,7 @@ T:3.0	|56 up | 44 down	|Mag: 0.12000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_32.png" src="_images/FIZ371_LN80_EST_2DIsing_8_32.png" />
+<img alt="_images/f22f17eda63a95fc97f8031a7df980fd9f483da79b1b35d087617c3c931a4139.png" src="_images/f22f17eda63a95fc97f8031a7df980fd9f483da79b1b35d087617c3c931a4139.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  1  1 -1 -1 -1  1  1  1  1]
  [ 1  1  1  1 -1 -1 -1  1  1  1]
  [-1 -1 -1  1 -1 -1 -1  1  1  1]
@@ -933,7 +907,7 @@ T:2.5	|68 up | 32 down	|Mag: 0.36000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_34.png" src="_images/FIZ371_LN80_EST_2DIsing_8_34.png" />
+<img alt="_images/6b46a29465c657c3a462e324ba9f87a24389d745134e50ba7f2c66cda9c12056.png" src="_images/6b46a29465c657c3a462e324ba9f87a24389d745134e50ba7f2c66cda9c12056.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  1  1  1  1 -1  1  1  1  1]
  [ 1  1  1  1  1  1  1  1  1  1]
  [-1  1  1  1  1  1  1  1  1  1]
@@ -948,7 +922,7 @@ T:2.0	|98 up | 2 down	|Mag: 0.96000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_36.png" src="_images/FIZ371_LN80_EST_2DIsing_8_36.png" />
+<img alt="_images/b9be05f85eee57fe1c471e869ab593a41d065cc97a3b79728140c775c18a1672.png" src="_images/b9be05f85eee57fe1c471e869ab593a41d065cc97a3b79728140c775c18a1672.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1  1  1  1  1  1  1  1  1  1]
  [ 1  1  1  1  1  1  1  1  1  1]
  [ 1 -1  1  1  1  1  1  1  1  1]
@@ -963,7 +937,7 @@ T:1.5	|98 up | 2 down	|Mag: 0.96000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_38.png" src="_images/FIZ371_LN80_EST_2DIsing_8_38.png" />
+<img alt="_images/6277284ca15fb3d63502bb3c532f57f10cfae64f183dc698fafc4c7d608b2d54.png" src="_images/6277284ca15fb3d63502bb3c532f57f10cfae64f183dc698fafc4c7d608b2d54.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 1 1 1 1 1 1 1 1 1]
  [1 1 1 1 1 1 1 1 1 1]
  [1 1 1 1 1 1 1 1 1 1]
@@ -978,7 +952,7 @@ T:1.0	|100 up | 0 down	|Mag: 1.00000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_40.png" src="_images/FIZ371_LN80_EST_2DIsing_8_40.png" />
+<img alt="_images/60f9138efa4e3ace67d32232527aa51c0de7e4cb5889ae7c8863130c6dc8cb6a.png" src="_images/60f9138efa4e3ace67d32232527aa51c0de7e4cb5889ae7c8863130c6dc8cb6a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 1 1 1 1 1 1 1 1 1]
  [1 1 1 1 1 1 1 1 1 1]
  [1 1 1 1 1 1 1 1 1 1]
@@ -993,7 +967,7 @@ T:0.5	|100 up | 0 down	|Mag: 1.00000
 ---------------------------------------------
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_42.png" src="_images/FIZ371_LN80_EST_2DIsing_8_42.png" />
+<img alt="_images/7ed8b67d9dd4b5770f1a2163129340d8fbc160e685a62f5d23dcbd6fac9975b3.png" src="_images/7ed8b67d9dd4b5770f1a2163129340d8fbc160e685a62f5d23dcbd6fac9975b3.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[10.   -0.06]
  [ 9.5  -0.08]
  [ 9.    0.04]
@@ -1016,7 +990,7 @@ T:0.5	|100 up | 0 down	|Mag: 1.00000
  [ 0.5   1.  ]]
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN80_EST_2DIsing_8_44.png" src="_images/FIZ371_LN80_EST_2DIsing_8_44.png" />
+<img alt="_images/fbca7d90419303a1d64ae00af3165ecec94defb4ed67454ceb99c4b39607b5f8.png" src="_images/fbca7d90419303a1d64ae00af3165ecec94defb4ed67454ceb99c4b39607b5f8.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finished.
 </pre></div>
 </div>
@@ -1024,7 +998,7 @@ T:0.5	|100 up | 0 down	|Mag: 1.00000
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="homework">
-<h1>Homework<a class="headerlink" href="#homework" title="Permalink to this headline">¶</a></h1>
+<h1>Homework<a class="headerlink" href="#homework" title="Permalink to this heading">#</a></h1>
 <p>Show that a flip of the spin <span class="math notranslate nohighlight">\(x_n\)</span> of site <span class="math notranslate nohighlight">\(n\)</span> indeed changes the energy by:</p>
 <div class="math notranslate nohighlight">
 \[\Delta E=2x_n b_n\]</div>
@@ -1033,9 +1007,9 @@ T:0.5	|100 up | 0 down	|Mag: 1.00000
 \[b_n = \sum_{m:(m,n)\in\mathcal{N}}{Jx_m + H}\]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid">
-<h1>Appendix : Evolution of the configuration probabilities for a 2x2 Ising Grid<a class="headerlink" href="#appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid" title="Permalink to this headline">¶</a></h1>
+<h1>Appendix : Evolution of the configuration probabilities for a 2x2 Ising Grid<a class="headerlink" href="#appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid" title="Permalink to this heading">#</a></h1>
 <p>A 2x2 grid system can be in one of the <span class="math notranslate nohighlight">\(2^4=16\)</span> configurations:</p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>A (x1)</p></th>
 <th class="head"><p>B (x4)</p></th>
@@ -1059,6 +1033,7 @@ T:0.5	|100 up | 0 down	|Mag: 1.00000
 </tr>
 </tbody>
 </table>
+</div>
 <p>The calculated energies with respect to each spin’s interaction with its neighbours yields (taking <span class="math notranslate nohighlight">\(J=1,\,H=0\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[E_A = -\tfrac{1}{2}\left[\left(1.1+1.1+1.1\right)+\left(1.1+1.1+1.1\right)+
@@ -1454,12 +1429,12 @@ T:0.5	|100 up | 0 down	|Mag: 1.00000
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/FIZ371_LN80_EST_2DIsing_14_0.png" src="_images/FIZ371_LN80_EST_2DIsing_14_0.png" />
+<img alt="_images/5dcdea6cf842661f793adf538f0ac2e7696f4f69e973122ca744844df138ceec.png" src="_images/5dcdea6cf842661f793adf538f0ac2e7696f4f69e973122ca744844df138ceec.png" />
 </div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="external-link-s">
-<h1>External link(s)<a class="headerlink" href="#external-link-s" title="Permalink to this headline">¶</a></h1>
+<h1>External link(s)<a class="headerlink" href="#external-link-s" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p>Dr. David Boyce - Magnetic ordering <a class="reference external" href="https://twitter.com/DrDavidBoyce/status/1176921195507310593">https://twitter.com/DrDavidBoyce/status/1176921195507310593</a></p></li>
 <li><p>Marco Koschny - Magnetic Domain Movement and Wall Motion (<a class="reference external" href="https://www.youtube.com/watch?v=HzxTqQ40wSU">1</a>, <a class="reference external" href="https://www.youtube.com/watch?v=LFC6tbbMUaA">2</a>)</p></li>
@@ -1479,7 +1454,7 @@ T:0.5	|100 up | 0 down	|Mag: 1.00000
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1487,44 +1462,120 @@ T:0.5	|100 up | 0 down	|Mag: 1.00000
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Cellular Automata</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Cellular Automata</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="FIZ371_LN69_EST_NeuralNetworks.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="FIZ371_LN69_EST_NeuralNetworks.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Neural Networks</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Dr. Emre S. Tasci<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-      </div>
-    </div>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">2D Ising Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relevance-of-ising-models">Relevance of Ising models</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#ferromagnetic-materials">Ferromagnetic Materials</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#difficulties">Difficulties</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monte-carlo-simulation">Monte Carlo simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metropolis-algorithm">Metropolis algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation">Implementation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">Homework</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-evolution-of-the-configuration-probabilities-for-a-2x2-ising-grid">Appendix : Evolution of the configuration probabilities for a 2x2 Ising Grid</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#external-link-s">External link(s)</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Emre S. Tasci
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

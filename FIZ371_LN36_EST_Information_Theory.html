@@ -1,541 +1,472 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Information Theory &#8212; FIZ371 - Scientific and Technical Computations Lecture Notes</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'FIZ371_LN36_EST_Information_Theory';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Information Theory Application" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html" />
     <link rel="prev" title="Gale-Shapley Algorithm Implementation" href="GaleShapleyMatching_Implementation.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="Cover.html">
+  
+  
+  
+  
+  
+    
+    
       
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">FIZ371 - Scientific and Technical Computations Lecture Notes</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Cover.html">
-   FIZ371 - Scientific and Technical Calculations
-  </a>
- </li>
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="FIZ371 - Scientific and Technical Computations Lecture Notes - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="FIZ371 - Scientific and Technical Computations Lecture Notes - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="Cover.html">
+                    FIZ371 - Scientific and Technical Calculations
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="FIZ371_LectureNotes.html">Lecture Notes</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">Probabilities - Concept &amp; Theory</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">Probabilities Application: Letter Frequencies</a></li>
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">Probabilities</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">Monty Hall Problem</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="WhiteTokenOutOf2.html">Application White Token Out Of 2 Bags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">Six Switch Puzzle</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">Discrete Distributions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">Distributions 2 : Continous Distributions</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">Game Theory</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">Application Prisonner's Dilemma (with Memory)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GaleShapleyMatching_Implementation.html">Gale-Shapley Algorithm Implementation</a></li>
+
+
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Information Theory</a></li>
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">Information Theory Application</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">Cellular Automata</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">2D Ising Model</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">Neural Networks</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="MinimizeOptimizeFit.html">Optimization, Minimization &amp; Fitting Notes &amp; Recipes</a></li>
+
+
 </ul>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="FIZ371_LectureNotes.html">
-   Lecture Notes
-  </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory.html">
-     Probabilities - Concept &amp; Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN01_EST_Probabilities_Theory_Application_WOZ.html">
-     Probabilities Application: Letter Frequencies
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN02_EST_Probabilities.html">
-     Probabilities
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN08_EST_Application_Monty_Hall.html">
-     Monty Hall Problem
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="WhiteTokenOutOf2.html">
-     Application White Token Out Of 2 Bags
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN06_SixSwitchPuzzle_and_Parallelization.html">
-     Six Switch Puzzle
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN10_EST_Distributions_1.html">
-     Discrete Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN15_EST_Distributions_2.html">
-     Distributions 2 : Continous Distributions
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN25_EST_Game_Theory.html">
-     Game Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN28_EST_Game_Theory_PrisonnersDilemmaWithMemory.html">
-     Application Prisonner's Dilemma (with Memory)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="GaleShapleyMatching_Implementation.html">
-     Gale-Shapley Algorithm Implementation
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Information Theory
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html">
-     Information Theory Application
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN47_EST_CellularAutomata_GameOfLife.html">
-     Cellular Automata
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN80_EST_2DIsing.html">
-     2D Ising Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="FIZ371_LN69_EST_NeuralNetworks.html">
-     Neural Networks
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="MinimizeOptimizeFit.html">
-     Optimization, Minimization &amp; Fitting Notes &amp; Recipes
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="FIZ371_ExercisesExams.html">
-   Exercises &amp; Exams
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_MT.html">
-     2022-23 Fall Term Midterm Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_Final.html">
-     2022-23 Fall Term Final Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20221_Resit.html">
-     2022-23 Fall Term Resit Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_MT.html">
-     2023-24 Fall Term Midterm Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_MT_MakeUp.html">
-     2023-24 Fall Term Midterm MakeUp Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_Final.html">
-     2023-24 Fall Term Final Exam
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="Exams_HW/FIZ371_20231_Final_Resit.html">
-     2023-24 Fall Term Resit Exam
-    </a>
-   </li>
-  </ul>
- </li>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="FIZ371_ExercisesExams.html">Exercises &amp; Exams</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_MT.html">2022-23 Fall Term Midterm Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_Final.html">2022-23 Fall Term Final Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20221_Resit.html">2022-23 Fall Term Resit Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_MT.html">2023-24 Fall Term Midterm Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_MT_MakeUp.html">2023-24 Fall Term Midterm MakeUp Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_Final.html">2023-24 Fall Term Final Exam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exams_HW/FIZ371_20231_Final_Resit.html">2023-24 Fall Term Resit Exam</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="_sources/FIZ371_LN36_EST_Information_Theory.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/FIZ371_LN36_EST_Information_Theory.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+</nav></div>
     </div>
-</div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
 
-            <!-- Source interaction buttons -->
 
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/emresururi/FIZ228/master?urlpath=tree/FIZ371_LN36_EST_Information_Theory.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
         
         
-        
-        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
     </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/FIZ371_LN36_EST_Information_Theory.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
 
-        </div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Information Theory</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div>
+                <h2> Contents </h2>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Information Theory
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-problem">
-   The Problem
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reducing-the-error-improving-the-reliability">
-   Reducing the error &amp; Improving the reliability
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-probability-of-error">
-   The probability of error
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shannon-weaver-communication-model">
-   Shannon - Weaver Communication Model
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parity-concept">
-   Parity Concept
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#application-credit-card-number-validation-luhn-s-algorithm">
-     Application: Credit Card Number Validation (Luhn’s Algorithm)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#application-iban-validation">
-     Application: IBAN Validation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#application-tc-id-validation">
-     Application TC ID # Validation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hamming-code-7-4">
-     Hamming Code (7,4)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#examples">
-       Examples
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#probability-of-error">
-       Probability of Error
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#comparison-of-error-correction-algorithms">
-   Comparison of error-correction algorithms
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948">
-   Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References:
-  </a>
- </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Information Theory</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The Problem</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-the-error-improving-the-reliability">Reducing the error &amp; Improving the reliability</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-probability-of-error">The probability of error</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#shannon-weaver-communication-model">Shannon - Weaver Communication Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parity-concept">Parity Concept</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-credit-card-number-validation-luhn-s-algorithm">Application: Credit Card Number Validation (Luhn’s Algorithm)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-iban-validation">Application: IBAN Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-tc-id-validation">Application TC ID # Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hamming-code-7-4">Hamming Code (7,4)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-of-error">Probability of Error</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-error-correction-algorithms">Comparison of error-correction algorithms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948">Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
 </ul>
 
             </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Information Theory</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Information Theory
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-problem">
-   The Problem
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#reducing-the-error-improving-the-reliability">
-   Reducing the error &amp; Improving the reliability
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-probability-of-error">
-   The probability of error
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shannon-weaver-communication-model">
-   Shannon - Weaver Communication Model
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parity-concept">
-   Parity Concept
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#application-credit-card-number-validation-luhn-s-algorithm">
-     Application: Credit Card Number Validation (Luhn’s Algorithm)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#application-iban-validation">
-     Application: IBAN Validation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#application-tc-id-validation">
-     Application TC ID # Validation
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hamming-code-7-4">
-     Hamming Code (7,4)
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#examples">
-       Examples
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#probability-of-error">
-       Probability of Error
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#comparison-of-error-correction-algorithms">
-   Comparison of error-correction algorithms
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948">
-   Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References:
-  </a>
- </li>
-</ul>
 
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            
-              <div>
+              
                 
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="information-theory">
-<h1>Information Theory<a class="headerlink" href="#information-theory" title="Permalink to this headline">¶</a></h1>
+<h1>Information Theory<a class="headerlink" href="#information-theory" title="Permalink to this heading">#</a></h1>
 <p><strong>FIZ371 - Scientific &amp; Technical Computations | 27/04/2020</strong></p>
 <p><strong>Information Theory</strong></p>
 <ul class="simple">
@@ -560,19 +491,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)</p></li>
 <li><p>References</p></li>
 </ul>
-<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">mailto:emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
+<p>Dr. Emre S. Tasci <a class="reference external" href="mailto:emre&#46;tasci&#37;&#52;&#48;hacettepe&#46;edu&#46;tr">emre<span>&#46;</span>tasci<span>&#64;</span>hacettepe<span>&#46;</span>edu<span>&#46;</span>tr</a></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h1>
 <p>Information theory is concerned with the delivery of a message from one point to the other. It has been established by Claude Shannon (1916-2001) in 1948, while working on telecommunication systems at the Bell Laboratories.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="the-problem">
-<h1>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h1>
+<h1>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this heading">#</a></h1>
 <p>A digitized message (consisting of 1s and 0s, i.e. “bits”) is transferred with a transfer ratio of 1 binary digit per second, and there is a probability of error that can “flip” the bit (i.e., transmitting a 1 as a 0 and vice-versa).</p>
 <p><img alt="IO.svg" src="_images/IO.svg" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="reducing-the-error-improving-the-reliability">
-<h1>Reducing the error &amp; Improving the reliability<a class="headerlink" href="#reducing-the-error-improving-the-reliability" title="Permalink to this headline">¶</a></h1>
+<h1>Reducing the error &amp; Improving the reliability<a class="headerlink" href="#reducing-the-error-improving-the-reliability" title="Permalink to this heading">#</a></h1>
 <p>Send the source digit through the channel repeatedly.</p>
 <p><strong>Ex: Repeating 3 times</strong>
 <img alt="IO_Repeated.png" src="_images/IO_Repeated.png" /></p>
@@ -583,7 +514,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="the-probability-of-error">
-<h1>The probability of error<a class="headerlink" href="#the-probability-of-error" title="Permalink to this headline">¶</a></h1>
+<h1>The probability of error<a class="headerlink" href="#the-probability-of-error" title="Permalink to this heading">#</a></h1>
 <p>Given that the probability of a flip occuring for 1 digit being <span class="math notranslate nohighlight">\(\beta=\frac{1}{4}\)</span>, the probability that at least 2 of a sequence of 3 digits will be received incorrectly:</p>
 <p><span class="math notranslate nohighlight">\(\left( {n \choose k} = \frac{n!}{(n-k)!k!}\right)\,,\quad\quad {3 \choose 2}\left(\frac{1}{4}\right)^2\left(\frac{3}{4}\right)+{3 \choose 3}\left(\frac{1}{4}\right)^3=\frac{10}{64}=0.15625\)</span></p>
 <div class="cell docutils container">
@@ -645,7 +576,7 @@ const thebe_selector_output = ".output, .cell_output"
   15  0.000034    0.0173
 </pre></div>
 </div>
-<img alt="_images/FIZ371_LN36_EST_Information_Theory_7_1.png" src="_images/FIZ371_LN36_EST_Information_Theory_7_1.png" />
+<img alt="_images/af06dee0016b2f9230e93af4c1930cd320985f800d92400e9eddfa36531f1dab.png" src="_images/af06dee0016b2f9230e93af4c1930cd320985f800d92400e9eddfa36531f1dab.png" />
 </div>
 </div>
 <p>Effective transmission rate of the source is:</p>
@@ -703,16 +634,16 @@ const thebe_selector_output = ".output, .cell_output"
 <p>(We need to be smarter than this..)</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="shannon-weaver-communication-model">
-<h1>Shannon - Weaver Communication Model<a class="headerlink" href="#shannon-weaver-communication-model" title="Permalink to this headline">¶</a></h1>
+<h1>Shannon - Weaver Communication Model<a class="headerlink" href="#shannon-weaver-communication-model" title="Permalink to this heading">#</a></h1>
 <p><img alt="ShannonChannel.svg" src="_images/ShannonChannel.svg" /></p>
 <p>This is the model Shannon (&amp; Weaver) used to identify the essential stages for message relaying. Note how the noise is introduced only in the transfer channel.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="parity-concept">
-<h1>Parity Concept<a class="headerlink" href="#parity-concept" title="Permalink to this headline">¶</a></h1>
+<h1>Parity Concept<a class="headerlink" href="#parity-concept" title="Permalink to this heading">#</a></h1>
 <p>Before we start on the Hamming Code, which improves the repeatition method, let’s try to understand the parity concept: Parity checks are implemented when it is necessary to quickly validate long sequences where typing is highly prone to errors (e.g., credit card numbers, IBAN numbers, national ID numbers, etc.). One or more digits are also included in the resulting number that is dependent of the other digits, so that a quick validation reference is already available within the data to be validated.</p>
 <section id="application-credit-card-number-validation-luhn-s-algorithm">
-<h2>Application: Credit Card Number Validation (<a class="reference external" href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn’s Algorithm</a>)<a class="headerlink" href="#application-credit-card-number-validation-luhn-s-algorithm" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
+<h2>Application: Credit Card Number Validation (<a class="reference external" href="https://en.wikipedia.org/wiki/Luhn_algorithm">Luhn’s Algorithm</a>)<a class="headerlink" href="#application-credit-card-number-validation-luhn-s-algorithm" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple" start="0">
 <li><p>Let the credit card number be: 4556 7375 8689 9855</p></li>
 <li><p>Last digit is the check digit: 455673758689985<b><u>5</u></b></p></li>
 <li><p>Drop the last digit: 455673758689985</p></li>
@@ -764,8 +695,8 @@ num (7):  5 &lt;-- Check digit
 <p><strong><em>Homework: Why does this work? Prove that it does.</em></strong></p>
 </section>
 <section id="application-iban-validation">
-<h2>Application: IBAN Validation<a class="headerlink" href="#application-iban-validation" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
+<h2>Application: IBAN Validation<a class="headerlink" href="#application-iban-validation" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple" start="0">
 <li><p>Let the IBAN number be: TR40 0001 2345 6789 8765 4321 21</p></li>
 <li><p>Move the four initial characters to the end: 0001234567898765432121TR40</p></li>
 <li><p>Replace each letter in the string with two digits (A:10, B=11, …, Z=35):<br />
@@ -807,8 +738,8 @@ IBAN (3):  1
 </div>
 </section>
 <section id="application-tc-id-validation">
-<h2>Application TC ID # Validation<a class="headerlink" href="#application-tc-id-validation" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
+<h2>Application TC ID # Validation<a class="headerlink" href="#application-tc-id-validation" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple" start="0">
 <li><p>Let the TC ID# be: 12345678950</p></li>
 <li><p>Add the digits in odd positions (1., 3.,…,9.) together, multiply by 7: 25*7=175</p></li>
 <li><p>Add the digits in even positions (2., 4.,…,8.): 20</p></li>
@@ -855,7 +786,7 @@ TCID# (5):  0  ==  0
 <p>Thus, TC ID # system uses a double check algorithm.</p>
 </section>
 <section id="hamming-code-7-4">
-<h2>Hamming Code (7,4)<a class="headerlink" href="#hamming-code-7-4" title="Permalink to this headline">¶</a></h2>
+<h2>Hamming Code (7,4)<a class="headerlink" href="#hamming-code-7-4" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>s: source message (length: 4)</p></li>
 <li><p>t: transmitted message (length: 7)</p></li>
@@ -914,7 +845,7 @@ t_7 = (s_1,s_3,s_4)
 </div>
 </div>
 </div>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>s1</p></th>
 <th class="head"><p>s2</p></th>
@@ -1056,6 +987,7 @@ t_7 = (s_1,s_3,s_4)
 </tr>
 </tbody>
 </table>
+</div>
 <p>Note that any pair of codewords differ from each other in at least three bits!</p>
 <p><strong>Syndromes (parities):</strong></p>
 <div class="math notranslate nohighlight">
@@ -1115,7 +1047,7 @@ z_3 = (t_7,s_1,s_3,s_4)\end{split}\]</div>
 </div>
 </div>
 <section id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
 <p>1. <code class="docutils literal notranslate"><span class="pre">t=1000|101</span>&#160;&#160; <span class="pre">s1</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">s2</span> <span class="pre">=</span> <span class="pre">s3</span> <span class="pre">=</span> <span class="pre">s4</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">t5</span> <span class="pre">=</span> <span class="pre">s1+s2+s3</span> <span class="pre">=</span> <span class="pre">1+0+0</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">t6</span> <span class="pre">=</span> <span class="pre">s2+s3+s4</span> <span class="pre">=</span> <span class="pre">0+0+0</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">t7</span> <span class="pre">=</span> <span class="pre">s1+s3+s4</span> <span class="pre">=</span> <span class="pre">1+0+0</span> <span class="pre">=</span> <span class="pre">1</span></code></p>
 <p><img alt="HammingVenn_E01.svg" src="_images/HammingVenn_E01.svg" /></p>
 <p>Now, let’s assume that, during transmission, noise flips the 2nd bit, thus the received signal becomes:</p>
@@ -1133,7 +1065,7 @@ z_3 = (t_7,s_1,s_3,s_4)\end{split}\]</div>
 <p><img alt="HammingVenn_E03r.svg" src="_images/HammingVenn_E03r.svg" /></p>
 <p><span class="math notranslate nohighlight">\(z(1,1,1)\rightarrow r_3\)</span> should be flipped</p>
 <p><strong>Syndromes and fixes chart</strong></p>
-<table class="colwidths-auto table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Syndrome z</p></th>
 <th class="head"><p>000</p></th>
@@ -1159,12 +1091,13 @@ z_3 = (t_7,s_1,s_3,s_4)\end{split}\]</div>
 </tr>
 </tbody>
 </table>
+</div>
 <p>4. <span class="math notranslate nohighlight">\(t_3\, \&amp;\, t_7\)</span> are flipped <span class="math notranslate nohighlight">\(\rightarrow r=10\underline{1}010\underline{0}\)</span></p>
 <p><img alt="HammingVenn_E04r.svg" src="_images/HammingVenn_E04r.svg" /></p>
 <p><span class="math notranslate nohighlight">\(z(1,1,0)\rightarrow r_2\)</span> should be flipped:</p>
 </section>
 <section id="probability-of-error">
-<h3>Probability of Error<a class="headerlink" href="#probability-of-error" title="Permalink to this headline">¶</a></h3>
+<h3>Probability of Error<a class="headerlink" href="#probability-of-error" title="Permalink to this heading">#</a></h3>
 <p>Let’s calculate the probability that two or more bits will be flipped (hence, the received and corrected message will still be wrong) when <span class="math notranslate nohighlight">\(\beta\)</span>, the probability that the noise will flip a bit be:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\beta=1/4\)</span>:</p></li>
@@ -1251,13 +1184,13 @@ P(err): 0.14969
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="comparison-of-error-correction-algorithms">
-<h1>Comparison of error-correction algorithms<a class="headerlink" href="#comparison-of-error-correction-algorithms" title="Permalink to this headline">¶</a></h1>
+<h1>Comparison of error-correction algorithms<a class="headerlink" href="#comparison-of-error-correction-algorithms" title="Permalink to this heading">#</a></h1>
 <p><img alt="MacKay_1_18.png" src="_images/MacKay_1_18.png" />
 <a class="reference external" href="https://www.inference.org.uk/mackay/itila/book.html">David MacKay - Information Theory, Inference, and Learning Algorithms</a></p>
 <p>In the graph above, repetition algorithms (<em>R#</em>) are compared against Hamming(7,4) code and more widely used BCH (<a class="reference external" href="https://en.wikipedia.org/wiki/BCH_code">Bose–Chaudhuri–Hocquenghem</a>) codes.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948">
-<h1>Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)<a class="headerlink" href="#shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948" title="Permalink to this headline">¶</a></h1>
+<h1>Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)<a class="headerlink" href="#shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948" title="Permalink to this heading">#</a></h1>
 <p>Shannon proposed an upper limit for which he defined as the channel capacity which can not be overcome by any algorithm (even in the ideal limit).</p>
 <p>Channel capacity <span class="math notranslate nohighlight">\(C(\beta)\)</span> is defined in terms of entropy <span class="math notranslate nohighlight">\(H_2\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -1301,7 +1234,7 @@ Since <span class="math notranslate nohighlight">\(C=0.531\)</span>, <span class
 <a class="reference external" href="https://www.inference.org.uk/mackay/itila/book.html">David MacKay - Information Theory, Inference, and Learning Algorithms</a></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="references">
-<h1>References:<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h1>
+<h1>References:<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p>The lecture textbook: David MacKay, “Information Theory, Inference, and Learning Algorithms” <a class="reference external" href="http://www.inference.org.uk/mackay/itprnn/book.html">http://www.inference.org.uk/mackay/itprnn/book.html</a></p></li>
 </ul>
@@ -1319,7 +1252,7 @@ Since <span class="math notranslate nohighlight">\(C=0.531\)</span>, <span class
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./."
         },
         predefinedOutput: true
@@ -1327,44 +1260,123 @@ Since <span class="math notranslate nohighlight">\(C=0.531\)</span>, <span class
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="GaleShapleyMatching_Implementation.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Gale-Shapley Algorithm Implementation</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="GaleShapleyMatching_Implementation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Gale-Shapley Algorithm Implementation</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="FIZ371_LN36_EST_Information_Theory_MessageTransmissionOverNoise.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Information Theory Application</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
+                </footer>
+              
+            </div>
             
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Dr. Emre S. Tasci<br/>
-    
-        &copy; Copyright 2021.<br/>
-  </p>
-</footer>
-</main>
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-      </div>
-    </div>
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Information Theory</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem">The Problem</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reducing-the-error-improving-the-reliability">Reducing the error &amp; Improving the reliability</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-probability-of-error">The probability of error</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#shannon-weaver-communication-model">Shannon - Weaver Communication Model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#parity-concept">Parity Concept</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-credit-card-number-validation-luhn-s-algorithm">Application: Credit Card Number Validation (Luhn’s Algorithm)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-iban-validation">Application: IBAN Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-tc-id-validation">Application TC ID # Validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hamming-code-7-4">Hamming Code (7,4)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#probability-of-error">Probability of Error</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-error-correction-algorithms">Comparison of error-correction algorithms</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#shannon-s-noisy-channel-coding-theorem-shannon-s-limit-1948">Shannon’s Noisy-Channel Coding Theorem / Shannon’s Limit (1948)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References:</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Emre S. Tasci
+</p>
 
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
