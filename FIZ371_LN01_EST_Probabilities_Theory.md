@@ -238,7 +238,7 @@ print(x_avg)
 
 # Variance $(\sigma^2)$
 
-$$\sigma^2=\sum_{x_i}{x_i^2p(x_i)} \;- <x>^2$$
+$$\sigma^2=<x^2>-<x>^2=\sum_{x_i}{x_i^2p(x_i)} \;- \sum_{x_i}{x_ip(x_i)}$$
 
 ```python
 var = 0
