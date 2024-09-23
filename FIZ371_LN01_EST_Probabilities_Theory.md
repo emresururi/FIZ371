@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.11.5
+      jupytext_version: 1.16.4
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -88,14 +88,14 @@ Asked Questions Manual for Linux ). The picture shows the probabilities by the a
 
 ## Conditional Probability
 
-$$P(x=a_i|y=b_j) = \frac{P(x=a_i,y=b_j}{P(y=b_j}$$
+$$P(x=a_i|y=b_j) = \frac{P(x=a_i,y=b_j)}{P(y=b_j)}$$
 
 "Given that $y=b_j$, what is the probability that $x=a_i$?"
 
 **Example:** Letters in alphabet in a bigram (a word with two letters) $xy$
 
 
-$$\underbrace{P(xy)}_{\text{Join}}: \underbrace{P(x) = P(y)}_{\text{Marginal Probabilities}}\;\text{| Joint Ensemble}$$
+$$\underbrace{P(xy)}_{\text{Joint (Fig 1)}}: \underbrace{P(x) = P(y)}_{\text{Marginal Probabilities (Fig 2)}}\;\text{| Joint Ensemble}$$
 
 
 {ref}`Fig 2.3 <fig2_3>`
