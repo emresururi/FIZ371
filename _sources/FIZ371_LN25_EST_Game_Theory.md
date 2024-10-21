@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.5
+    jupytext_version: 1.16.4
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -380,7 +380,7 @@ As an example, consider the payoff table for the Prisoner's Dilemma:
 |$A_{s}$|2,2|0,3
 |$A_{d}$|3,0|1,1
 
-Here, Alice is the column player (because it can make its choice between $A_s$ (above) and $A_d$ (below)) and Bob is the row player (as it chooses between $B_s$ (left) and $B_d$ (right))
+Here, Alice is the column player (because she can make its choice between $A_s$ (above) and $A_d$ (below)) and Bob is the row player (as he chooses between $B_s$ (left) and $B_d$ (right))
 
 First we take on Alice's role and let's start from the top left cell (2,2). Alice can choose to stay here (remain silent) or go to the cell below (defect). In this situation (where Bob is remaining silent) if she stays, she gains "2" but if she defects, her gain is "3" so she will choose to defect (in basic Game Theory, moral or irrational choices are excluded and maximum yield is the ultimate object). So, our chart will be marked as:
 
